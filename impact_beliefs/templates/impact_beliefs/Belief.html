@@ -1,0 +1,65 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+    Enter your Belief
+{% endblock %}
+
+{% block content %}
+
+    {% if player.treatment == "Motivated" %}
+        <p>
+            Below, you will see the matrix of xs for a project. Investing in this project costs {{ price_to_show }}.
+        </p>
+    {% endif %}
+
+    <body onload="HideImageLoadForm();">
+        <img src = "{% static img_to_show %}" id="matrix" style="display:block;margin-left:auto; margin-right:auto; width:60%;"/>
+
+    <div id="Question" style="display:none">
+        <p>
+            The project id is {{ project }}.
+        </p>
+        <p>
+            Please enter how many Xs you think were in the matrix.
+        </p>
+
+        {% formfields %}
+
+        {% next_button %}
+    </div>
+
+    </body>
+
+
+{% endblock %}
+
+
+{% block scripts %}
+    <script>
+        let Delay = 5*1000;
+           function Hide() {
+            setTimeout(function() {
+              document.getElementById('matrix').style.display='none'
+            }, Delay);
+        }
+        /*
+        function Load() {
+            setTimeout(function () {
+                document.getElementById('Question').style.display ='inline'
+            }, Delay);
+        }
+        */
+
+        function HideImageLoadForm() {
+            setTimeout(function(){
+                document.getElementById('matrix').style.display="none"
+            }, Delay);
+            setTimeout(function (){
+                document.getElementById('Question').style.display="inline"
+            }, Delay);
+        }
+        /*setTimeout(HideImageLoadForm, 5*1000); */
+
+    </script>
+{% endblock %}

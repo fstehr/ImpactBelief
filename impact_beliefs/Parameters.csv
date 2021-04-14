@@ -1,0 +1,3 @@
+﻿co2_kg,num_x,price_GBP,price_ECU,image_title_1,image_title_2,km_car_equiv,project_id
+20,40,0.15,15,matrix_40_1.png,matrix_40_2.png,90,1
+40,80,0.3,30,matrix_80_1.png,matrix_80_2.png,210,2

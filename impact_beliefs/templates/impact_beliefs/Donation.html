@@ -1,0 +1,43 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+    Enter your Donation
+{% endblock %}
+
+{% block content %}
+
+    <body onload="delimiter()">
+    Your belief was {{ belief }}. This means that you believe this project eliminates <span id="Co2"></span> kg CO<sub>2</sub>.
+        This amount of carbon emissions is equivalent to riding <span id="km"></span> km with an average car.
+    </body>
+
+    <p>
+        The price of investing in this project is {{ price_to_show }}.
+    </p>
+
+    {% formfields %}
+
+    {% next_button %}
+
+{% endblock %}
+
+
+
+
+{% block scripts %}
+
+    <script>
+        function delimiter() {
+            var km = js_vars.display_km;
+            var km_delim = km.toLocaleString();
+            document.getElementById("km").innerHTML = km_delim;
+
+            var co2 = js_vars.display_co2;
+            var co2_delim = co2.toLocaleString();
+            document.getElementById("Co2").innerHTML = co2_delim;
+        }
+    </script>
+
+{% endblock %}
+
