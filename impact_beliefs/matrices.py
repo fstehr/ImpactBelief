@@ -2,6 +2,7 @@ import random
 from math import ceil
 from tabulate import tabulate
 
+
 """
 # Create the basic list of 100 os
 columns = 20
