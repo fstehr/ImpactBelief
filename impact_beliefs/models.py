@@ -32,6 +32,7 @@ class Constants(BaseConstants):
     num_rounds = num_decision_rounds + num_work_rounds
     endowment = 280
     beliefs_fixed_payment = 150
+    beliefs_max_payment = 2 * beliefs_fixed_payment
 
     slider_columns = 3  # uncomment this if you want sliders in the slider task to be displayed in multiple columns
     num_sliders = 1

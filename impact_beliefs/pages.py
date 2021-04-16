@@ -6,7 +6,7 @@ from .models import Slider
 from slider_task.pages import SliderTaskPage
 
 
-class Intro(Page):
+class IntroWelcome(Page):
     def is_displayed(self):
         return self.round_number == 1
 
@@ -125,7 +125,7 @@ class Outro(Page):
 
 
 page_sequence = [
-    Intro,
+    IntroWelcome,
     Sliders,
     Belief,
     Donation,

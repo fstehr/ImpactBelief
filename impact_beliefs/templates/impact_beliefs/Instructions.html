@@ -6,11 +6,12 @@
             <h4>Instructions</h4>
 
             <p>
-                In this task you are asked to estimate the number of Xs in a matrix. (see example image below).
-                Your payment in this task depends on the accuracy of your estimation. In particular, you can earn more
-                the closer you are to the correct number of Xs. If you get the correct number of Xs you earn {{ Constants.endowment }}.
-                The further your estimate is away from the correct number of Xs, the less you earn. If you miss the number of Xs by more than 200 your payoff from this task will be zero - if a round from this task is selected to be the
-                paying task.
+                In this task you are asked to estimate the number of Xs in a matrix. (see example image below). For
+                completing the task, you will receive {{ Constants.beliefs_fixed_payment }}, if a round of this task is selected for payment.
+                You can earn more money depending on the accuracy of your estimation. In particular, you can earn more
+                the closer you are to the correct number of Xs. If you get the correct number of Xs, you earn {{ Constants.beliefs_max_payment }}.
+                The further your estimate is away from the correct number of Xs, the less you earn. If you miss the number of Xs by more than
+                200 your extra payoff for accuracy in this task will be zero.
             </p>
 
             {% if player.treatment == "Motivated" %}
@@ -21,7 +22,8 @@
                 that eliminates CO<sub>2</sub> emissions from the atmosphere. This means that if a matrix has 100 Xs,
                 the project will eliminate 50 kg of CO<sub>2</sub> which is equivalent to the emissions caused by
                 driving 300 km with an average car.
-
+                </p>
+                <p>
                     Include description of this charity here!
                         These are real carbon emissions that are offset through the offsetting provider climatecare.org. (certified B Corporation).
 
@@ -31,17 +33,20 @@
                         product, then you will reduce the size of the fund, resulting in an increase of CO2 in the atmosphere."
                         "When the study is over we will send you the link with the proof of our donation to
                         Carbonfund.org."
-
+                </p>
+                <p>
                 After indicating your estimates of the number of Xs for a variety of matrices, you will be given the opportunity
                 to donate to the projects. When you see the matrix for your estimation task, you will also be able to
                 see how much it will cost you to donate to this project. You will receive further instructions about the donation task
                 at a later stage of this experiment.
                 </p>
             {% endif %}
+
             <p>
                 You will be able to see each matrix for 5 seconds only, so make sure you pay close attention. After
                 the image of the matrix has disappeared you are asked to indicate your estimate on the number of Xs.
             </p>
+
         </div>
     </div>
 
