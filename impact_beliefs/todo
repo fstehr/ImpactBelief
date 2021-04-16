@@ -2,23 +2,11 @@
 Write (treatment sensitive) instructions --> write as separate documents and load accordingly into html intro page
 write instructions for donation task (Think about framing)
 
-
-hide somewhere more detailed instructions for quadratic scoring rule
-
-
-include instructions with a 'back'-button --> look on Hauke's Github
-https://www.w3schools.com/howto/howto_js_quotes_slideshow.asp
-
+hide somewhere more detailed instructions for quadratic scoring rule --> use a button like the book button
 
 use button with a book for subjects to be able to re-read instructions
 
 and comprehension questions / Attention checks to determine who is admitted to the experiment
-
-
-
-Update matrix pictures - use different latex preamble (beamer document class with small margins)
-then convert pdf into jpgs
-in parameter csv file - rename all image names to matrix_40_1.PNG (i.e. append .png everywhere)
 
 Think about other control variables to include (e.g. un-incentivized how certain are you about your belief estimate?)
 
@@ -27,7 +15,12 @@ Code Carbon Footprint calculator using radiobutton fields with labels of the ver
 make next pages button with Java script, such that the entire calculator is on one page.
 instruct people to answer for their pre-pandemic behavior
 
-elicit beliefs about impact of different pro-environmental behaviors
+elicit beliefs about impact of different pro-environmental behaviors --> use sliders as eliciters
+
+
+Update matrix pictures - use different latex preamble (beamer document class with small margins)
+then convert pdf into jpgs
+in parameter csv file - rename all image names to matrix_40_1.PNG (i.e. append .png everywhere)
 
 
 remember to track screen resolutions (& double check in chrome) & response times & errors in control questions (Hauke counter snippet)

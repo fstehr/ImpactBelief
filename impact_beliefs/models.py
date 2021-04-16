@@ -132,6 +132,8 @@ class Player(SliderPlayer):
 
     current_payoff = models.FloatField()
 
+    plane_belief = models.FloatField()
+
 
 class Slider(BaseSlider):  # Class that is needed for the slider task
     player = ForeignKey(Player,
