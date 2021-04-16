@@ -6,11 +6,6 @@ from .models import Slider
 from slider_task.pages import SliderTaskPage
 
 
-class CarbonBelief(Page):
-    form_model = 'player'
-    form_fields = ['plane_belief']
-
-
 class IntroWelcome(Page):
     def is_displayed(self):
         return self.round_number == 1
@@ -118,6 +113,14 @@ class Donation(Page):
             player.payoff = player.current_payoff
 
 
+class CarbonBelief(Page):
+    form_model = 'player'
+    form_fields = ['plane_belief']
+
+    def is_displayed(self):
+        return self.round_number == Constants.num_rounds
+
+
 class Outro(Page):
     def is_displayed(self):
         return self.round_number == Constants.num_rounds
@@ -130,7 +133,6 @@ class Outro(Page):
 
 
 page_sequence = [
-    CarbonBelief,
     Sliders,
     Belief,
     Donation,
