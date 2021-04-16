@@ -27,7 +27,9 @@ class Constants(BaseConstants):
     with open('impact_beliefs/Parameters.csv', encoding='utf-8-sig') as parameters:
         paras = list(csv.DictReader(parameters, dialect='excel'))
 
-    num_rounds = len(paras) * 4
+    num_work_rounds = 1
+    num_decision_rounds = len(paras) * 4
+    num_rounds = num_decision_rounds + num_work_rounds
     endowment = 300
 
     slider_columns = 3  # uncomment this if you want sliders in the slider task to be displayed in multiple columns
@@ -61,7 +63,7 @@ class Subsession(BaseSubsession):
                 p.vars['order'] = random.choice(orders)
 
                 # randomly assign payment round
-                rounds = range(Constants.num_rounds)
+                rounds = range(1, Constants.num_rounds + 1)
                 p.vars['payment_round'] = random.choice(rounds)
                 print("Payment round is", p.vars['payment_round'])
 
@@ -70,13 +72,16 @@ class Subsession(BaseSubsession):
 
         for p in self.get_players():
             # Define "part" variable in the beginning of the experiment
-            if self.round_number <= len(Constants.paras):
+            if self.round_number == 1:
+                p.part = 0
+                p.round_type = "effort"
+            elif self.round_number <= len(Constants.paras) + 1:
                 p.part = 1  # belief rounds 1
                 p.round_type = "belief"
-            elif self.round_number <= len(Constants.paras) * 2:
+            elif self.round_number <= len(Constants.paras) * 2 + 1:
                 p.part = 2  # donation rounds 1
                 p.round_type = "donation"
-            elif self.round_number <= len(Constants.paras) * 3:
+            elif self.round_number <= len(Constants.paras) * 3 + 1:
                 p.part = 3  # belief rounds 2
                 p.round_type = "belief"
             else:
@@ -86,13 +91,17 @@ class Subsession(BaseSubsession):
             # Assign treatment to players in all rounds using treatment order assigned in first round
             if p.participant.vars['order'] == "NeutralMotivated":
                 p.order = "NeutralMotivated"
-                if p.part == 1 or p.part == 2:
+                if p.part == 0:
+                    p.treatment = ""
+                elif p.part == 1 or p.part == 2:
                     p.treatment = "Neutral"
                 else:
                     p.treatment = "Motivated"
             elif p.participant.vars['order'] == "MotivatedInfo":
                 p.order = "MotivatedInfo"
-                if p.part == 1 or p.part == 2:
+                if p.part == 0:
+                    p.treatment = ""
+                elif p.part == 1 or p.part == 2:
                     p.treatment = "Motivated"
                 else:
                     p.treatment = "Info"
@@ -117,7 +126,7 @@ class Player(SliderPlayer):
     )
     project_id = models.IntegerField()
     num_x_true = models.IntegerField()
-    price = models.CurrencyField()
+    price = models.FloatField()
 
     current_payoff = models.FloatField()
 

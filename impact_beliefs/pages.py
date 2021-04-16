@@ -18,6 +18,13 @@ class Sliders(SliderTaskPage):
     def is_displayed(self):
         return self.round_number == 1
 
+    def before_next_page(self):
+        player = self.player
+        player.current_payoff = Constants.endowment
+        # print("current payoff is", player.current_payoff, "=", Constants.endowment, "-", player.price, "*", player.donation)
+        if self.round_number == self.participant.vars['payment_round']:
+            player.payoff = player.current_payoff
+
 
 class Belief(Page):
     form_model = 'player'
@@ -30,9 +37,9 @@ class Belief(Page):
     def vars_for_template(self):
         player = self.player
         # get current project from list of 'parameters'
-        project = self.participant.vars['parameters'][self.round_number - 1]
+        project = self.participant.vars['parameters'][self.round_number - 2]
         player.project_id = int(project['project_id'])
-        player.price = c(project['price_ECU'])
+        player.price = float(project['price_ECU'])
         player.num_x_true = int(project['num_x'])
         if player.part == 1:
             image = project['image_title_1']
@@ -44,12 +51,12 @@ class Belief(Page):
 
     def before_next_page(self):
         player = self.player
-        # store belief in participant vars in the position of the project id to make it easily callable on donation page
         player.current_payoff = max(0, Constants.endowment - 0.0075*((player.num_x_belief-player.num_x_true)**2))
         # print("current payoff is", player.current_payoff, "= 300 - 0.0075*(", player.num_x_belief, "-", player.num_x_true, ")^2")
         if self.round_number == self.participant.vars['payment_round']:
             player.payoff = player.current_payoff
 
+        # store belief in participant vars in the position of the project id to make it easily callable on donation page
         if player.part == 1:
             self.participant.vars['beliefs_part1'][player.project_id-1] = player.num_x_belief
             # belief_list = self.participant.vars['beliefs_part1']
@@ -70,9 +77,9 @@ class Donation(Page):
 
     def vars_for_template(self):
         player = self.player
-        project = self.participant.vars['parameters'][self.round_number - 1]
+        project = self.participant.vars['parameters'][self.round_number - 2]
         player.project_id = int(project['project_id'])
-        player.price = c(project['price_ECU'])
+        player.price = float(project['price_ECU'])
         player.num_x_true = int(project['num_x'])   # store true num of xs again in dataset in same row as donation
 
         # Look-Up indicated belief from the correct list of participant vars & store again in dataset in current row
@@ -114,6 +121,7 @@ class Outro(Page):
 
 page_sequence = [
     Intro,
+    Sliders,
     Belief,
     Donation,
     Outro

@@ -8,32 +8,6 @@ SESSION_CONFIGS = [
         num_demo_participants=2,
         app_sequence=['impact_beliefs'],
     ),
-    dict(
-        name='ret_typing',
-        display_name="Real Effort Task - Typing Task",
-        num_demo_participants=1,
-        app_sequence=['ret_typing'],
-        ret_timer=10,
-        # showupfee= 30,
-    ),
-    dict(
-        name='public_goods',
-        display_name="Public Goods",
-        num_demo_participants=3,
-        app_sequence=['public_goods', 'payment_info'],
-    ),
-    dict(
-        name='guess_two_thirds',
-        display_name="Guess 2/3 of the Average",
-        num_demo_participants=3,
-        app_sequence=['guess_two_thirds', 'payment_info'],
-    ),
-    dict(
-        name='survey',
-        display_name='survey',
-        num_demo_participants=1,
-        app_sequence=['survey', 'payment_info'],
-    ),
 ]
 
 # if you set a property in SESSION_CONFIG_DEFAULTS, it will be inherited by all configs
