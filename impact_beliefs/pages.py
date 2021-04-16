@@ -51,8 +51,8 @@ class Belief(Page):
 
     def before_next_page(self):
         player = self.player
-        player.current_payoff = max(0, Constants.endowment - 0.0075*((player.num_x_belief-player.num_x_true)**2))
-        # print("current payoff is", player.current_payoff, "= 300 - 0.0075*(", player.num_x_belief, "-", player.num_x_true, ")^2")
+        player.current_payoff = Constants.beliefs_fixed_payment + max(0, Constants.beliefs_fixed_payment - 0.00375*((player.num_x_belief-player.num_x_true)**2))
+        # print("current payoff is", player.current_payoff, "= 150 + max(0,150 - 0.00375*(", player.num_x_belief, "-", player.num_x_true, ")^2")
         if self.round_number == self.participant.vars['payment_round']:
             player.payoff = player.current_payoff
 
