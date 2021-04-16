@@ -88,15 +88,20 @@ class Donation(Page):
         elif player.part == 4:
             player.num_x_belief = self.participant.vars['beliefs_part3'][player.project_id-1]
 
-        return {'project': player.project_id, 'price_to_show': player.price, 'belief': player.num_x_belief}
+        return {'project': player.project_id, 'price_to_show': player.price, 'belief': player.num_x_belief,
+                'num_X_true': player.num_x_true}
 
     def js_vars(self):
         player = self.player
-        carbon_belief = player.num_x_belief * Constants.real_world_kg_co2_per_x
-        car_km = carbon_belief * Constants.car_km_per_kg_co2
+        if player.treatment == "Info":
+            carbon_emissions = player.num_x_true * Constants.real_world_kg_co2_per_x
+        else:
+            carbon_emissions = player.num_x_belief * Constants.real_world_kg_co2_per_x
+
+        car_km = carbon_emissions * Constants.car_km_per_kg_co2
         return dict(
             display_km=car_km,
-            display_co2=carbon_belief,
+            display_co2=carbon_emissions,
         )
 
     def before_next_page(self):

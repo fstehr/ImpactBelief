@@ -2,9 +2,6 @@ do payoff calculation
 --> double check steapness/parametrization for belief elicitation  --> take the one with 50% deviation, then see in pilot how many people always pick 200
 --> double check participation fee (if completed) (& set a lower part fee if filtered out in the beginning?)
 
---> code info treatment
-
-
 Write (treatment sensitive) instructions --> write as separate documents and load accordingly into html intro page
 write instructions for donation task (Think about framing)
 

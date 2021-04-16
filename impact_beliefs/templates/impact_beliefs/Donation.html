@@ -8,9 +8,23 @@
 {% block content %}
 
     <body onload="delimiter()">
-    Your belief was {{ belief }}. This means that you believe this project eliminates <span id="Co2"></span> kg CO<sub>2</sub>.
-        This amount of carbon emissions is equivalent to riding <span id="km"></span> km with an average car.
+
+        {% if player.treatment == "Info" %}
+            <p>
+                The correct number of Xs in the matrix of this project was {{ num_X_true }}.
+                This means that this project eliminates <span id="Co2"></span> kg CO<sub>2</sub>.
+                This amount of carbon emissions is equivalent to riding <span id="km"></span> km with an average car.
+            </p>
+        {% else %}
+
+            <p> Your belief was {{ belief }}. This means that you believe this project eliminates <span id="Co2"></span> kg CO<sub>2</sub>.
+            This amount of carbon emissions is equivalent to riding <span id="km"></span> km with an average car.
+            </p>
+
+        {% endif %}
     </body>
+
+
 
     <p>
         The price of investing in this project is {{ price_to_show }}.
