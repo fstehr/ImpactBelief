@@ -1,0 +1,42 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block styles %}
+
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'js/gif_button.js' %}"></script>
+{% endblock %}
+
+{% block title %}
+    Intro
+{% endblock %}
+
+{% block content %}
+
+    <p>
+        Welcome to this experiment.
+    </p>
+
+    <figure>
+        {% if player.treatment == "Motivated" %}
+        <img src="{% static 'img/Belief_instructions_motivated.png' %}" alt="Static Image"
+             data-alt="/static/img/Belief_instructions_motivated.gif" style="display:block;margin-left:auto; margin-right:auto; width:70%;"/>
+        {% else %}
+        <img src="{% static 'img/Belief_instructions_neutral.png' %}" alt="Static Image"
+             data-alt="/static/img/Belief_instructions_neutral.gif" style="display:block;margin-left:auto; margin-right:auto; width:70%;"/>
+        {% endif %}
+        <figcaption style="font-style:italic; margin-left:auto; margin-right:auto; width:50%;">Click on the image to see a real-time video of the decision page.</figcaption>
+    </figure>
+
+
+    <p>
+        First, you are asked to work on a real-effort task. For completing the task you will earn {{ Constants.endowment }} ECU.
+        1 ECU is equivalent to &pound;0.01.
+    </p>
+
+    {% next_button %}
+
+{% endblock %}
+

@@ -34,7 +34,7 @@ class Constants(BaseConstants):
     beliefs_fixed_payment = 150
     beliefs_max_payment = 2 * beliefs_fixed_payment
 
-    slider_columns = 3  # uncomment this if you want sliders in the slider task to be displayed in multiple columns
+    #slider_columns = 3  # uncomment this if you want sliders in the slider task to be displayed in multiple columns
     num_sliders = 1
 
     real_world_kg_co2_per_x = 0.5
