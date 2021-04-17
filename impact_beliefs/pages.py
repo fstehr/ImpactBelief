@@ -6,6 +6,11 @@ from .models import Slider
 from slider_task.pages import SliderTaskPage
 
 
+
+class Intro(Page):
+    def is_displayed(self):
+        return self.round_number == 1
+
 class IntroWelcome(Page):
     def is_displayed(self):
         return self.round_number == 1
@@ -43,9 +48,11 @@ class Belief(Page):
         player.price = float(project['price_ECU'])
         player.num_x_true = int(project['num_x'])
         if player.part == 1:
-            image = project['image_title_1']
+            image = "img/"
+            image += project['image_title_1']
         elif player.part == 3:
-            image = project['image_title_2']
+            image = "img/"
+            image += project['image_title_2']
         # print("The current project is", project)
 
         return {'task_number': task_number, 'img_to_show': image, 'project': player.project_id, 'price_to_show': player.price}
@@ -90,10 +97,8 @@ class Donation(Page):
         elif player.part == 4:
             player.num_x_belief = self.participant.vars['beliefs_part3'][player.project_id-1]
 
-        gif = "Belief_instructions_motivated.gif"
-
         return {'task_number': task_number, 'project': player.project_id, 'price_to_show': player.price,
-                'belief': player.num_x_belief, 'num_X_true': player.num_x_true, 'image_to_show': gif}
+                'belief': player.num_x_belief, 'num_X_true': player.num_x_true}
 
     def js_vars(self):
         player = self.player
@@ -137,6 +142,7 @@ class Outro(Page):
 
 
 page_sequence = [
+    Intro,
     Sliders,
     Belief,
     Donation,

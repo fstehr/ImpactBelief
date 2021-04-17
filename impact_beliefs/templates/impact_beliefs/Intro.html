@@ -1,6 +1,14 @@
 {% extends "global/Page.html" %}
 {% load otree %}
 
+{% block styles %}
+
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'global/js/gif_button.js' %}"></script>
+{% endblock %}
+
 {% block title %}
     Intro
 {% endblock %}
@@ -11,43 +19,17 @@
         Welcome to this experiment.
     </p>
 
+    <figure>
+        <img src = "{% static 'Belief_instructions_motivated.png' %}" alt="Static Image" data-alt="static/Belief_instructions_motivated.gif" style="display:block;margin-left:auto; margin-right:auto; width:50%;"/>
+    </figure>
+
+
     <p>
         First, you are asked to work on a real-effort task. For completing the task you will earn {{ Constants.endowment }} ECU.
         1 ECU is equivalent to &pound;0.01.
     </p>
 
-
-
-
-    <p> Lars' instructions für quadratic scoring rule </p>
-
-    <p>
-
-    <strong>We apply the following procedure:</strong>&nbsp;
-
-        <ol>
-         <li>For each task we calculate the error you made. This is how many percentage points your report was away from the true answer.</li>
-         <li>We square the error.&nbsp;</li>
-         <li>We calculate your accuracy: We subtract the squared error&nbsp;from 100%.&nbsp;</li>
-         <li>We find the reward to this task: We&nbsp;multiply by 5.</li>
-         <li>Then, we randomly pick one of the tasks, your bonus will be equal to the&nbsp;reward for this task.</li>
-        </ol>
-        <br>
-        ----------------------------------<br>
-        <br>
-        <strong>EXAMPLE:</strong> Suppose that <strong>you report 80%&nbsp;that a <span style="color:#ff0000;">RED BOX</span></strong> was picked in Step 1. Then, your rewards are as follows:
-
-        <ul>
-            <li><strong>If the <span style="color:#ff0000;">BOX</span> was indeed <span style="color:#ff0000;">RED</span></strong>:</li>
-        </ul>
-
-         <ul>
-          <li>your error&nbsp;is (100%-80%)=20%,</li>
-          <li>your squared error&nbsp;is (20%)*(20%)=4%</li>
-          <li>your accuracy is 100%-4%=96%</li>
-             <li>your reward </li>
-        </ul>
-
     {% next_button %}
 
 {% endblock %}
+
