@@ -7,30 +7,54 @@
 
 {% block content %}
 
+    <div class="alert alert-secondary" id="alert" style="display:block;margin-left:auto; margin-right:auto; width:70%;">
+        <p>
+            In this task, you have the opportunity to invest your earnings from the work task.
+            The projects you can invest in are the same as those, whose impact you estimated in the previous task.
+        </p>
+        <p>
+            When you decide to invest into a project, and this task is selected for payment, we will donate the money to climatecare.org.
+            They will eliminate the amount of CO<sub>2</sub> from the atmosphere that is proportional to the true number of project's Xs in the matrix you saw earlier.
+        </p>
+
+    </div>
+
     <body onload="delimiter()">
 
-        {% if player.treatment == "Info" %}
-            <p>
-                The correct number of Xs in the matrix of this project was {{ num_X_true }}.
-                This means that this project eliminates <span id="Co2"></span> kg CO<sub>2</sub>.
-                This amount of carbon emissions is equivalent to riding <span id="km"></span> km with an average car.
-            </p>
-        {% else %}
 
-            <p> Your belief was {{ belief }}. This means that you believe this project eliminates <span id="Co2"></span> kg CO<sub>2</sub>.
-            This amount of carbon emissions is equivalent to riding <span id="km"></span> km with an average car.
-            </p>
+            <div class = "alert alert-dismissible" style="display:block;margin-left:auto; margin-right:auto; width:70%;">
 
-        {% endif %}
+                <p>
+                    {% if player.treatment == "Info" %}
+                        The correct number of Xs in the matrix of this project was {{ num_X_true }}.
+                        This means that <strong>this project eliminates <span id="Co2"></span> kg CO<sub>2</sub></strong>.
+                        This amount of carbon emissions is equivalent to riding <span id="km"></span> km with an average car.
+                    {% else %}
+                        You estimated the number of Xs in the matrix to be {{ belief }}.
+                        This means that <strong>you believe this project eliminates <span id="Co2"></span> kg CO<sub>2</sub></strong>.
+                        This amount of carbon emissions is equivalent to riding <span id="km"></span> km with an average car.
+                    {% endif %}
+                </p>
+            </div>
+
     </body>
 
-    <p>
-        The price of investing in this project is {{ price_to_show }}.
-    </p>
+    <div class = "alert alert-dismissible" style="display:block;margin-left:auto; margin-right:auto; width:70%;">
+        <p>
+            Your earnings from the work task were {{ Constants.endowment }} Points. The price of investing in this project is <strong>{{ price_to_show }} Points</strong>.
+        </p>
 
-    {% formfields %}
+        <p>
+            Would you like to invest in this project?
+        </p>
+        <p>
+            {{ form.donation }}
+        </p>
 
-    {% next_button %}
+        {% next_button %}
+
+    </div>
+
 
 {% endblock %}
 

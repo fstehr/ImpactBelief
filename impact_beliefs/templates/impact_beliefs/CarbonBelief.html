@@ -14,13 +14,12 @@
 {% endblock %}
 
 {% block script %}
-<script>
-  document.getElementById("myinput").oninput = function() {
-    var value = (this.value-this.min)/(this.max-this.min)*100
-    this.style.background = 'linear-gradient(to right, #82CFD0 0%, #82CFD0 ' + value + '%, #fff ' + value + '%, white 100%)'
-  };
-</script>
-
+    <script>
+      document.getElementById("myinput").oninput = function() {
+        var value = (this.value-this.min)/(this.max-this.min)*100
+        this.style.background = 'linear-gradient(to right, #82CFD0 0%, #82CFD0 ' + value + '%, #fff ' + value + '%, white 100%)'
+      };
+    </script>
 {% endblock %}
 
 
@@ -31,7 +30,7 @@
 
 {% block content %}
     <p>
-          Please indicate how many kg CO2 you believe this item is emitting:
+          Please indicate how many kg CO<sub>2</sub> you believe this item is emitting:
     </p>
 
 <!-- Making the table responsive -->
@@ -41,7 +40,7 @@
             <table style="width:100%">
                 <tr>
                   <th>Category</th>
-                  <th style="text-align:center">CO2 Emissions</th>
+                  <th style="text-align:center">CO<sub>2</sub> Emissions</th>
                 </tr>
                 <tr>
                   <td>
