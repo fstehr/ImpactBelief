@@ -8,18 +8,9 @@
         padding: 5px;
       }
       td:nth-child(1) {
-          width: 10%;
+          width: 17%;
       }
     </style>
-{% endblock %}
-
-{% block script %}
-    <script>
-      document.getElementById("myinput").oninput = function() {
-        var value = (this.value-this.min)/(this.max-this.min)*100
-        this.style.background = 'linear-gradient(to right, #82CFD0 0%, #82CFD0 ' + value + '%, #fff ' + value + '%, white 100%)'
-      };
-    </script>
 {% endblock %}
 
 
@@ -33,27 +24,33 @@
           Please indicate how many kg CO<sub>2</sub> you believe this item is emitting:
     </p>
 
+
 <!-- Making the table responsive -->
 		<div style="overflow-x: auto;">
 
 			<!-- Adding table in the web page -->
             <table style="width:100%">
-                <tr>
-                  <th>Category</th>
-                  <th style="text-align:center">CO<sub>2</sub> Emissions</th>
-                </tr>
-                <tr>
-                  <td>
-                    Plane
-                  </td>
-                  <td>
-                      <div class="slidecontainer" style="">
-                          <span>0</span>
-                          <input type="range" name="plane_belief" min="0" max="100" value="0" step="1" id="myinput" class="slider">
-                          <span>100</span>
-                      </div>
-                  </td>
-                </tr>
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th style="text-align:center">CO<sub>2</sub> Emissions</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for field in form %}
+                        <tr>
+                            <td>{{ field.label }}</td>
+                            <td>
+                                <div class="slidecontainer" style="">
+                                    <span>0</span>
+                                    <input type="range" name="{{ field.name }}" min="0" max="1000" value="0" step="1" id="myinput" class="slider">
+                                    <span>1000</span>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
             </table>
         </div>
 
@@ -61,3 +58,5 @@
     {% next_button %}
 
 {% endblock %}
+
+

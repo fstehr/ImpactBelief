@@ -1,7 +1,3 @@
-try to find a way to include a play button on top of the animated gif for the belief instructions:
-https://codepen.io/hoanghals/pen/dZrWLZ
-
-
 Write (treatment sensitive) instructions --> write as separate documents and load accordingly into html intro page
 write instructions for donation task (Think about framing)
 
@@ -11,7 +7,7 @@ hide somewhere more detailed instructions for quadratic scoring rule --> use a b
 use button with a book for subjects to be able to re-read instructions ---> not necessary, if control questions are on the last
 clickable page of instructions.
 
-and comprehension questions / Attention checks to determine who is admitted to the experiment
+add comprehension questions / Attention checks to determine who is admitted to the experiment
 
 Think about other control variables to include (e.g. un-incentivized how certain are you about your belief estimate?)
 
@@ -26,9 +22,12 @@ elicit beliefs about impact of different pro-environmental behaviors
 https://stackoverflow.com/questions/18389224/how-to-style-html5-range-input-to-have-different-color-before-and-after-slider
 https://www.a11ywithlindsey.com/blog/creating-accessible-range-slider-css
 https://css-tricks.com/styling-cross-browser-compatible-range-inputs-css/
+show current value of slider
+add java eventlistener and only let people pass if they touched all sliders
+
 
 Update matrix pictures - use different latex preamble (beamer document class with small margins)
-then convert pdf into jpgs
+then convert pdf into pngs
 in parameter csv file - rename all image names to matrix_40_1.PNG (i.e. append .png everywhere)
 
 

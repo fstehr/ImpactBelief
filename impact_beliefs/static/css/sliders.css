@@ -8,7 +8,7 @@
 
 .slider { /* Bar in which the slider handle can be moved */
     -webkit-appearance: none;
-    width: 90%; /* Width of slider within slidecontainer */
+    width: 85%; /* Width of slider within slidecontainer */
     margin-top: 5px;
     height: 10px; /* Specified height */
     border-radius: 5px; /* Radius makes the edges round */

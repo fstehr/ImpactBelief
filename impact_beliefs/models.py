@@ -34,7 +34,7 @@ class Constants(BaseConstants):
     beliefs_fixed_payment = 150
     beliefs_max_payment = 2 * beliefs_fixed_payment
 
-    #slider_columns = 3  # uncomment this if you want sliders in the slider task to be displayed in multiple columns
+    # slider_columns = 3  # uncomment this if you want sliders in the slider task to be displayed in multiple columns
     num_sliders = 1
 
     real_world_kg_co2_per_x = 0.5
@@ -57,7 +57,8 @@ class Subsession(BaseSubsession):
                 for i in [0, 1, 2]:  # repeat three times to get four parts (original + 3 times shuffled)
                     random.shuffle(new_paras)  # shuffles helplist
                     paras = paras + new_paras  # appends shuffled helplist to list of parameters
-                p.vars['parameters'] = paras  # store shuffled list of parameters in participant vars, then access each element by round number
+                p.vars[
+                    'parameters'] = paras  # store shuffled list of parameters in participant vars, then access each element by round number
                 # print(p.vars['parameters'])  # prints participant vars to double check randomization
 
                 # randomly assign treatment order to participants
@@ -132,7 +133,15 @@ class Player(SliderPlayer):
 
     current_payoff = models.FloatField()
 
-    plane_belief = models.FloatField()
+    co2_belief_car = models.FloatField(label="Live car-free",)
+    co2_belief_plane = models.FloatField(label="Avoid one transatlantic round-trip flight",)
+    co2_belief_renewables = models.FloatField(label="Use renewable energy at home",)
+    co2_belief_hybrid = models.FloatField(label="Replace a typical car with hybrid",)
+    co2_belief_vegan = models.FloatField(label="Adopt a plant-based diet",)
+    co2_belief_laundry = models.FloatField(label="Wash clothes in cold water",)
+    co2_belief_recycle = models.FloatField(label="Recycle your waste",)
+    co2_belief_dryer = models.FloatField(label="Air-dry clothes",)
+    co2_belief_led = models.FloatField(label="Use LED-bulbs at home",)
 
 
 class Slider(BaseSlider):  # Class that is needed for the slider task
