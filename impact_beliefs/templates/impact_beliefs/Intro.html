@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block scripts %}
-    <script src="{% static 'global/js/gif_button.js' %}"></script>
+    <script src="{% static 'js/gif_button.js' %}"></script>
 {% endblock %}
 
 {% block title %}
@@ -20,7 +20,14 @@
     </p>
 
     <figure>
-        <img src = "{% static 'Belief_instructions_motivated.png' %}" alt="Static Image" data-alt="static/Belief_instructions_motivated.gif" style="display:block;margin-left:auto; margin-right:auto; width:50%;"/>
+        {% if player.treatment == "Motivated" %}
+        <img src="{% static 'img/Belief_instructions_motivated.png' %}" alt="Static Image"
+             data-alt="/static/img/Belief_instructions_motivated.gif" style="display:block;margin-left:auto; margin-right:auto; width:50%;"/>
+        {% else %}
+        <img src="{% static 'img/Belief_instructions_neutral.png' %}" alt="Static Image"
+             data-alt="/static/img/Belief_instructions_neutral.gif" style="display:block;margin-left:auto; margin-right:auto; width:50%;"/>
+
+        {% endif %}
     </figure>
 
 

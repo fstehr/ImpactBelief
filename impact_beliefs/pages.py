@@ -9,7 +9,7 @@ from slider_task.pages import SliderTaskPage
 
 class Intro(Page):
     def is_displayed(self):
-        return self.round_number == 1
+        return self.round_number == 2
 
 class IntroWelcome(Page):
     def is_displayed(self):
