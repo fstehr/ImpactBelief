@@ -90,8 +90,10 @@ class Donation(Page):
         elif player.part == 4:
             player.num_x_belief = self.participant.vars['beliefs_part3'][player.project_id-1]
 
+        gif = "Belief_instructions_motivated.gif"
+
         return {'task_number': task_number, 'project': player.project_id, 'price_to_show': player.price,
-                'belief': player.num_x_belief, 'num_X_true': player.num_x_true}
+                'belief': player.num_x_belief, 'num_X_true': player.num_x_true, 'image_to_show': gif}
 
     def js_vars(self):
         player = self.player
