@@ -2,64 +2,73 @@
 {% load otree %}
 
 {% block title %}
-    Enter your Belief
+    Task {{ task_number }} - The Estimation Task
 {% endblock %}
 
 {% block content %}
 
-    {% if player.treatment == "Motivated" %}
-        <p>
-            Below, you will see the matrix of xs for a project. Investing in this project costs {{ price_to_show }}.
-        </p>
-    {% endif %}
-
     <body onload="HideImageLoadForm();">
-        <img src = "{% static img_to_show %}" id="matrix" style="display:block;margin-left:auto; margin-right:auto; width:60%;"/>
 
-    <div id="Question" style="display:none">
-        <p>
-            The project id is {{ project }}.
-        </p>
-        <p>
-            Please enter how many Xs you think were in the matrix.
-        </p>
+        <div class="alert alert-danger" id="alert" style="text-align: center;display:block;margin-left:auto; margin-right:auto; width:70%;">
+            <p>
+                In three seconds, you will here see the matrix of Xs. <br> Your task is to estimate the number of Xs.
+            </p>
+            <p>
+                <strong>
+                    Please stay alert, as the matrix is only displayed for 5 seconds.
+                </strong>
+            </p>
+        </div>
 
-        {% formfields %}
 
-        {% next_button %}
-    </div>
+        {% if player.treatment == "Motivated" %}
+            <div class="alert alert-dark" style="text-align: center;display:block;margin-left:auto; margin-right:auto; width:70%;">
+                <strong> Investing in this project costs {{ price_to_show }}. </strong>
+            </div>
+        {% endif %}
+
+
+        <img src = "{% static img_to_show %}" id="matrix" style="display:none;margin-left:auto; margin-right:auto; width:60%;"/>
+
+
+        <div id="Question" style="display:none; margin-left:auto; margin-right:auto; width:50%;">
+            <p>
+                Please enter how many Xs you think were in the matrix:
+            </p>
+            <p>
+                {{ form.num_x_belief }}
+            </p>
+
+            {% next_button %}
+        </div>
 
     </body>
 
+
+    <p style="margin-top:30cm;">j </p>
 
 {% endblock %}
 
 
 {% block scripts %}
     <script>
+        let Intro = 3*1000;
         let Delay = 5*1000;
-           function Hide() {
-            setTimeout(function() {
-              document.getElementById('matrix').style.display='none'
-            }, Delay);
-        }
-        /*
-        function Load() {
-            setTimeout(function () {
-                document.getElementById('Question').style.display ='inline'
-            }, Delay);
-        }
-        */
+
 
         function HideImageLoadForm() {
             setTimeout(function(){
+                document.getElementById('alert').style.display="none"
+            },Intro);
+            setTimeout(function(){
+                document.getElementById('matrix').style.display="block"
+            }, Intro);
+            setTimeout(function(){
                 document.getElementById('matrix').style.display="none"
-            }, Delay);
+            }, Delay+Intro);
             setTimeout(function (){
-                document.getElementById('Question').style.display="inline"
-            }, Delay);
+                document.getElementById('Question').style.display="block"
+            }, Delay+Intro);
         }
-        /*setTimeout(HideImageLoadForm, 5*1000); */
-
     </script>
 {% endblock %}

@@ -4,7 +4,8 @@ write instructions for donation task (Think about framing)
 
 hide somewhere more detailed instructions for quadratic scoring rule --> use a button like the book button
 
-use button with a book for subjects to be able to re-read instructions
+use button with a book for subjects to be able to re-read instructions ---> not necessary, if control questions are on the last
+clickable page of instructions.
 
 and comprehension questions / Attention checks to determine who is admitted to the experiment
 
@@ -31,3 +32,6 @@ remember to track screen resolutions (& double check in chrome) & response times
 
 
 include honey-pots in the program to check that no bots participated
+
+
+in case carousel needs to be updated without the tabs: https://stackoverflow.com/questions/18760225/how-to-disable-bootstrap-carousel-animation#18760366

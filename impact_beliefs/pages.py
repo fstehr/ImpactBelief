@@ -36,6 +36,7 @@ class Belief(Page):
 
     def vars_for_template(self):
         player = self.player
+        task_number = player.part + 1
         # get current project from list of 'parameters'
         project = self.participant.vars['parameters'][self.round_number - 2]
         player.project_id = int(project['project_id'])
@@ -47,7 +48,7 @@ class Belief(Page):
             image = project['image_title_2']
         # print("The current project is", project)
 
-        return {'img_to_show': image, 'project': player.project_id, 'price_to_show': player.price}
+        return {'task_number': task_number, 'img_to_show': image, 'project': player.project_id, 'price_to_show': player.price}
 
     def before_next_page(self):
         player = self.player
@@ -77,6 +78,7 @@ class Donation(Page):
 
     def vars_for_template(self):
         player = self.player
+        task_number = player.part + 1
         project = self.participant.vars['parameters'][self.round_number - 2]
         player.project_id = int(project['project_id'])
         player.price = float(project['price_ECU'])
@@ -88,8 +90,8 @@ class Donation(Page):
         elif player.part == 4:
             player.num_x_belief = self.participant.vars['beliefs_part3'][player.project_id-1]
 
-        return {'project': player.project_id, 'price_to_show': player.price, 'belief': player.num_x_belief,
-                'num_X_true': player.num_x_true}
+        return {'task_number': task_number, 'project': player.project_id, 'price_to_show': player.price,
+                'belief': player.num_x_belief, 'num_X_true': player.num_x_true}
 
     def js_vars(self):
         player = self.player
