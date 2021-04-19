@@ -55,18 +55,13 @@
         let Intro = 3*1000;
         let Delay = 5*1000;
 
-
         function HideImageLoadForm() {
             setTimeout(function(){
                 document.getElementById('alert').style.display="none"
+                document.getElementById('matrix').style.display="block"
             },Intro);
             setTimeout(function(){
-                document.getElementById('matrix').style.display="block"
-            }, Intro);
-            setTimeout(function(){
                 document.getElementById('matrix').style.display="none"
-            }, Delay+Intro);
-            setTimeout(function (){
                 document.getElementById('Question').style.display="block"
             }, Delay+Intro);
         }
