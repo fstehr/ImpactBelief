@@ -44,9 +44,11 @@
                             <td>
                                 <div class="slidecontainer" style="">
                                     <span>0</span>
-                                    <input type="range" name="{{ field.name }}" min="0" max="1000" value="0" step="1" id="myinput" class="slider">
-                                    <span>1000</span>
+                                    <input type="range" name="{{ field.name }}" min="0" max="1000" value="0" step="1" id="{{ field.name }}" class="slider">
+                                    1000
+                                    <span class="slider_label"></span>
                                 </div>
+                                <div> {{ field.errors }}</div>
                             </td>
                         </tr>
                     {% endfor %}
@@ -57,6 +59,11 @@
 
     {% next_button %}
 
+{% endblock %}
+
+
+{% block scripts %}
+    <script type="text/javascript" src="{% static 'js/sliders.js' %}"></script>
 {% endblock %}
 
 

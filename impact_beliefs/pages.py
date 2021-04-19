@@ -129,10 +129,13 @@ class Donation(Page):
 
 class CarbonBelief(Page):
     form_model = 'player'
-    fields = ['co2_belief_car', 'co2_belief_plane', 'co2_belief_renewables', 'co2_belief_hybrid',
-              'co2_belief_vegan', 'co2_belief_laundry', 'co2_belief_recycle', 'co2_belief_dryer', 'co2_belief_led']
-    random.shuffle(fields)
-    form_fields = fields
+
+    def get_form_fields(player):
+        fields = ['co2_belief_car', 'co2_belief_plane', 'co2_belief_renewables', 'co2_belief_hybrid',
+                  'co2_belief_vegan', 'co2_belief_laundry', 'co2_belief_recycle', 'co2_belief_dryer',
+                  'co2_belief_led']
+        random.shuffle(fields)
+        return fields
 
     def is_displayed(self):
         return self.round_number == 1
