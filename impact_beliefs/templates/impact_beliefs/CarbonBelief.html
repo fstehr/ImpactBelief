@@ -20,9 +20,16 @@
 
 
 {% block content %}
-    <p>
-          Please indicate how many kg CO<sub>2</sub> you believe this item is emitting:
-    </p>
+
+    <div class="alert alert-danger" id="alert" style="display:none;">
+        Please indicate your estimate for all items.
+    </div>
+
+    <div>
+        <p>
+            Please indicate how many kg CO<sub>2</sub> you believe this item is emitting:
+        </p>
+    </div>
 
 
 <!-- Making the table responsive -->
@@ -44,9 +51,9 @@
                             <td>
                                 <div class="slidecontainer" style="">
                                     <span>0</span>
-                                    <input type="range" name="{{ field.name }}" min="0" max="1000" value="0" step="1" id="{{ field.name }}" class="slider">
-                                    1000
-                                    <span class="slider_label"></span>
+                                    <input type="range" name="{{ field.name }}" min="0" max="2500" value="0" step="1" id="{{ field.name }}" class="slider">
+                                    2500
+                                    <span style="font-weight: bold;color:#007bff" class="slider_label"></span>
                                 </div>
                                 <div> {{ field.errors }}</div>
                             </td>
@@ -57,7 +64,11 @@
         </div>
 
 
-    {% next_button %}
+	<div>
+       <button name="slider_task_check" id="test" class="btn btn-primary btn-large" onclick="checkTouched()">Next</button>
+    </div>
+
+
 
 {% endblock %}
 
