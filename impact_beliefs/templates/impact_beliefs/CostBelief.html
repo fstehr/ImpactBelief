@@ -25,55 +25,18 @@
         Please indicate your estimate for all items.
     </div>
 
-
-<div class="alert alert-light" style="border-color: lightgrey; color: black">
-
-    <div>
-        <p>
-            On this page, we ask you to estimate how many kg CO<sub>2</sub> are associated with different behaviors.
-        </p>
+    <div class="alert alert-light" style="border-color: lightgrey; color: black">
+            <p>
+                On this page, we ask you to indicate how costly it would be to you to adapt different behaviors. The scale
+                goes from 0 to 100, with 0 indicating "Not costly at all" and 100 indicating "prohibitively costly".
+                When considering costs, please think about <em>monetary costs</em>,
+                but also about how <em>difficult</em> it would be to you, personally, to adopt this behavior.
+            </p>
     </div>
-
-
-    <div>
-        <p>
-            In order for you to get a better understanding of what 1 kg CO<sub>2</sub> means, we include here the CO<sub>2</sub> emissions from two car-rides:
-        </p>
-    </div>
-
-    <div style="overflow-x: auto;">
-        <table style="width:100%">
-            <thead>
-                <tr>
-                    <th>Category</th>
-                    <th style="text-align:center">CO<sub>2</sub> Emissions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        1,000 km with an average car emits 166 kg CO<sub>2</sub>:
-                    </td>
-                    <td style="text-align:center">
-                        <img src="{% static 'img/car_impact_low.png' %}">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                       10,000 km with an average car emits 1,666 kg CO<sub>2</sub>:
-                    </td>
-                    <td style="text-align:center">
-                        <img src="{% static 'img/car_impact_medium.png' %}">
-                    </td>
-                </tr>
-        </tbody>
-        </table>
-    </div>
-</div>
 
     <div style="margin-bottom:1cm;margin-top:1cm">
         <p>
-            Please indicate how many kg CO<sub>2</sub> you believe each item in the list below is emitting:
+            Please indicate how <strong>costly</strong> the adoption of each item in the list below is to you:
         </p>
     </div>
 
@@ -96,8 +59,8 @@
                             <td>
                                 <div class="slidecontainer" style="">
                                     <span>0</span>
-                                    <input type="range" name="{{ field.name }}" min="0" max="2500" value="0" step="1" id="{{ field.name }}" class="slider">
-                                    2500
+                                    <input type="range" name="{{ field.name }}" min="0" max="100" value="0" step="1" id="{{ field.name }}" class="slider">
+                                    100
                                     <span style="font-weight: bold;color:#007bff" class="slider_label"></span>
                                 </div>
                                 <div> {{ field.errors }}</div>

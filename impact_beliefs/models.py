@@ -143,6 +143,16 @@ class Player(SliderPlayer):
     co2_belief_dryer = models.FloatField(label="Air-dry clothes",)
     co2_belief_led = models.FloatField(label="Use LED-bulbs at home",)
 
+    cost_belief_car = models.FloatField(label="Live car-free",)
+    cost_belief_plane = models.FloatField(label="Avoid one transatlantic round-trip flight",)
+    cost_belief_renewables = models.FloatField(label="Use renewable energy at home",)
+    cost_belief_hybrid = models.FloatField(label="Replace a typical car with hybrid",)
+    cost_belief_vegan = models.FloatField(label="Adopt a plant-based diet",)
+    cost_belief_laundry = models.FloatField(label="Wash clothes in cold water",)
+    cost_belief_recycle = models.FloatField(label="Recycle your waste",)
+    cost_belief_dryer = models.FloatField(label="Air-dry clothes",)
+    cost_belief_led = models.FloatField(label="Use LED-bulbs at home",)
+
 
 class Slider(BaseSlider):  # Class that is needed for the slider task
     player = ForeignKey(Player,

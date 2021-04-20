@@ -141,6 +141,21 @@ class CarbonBelief(Page):
         return self.round_number == 1
 
 
+
+class CostBelief(Page):
+    form_model = 'player'
+
+    def get_form_fields(player):
+        fields = ['cost_belief_car', 'cost_belief_plane', 'cost_belief_renewables', 'cost_belief_hybrid',
+                  'cost_belief_vegan', 'cost_belief_laundry', 'cost_belief_recycle', 'cost_belief_dryer',
+                  'cost_belief_led']
+        random.shuffle(fields)
+        return fields
+
+    def is_displayed(self):
+        return self.round_number == 1
+
+
 class Outro(Page):
     def is_displayed(self):
         return self.round_number == Constants.num_rounds
@@ -154,6 +169,7 @@ class Outro(Page):
 
 page_sequence = [
     CarbonBelief,
+    CostBelief,
     Instructions,
     Sliders,
     Belief,
