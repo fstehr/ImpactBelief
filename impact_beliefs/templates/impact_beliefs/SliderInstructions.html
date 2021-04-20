@@ -1,28 +1,5 @@
-{% extends "global/Page.html" %}
-{% load otree static %}
+{% load otree %}
 
-{% block styles %}
-    <link href="{% static 'global/css/global.css' %}" rel="stylesheet">
-{% endblock %}
-
-{% block scripts %}
-    <script src="{% static 'global/js/basics.js' %}"></script>
-    <script src="{% static 'global/js/buttons.js' %}"></script>
-{% endblock %}
-
-
-
-{% block title %}
-    <table class="table">
-        <tr>
-            <td style="width:70%;border-color:transparent">Welcome to this study!</td>
-            <td style="width:30%;border-color:transparent;text-align: right;">
-                <img src="{% static 'img/UM_logo.jpg' %}" style="width:90%;">
-            </td>
-        </tr>
-    </table>{% endblock %}
-
-{% block content %}
 
 <body>
     <!-- Header <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist"> -->
@@ -30,15 +7,15 @@
 
          <ul class="nav" id="myTab" role="tablist">
             <li class="nav-item" >
-                <a class="nav-link back-and-forth active" id="part1-tab" data-toggle="tab" href="#part1" role="tab" aria-controls="part1"> Welcome </a>
+                <a class="nav-link back-and-forth active" id="part1-tab" data-toggle="tab" href="#part1" role="tab" aria-controls="part1"> General Payment </a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link back-and-forth" id="part2-tab" data-toggle="tab" href="#part2" role="tab" aria-controls="part2"> Your Data </a>
+                <a class="nav-link back-and-forth" id="part2-tab" data-toggle="tab" href="#part2" role="tab" aria-controls="part2"> Task 1 </a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link back-and-forth" id="part3-tab" data-toggle="tab" href="#part3" role="tab" aria-controls="part3"> Informed Consent </a>
+                <a class="nav-link back-and-forth" id="part3-tab" data-toggle="tab" href="#part3" role="tab" aria-controls="part3"> Comprehension Questions </a>
             </li>
 
         </ul>
@@ -54,36 +31,53 @@
             <!-- Part 1: WHATEVER FIRST TAB HERE -->
             <div class="tab-pane show active" id="part1" role="tabpanel" aria-labelledby="part1-tab">
                 <div class="card-header bg-white border-bottom-0 mt-3 sticky-top">
-                    <p class="h4">Welcome</p>
+                    <p class="h4">General Payment</p>
                 </div>
                 <div class="card-body">
 
                     <div>
                         <p>
-                            Welcome to this experiment, which is run by Frauke Stehr, a researcher from Maastricht University.
-                            In the experiment, you will be able to earn money based on the choices you make during the experiment.
-                            In particular, you will earn a fixed fee of {{ session.config.participation_fee }} for the completion
-                            of the study. You can earn substantially more, depending on your answers in the experiment.
-                            We calibrated the payments, such that participants will earn on average &pound 3.15,
-                            however it can be more or less, depending on your answers during the experiment.
+                            In this experiment, you are asked to complete 5 tasks. In each task, you can earn a bonus payment
+                            which depends on your choices in the task. Tasks can consist of multiple rounds of the same task.
                         </p>
-                        <p>
-                            In case you have questions about this research, you can reach the researcher at
-                        </p>
-                        <p style="margin-left:10pt">
-                            Tongersestraat 53 <br>
-                            6211 LM Maastricht<br>
-                            The Netherlands<br>
-                            Or via e-mail: f.stehr@maastrichtuniversity.nl
-                        </p>
-                        <p>
-                            The experiment is expected to take no longer than 25 minutes.
-                            Importantly, we deploy a strict no-deception rule, that means that everything we tell you during the experiment
-                            is true and implemented accordingly. The experiment has received ethics approval by the Ethical
-                            Review Committee of Inner-City Faculties at Maastricht University.
-                        </p>
-                    </div>
 
+                        <p>
+                            Your total earnings at the end of the experiment are the sum of the two following components:
+                        </p>
+                        <ul>
+                            <li>A fixed payment of {{ session.config.participation_fee }}</li>
+                            <li>A bonus payment which is determined from one of the tasks in the experiment</li>
+                        </ul>
+                        <p>
+                            Specifically, we <strong>randomly select one round out of the five tasks to be the round-that-counts</strong> for your payments.
+                            Each round contains one decision and each decision in each part is equally likely to be randomly selected for payment.
+                            Therefore, you should put the same effort in all decisions in each of the five tasks.
+                            You will be paid your final earnings through Prolific.
+                        </p>
+                        <p>
+                            Throughout the experiment, we will use Points to refer to your earnings.
+                            At the end of the experiment, when a decision was randomly selected,
+                            these points will be converted into &pound and added to your fixed payment.
+                            In particular, we use the following conversion rate:
+                        </p>
+                        <p style="text-align: center">
+                            <strong>{{ exchange_rate }} Points = 1 &pound.</strong>
+                        </p>
+                        <p>
+                            Before each task you will receive instructions about the rules of this specific task.
+                            These instructions also contain more detailed information about the bonus payments
+                            you can earn in these tasks. After passing some attention checks and comprehension questions of a task,
+                            you will be asked to submit your decisions. Then you proceed to the next task.
+                        </p>
+                        <p>
+                            <strong>
+                                Remember that we employ a strict no-deception policy. This means that everything we tell you
+                                in the instructions of each task is completely true and will be implemented accordingly.
+                                It is therefore important, that you read the instructions carefully to be able to understand each task.
+                            </strong>
+                        </p>
+
+                    </div>
 
                     <!-- on Card Navigation  Arrows -->
                     <div class="row justify-content-md-center mt-5">
@@ -112,76 +106,36 @@
             <!-- Part 2: WHATEVER SECOND TAB HERE  -->
             <div class="tab-pane" id="part2" role="tabpanel" aria-labelledby="part2-tab">
                 <div class="card-header bg-white border-bottom-0 mt-3 sticky-top">
-                    <p class="h4">Your Data</p>
+                    <p class="h4">Task 1</p>
                 </div>
                 <div class="card-body">
                     <div>
-                        <h5 style="margin-top: 0;">
-                            What information are we collecting and why?
-                        </h5>
                         <p>
-                            Upon your request and expression of consent, we collect answers to the experiment you provide.
-                            From the collection of these data no individual can be personally identified.
-                            The data are anonymous, with the exception of your Prolific ID, which is needed to administer payments.
-                            The researcher will not have access to any other personal information and thus the researcher cannot
-                            link this ID to any other personal data. The data collected in this experiment will be used for
-                            academic research in behavioural economics. We will publish the findings in scientific papers.
-                            These papers will contain only anonymous, aggregated data (e.g. percentages and averages) presented
-                            as tables and figures. They will not contain any data on individual responses.
+                            Before we begin with four decision tasks, you have to work on a task, we call the slider task.
+                            In this task, a set of sliders is presented on your screen. You can adjust the slider to any
+                            number between 0 and 100 by clicking on the slider with your mouse and dragging it to the
+                            desired position. Your task is to drag the slider to the target position. The target
+                            position for each slider is the number 50. The number on the right-hand side of the slider
+                            tells you the current position of your slider. A slider is correctly adjusted when the
+                            current position is equal to 50.
+                        </p>
+                        <div style="margin-bottom: 16pt">
+                            <img src="{% static 'img/sliders.png' %}" style="width:70%; display: block; margin-left: auto; margin-right: auto;">
+                        </div>
+                        <p>
+                            For example, in the upper slider, the current position of the slider is 27.
+                            The slider is therefore not correctly placed yet. In the second example, you can see that
+                            the slider is correctly placed, as the position of the slider is directly at the target position.
+                            All sliders you have to solve will be displayed on one screen.
+                        </p>
+                        <p>
+                            In the first part of the experiment, we ask you to solve {{ Constants.num_sliders }} sliders
+                            on the screen to proceed to the next part of the experiment. If this decision is selected for
+                            payment, you will receive {{ Constants.endowment }} Points for the completion of the task.
                         </p>
 
 
-                        <h5>
-                            Cookies policy
-                        </h5>
-
-                        <p>
-                            We do not use cookies. We do not store any information about yourself (e.g. your browser type) automatically.
-                        </p>
-
-
-                        <h5>
-                            What is the legal basis for holding these data?
-                        </h5>
-
-                        <p>
-                           The lawful basis for processing this information is Article 6(1.e) of the General Data Protection Regulation (GDPR):
-                            processing is necessary for the performance of a task carried out in the public interest or in the exercise of
-                            official authority vested in the controller.
-                        </p>
-                        <p>
-                            Your data is not used for any other purposes. Only fully anonymized data will be shared for the only purpose
-                            of replications of the analysis, as and when it is required by scientific journals. You have the right to
-                            request access to and/or an erasure of your Prolific ID from our data by emailing at f.stehr@maastrichtuniversity.nl.
-                        </p>
-
-
-                        <h5>
-                            How do we store the data?
-                        </h5>
-
-                        <p>
-                            The study uses the cloud services provided by Heroku to store and process the data. To send emails to you,
-                            the study uses the services provided by Academic Prolific. These companies declare to be compliant with GDPR.
-                            Other than your Prolific ID, no other data are shared with these companies. Your Prolific ID is stored encrypted
-                            in the Heroku cloud database and cannot be read by anyone outside the research team. All anonymized raw data
-                            collected in the experiments will be safely stored on servers at Maastricht University. Maastricht University
-                            stores all data for at least 10 years. Thereafter, data are destroyed or transferred to other media for longer
-                            storage if necessary.
-                        </p>
-                        <p>
-                            The study uses the app oTree which is hosted on the servers provided by Heroku, a cloud platform based in the
-                            San Francisco (USA) and owned by Salesforce which declares a commitment to comply with GDPR.
-                        </p>
-                        <p>
-                            Our Privacy Officer is Eric Soemers. You can contact him you can contact him for questions or
-                            complaints about the privacy legislation of this research at SBE Administration Office – IT and Facilities,
-                            PO Box 616, 6200 MD Maastricht, or via h.soemers@maastrichtuniversity.nl.
-                        </p>
                     </div>
-
-
-
 
 
                     <!-- on Card Navigation  Arrows -->
@@ -212,7 +166,7 @@
             <!-- Part 3: WHATEVER FINAL TAB HERE -->
             <div class="tab-pane" id="part3" role="tabpanel" aria-labelledby="part3-tab">
                 <div class="card-header bg-white border-bottom-0 mt-3 sticky-top">
-                    <p class="h4">Your consent to participate</p>
+                    <p class="h4"> Comprehension Questions </p>
                 </div>
                 <div class="card-body">
                     <div>
@@ -252,4 +206,3 @@
 
 </body>
 
-{% endblock %}

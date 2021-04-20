@@ -1,19 +1,6 @@
 {% load otree %}
 
     <div class="card bg-light instructions">
-
-
-    <figure>
-        {% if player.treatment == "Motivated" %}
-        <img src="{% static 'img/Belief_instructions_motivated.png' %}" alt="Static Image"
-             data-alt="/static/img/Belief_instructions_motivated.gif" style="display:block;margin-left:auto; margin-right:auto; width:70%;"/>
-        {% else %}
-        <img src="{% static 'img/Belief_instructions_neutral.png' %}" alt="Static Image"
-             data-alt="/static/img/Belief_instructions_neutral.gif" style="display:block;margin-left:auto; margin-right:auto; width:70%;"/>
-        {% endif %}
-        <figcaption style="font-style:italic; margin-left:auto; margin-right:auto; width:50%;">Click on the image to see a real-time video of the decision page.</figcaption>
-    </figure>
-
         <div class="card-body">
 
             <h4>Instructions</h4>

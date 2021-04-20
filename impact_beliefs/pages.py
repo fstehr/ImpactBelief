@@ -14,8 +14,15 @@ class IntroWelcome(Page):
 
 
 class Instructions(Page):
+    # display always in the first round of a new part.
     def is_displayed(self):
-        return self.round_number == 2
+        return self.round_number == 1 \
+                or self.round_number == len(Constants.paras)*(self.player.part - 1) + 2
+
+    def vars_for_template(self):
+        exchange_rate = int(1/self.session.config['real_world_currency_per_point'])
+        return {'exchange_rate': exchange_rate}
+
 
 
 class Sliders(SliderTaskPage):
