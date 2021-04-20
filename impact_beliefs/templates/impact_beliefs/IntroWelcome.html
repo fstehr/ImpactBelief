@@ -13,8 +13,14 @@
 
 
 {% block title %}
-    General Instructions
-{% endblock %}
+    <table class="table">
+        <tr>
+            <td style="width:70%;border-color:transparent">Welcome to this study!</td>
+            <td style="width:30%;border-color:transparent;text-align: right;">
+                <img src="{% static 'img/UM_logo.jpg' %}" style="width:90%;">
+            </td>
+        </tr>
+    </table>{% endblock %}
 
 {% block content %}
 
@@ -24,19 +30,15 @@
 
          <ul class="nav" id="myTab" role="tablist">
             <li class="nav-item" >
-                <a class="nav-link back-and-forth active" id="part1-tab" data-toggle="tab" href="#part1" role="tab" aria-controls="part1"> Allgemeines </a>
+                <a class="nav-link back-and-forth active" id="part1-tab" data-toggle="tab" href="#part1" role="tab" aria-controls="part1"> Welcome </a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link back-and-forth" id="part2-tab" data-toggle="tab" href="#part2" role="tab" aria-controls="part2"> Aufbau </a>
+                <a class="nav-link back-and-forth" id="part2-tab" data-toggle="tab" href="#part2" role="tab" aria-controls="part2"> Your Data </a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link back-and-forth" id="part3-tab" data-toggle="tab" href="#part3" role="tab" aria-controls="part3"> Demo </a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link back-and-forth" id="part4-tab" data-toggle="tab" href="#part4" role="tab" aria-controls="part4"> Verständnisfragen </a>
+                <a class="nav-link back-and-forth" id="part3-tab" data-toggle="tab" href="#part3" role="tab" aria-controls="part3"> Informed Consent </a>
             </li>
 
         </ul>
@@ -57,49 +59,38 @@
 
         <div class="tab-content" id="myTabContent">
 
-            <!-- Part 1: Allgemeines -->
+            <!-- Part 1: WHATEVER FIRST TAB HERE -->
             <div class="tab-pane show active" id="part1" role="tabpanel" aria-labelledby="part1-tab">
                 <div class="card-header bg-white border-bottom-0 mt-3 sticky-top">
-                    <p class="h4">Allgemeines</p>
+                    <p class="h4">Welcome</p>
                 </div>
                 <div class="card-body">
 
-                    <h5>
-                        <span class="badge badge-content mt-4">
-                            Inhalt
-                        </span>
-                    </h5>
-                    <p>
-                        Sie nehmen jetzt an einer Studie der Hamburger Universitäten teil. Wenn Sie die Instruktionen aufmerksam
-                        lesen und befolgen, können Sie einen beträchtlichen Betrag verdienen, der von Ihren
-                        Entscheidungen und den Entscheidungen weiterer Teilnehmer abhängt. Dieser Betrag wird Ihnen am
-                        Ende des Studie genannt und ausgezahlt.
-                    </p>
-
-                    <h5>
-                        <span class="badge badge-content mt-4">
-                            Wechselkurs
-                        </span>
-                    </h5>
-                    <p>
-                        Während der gesamten Studie werden Sie Entscheidungen über Punkte fällen. Am Ende des
-                        Studie werden alle Punkte zu einem Wechselkurs von 5 Cent je Punkt umgerechnet. Zusätzlich
-                        erhalten sie eine Pünktlichkeitsprämie in Höhe von {{ session.config.participation_fee }}.
-                    </p>
-
-                    <h5>
-                        <span class="badge badge-content mt-4">
-                            Disqualifikation
-                        </span>
-                    </h5>
-                    <p>
-                        Es ist wichtig, dass Sie konzentriert und ohne Unterbrechungen an der Studie teilnehmen.
-                        Sollten Sie die Studie frühzeitig abbrechen oder länger als 3 Minuten keine Entscheidung treffen,
-                        dann können wir Ihre Daten sowie die Daten Ihrer Gruppenmitglieder nicht auswerten. Deshalb
-                        können wir Ihnen nur dann Geld auszahlen, wenn Sie ans Ende der Studie gelangen.
-                    </p>
-
-
+                    <div>
+                        <p>
+                            Welcome to this experiment, which is run by Frauke Stehr, a researcher from Maastricht University.
+                            In the experiment, you will be able to earn money based on the choices you make during the experiment.
+                            In particular, you will earn a fixed fee of {{ session.config.participation_fee }} for the completion
+                            of the study. You can earn substantially more, depending on your answers in the experiment.
+                            We calibrated the payments, such that participants will earn on average &pound 3.15,
+                            however it can be more or less, depending on your answers during the experiment.
+                        </p>
+                        <p>
+                            In case you have questions about this research, you can reach the researcher at
+                        </p>
+                        <p>
+                            Tongersestraat 53 <br>
+                            6211 LM Maastricht<br>
+                            The Netherlands<br>
+                            Or via e-mail: f.stehr@maastrichtuniversity.nl
+                        </p>
+                        <p>
+                            The experiment is expected to take no longer than 25 minutes.
+                            Importantly, we deploy a strict no-deception rule, that means that everything we tell you during the experiment
+                            is true and implemented accordingly. The experiment has received ethics approval by the Ethical
+                            Review Committee of Inner-City Faculties at Maastricht University.
+                        </p>
+                    </div>
 
 
                     <!-- on Card Navigation  Arrows -->
@@ -126,147 +117,56 @@
             </div>
 
 
-            <!-- Part 2: Aufbau  -->
+            <!-- Part 2: WHATEVER SECOND TAB HERE  -->
             <div class="tab-pane" id="part2" role="tabpanel" aria-labelledby="part2-tab">
                 <div class="card-header bg-white border-bottom-0 mt-3 sticky-top">
-                    <p class="h4">Aufbau</p>
+                    <p class="h4">Your Data</p>
                 </div>
                 <div class="card-body">
-                    <h5>
-                        <span class="badge badge-content mt-4">
-                            Runden & Gruppen
-                        </span>
-                    </h5>
-                    <p>
-                        Die Studie besteht aus Entscheidungsrunden.
-                        Zu Beginn der Studie werden Sie mit weiteren
-                        Teilnehmern gruppiert. In einer Gruppe sind daher Personen, inklusive
-                        Ihnen. Die Zusammensetzung der Gruppe wird sich für die Dauer der Studie nicht verändern.
-                        Weil die Studie anonym ist, kennen Sie Ihre Gruppenmitglieder nicht und Ihre
-                        Gruppenmitglieder kennen Sie nicht.
-                    </p>
-
-                    <h5>
-                        <span class="badge badge-content mt-4">
-                            Startguthaben
-                        </span>
-                    </h5>
-                    <p>
-                        Vor der ersten Runde bekommen Sie ein Guthaben von 20 Punkten.
-                    </p>
-
-                    <h5>
-                        <span class="badge badge-content mt-4">
-                            Entscheidungen
-                        </span>
-                    </h5>
-                    <p>
-                        Zu Beginn der ersten Runde werden Sie gebeten, Ihr Guthaben entweder zu einem Gruppenprojekt
-                        beizutragen oder es zurückzulegen. Punkte, die Sie zurücklegen, haben keinen Ertrag.
-                        Zurückgelegte Punkte werden also einfach behalten und stehen Ihnen zu Beginn der nächsten Runde
-                        unverändert zur Verfügung. Niemand außer Ihnen profitiert von Ihren zurückgelegten Punkten.
-                        <br><br>
-                        Die Punkte, die Sie zu dem Gruppenprojekt beitragen, werden zu den Beiträgen der anderen
-                       Gruppenmitglieder gerechnet. Die Summe der Beiträge
-                        hat einen Ertrag von  und wird anschließend in Form einer Dividende gleichmäßig auf
-                        alle Gruppenmitglieder aufgeteilt. Dementsprechend profitieren alle Gruppenmitglieder
-                        gleichermaßen von den Beiträgen und der Rendite. Das heißt, dass die Summe
-                        aller Beiträge einer Runde zusammengezählt und dann mit
-                        multipliziert wird, bevor sie
-                        zu gleichen Teilen auf alle Gruppenmitglieder aufgeteilt wird.
-                        Dementsprechend ist Ihre Dividende am Ende der ersten Runde die folgende:
-                    </p>
+                    <div>
+                        <h5>
+                            What information are we collecting and why?
+                        </h5>
+                        <p>
+                            Upon your request and expression of consent, we collect answers to the experiment you provide. From the collection of these data no individual can be personally identified. The data are anonymous, with the exception of your Prolific ID, which is needed to administer payments. The researcher will not have access to any other personal information and thus the researcher cannot link this ID to any other personal data. The data collected in this experiment will be used for academic research in behavioural economics. We will publish the findings in scientific papers. These papers will contain only anonymous, aggregated data (e.g. percentages and averages) presented as tables and figures. They will not contain any data on individual responses.
+                        </p>
 
 
-                    <h5>
-                        <span class="badge badge-content mt-4">
-                            Erträge
-                        </span>
-                    </h5>
-                    <p>
-                        Ihr Guthaben zu Beginn der zweiten Runde entspricht Ihren zurückgelegten Punkten sowie Ihrer
-                        Dividende aus der ersten Runde.
+                        <h5>
+                            Cookies policy
+                        </h5>
 
-                        Zu Beginn der zweiten Runde werden Sie dann wieder gefragt, wie viele Punkte Sie zurücklegen und
-                        wie viele Punkte Sie beitragen wollen. Zurückgelegte und beigetragene Punkte funktionieren dabei exakt
-                        genauso wie in der ersten Runde auch: Zurückgelegte Punkte werden bis zur Folgerunde unverändert behalten
-                        und das Ergebnis der Beiträge wird in Form einer Dividende auf alle Gruppenmitglieder
-                        ausgezahlt.
-
-                        Alle weiteren Runden folgen derselben Struktur: Ihr Guthaben zu Beginn einer Runde entspricht
-                        den zurückgelegten Punkten und der Dividende der Vorrunde.
-                    </p>
-
-                    <h5>
-                        <span class="badge badge-content mt-4">
-                            Informationen
-                        </span>
-                    </h5>
-                    <p>
-                        In jeder Runde werden Sie über Folgendes informiert:
-                    </p>
-                    <ul>
-                        <li>Das Guthaben der jeweiligen Gruppenmitglieder zu Beginn der Vorrunde</li>
-                        <li>Die Beiträge der jeweiligen Gruppenmitglieder in der Vorrunde</li>
-                        <li>Die Dividende in der Vorrunde</li>
-                        <li>Das Guthaben der jeweiligen Gruppenmitglieder zu Beginn der aktuellen Runde</li>
-                    </ul>
-                    <p>
-                        Alle weiteren Gruppenmitglieder erhalten exakt die gleichen Instruktionen wie Sie.
-                    </p>
+                        <p>
+                            We do not use cookies. We do not store any information about yourself (e.g. your browser type) automatically.
+                        </p>
 
 
-                    <h5>
-                        <span class="badge badge-content mt-4">
-                            Weiterer Verlauf
-                        </span>
-                    </h5>
-                    <p>
-                        Vor der ersten Runde werden wir Sie fragen, was Sie glauben, wie viel die anderen
-                        Gruppenmitglieder zum Gruppenprojekt beitragen werden. Für Ihre Schätzung werden Sie entlohnt:
-                        Je besser Sie schätzen, desto mehr Punkte können Sie in der Schätzaufgabe verdienen.
-                        Wie genau Sie entlohnt werden, wird Ihnen dann erklärt.
-                    </p>
-                    <p>
-                        Nach den Runden werden wir Sie bitten, einen kurzen Fragebogen
-                        auszufüllen. Im Anschluss daran werden Sie über Ihre Auszahlung informiert.
-                    </p>
+                        <h5>
+                            What is the legal basis for holding these data?
+                        </h5>
+
+                        <p>
+                           The lawful basis for processing this information is Article 6(1.e) of the General Data Protection Regulation (GDPR): processing is necessary for the performance of a task carried out in the public interest or in the exercise of official authority vested in the controller.
+                        </p>
+                        <p>
+                            Your data is not used for any other purposes. Only fully anonymised data will be shared for the only purpose of replications of the analysis, as and when it is required by scientific journals. You have the right to request a cancellation of your Prolific ID from our data by emailing at f.stehr@maastrichtuniversity.nl.
+                        </p>
 
 
-                    <h5>
-                        <span class="badge badge-content mt-4">
-                            Verdienst
-                        </span>
-                    </h5>
-                    <p>
-                        Am Ende der Studie bekommen Sie einen Verdienst, der sich, wenn Sie alle Runden durchlaufen und
-                        alle Fragen beantortet haben, aus den folgenden Bestandteilen
-                        zusammensetzt: Zum einen bekommen Sie die Pünktlichkeitsprämie in Höhe von
-                        . Darüber hinaus bekommen Sie einen Verdienst aus der
-                        Schätzaufgabe sowie das Guthaben, das Sie am Ende der ten
-                        (also am Ende der letzten) Runde haben.
-                    </p>
+                        <h5>
+                            How do we store the data?
+                        </h5>
 
-
-                    <h5>
-                        <span class="badge badge-content mt-4">
-                            Instruktionen
-                        </span>
-                    </h5>
-                    <p>
-                        Diese Instruktionen stehen Ihnen auch während Ihrer Entscheidungen zur Verfügung. Sollten Sie
-                        diese Erklärungen nochmals nachschlagen wollen, können Sie auf das
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#666666" class="bi bi-book-fill" viewBox="0 0 16 16">
-                            <path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/>
-                        </svg> Symbol klicken, das Ihnen oben rechts im Bild angezeigt wird.
-                    </p>
-
-                    <h5>
-                        <span class="badge badge-content mt-4">
-                            Kontakt
-                        </span>
-                    </h5>
-
+                        <p>
+                            The study uses the cloud services provided by Heroku to store and process the data. To send emails to you, the study uses the services provided by Academic Prolific. These companies declare to be compliant with GDPR. Other than your Prolific ID, no other data are shared with these companies. Your Prolific ID is stored encrypted in the Heroku cloud database and cannot be read by anyone outside the research team. All anonymized raw data collected in the experiments will be safely stored on servers at Maastricht University. Maastricht University stores all data for at least 10 years. Thereafter, data are destroyed or transferred to other media for longer storage if necessary.
+                        </p>
+                        <p>
+                            The study uses the app oTree which is hosted on the servers provided by Heroku, a cloud platform based in the San Francisco (USA) and owned by Salesforce which declares a commitment to comply with GDPR.
+                        </p>
+                        <p style="color: red">
+                            Our Privacy Officer is Eric Soemers. you can contact him at SBE Administration Office – IT and Facilities, PO Box 616, 6200 MD Maastricht, or via h.soemers@maastrichtuniversity.nl.
+                        </p>
+                    </div>
 
 
 
@@ -296,118 +196,34 @@
             </div>
 
 
-            <!-- Part 3: Demo  -->
+
+            <!-- Part 3: WHATEVER FINAL TAB HERE -->
             <div class="tab-pane" id="part3" role="tabpanel" aria-labelledby="part3-tab">
                 <div class="card-header bg-white border-bottom-0 mt-3 sticky-top">
-                    <p class="h4">Demo</p>
+                    <p class="h4">Your consent to participate</p>
                 </div>
                 <div class="card-body">
-                    <p>
-                        Unten zeigen wir Ihnen einen exemplarischen
-                        Entscheidungsbildschirm.
-                    </p>
-
-                    <div class="container clearfix displaystyle-leftborder displaystyle-my-warning w-100 bg-light">
-                        <div class="row justify-content-center">
-                            <div class="card mt-5 mb-5 w-75">
-                            <div class="card-body">
-
-                                <h5 class="card-title display-3 mb-1" data-toggle="tooltip" data-placement="top" title="Ihr aktueller Kontostand">
-                                    28
-                                    <small class="text-muted">
-                                        Punkte
-                                    </small>
-                                </h5>
-                                <h6 class="card-subtitle mb-4">
-                                            <span class="badge badge-success" data-toggle="tooltip" data-placement="right" title="Punkte, die sie in der letzten Runde dazuverdient haben">
-                                                +1 Punkt
-                                            </span>
-                                </h6>
-
-                                <p class="card-text lead mb-1">
-                                    Von diesen 28 Punkten können Sie einen beliebigen Betrag zum Gruppenprojekt
-                                    beitragen.
-                                </p>
-
-                                <p class="mb-4">
-                                    <small>
-                                        Zurückgelegte, also nicht zum Gruppenprojekt beigetragene, (Rest-) Beträge
-                                        stehen Ihnen in der nächsten Runde unverändert zur Verfügung.
-                                    </small>
-                                </p>
-
-                                <div class="form-group row mb-5">
-                                    <div class="col">
-                                        <input type="number" class="form-control float-right" placeholder="Beitragen" id="id_contribution" name="contribution" min="0" max="28">
-                                    </div>
-                                    <div class="col">
-                                        <button type="button" id="submit_button" class="btn-outline-primary btn float-left" data-toggle="tooltip" data-placement="top"
-                                                title="Der Button ist für diese Demonstrationszwecke deaktiviert.">
-                                            Alles zurücklegen
-                                        </button>
-                                    </div>
-                                </div>
-
-                            </div>
-
-
-                                <p class="mb-3">
-                                    <small>
-                                        Die Tabelle zeigt Ihnen das Guthaben von Ihnen und den übrigen Gruppenmitgliedern zu Beginn
-                                        der letzten Runde (ganz links) sowie das aktuelle Guthaben zu Beginn dieser Runde (ganz
-                                        rechts). Das aktuelle Guthaben ergibt sich dabei wie folgt:
-                                    </small>
-                                </p>
-                                <p class="text-center">
-                                    <small>
-                                        Voriges Guthaben - Beitrag + Dividende = Aktuelles Guthaben
-                                    </small>
-                                </p>
-
-                        </div>
-                        </div>
-                    </div>
-
-                    <!-- on Card Navigation  Arrows -->
-                    <div class="row justify-content-md-center mt-5">
-                        <div class="col col-lg-2">
-                        <p onclick="topFunction()" class="prevtab text-center" data-toggle="tooltip" data-placement="top" title="Zurück">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#076bff" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                                <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z"/>
-                            </svg>
+                    <div>
+                        <p>
+                            I hereby give permission to use my data for scientific purposes. I had enough time to decide whether I want to participate in the experiment. I know that participation is voluntary, and I know that I can decide at any time to withdraw from the experiment. I do not have to provide any justification for such a decision to quit. If I withdraw I forfeit any payments.
                         </p>
-                        </div>
-
-                        <div class="col col-lg-2">
-                        <p onclick="topFunction()" class="nexttab text-center" data-toggle="tooltip" data-placement="top" title="Weiter">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#076bff" class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                                <path fill-rule="evenodd" d="M4 8a.5.5 0 0 0 .5.5h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5A.5.5 0 0 0 4 8z"/>
-                            </svg>
+                        <p>
+                            I know that the data will be saved anonymously and will consequently only be made public anonymously. I allow the researcher to use my anonymized answers in subsequent experiments.
                         </p>
-                        </div>
+                        <p>
+                            Before you start, please switch off your phone/e-mail/music, so you can focus on this experiment. Thank you!
+                        </p>
+
+                        <p style="color:red"> formfield date </p>
+
+                        </p>
                     </div>
-                </div>
-            </div>
-
-
-            <!-- Part 4: Verständnisfragen -->
-            <div class="tab-pane" id="part4" role="tabpanel" aria-labelledby="part4-tab">
-                <div class="card-header bg-white border-bottom-0 mt-3 sticky-top">
-                    <p class="h4">Verständnisfragen</p>
-                </div>
-                <div class="card-body">
-                    <p>
-                        Bitte beantworten Sie die nachfolgenden Fragen, durch die wir sicherstellen wollen, dass alle
-                        Teilnehmer die Instruktionen sorgfältig gelesen und verstanden haben.
-                    </p>
 
 
                     <!-- on Card Navigation  Arrows -->
                     <div class="row justify-content-md-center mt-5">
                         <div class="col col-lg-2">
-                            <p onclick="topFunction()" class="prevtab text-center" data-toggle="tooltip" data-placement="top" title="Zurück">
+                            <p onclick="topFunction()" class="prevtab text-center" data-toggle="tooltip" data-placement="top" title="Back">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#076bff" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                                     <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z"/>
@@ -416,6 +232,8 @@
                         </div>
 
                         <div class="col col-lg-2">
+
+                            Participate in this study
                             {% next_button %}
                         </div>
 

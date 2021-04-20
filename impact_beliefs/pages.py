@@ -138,7 +138,7 @@ class CarbonBelief(Page):
         return fields
 
     def is_displayed(self):
-        return self.round_number == 1
+        return self.round_number == Constants.num_rounds
 
 
 
@@ -153,7 +153,7 @@ class CostBelief(Page):
         return fields
 
     def is_displayed(self):
-        return self.round_number == 1
+        return self.round_number == Constants.num_rounds
 
 
 class Outro(Page):
@@ -168,11 +168,12 @@ class Outro(Page):
 
 
 page_sequence = [
-    CarbonBelief,
-    CostBelief,
+    IntroWelcome,
     Instructions,
     Sliders,
     Belief,
     Donation,
+    CarbonBelief,
+    CostBelief,
     Outro
 ]
