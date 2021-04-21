@@ -24,6 +24,9 @@
 
 	// Change the image to .gif when clicked and vice versa.
 	$('figure').on('click', function() {
+		// set variable gif clicked
+		var touch_element = document.getElementById("gif_click");
+    	touch_element.value = "True";
 
 		var $this   = $(this),
 				$index  = $this.index(),

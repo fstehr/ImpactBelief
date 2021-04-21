@@ -14,6 +14,9 @@ class IntroWelcome(Page):
 
 
 class Instructions(Page):
+    form_model = 'player'
+    form_fields = ['gif_clicked']
+
     # display always in the first round of a new part.
     def is_displayed(self):
         return self.round_number == 1 \
@@ -175,9 +178,7 @@ class Outro(Page):
 
 
 page_sequence = [
-    IntroWelcome,
     Instructions,
-    Sliders,
     Belief,
     Donation,
     CarbonBelief,

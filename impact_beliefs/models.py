@@ -120,6 +120,8 @@ class Player(SliderPlayer):
     order = models.StringField()
     treatment = models.StringField()
 
+    gif_clicked = models.BooleanField(blank=True,)
+
     num_x_belief = models.IntegerField(min=0, max=400)
     donation = models.BooleanField(
         choices=[
