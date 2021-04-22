@@ -1,69 +1,238 @@
 {% load otree %}
 
-    <div class="card bg-light instructions">
+
+<body>
+    <!-- Header <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist"> -->
+    <nav class="navbar bg-header border-bottom mb-4 justify-content-between" role="tablist">
+
+         <ul class="nav" id="myTab" role="tablist">
+            <li class="nav-item" >
+                <a class="nav-link back-and-forth active" id="part1-tab" data-toggle="tab" href="#part1" role="tab" aria-controls="part1">Task 2</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link back-and-forth" id="part2-tab" data-toggle="tab" href="#part2" role="tab" aria-controls="part2">Your Bonus Payments</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link back-and-forth" id="part3-tab" data-toggle="tab" href="#part3" role="tab" aria-controls="part3">Comprehension Questions</a>
+            </li>
+
+        </ul>
+
+    </nav>
 
 
-    <figure>
-        {% if player.treatment == "Motivated" %}
-        <img src="{% static 'img/Belief_instructions_motivated.png' %}" alt="Static Image"
-             data-alt="/static/img/Belief_instructions_motivated.gif" style="display:block;margin-left:auto; margin-right:auto; width:70%;"/>
-        {% else %}
-        <img src="{% static 'img/Belief_instructions_neutral.png' %}" alt="Static Image"
-             data-alt="/static/img/Belief_instructions_neutral.gif" style="display:block;margin-left:auto; margin-right:auto; width:70%;"/>
-        {% endif %}
-        <figcaption style="font-style:italic; margin-left:auto; margin-right:auto; width:50%;">Click on the image to see a real-time video of the decision page.</figcaption>
-    </figure>
+    <!-- Instructions -->
+    <div class="card mt-5">
 
-    <input id="gif_click" name="gif_clicked" type="hidden" value="False">
+        <div class="tab-content" id="myTabContent">
 
-        <div class="card-body">
+            <!-- Part 1: WHATEVER FIRST TAB HERE -->
+            <div class="tab-pane show active" id="part1" role="tabpanel" aria-labelledby="part1-tab">
+                <div class="card-header bg-white border-bottom-0 mt-3 sticky-top">
+                    <p class="h4">Task 2</p>
+                </div>
+                <div class="card-body">
 
-            <h4>Instructions</h4>
+                    <div>
+                        <h4>Instructions</h4>
 
-            <p>
-                In this task you are asked to estimate the number of Xs in a matrix. (see example image below). For
-                completing the task, you will receive {{ Constants.beliefs_fixed_payment }}, if a round of this task is selected for payment.
-                You can earn more money depending on the accuracy of your estimation. In particular, you can earn more
-                the closer you are to the correct number of Xs. If you get the correct number of Xs, you earn {{ Constants.beliefs_max_payment }}.
-                The further your estimate is away from the correct number of Xs, the less you earn. If you miss the number of Xs by more than
-                200 your extra payoff for accuracy in this task will be zero.
-            </p>
+                        <p>
+                            In this task you are asked to estimate the number of Xs in a matrix. (see example image below). There can be between 0 and 400 Xs in a matrix.
+                        </p>
 
-            {% if player.treatment == "Motivated" %}
-                <p>
-                Each matrix represents a project to which you can later donate.
-                Each X in the matrix represents {{ Constants.real_world_kg_co2_per_x }} kg of CO<sub>2</sub>. If you decide
-                to donate to a project and this round is selected for payment, we will donate the amount to a charity
-                that eliminates CO<sub>2</sub> emissions from the atmosphere. This means that if a matrix has 100 Xs,
-                the project will eliminate 50 kg of CO<sub>2</sub> which is equivalent to the emissions caused by
-                driving 300 km with an average car.
-                </p>
-                <p>
-                    Include description of this charity here!
-                        These are real carbon emissions that are offset through the offsetting provider climatecare.org. (certified B Corporation).
 
-                        From Pace, van der Weele (2020) instructions: "These emissions are real. The University of Amsterdam has
-                        arranged a fund to be donated to Carbonfund.org Foundation to eliminate Co2 from the atmosphere.
-                        Carbonfund.org Foundation is a nonprofit organization that offsets CO2 emissions. If you buy the virtual
-                        product, then you will reduce the size of the fund, resulting in an increase of CO2 in the atmosphere."
-                        "When the study is over we will send you the link with the proof of our donation to
-                        Carbonfund.org."
-                </p>
-                <p>
-                After indicating your estimates of the number of Xs for a variety of matrices, you will be given the opportunity
-                to donate to the projects. When you see the matrix for your estimation task, you will also be able to
-                see how much it will cost you to donate to this project. You will receive further instructions about the donation task
-                at a later stage of this experiment.
-                </p>
-            {% endif %}
+                        {% if player.treatment == "Motivated" %}
+                            <p>
+                                Each matrix represents a project to which you can later donate.
+                                Each X in the matrix represents {{ Constants.real_world_kg_co2_per_x }} kg of CO<sub>2</sub>. If you decide
+                                to donate to a project and this round is selected for payment, we will donate the amount to a charity
+                                that eliminates CO<sub>2</sub> emissions from the atmosphere. This means that if a matrix has 100 Xs,
+                                the project will eliminate 50 kg of CO<sub>2</sub> which is equivalent to the emissions caused by
+                                driving 300 km with an average car.
+                            </p>
+                            <p>
+                                Include description of this charity here!
+                                These are real carbon emissions that are offset through the offsetting provider climatecare.org. (certified B Corporation).
 
-            <p>
-                You will be able to see each matrix for 5 seconds only, so make sure you pay close attention. After
-                the image of the matrix has disappeared you are asked to indicate your estimate on the number of Xs.
-            </p>
+                                From Pace, van der Weele (2020) instructions: "These emissions are real. The University of Amsterdam has
+                                arranged a fund to be donated to Carbonfund.org Foundation to eliminate Co2 from the atmosphere.
+                                Carbonfund.org Foundation is a nonprofit organization that offsets CO2 emissions. If you buy the virtual
+                                product, then you will reduce the size of the fund, resulting in an increase of CO2 in the atmosphere."
+                                "When the study is over we will send you the link with the proof of our donation to
+                                Carbonfund.org."
+                            </p>
+                            <p>
+                                After indicating your estimates of the number of Xs for a variety of matrices, you will be given the opportunity
+                                to donate to the projects. When you see the matrix for your estimation task, you will also be able to
+                                see how much it will cost you to donate to this project. You will receive further instructions about the donation task
+                                at a later stage of this experiment.
+                            </p>
+                        {% endif %}
 
+                        <p>
+                            You will be able to see each matrix for 5 seconds only, so make sure you pay close attention. After
+                            the image of the matrix has disappeared you are asked to indicate your estimate on the number of Xs.
+                        </p>
+
+
+                        <figure>
+                            {% if player.treatment == "Motivated" %}
+                            <img src="{% static 'img/Belief_instructions_motivated.png' %}" alt="Static Image"
+                                 data-alt="/static/img/Belief_instructions_motivated.gif" style="display:block;margin-left:auto; margin-right:auto; width:70%;"/>
+                            {% else %}
+                            <img src="{% static 'img/Belief_instructions_neutral.png' %}" alt="Static Image"
+                                 data-alt="/static/img/Belief_instructions_neutral.gif" style="display:block;margin-left:auto; margin-right:auto; width:70%;"/>
+                            {% endif %}
+                            <figcaption style="font-style:italic; margin-left:auto; margin-right:auto; width:60%;">Click on the image to see a real-time video of the decision page.</figcaption>
+                        </figure>
+                        <input id="gif_click" name="gif_clicked" type="hidden" value="False">
+
+                        <p>
+                            <input type="checkbox" id="gif_watched" name="gif_watched">
+                            <label for="gif_watched"> I have watched the video above.</label>
+
+                        </p>
+
+                    </div>
+
+                    <!-- on Card Navigation  Arrows -->
+                    <div class="row justify-content-md-center mt-5">
+                        <div class="col col-lg-2">
+                        <p class="prevtab text-secondary text-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#076bff" class="bi-arrow-left-circle" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z"/>
+                            </svg>
+                        </p>
+                        </div>
+
+                        <div class="col col-lg-2">
+                        <p onclick="topFunction()" class="nexttab text-center" data-toggle="tooltip" data-placement="top" title="Weiter">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#076bff" class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                <path fill-rule="evenodd" d="M4 8a.5.5 0 0 0 .5.5h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5A.5.5 0 0 0 4 8z"/>
+                            </svg>
+                        </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Part 2: WHATEVER SECOND TAB HERE  -->
+            <div class="tab-pane" id="part2" role="tabpanel" aria-labelledby="part2-tab">
+                <div class="card-header bg-white border-bottom-0 mt-3 sticky-top">
+                    <p class="h4">Your Bonus Payments</p>
+                </div>
+                <div class="card-body">
+                    <div>
+                    <h5>Your bonus payment in this task</h5>
+                        <p>
+                            For completing the task, you will receive {{ Constants.beliefs_fixed_payment }} Points, if a round of this task is selected for payment.
+                            You can earn more money depending on the accuracy of your estimate. In particular, <strong>you earn more
+                            the closer you are to the correct number of Xs</strong>. If you get the correct number of Xs, you earn {{ Constants.beliefs_max_payment }} Points.
+                            The further your estimate is away from the correct number of Xs, the less you earn. If you miss the number of Xs by more than
+                            200 your extra payoff for accuracy in this task will be zero.
+                        </p>
+                        <p>
+                            Your specific earnings are based on a mathematical formula. It is not necessary for you to precisely understand the formulas,
+                            but it is important that you understand that you earn more the closer your estimate is to the true number of Xs in a matrix.
+                            Importantly, it does not make a difference whether you over- or underestimate the true number of Xs. It only matters by how much
+                            you are away from the true number of Xs. If you would like to see the precise mathematical formula, you can click
+                            <a class="button btn-link" href="#" role="button" onclick="set_clicked()" data-toggle="modal" data-target="#incentives-modal">here</a>.
+                            <input id="equation_click" name="equation_clicked" type="hidden" value="False">
+                        </p>
+                    </div>
+
+                    <!-- on Card Navigation  Arrows -->
+                    <div class="row justify-content-md-center mt-5">
+                        <div class="col col-lg-2">
+                        <p onclick="topFunction()" class="prevtab text-center" data-toggle="tooltip" data-placement="top" title="Zurück">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#076bff" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z"/>
+                            </svg>
+                        </p>
+                        </div>
+
+                        <div class="col col-lg-2">
+                        <p onclick="topFunction()" class="nexttab text-center" data-toggle="tooltip" data-placement="top" title="Weiter">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#076bff" class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                <path fill-rule="evenodd" d="M4 8a.5.5 0 0 0 .5.5h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5A.5.5 0 0 0 4 8z"/>
+                            </svg>
+                        </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- Part 3: WHATEVER FINAL TAB HERE -->
+            <div class="tab-pane" id="part3" role="tabpanel" aria-labelledby="part3-tab">
+                <div class="card-header bg-white border-bottom-0 mt-3 sticky-top">
+                    <p class="h4"> Comprehension Questions </p>
+                </div>
+                <div class="card-body">
+                    <div>
+                        <p>
+
+                        </p>
+
+                    </div>
+
+                    <!-- on Card Navigation  Arrows -->
+                    <div class="row justify-content-md-center mt-5">
+                        <div class="col col-lg-2">
+                            <p onclick="topFunction()" class="prevtab text-center" data-toggle="tooltip" data-placement="top" title="Back">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#076bff" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                    <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z"/>
+                                </svg>
+                            </p>
+                        </div>
+
+                        <div class="col col-lg-2">
+                            <button  class="btn btn-primary btn-large">Check my answers and continue</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
-{% next_button %}
+</body>
+
+
+
+
+
+<!-- Modal with explanation of Quadratic Scoring Rule -->
+<div class="modal" id="incentives-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenteredLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="exampleModalCenteredLabel">Bonus Payment Formula</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <p>
+              Your extra payments for accuracy in this task are determined by the following formula:
+          </p>
+          $$ {{ Constants.beliefs_fixed_payment }} - 0.00375 * \left( \text{Your estimate} - \text{true number of Xs} \right)^2 $$
+          <p>
+              This formula will become negative, if your estimate is further away from the true number of Xs than 200.
+              If this should be the case, we will not subtract anything from your fixed bonus for this task. Instead, your
+              extra earnings for accuracy will become zero.
+          </p>
+      </div>
+    </div>
+  </div>
+</div>
 

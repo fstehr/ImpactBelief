@@ -43,3 +43,9 @@
 	});
 
 })(jQuery);
+
+
+function set_clicked() {
+	var touch_element = document.getElementById("equation_click");
+	touch_element.value = "True";
+}

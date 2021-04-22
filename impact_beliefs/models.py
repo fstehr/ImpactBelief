@@ -115,12 +115,18 @@ class Group(BaseGroup):
 
 
 class Player(SliderPlayer):
+    window_width = models.IntegerField(blank=True, doc="Documents the respondent's browser window's width.")
+    window_height = models.IntegerField(blank=True, doc="Documents the respondent's browser window's height.")
+
     part = models.IntegerField()
     round_type = models.StringField()
     order = models.StringField()
     treatment = models.StringField()
 
-    gif_clicked = models.BooleanField(blank=True,)
+    gif_clicked = models.BooleanField(blank=True, doc="automatically filled if people click on gif")
+    gif_watched = models.BooleanField(blank=True, doc="check box field where people confirm they clicked on the gif")
+    equation_clicked = models.BooleanField(blank=True,
+                                           doc="automatically filled if people click on equation for quadratic scoring rule")
 
     num_x_belief = models.IntegerField(min=0, max=400)
     donation = models.BooleanField(
@@ -135,25 +141,65 @@ class Player(SliderPlayer):
 
     current_payoff = models.FloatField()
 
-    co2_belief_car = models.FloatField(label="Live car-free",)
-    co2_belief_plane = models.FloatField(label="Avoid one transatlantic round-trip flight",)
-    co2_belief_renewables = models.FloatField(label="Use renewable energy at home",)
-    co2_belief_hybrid = models.FloatField(label="Replace a typical car with hybrid",)
-    co2_belief_vegan = models.FloatField(label="Adopt a plant-based diet",)
-    co2_belief_laundry = models.FloatField(label="Wash clothes in cold water",)
-    co2_belief_recycle = models.FloatField(label="Recycle your waste",)
-    co2_belief_dryer = models.FloatField(label="Air-dry clothes",)
-    co2_belief_led = models.FloatField(label="Use LED-bulbs at home",)
+    co2_belief_car = models.FloatField(label="Live car-free", )
+    co2_belief_plane = models.FloatField(label="Avoid one transatlantic round-trip flight", )
+    co2_belief_renewables = models.FloatField(label="Use renewable energy at home", )
+    co2_belief_hybrid = models.FloatField(label="Replace a typical car with hybrid", )
+    co2_belief_vegan = models.FloatField(label="Adopt a plant-based diet", )
+    co2_belief_laundry = models.FloatField(label="Wash clothes in cold water", )
+    co2_belief_recycle = models.FloatField(label="Recycle your waste", )
+    co2_belief_dryer = models.FloatField(label="Air-dry clothes", )
+    co2_belief_led = models.FloatField(label="Use LED-bulbs at home", )
 
-    cost_belief_car = models.FloatField(label="Live car-free",)
-    cost_belief_plane = models.FloatField(label="Avoid one transatlantic round-trip flight",)
-    cost_belief_renewables = models.FloatField(label="Use renewable energy at home",)
-    cost_belief_hybrid = models.FloatField(label="Replace a typical car with hybrid",)
-    cost_belief_vegan = models.FloatField(label="Adopt a plant-based diet",)
-    cost_belief_laundry = models.FloatField(label="Wash clothes in cold water",)
-    cost_belief_recycle = models.FloatField(label="Recycle your waste",)
-    cost_belief_dryer = models.FloatField(label="Air-dry clothes",)
-    cost_belief_led = models.FloatField(label="Use LED-bulbs at home",)
+    cost_belief_car = models.FloatField(label="Live car-free", )
+    cost_belief_plane = models.FloatField(label="Avoid one transatlantic round-trip flight", )
+    cost_belief_renewables = models.FloatField(label="Use renewable energy at home", )
+    cost_belief_hybrid = models.FloatField(label="Replace a typical car with hybrid", )
+    cost_belief_vegan = models.FloatField(label="Adopt a plant-based diet", )
+    cost_belief_laundry = models.FloatField(label="Wash clothes in cold water", )
+    cost_belief_recycle = models.FloatField(label="Recycle your waste", )
+    cost_belief_dryer = models.FloatField(label="Air-dry clothes", )
+    cost_belief_led = models.FloatField(label="Use LED-bulbs at home", )
+
+    # Comprehension Question Fields
+    wrong_answer1 = models.IntegerField(doc="Counts the number of wrong guesses for cq1.", initial=0)
+    wrong_answer2 = models.IntegerField(doc="Counts the number of wrong guesses for cq2.", initial=0)
+    wrong_answer3 = models.IntegerField(doc="Counts the number of wrong guesses for cq3.", initial=0)
+    wrong_answer4 = models.IntegerField(doc="Counts the number of wrong guesses for cq4.", initial=0)
+
+    cq1 = models.BooleanField(doc="Comprehension Question 1")
+    def cq1_error_message(self, value):
+        if self.round_number == 1 and value != True:
+            self.wrong_answer1 += 1
+            return "Wrong answer."
+
+    cq2 = models.IntegerField(doc="Comprehension Question 2", min=0, max=100 )
+    def cq2_error_message(self, value):
+        if value != 50:
+            self.wrong_answer2 += 1
+            return "Wrong answer."
+
+    cq3 = models.BooleanField(doc="Comprehension Question 3")
+    def cq3_error_message(self, value):
+        if value != True:
+            self.wrong_answer3 += 1
+            return "Wrong answer."
+
+    cq4 = models.IntegerField(doc="Comprehension Question 4", widget=widgets.RadioSelect)
+    def cq4_choices(player):
+        if player.round_number == 1 or player.round_number==2:
+            choices = [
+                        [1, "The sum of the participation fee and the earnings in all five tasks"],
+                        [2, "Either the participation fee or the earnings in all five tasks"],
+                        [3, "The sum of the participation fee and the earnings in one decision of the five tasks"],
+                        [4, "Either the participation fee or the earnings in one decision of the five tasks"],
+            ]
+        return choices
+
+    def cq4_error_message(self, value):
+        if value != 3:
+            self.wrong_answer4 += 1
+            return "Wrong answer."
 
 
 class Slider(BaseSlider):  # Class that is needed for the slider task

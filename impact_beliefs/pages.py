@@ -15,16 +15,18 @@ class IntroWelcome(Page):
 
 class Instructions(Page):
     form_model = 'player'
-    form_fields = ['gif_clicked']
+    form_fields = ['window_width', 'window_height', 'gif_clicked', 'gif_watched', 'equation_clicked'] \
+                  + ['cq{}'.format(i) for i in range(1, 5)]
 
     # display always in the first round of a new part.
     def is_displayed(self):
         return self.round_number == 1 \
-                or self.round_number == len(Constants.paras)*(self.player.part - 1) + 2
+               or self.round_number == len(Constants.paras) * (self.player.part - 1) + 2
 
     def vars_for_template(self):
-        exchange_rate = int(1/self.session.config['real_world_currency_per_point'])
+        exchange_rate = int(1 / self.session.config['real_world_currency_per_point'])
         return {'exchange_rate': exchange_rate}
+
 
 
 
@@ -149,7 +151,6 @@ class CarbonBelief(Page):
 
     def is_displayed(self):
         return self.round_number == Constants.num_rounds
-
 
 
 class CostBelief(Page):
