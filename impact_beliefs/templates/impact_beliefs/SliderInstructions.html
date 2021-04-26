@@ -3,28 +3,31 @@
 
 <body>
     <!-- Header <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist"> -->
-    <nav class="navbar bg-header border-bottom mb-4 justify-content-between" role="tablist">
+<div class="card">
+    <div class="card-header">
+        <nav  role="navigation">
 
-         <ul class="nav" id="myTab" role="tablist">
-            <li class="nav-item" >
-                <a class="nav-link back-and-forth active" id="part1-tab" data-toggle="tab" href="#part1" role="tab" aria-controls="part1"> General Payment </a>
-            </li>
+             <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
+                <li class="nav-item" >
+                    <a class="nav-link back-and-forth active" id="part1-tab" data-toggle="tab" href="#part1" role="tab" aria-controls="part1"> General Payment </a>
+                </li>
 
-            <li class="nav-item">
-                <a class="nav-link back-and-forth" id="part2-tab" data-toggle="tab" href="#part2" role="tab" aria-controls="part2"> Task 1 </a>
-            </li>
+                <li class="nav-item">
+                    <a class="nav-link back-and-forth" id="part2-tab" data-toggle="tab" href="#part2" role="tab" aria-controls="part2"> Task 1 </a>
+                </li>
 
-            <li class="nav-item">
-                <a class="nav-link back-and-forth" id="part3-tab" data-toggle="tab" href="#part3" role="tab" aria-controls="part3"> Comprehension Questions </a>
-            </li>
+                <li class="nav-item">
+                    <a class="nav-link back-and-forth" id="part3-tab" data-toggle="tab" href="#part3" role="tab" aria-controls="part3"> Comprehension Questions </a>
+                </li>
 
-        </ul>
+            </ul>
 
-    </nav>
+        </nav>
+    </div>
 
 
     <!-- Instructions -->
-    <div class="card mt-5">
+    <div class="card-body">
 
         <div class="tab-content" id="myTabContent">
 
@@ -192,7 +195,7 @@
                         </div>
 
                         <div class="col col-lg-2">
-                            <button  class="btn btn-primary btn-large">Check my answers and continue</button>
+                            <button  class="btn btn-primary btn-large" onsubmit="resetTabs()" >Check my answers and continue</button>
                         </div>
 
                     </div>

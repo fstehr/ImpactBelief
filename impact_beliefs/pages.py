@@ -179,7 +179,9 @@ class Outro(Page):
 
 
 page_sequence = [
+    IntroWelcome,
     Instructions,
+    Sliders,
     Belief,
     Donation,
     CarbonBelief,

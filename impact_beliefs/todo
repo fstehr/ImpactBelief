@@ -1,9 +1,12 @@
-include control questions on instructions page  https://getbootstrap.com/docs/5.0/components/navs-tabs/
+fix the jQuery handler on control Question pages which keeps active tab active when re-loading
 write instructions for donation task (Think about framing)
 
-add comprehension questions / Attention checks to determine who is admitted to the experiment
+- activate button on instruction pages only after one minute
 
-Update radio button fields like in co2 calc if ness
+
+# Belief task:
+- change display time to 10 sec
+- include timeout after 30 sec including a countdown
 
 
 add trial rounds (using java?)
@@ -14,8 +17,10 @@ inlude timer (how long did it take to answer the entire experiment?) & time out 
 
 Think about other control variables to include (look at slides. e.g. un-incentivized how certain are you about your belief estimate?,
 WTP for abolishing 100 kg of CO2 ?, how to elicit political preferences?)
---> Update informed consent form to be correct
 
+--> Update informed consent form to be correct
+--> include trigger warning for photosensitivity
+--> check consent forms here: https://www.maastrichtuniversity.nl/ethical-review-committee-inner-city-faculties-ercic
 
 
 Code Carbon Footprint calculator using radiobutton fields with labels of the verbal instructions & values equal to the CO2 values
@@ -30,10 +35,9 @@ then convert pdf into pngs
 in parameter csv file - rename all image names to matrix_40_1.PNG (i.e. append .png everywhere)
 
 
-remember to track screen resolutions (& double check in chrome) & response times & errors in control questions (Hauke counter snippet)
-
-
 include honey-pots in the program to check that no bots participated
+
+
 
 ## LAYOUT STUFF i.e. nice to have
 in case carousel needs to be updated without the tabs: https://stackoverflow.com/questions/18760225/how-to-disable-bootstrap-carousel-animation#18760366

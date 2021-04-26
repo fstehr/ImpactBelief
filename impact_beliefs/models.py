@@ -173,9 +173,12 @@ class Player(SliderPlayer):
             self.wrong_answer1 += 1
             return "Wrong answer."
 
-    cq2 = models.IntegerField(doc="Comprehension Question 2", min=0, max=100 )
+    cq2 = models.IntegerField(doc="Comprehension Question 2", min=0, max=200)
     def cq2_error_message(self, value):
-        if value != 50:
+        if self.round_number == 1 and value != 50:
+            self.wrong_answer2 += 1
+            return "Wrong answer."
+        elif self.round_number == 2 and value != 150:
             self.wrong_answer2 += 1
             return "Wrong answer."
 
@@ -187,12 +190,19 @@ class Player(SliderPlayer):
 
     cq4 = models.IntegerField(doc="Comprehension Question 4", widget=widgets.RadioSelect)
     def cq4_choices(player):
-        if player.round_number == 1 or player.round_number == 2:
+        if player.round_number == 1:  # Your final earnings are determined as follows
             choices = [
                         [1, "The sum of the participation fee and the earnings in all five tasks"],
                         [2, "Either the participation fee or the earnings in all five tasks"],
                         [3, "The sum of the participation fee and the earnings in one decision of the five tasks"],
                         [4, "Either the participation fee or the earnings in one decision of the five tasks"],
+            ]
+        elif player.round_number == 2:    # How many Xs can there be in a given matrix?
+            choices = [
+                        [1, "at least 50 Xs"],
+                        [2, "at most 260 Xs"],
+                        [3, "Between 0 and 400 Xs"],
+                        [4, "This cannot be known"],
             ]
         return choices
 

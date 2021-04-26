@@ -2,10 +2,14 @@
 
 
 <body>
-    <!-- Header <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist"> -->
-    <nav class="navbar bg-header border-bottom mb-4 justify-content-between" role="tablist">
 
-         <ul class="nav" id="myTab" role="tablist">
+
+    <!-- Header <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist"> -->
+<div class="card">
+    <div class="card-header">
+    <nav  role="navigation">
+
+         <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
             <li class="nav-item" >
                 <a class="nav-link back-and-forth active" id="part1-tab" data-toggle="tab" href="#part1" role="tab" aria-controls="part1">Task 2</a>
             </li>
@@ -21,47 +25,49 @@
         </ul>
 
     </nav>
-
+  </div>
 
     <!-- Instructions -->
-    <div class="card mt-5">
+    <div class="card-body">
 
         <div class="tab-content" id="myTabContent">
 
             <!-- Part 1: WHATEVER FIRST TAB HERE -->
             <div class="tab-pane show active" id="part1" role="tabpanel" aria-labelledby="part1-tab">
                 <div class="card-header bg-white border-bottom-0 mt-3 sticky-top">
-                    <p class="h4">Task 2</p>
+                    <p class="h4">Instructions</p>
                 </div>
                 <div class="card-body">
 
                     <div>
-                        <h4>Instructions</h4>
+                        <h5 style="margin-top: 0;">
+                            The Estimation Task
+                        </h5>
+                        <p>
+                            In this task you are asked to estimate the number of Xs in a matrix.
+                            You can find an example image of a matrix in the instruction video below.
+                            There can be between 0 and 400 Xs in a matrix.
+                        </p>
 
                         <p>
-                            In this task you are asked to estimate the number of Xs in a matrix. (see example image below). There can be between 0 and 400 Xs in a matrix.
+                            It is important that you stay alert in this task, as you will only get to see the matrix for <strong>10 seconds</strong>.
+                            Then, you will have <strong>30 seconds</strong> to fill in your estimate of the number of Xs you saw.
+                            If you do not submit your estimate on time, the page will be submitted and you forfeit your payments for this decision.
+                            If you do not submit estimates on time for more than two estimations,
+                            you will not be allowed to continue with the experiment, and also forgo your participation fee.
+                            <strong> It is therefore crucial that you try to answer with your best guest within the 30 seconds.</strong>
                         </p>
 
 
                         {% if player.treatment == "Motivated" %}
+                            <h5>
+                                The Meaning of the Xs
+                            </h5>
                             <p>
-                                Each matrix represents a project to which you can later donate.
-                                Each X in the matrix represents {{ Constants.real_world_kg_co2_per_x }} kg of CO<sub>2</sub>. If you decide
-                                to donate to a project and this round is selected for payment, we will donate the amount to a charity
-                                that eliminates CO<sub>2</sub> emissions from the atmosphere. This means that if a matrix has 100 Xs,
-                                the project will eliminate 50 kg of CO<sub>2</sub> which is equivalent to the emissions caused by
-                                driving 300 km with an average car.
-                            </p>
-                            <p>
-                                Include description of this charity here!
-                                These are real carbon emissions that are offset through the offsetting provider climatecare.org. (certified B Corporation).
-
-                                From Pace, van der Weele (2020) instructions: "These emissions are real. The University of Amsterdam has
-                                arranged a fund to be donated to Carbonfund.org Foundation to eliminate Co2 from the atmosphere.
-                                Carbonfund.org Foundation is a nonprofit organization that offsets CO2 emissions. If you buy the virtual
-                                product, then you will reduce the size of the fund, resulting in an increase of CO2 in the atmosphere."
-                                "When the study is over we will send you the link with the proof of our donation to
-                                Carbonfund.org."
+                                Each matrix belongs to a project to which you can later donate.
+                                In particular, <strong>each X in a matrix represents {{ Constants.real_world_kg_co2_per_x }} kg of CO<sub>2</sub></strong>.
+                                This means that if a matrix contains for example 100 Xs, the project will eliminate 50 kg of CO<sub>2</sub>
+                                which is equivalent to the emissions caused by driving 300 km with an average car.
                             </p>
                             <p>
                                 After indicating your estimates of the number of Xs for a variety of matrices, you will be given the opportunity
@@ -69,12 +75,13 @@
                                 see how much it will cost you to donate to this project. You will receive further instructions about the donation task
                                 at a later stage of this experiment.
                             </p>
+                            <p>
+                                If you decide to donate to a project and this round is selected for payment,
+                                we will donate the amount to a climatecare.org, a certified B Corporation
+                                that eliminates CO<sub>2</sub> emissions from the atmosphere. Thus, through your
+                                donation <strong>real CO<sub>2</sub> emissions in the atmosphere will be reduced </strong>.
+                            </p>
                         {% endif %}
-
-                        <p>
-                            You will be able to see each matrix for 5 seconds only, so make sure you pay close attention. After
-                            the image of the matrix has disappeared you are asked to indicate your estimate on the number of Xs.
-                        </p>
 
 
                         <figure>
@@ -85,14 +92,18 @@
                             <img src="{% static 'img/Belief_instructions_neutral.png' %}" alt="Static Image"
                                  data-alt="/static/img/Belief_instructions_neutral.gif" style="display:block;margin-left:auto; margin-right:auto; width:70%;"/>
                             {% endif %}
-                            <figcaption style="font-style:italic; margin-left:auto; margin-right:auto; width:60%;">Click on the image to see a real-time video of the decision page.</figcaption>
+                            <figcaption style="font-style:italic; margin-left:auto; margin-right:auto; width:70%;text-align: center">Click on the image to see a real-time video of the decision page.</figcaption>
                         </figure>
                         <input id="gif_click" name="gif_clicked" type="hidden" value="False">
 
-                        <p>
+                        <div class="alert alert-secondary" style="margin-top: 20pt; display:block;margin-left:auto; margin-right:auto; width:70%">
                             <input type="checkbox" id="gif_watched" name="gif_watched">
                             <label for="gif_watched"> I have watched the video above.</label>
+                        </div>
 
+
+                        <p>
+                           Before we start with the real task, you will be given the opportunity to practice the estimation, in 5 practice trials.
                         </p>
 
                     </div>
@@ -124,20 +135,21 @@
             <!-- Part 2: WHATEVER SECOND TAB HERE  -->
             <div class="tab-pane" id="part2" role="tabpanel" aria-labelledby="part2-tab">
                 <div class="card-header bg-white border-bottom-0 mt-3 sticky-top">
-                    <p class="h4">Your Bonus Payments</p>
+                    <p class="h4">Your bonus payments in this task</p>
                 </div>
                 <div class="card-body">
                     <div>
-                    <h5>Your bonus payment in this task</h5>
                         <p>
-                            For completing the task, you will receive {{ Constants.beliefs_fixed_payment }} Points, if a round of this task is selected for payment.
+                            For completing the task on time, you will receive {{ Constants.beliefs_fixed_payment }} Points,
+                            if a round of this task is selected for payment.
                             You can earn more money depending on the accuracy of your estimate. In particular, <strong>you earn more
-                            the closer you are to the correct number of Xs</strong>. If you get the correct number of Xs, you earn {{ Constants.beliefs_max_payment }} Points.
-                            The further your estimate is away from the correct number of Xs, the less you earn. If you miss the number of Xs by more than
-                            200 your extra payoff for accuracy in this task will be zero.
+                            the closer you are to the correct number of Xs</strong>. If you get the correct number of Xs,
+                            you earn {{ Constants.beliefs_max_payment }} Points.
+                            The further your estimate is away from the correct number of Xs, the less you earn.
+                            If you miss the number of Xs by more than 200 your extra payoff for accuracy in this task will be zero.
                         </p>
                         <p>
-                            Your specific earnings are based on a mathematical formula. It is not necessary for you to precisely understand the formulas,
+                            Your specific extra earnings for accuracy are based on a mathematical formula. It is not necessary for you to precisely understand the formulas,
                             but it is important that you understand that you earn more the closer your estimate is to the true number of Xs in a matrix.
                             Importantly, it does not make a difference whether you over- or underestimate the true number of Xs. It only matters by how much
                             you are away from the true number of Xs. If you would like to see the precise mathematical formula, you can click
@@ -178,9 +190,13 @@
                 </div>
                 <div class="card-body">
                     <div>
-                        <p>
+                        {% formfield player.cq1 label="Your additional earnings in this task depend on the accuracy of your estimate of the number of Xs" %}
 
-                        </p>
+                        {% formfield player.cq2 label="What is your extra fixed payment for completing the task on time?"  %}
+
+                        {% formfield player.cq3 label="In this task you have to stay alert because you have only 30 seconds to give your estimate."  %}
+
+                        {% formfield player.cq4 label="How many Xs can there be in a given matrix?"  %}
 
                     </div>
 
@@ -196,7 +212,7 @@
                         </div>
 
                         <div class="col col-lg-2">
-                            <button  class="btn btn-primary btn-large">Check my answers and continue</button>
+                            <button  class="btn btn-primary btn-large" onsubmit="resetTabs()" >Check my answers and continue</button>
                         </div>
 
                     </div>
@@ -204,6 +220,9 @@
             </div>
         </div>
     </div>
+
+</div>
+
 
 </body>
 
