@@ -1,12 +1,21 @@
-include control questions on instructions page
+include control questions on instructions page  https://getbootstrap.com/docs/5.0/components/navs-tabs/
 write instructions for donation task (Think about framing)
 
 add comprehension questions / Attention checks to determine who is admitted to the experiment
 
+Update radio button fields like in co2 calc if ness
+
+
 add trial rounds (using java?)
+
+think about how to control that people refresh the page in belief elicitation -> Check that refresh button/ F5 is disabled
+
+inlude timer (how long did it take to answer the entire experiment?) & time out on belief pages (see Eveline's Mail)
 
 Think about other control variables to include (look at slides. e.g. un-incentivized how certain are you about your belief estimate?,
 WTP for abolishing 100 kg of CO2 ?, how to elicit political preferences?)
+--> Update informed consent form to be correct
+
 
 
 Code Carbon Footprint calculator using radiobutton fields with labels of the verbal instructions & values equal to the CO2 values

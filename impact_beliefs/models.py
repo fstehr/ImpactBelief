@@ -187,7 +187,7 @@ class Player(SliderPlayer):
 
     cq4 = models.IntegerField(doc="Comprehension Question 4", widget=widgets.RadioSelect)
     def cq4_choices(player):
-        if player.round_number == 1 or player.round_number==2:
+        if player.round_number == 1 or player.round_number == 2:
             choices = [
                         [1, "The sum of the participation fee and the earnings in all five tasks"],
                         [2, "Either the participation fee or the earnings in all five tasks"],
