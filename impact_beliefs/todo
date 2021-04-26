@@ -1,4 +1,5 @@
 fix the jQuery handler on control Question pages which keeps active tab active when re-loading
+# problem is that page is reloaded --> neither onload nor onunload elements are super helpful as both get executed with every refresh
 write instructions for donation task (Think about framing)
 
 - activate button on instruction pages only after one minute
