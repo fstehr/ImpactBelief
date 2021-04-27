@@ -45,6 +45,14 @@ class Sliders(SliderTaskPage):
             player.payoff = player.current_payoff
 
 
+class TrialBelief(Page):
+    form_model = 'player'
+    form_fields = ['trial_belief_{}'.format(i) for i in range(1, 4)]
+
+  #  def is_displayed(self):
+   #     return self.round_number == 2
+
+
 class Belief(Page):
     form_model = 'player'
     form_fields = ['num_x_belief']
@@ -179,6 +187,7 @@ class Outro(Page):
 
 
 page_sequence = [
+    TrialBelief,
     IntroWelcome,
     Instructions,
     Sliders,

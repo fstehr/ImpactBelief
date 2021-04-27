@@ -3,7 +3,7 @@ from math import ceil
 from tabulate import tabulate
 
 
-"""
+
 # Create the basic list of 100 os
 columns = 20
 dimension = columns ** 2
@@ -12,7 +12,7 @@ list_of_os = ['o'] * dimension
 # print(list_of_os)
 
 # Create lists of Xs (different numbers)
-number_Xs_low = [int(0.1*dimension), int(0.2*dimension), int(0.3*dimension)]
+number_Xs_low = [int(0.5*dimension), int(0.2*dimension), int(0.3*dimension)]
 number_Xs_high = [dimension - i for i in number_Xs_low]
 number_Xs = number_Xs_low + number_Xs_high
 print('number Xs is', number_Xs)
@@ -47,13 +47,6 @@ for i in number_Xs:
     print("}")
     print()
     print("\\pagebreak")
-"""
-
-beliefs_neutral = [0]*3   # replace 3 with len(paras)
-print(beliefs_neutral)
-
-beliefs_neutral[1] = 3     # replace list lookup with project_id - 1 and 3 with player.num_x_belief
-print(beliefs_neutral)
 
 
 

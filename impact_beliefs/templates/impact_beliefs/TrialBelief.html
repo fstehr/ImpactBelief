@@ -1,0 +1,120 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+    Trial Rounds - The Estimation Task
+{% endblock %}
+
+{% block content %}
+
+    <body onload="HideImageLoadForm();">
+
+        <div class="alert alert-danger" id="alert" style="text-align: center;display:block;margin-left:auto; margin-right:auto; width:70%;">
+            <p>
+                In three seconds, you will here see the matrix of Xs. <br> Your task is to estimate the number of Xs.
+            </p>
+            <p>
+                <strong>
+                    Please stay alert, as the matrix is only displayed for 10 seconds.
+                </strong>
+            </p>
+        </div>
+
+
+        <img src = "{% static 'img/Matrix_80.png' %}" id="matrix1" style="display:none;margin-left:auto; margin-right:auto; width:60%;"/>
+        <img src = "{% static 'img/Matrix_320.png' %}" id="matrix2" style="display:none;margin-left:auto; margin-right:auto; width:60%;"/>
+        <img src = "{% static 'img/Matrix_200.png' %}" id="matrix3" style="display:none;margin-left:auto; margin-right:auto; width:60%;"/>
+
+
+        <div id="Question" style="display:none; margin-left:auto; margin-right:auto; width:50%;">
+            <p>
+                Please enter how many Xs you think were in the matrix:
+            </p>
+            <p id="field1" style="display:none;">
+                {{ form.trial_belief_1 }}
+            </p>
+            <p id="field2" style="display:none;">
+                {{ form.trial_belief_2 }}
+            </p>
+            <p id="field3" style="display:none;">
+                {{ form.trial_belief_3 }}
+            </p>
+
+            <div id="btn-nosubmit" style="display:none;">
+                <button type="button" class="btn btn-primary"  onclick="Show_next_form1()">
+                    Next
+                </button>
+            </div>
+            <div id="btn-nosubmit2" style="display:none;">
+                <button type="button" class="btn btn-primary"  onclick="Show_next_form2()">
+                    Next
+                </button>
+            </div>
+
+            <div id="btn-submit" style="display:none;">
+                {% next_button %}
+            </div>
+        </div>
+
+    </body>
+
+
+{% endblock %}
+
+
+{% block scripts %}
+    <script>
+        let Intro = 3*1000;
+        let Delay = 7*1000;
+
+        function HideImageLoadForm() {
+            setTimeout(function(){
+                document.getElementById('alert').style.display="none"
+                document.getElementById('matrix1').style.display="block"
+            },Intro);
+            setTimeout(function(){
+                document.getElementById('matrix1').style.display="none"
+                document.getElementById('Question').style.display="block"
+                document.getElementById('field1').style.display="block"
+                document.getElementById('btn-nosubmit').style.display="block"
+
+            }, Delay+Intro);
+        }
+
+        function Show_next_form1() {
+            document.getElementById('Question').style.display="none"
+            document.getElementById('field1').style.display="none"
+            document.getElementById('btn-nosubmit').style.display="none"
+            document.getElementById('alert').style.display="block"
+
+            setTimeout(function(){
+                document.getElementById('alert').style.display="none"
+                document.getElementById('matrix2').style.display="block"
+            },Intro);
+            setTimeout(function(){
+                document.getElementById('matrix2').style.display="none"
+                document.getElementById('Question').style.display="block"
+                document.getElementById('field2').style.display="block"
+                document.getElementById('btn-nosubmit2').style.display="block"
+            }, Delay+Intro);
+        }
+        function Show_next_form2() {
+            document.getElementById('Question').style.display="none"
+            document.getElementById('field2').style.display="none"
+            document.getElementById('btn-nosubmit2').style.display="none"
+            document.getElementById('alert').style.display="block"
+
+            setTimeout(function(){
+                document.getElementById('alert').style.display="none"
+                document.getElementById('matrix3').style.display="block"
+            },Intro);
+            setTimeout(function(){
+                document.getElementById('matrix3').style.display="none"
+                document.getElementById('Question').style.display="block"
+                document.getElementById('field3').style.display="block"
+                document.getElementById('btn-submit').style.display="block"
+            }, Delay+Intro);
+        }
+
+    </script>
+{% endblock %}

@@ -128,6 +128,10 @@ class Player(SliderPlayer):
     equation_clicked = models.BooleanField(blank=True,
                                            doc="automatically filled if people click on equation for quadratic scoring rule")
 
+    trial_belief_1 = models.IntegerField(min=0, max=400)
+    trial_belief_2 = models.IntegerField(min=0, max=400)
+    trial_belief_3 = models.IntegerField(min=0, max=400)
+
     num_x_belief = models.IntegerField(min=0, max=400)
     donation = models.BooleanField(
         choices=[

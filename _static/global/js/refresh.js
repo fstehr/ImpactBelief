@@ -7,7 +7,7 @@ $( document ).ready(function() {
     console.log("classCeck", classCheck);
 
     if ($('div').hasClass("otree-form-errors alert alert-danger")) {
-        $('.nav-tabs a:last').tab('show');   // yields Uncaught TypeError: $(...).tab is not a function
+        $('.nav-tabs a:last').tab('show');   // show last tab
     }
 });
 
