@@ -1,31 +1,18 @@
-// https://stackoverflow.com/questions/18999501/bootstrap-3-keep-selected-tab-on-page-refresh
+//https://www.aspdotnet-suresh.com/2015/10/jquery-set-open-particular-bootstrap-tab-on-page-load-button-link-click-example.html
 
-// Here I tried to remove this variable
-function resetTabs() {
-    console.log("Hello world!");
+// A $( document ).ready() block.
+$( document ).ready(function() {
+    console.log( "ready!" );
+    classCheck = $('div').hasClass("otree-form-errors alert alert-danger");
+    console.log("classCeck", classCheck);
 
-    // This keeps active tab in front when refreshing page or when there are form errors
-    $('a[data-toggle="tab"]').click(function (e) {
-        e.preventDefault();
-        $(this).tab('show');
-    });
-
-}
-
-    $('a[data-toggle="tab"]').on("shown.bs.tab", function (e) {
-        var id = $(e.target).attr("href");
-        localStorage.setItem('selectedTab', id)
-    });
-
-    var selectedTab = localStorage.getItem('selectedTab');
-    if (selectedTab != null) {
-        $('a[data-toggle="tab"][href="' + selectedTab + '"]').tab('show');
+    if ($('div').hasClass("otree-form-errors alert alert-danger")) {
+        $('.nav-tabs a:last').tab('show');   // yields Uncaught TypeError: $(...).tab is not a function
     }
+});
 
-    window.onunload = (event) => {
-    console.log('The page is unloaded');
-};
 
-    window.onload = (event) => {
-    console.log('The page is loaded');
-};
+
+
+
+
