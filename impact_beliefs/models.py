@@ -204,6 +204,15 @@ class Player(SliderPlayer):
                         [3, "Between 0 and 400 Xs"],
                         [4, "This cannot be known"],
             ]
+        elif player.round_number == len(Constants.paras) + 1:    # How many Xs can there be in a given matrix?
+            choices = [
+                        [1, "at least 50 Xs"],
+                        [2, "at most 260 Xs"],
+                        [3, "Between 0 and 400 Xs"],
+                        [4, "This cannot be known"],
+            ]
+        else:
+            choices = []
         return choices
 
     def cq4_error_message(self, value):
