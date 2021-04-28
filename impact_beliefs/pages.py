@@ -49,8 +49,18 @@ class TrialBelief(Page):
     form_model = 'player'
     form_fields = ['trial_belief_{}'.format(i) for i in range(1, 4)]
 
-  #  def is_displayed(self):
-   #     return self.round_number == 2
+    def js_vars(self):
+        return dict(
+            sec_per_matrix=Constants.sec_per_matrix,
+        )
+
+    def is_displayed(self):
+        return self.round_number == 2
+
+
+class Introbelief(Page):
+    def is_displayed(self):
+        return self.round_number == 2
 
 
 class Belief(Page):
@@ -79,6 +89,11 @@ class Belief(Page):
 
         return {'task_number': task_number, 'img_to_show': image, 'project': player.project_id,
                 'price_to_show': player.price}
+
+    def js_vars(self):
+        return dict(
+            sec_per_matrix=Constants.sec_per_matrix,
+        )
 
     def before_next_page(self):
         player = self.player
@@ -187,10 +202,11 @@ class Outro(Page):
 
 
 page_sequence = [
-    TrialBelief,
     IntroWelcome,
     Instructions,
     Sliders,
+    TrialBelief,
+    Introbelief,
     Belief,
     Donation,
     CarbonBelief,

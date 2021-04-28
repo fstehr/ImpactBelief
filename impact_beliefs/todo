@@ -1,11 +1,4 @@
-fix the jQuery handler on control Question pages which keeps active tab active when re-loading
-# problem is that page is reloaded --> neither onload nor onunload elements are super helpful as both get executed with every refresh
-# maybe just reset local storage variable on the pages in between?
-# with the tabs, the links in url change to #part1, #part3 ==> This is referrable via an href!!! s
-
-
-
-write instructions for donation task (Think about framing)
+write control questions for donation task (Think about framing)
 
 - activate button on instruction pages only after one minute
 
@@ -13,9 +6,8 @@ write instructions for donation task (Think about framing)
 # Belief task:
 - change display time to 10 sec
 - include timeout after 30 sec including a countdown
+- how to include that people are thrown out of the study when they had two timeouts?
 
-
-add trial rounds (using java?)
 
 think about how to control that people refresh the page in belief elicitation -> Check that refresh button/ F5 is disabled
 

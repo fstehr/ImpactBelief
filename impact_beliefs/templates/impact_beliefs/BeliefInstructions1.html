@@ -41,6 +41,20 @@
 
                     <div>
                         <h5 style="margin-top: 0;">
+                        {% if player.treatment == "Motivated" %}
+                            What is this experiment about?
+                        </h5>
+                        <p>
+                            Climate change is a threat to our societies and livelihoods. In this experiment, we give you the
+                            opportunity to donate some of your earnings to climatecare.org, a certified B corporation that
+                            eliminates CO<sub>2</sub> emissions from the atmosphere. Thus, through your
+                            donation <strong>real CO<sub>2</sub> emissions in the atmosphere will be reduced </strong>. However,
+                            before we get to the Donation Task in Task 3 of the experiment, you have to do an Estimation Task.
+                            Here, you receive the instructions for the Estimation Task in this task (Task 2). In the beginning of Task 3,
+                            you will receive further instructions about the Donation Task.
+                        </p>
+
+                        <h5> {% endif %}
                             The Estimation Task
                         </h5>
                         <p>
@@ -50,7 +64,7 @@
                         </p>
 
                         <p>
-                            It is important that you stay alert in this task, as you will only get to see the matrix for <strong>10 seconds</strong>.
+                            It is important that you stay alert in this task, as you will only get to see the matrix for <strong>{{ Constants.sec_per_matrix }} seconds</strong>.
                             Then, you will have <strong>30 seconds</strong> to fill in your estimate of the number of Xs you saw.
                             If you do not submit your estimate on time, the page will be submitted and you forfeit your payments for this decision.
                             If you do not submit estimates on time for more than two estimations,
@@ -87,23 +101,24 @@
                         <figure>
                             {% if player.treatment == "Motivated" %}
                             <img src="{% static 'img/Belief_instructions_motivated.png' %}" alt="Static Image"
-                                 data-alt="/static/img/Belief_instructions_motivated.gif" style="display:block;margin-left:auto; margin-right:auto; width:70%;"/>
+                                 data-alt="/static/img/Belief_instructions_motivated.gif" style="display:block;margin-left:auto; margin-right:auto; width:70%;cursor:pointer;"/>
                             {% else %}
                             <img src="{% static 'img/Belief_instructions_neutral.png' %}" alt="Static Image"
-                                 data-alt="/static/img/Belief_instructions_neutral.gif" style="display:block;margin-left:auto; margin-right:auto; width:70%;"/>
+                                 data-alt="/static/img/Belief_instructions_neutral.gif" style="display:block;margin-left:auto; margin-right:auto; width:70%;cursor:pointer;"/>
                             {% endif %}
                             <figcaption style="font-style:italic; margin-left:auto; margin-right:auto; width:70%;text-align: center">Click on the image to see a real-time video of the decision page.</figcaption>
                         </figure>
                         <input id="gif_click" name="gif_clicked" type="hidden" value="False">
 
-                        <div class="alert alert-secondary" style="margin-top: 20pt; display:block;margin-left:auto; margin-right:auto; width:70%">
-                            <input type="checkbox" id="gif_watched" name="gif_watched">
+                        <div class="alert alert-secondary" style="margin-top: 20pt; display:block;margin-left:auto; margin-right:auto; width:70%;">
+                            <input type="checkbox" id="gif_watched" name="gif_watched" style="cursor:pointer">
                             <label for="gif_watched"> I have watched the video above.</label>
                         </div>
 
 
                         <p>
-                           Before we start with the real task, you will be given the opportunity to practice the estimation, in 5 practice trials.
+                            Before we start with the real task, you will be given the opportunity to familiarize yourself with the task in 3 practice trials.
+                            Your answers in these practice trials will not affect your final earnings.
                         </p>
 
                     </div>
@@ -111,21 +126,21 @@
                     <!-- on Card Navigation  Arrows -->
                     <div class="row justify-content-md-center mt-5">
                         <div class="col col-lg-2">
-                        <p class="prevtab text-secondary text-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#076bff" class="bi-arrow-left-circle" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                                <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z"/>
-                            </svg>
-                        </p>
+                            <p class="prevtab text-secondary text-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#D3D3D3" class="bi-arrow-left-circle" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                    <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z"/>
+                                </svg>
+                            </p>
                         </div>
 
                         <div class="col col-lg-2">
-                        <p onclick="topFunction()" class="nexttab text-center" data-toggle="tooltip" data-placement="top" title="Next">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#076bff" class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                                <path fill-rule="evenodd" d="M4 8a.5.5 0 0 0 .5.5h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5A.5.5 0 0 0 4 8z"/>
-                            </svg>
-                        </p>
+                            <p onclick="topFunction()" class="nexttab text-center" data-toggle="tooltip" data-placement="top" title="Next">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#076bff" class="bi bi-arrow-right-circle" viewBox="0 0 16 16" style="cursor: pointer">
+                                    <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                    <path fill-rule="evenodd" d="M4 8a.5.5 0 0 0 .5.5h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5A.5.5 0 0 0 4 8z"/>
+                                </svg>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -162,7 +177,7 @@
                     <div class="row justify-content-md-center mt-5">
                         <div class="col col-lg-2">
                         <p onclick="topFunction()" class="prevtab text-center" data-toggle="tooltip" data-placement="top" title="Back">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#076bff" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#076bff" class="bi bi-arrow-left-circle" viewBox="0 0 16 16" style="cursor:pointer">
                                 <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                                 <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z"/>
                             </svg>
@@ -171,7 +186,7 @@
 
                         <div class="col col-lg-2">
                         <p onclick="topFunction()" class="nexttab text-center" data-toggle="tooltip" data-placement="top" title="Next">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#076bff" class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#076bff" class="bi bi-arrow-right-circle" viewBox="0 0 16 16" style="cursor:pointer">
                                 <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                                 <path fill-rule="evenodd" d="M4 8a.5.5 0 0 0 .5.5h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5A.5.5 0 0 0 4 8z"/>
                             </svg>
@@ -204,7 +219,7 @@
                     <div class="row justify-content-md-center mt-5">
                         <div class="col col-lg-2">
                             <p onclick="topFunction()" class="prevtab text-center" data-toggle="tooltip" data-placement="top" title="Back">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#076bff" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#076bff" class="bi bi-arrow-left-circle" viewBox="0 0 16 16" style="cursor:pointer">
                                     <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                                     <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z"/>
                                 </svg>

@@ -1,0 +1,25 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+    The Estimation Task
+{% endblock %}
+
+{% block content %}
+
+
+
+    <div class="alert alert-dark" style="text-align: center;display:block;margin-left:auto; margin-right:auto; width:70%;">
+        <p>
+            You have successfully answered all three trial estimates on time.
+        </p>
+        <p>
+            Stay alert, as the payment-relevant Estimation Task begins on the next page.
+        </p>
+
+        {% next_button %}
+
+    </div>
+
+
+{% endblock %}

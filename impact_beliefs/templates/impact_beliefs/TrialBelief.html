@@ -7,7 +7,7 @@
 
 {% block content %}
 
-    <body onload="HideImageLoadForm();">
+    <body onload="HideImageLoadForm();" onkeydown="return (event.keyCode != 116)">
 
         <div class="alert alert-danger" id="alert" style="text-align: center;display:block;margin-left:auto; margin-right:auto; width:70%;">
             <p>
@@ -15,7 +15,7 @@
             </p>
             <p>
                 <strong>
-                    Please stay alert, as the matrix is only displayed for 10 seconds.
+                    Please stay alert, as the matrix is only displayed for {{ Constants.sec_per_matrix }} seconds.
                 </strong>
             </p>
         </div>
@@ -64,8 +64,8 @@
 
 {% block scripts %}
     <script>
-        let Intro = 3*1000;
-        let Delay = 7*1000;
+        let Intro = 3 * 1000;
+        let Delay = js_vars.sec_per_matrix * 1000;
 
         function HideImageLoadForm() {
             setTimeout(function(){
