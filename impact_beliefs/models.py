@@ -37,7 +37,7 @@ class Constants(BaseConstants):
     # slider_columns = 3  # uncomment this if you want sliders in the slider task to be displayed in multiple columns
     num_sliders = 1
 
-    sec_per_matrix = 5
+    sec_per_matrix = 10
 
     real_world_kg_co2_per_x = 0.5
     car_km_per_kg_co2 = 6  # source: atmosfair.de
