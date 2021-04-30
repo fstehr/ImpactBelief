@@ -1,8 +1,9 @@
-# Belief task:
-- how to include that people are thrown out of the study when they had two timeouts?
-- send people to outro when they had two timeouts
-
 think about how to control that people refresh the page in belief elicitation -> Check that refresh button/ F5 is disabled
+--> otree timeout continues to run --> no benefit of doing so !! PUT IN INSTRUCTIONS
+--> adjust payoff accordingly when there was a timeout
+
+
+
 
 write control questions for donation task (Think about framing)
 
@@ -14,8 +15,7 @@ write control questions for donation task (Think about framing)
 --> check consent forms here: https://www.maastrichtuniversity.nl/ethical-review-committee-inner-city-faculties-ercic
 
 
-Code Carbon Footprint calculator using radiobutton fields with labels of the verbal instructions & values equal to the CO2 values
-make next pages button with Java script, such that the entire calculator is on one page.
+include Carbon Footprint calculator as sep app
 instruct people to answer for their pre-pandemic behavior
 
 

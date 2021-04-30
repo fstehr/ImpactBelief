@@ -11,7 +11,11 @@ class PaymentInfo(Page):
         final_payoff = self.participant.payoff
         final_payoff_plus_part_fee = self.participant.payoff_plus_participation_fee()
 
-        return {'final_payoff_display': final_payoff, 'final_payoff_plus_part_fee_display': final_payoff_plus_part_fee}
+        if self.participant.vars['timeout_counter'] == 2:
+            timeout = True
+        else:
+            timeout = False
+        return {'timeout': timeout, 'final_payoff_display': final_payoff, 'final_payoff_plus_part_fee_display': final_payoff_plus_part_fee}
         # dict(redemption_code=participant.label or participant.code)
 
 

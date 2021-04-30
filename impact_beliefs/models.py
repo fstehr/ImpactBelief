@@ -140,7 +140,7 @@ class Player(SliderPlayer):
     trial_belief_2 = models.IntegerField(min=0, max=400)
     trial_belief_3 = models.IntegerField(min=0, max=400)
 
-    num_x_belief = models.IntegerField(min=0, max=400)
+    num_x_belief = models.IntegerField(min=0, max=400, doc="records belief on number of Xs in matrix")
     donation = models.BooleanField(
         choices=[
             [False, 'No'],

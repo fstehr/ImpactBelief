@@ -100,18 +100,22 @@ class Belief(Page):
 
     def before_next_page(self):
         player = self.player
+        timeout_happened = self.timeout_happened
+
         player.current_payoff = Constants.beliefs_fixed_payment + max(0, Constants.beliefs_fixed_payment - 0.00375 * (
                 (player.num_x_belief - player.num_x_true) ** 2))
         # print("current payoff is", player.current_payoff, "= 150 + max(0,150 - 0.00375*(", player.num_x_belief, "-", player.num_x_true, ")^2")
         if self.round_number == self.participant.vars['payment_round']:
-            player.payoff = player.current_payoff
+            if timeout_happened:
+                player.payoff = 0
+            else:
+                player.payoff = player.current_payoff
 
-        timeout_happened = self.timeout_happened
         if timeout_happened:
             player.timeout = True
             self.participant.vars['timeout_counter'] += 1
-
         print("time out counter is ", self.participant.vars['timeout_counter'])
+
 
         # store belief in participant vars in the position of the project id to make it easily callable on donation page
         if player.part == 1:
@@ -122,6 +126,10 @@ class Belief(Page):
             self.participant.vars['beliefs_part3'][player.project_id - 1] = player.num_x_belief
             # belief_list = self.participant.vars['beliefs_part3']
             # print("Belief list in current treatment is", belief_list)
+
+    def app_after_this_page(self, upcoming_apps):
+        if self.participant.vars['timeout_counter'] == 2:
+            return "payment_info"
 
 
 class Donation(Page):
