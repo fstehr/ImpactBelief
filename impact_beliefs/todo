@@ -1,20 +1,13 @@
+# Belief task:
+- how to include that people are thrown out of the study when they had two timeouts?
+- send people to outro when they had two timeouts
+
+think about how to control that people refresh the page in belief elicitation -> Check that refresh button/ F5 is disabled
+
 write control questions for donation task (Think about framing)
 
 - activate button on instruction pages only after one minute
 
-
-# Belief task:
-- change display time to 10 sec
-- include timeout after 30 sec including a countdown
-- how to include that people are thrown out of the study when they had two timeouts?
-
-
-think about how to control that people refresh the page in belief elicitation -> Check that refresh button/ F5 is disabled
-
-inlude timer (how long did it take to answer the entire experiment?) & time out on belief pages (see Eveline's Mail)
-
-Think about other control variables to include (look at slides. e.g. un-incentivized how certain are you about your belief estimate?,
-WTP for abolishing 100 kg of CO2 ?, how to elicit political preferences?)
 
 --> Update informed consent form to be correct
 --> include trigger warning for photosensitivity
@@ -27,6 +20,7 @@ instruct people to answer for their pre-pandemic behavior
 
 
 for carbon beliefs: fix form validation using = java eventlistener and only let people pass if they touched all sliders
+
 
 Update matrix pictures - use different latex preamble (beamer document class with small margins)
 then convert pdf into pngs

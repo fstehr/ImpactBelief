@@ -6,7 +6,7 @@ SESSION_CONFIGS = [
         name='impact_beliefs',
         display_name='Impact Beliefs',
         num_demo_participants=2,
-        app_sequence=['impact_beliefs'],
+        app_sequence=['impact_beliefs', 'payment_info'],
     ),
 ]
 

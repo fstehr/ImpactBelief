@@ -1,6 +1,19 @@
 {% extends "global/Page.html" %}
 {% load otree %}
 
+{% block styles %}
+<style>
+    .otree-timer {
+        display: none;
+        text-align: center;
+        margin-left:auto;
+        margin-right:auto;
+        width:70%;
+    }
+</style>
+{% endblock %}
+
+
 {% block title %}
     Task {{ task_number }} - The Estimation Task
 {% endblock %}
@@ -63,6 +76,7 @@
             setTimeout(function(){
                 document.getElementById('matrix').style.display="none"
                 document.getElementById('Question').style.display="block"
+                $('.otree-timer').show();
             }, Delay+Intro);
         }
     </script>

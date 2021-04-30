@@ -9,6 +9,13 @@
     <script src="{% static 'global/js/basics.js' %}"></script>
     <script src="{% static 'global/js/buttons.js' %}"></script>
 
+    <script>
+        function saveTime() {
+            var startTime = new Date().getTime();
+            document.getElementById("starting_time").value = startTime;
+        }
+    </script>
+
 {% endblock %}
 
 
@@ -21,7 +28,10 @@
                 <img src="{% static 'img/UM_logo.jpg' %}" style="width:90%;">
             </td>
         </tr>
-    </table>{% endblock %}
+    </table>
+{% endblock %}
+
+
 
 {% block content %}
 
@@ -245,8 +255,10 @@
                         </div>
 
                         <div class="col col-lg-2">
-                            <button class="btn btn-primary btn-large">Participate in this study</button>
+                            <button class="btn btn-primary btn-large" onclick="saveTime()">Participate in this study</button>
                         </div>
+
+                        <input id="starting_time" name="starting_time" type="hidden" value=""/>
 
                     </div>
                 </div>

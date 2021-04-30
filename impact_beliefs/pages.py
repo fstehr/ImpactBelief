@@ -9,6 +9,9 @@ import random
 
 
 class IntroWelcome(Page):
+    form_model = 'player'
+    form_fields = ['starting_time']
+
     def is_displayed(self):
         return self.round_number == 1
 
@@ -26,8 +29,6 @@ class Instructions(Page):
     def vars_for_template(self):
         exchange_rate = int(1 / self.session.config['real_world_currency_per_point'])
         return {'exchange_rate': exchange_rate}
-
-
 
 
 class Sliders(SliderTaskPage):
@@ -67,6 +68,8 @@ class Belief(Page):
     form_model = 'player'
     form_fields = ['num_x_belief']
 
+    timeout_seconds = 3 + Constants.sec_per_matrix + Constants.sec_to_answer
+
     def is_displayed(self):
         player = self.player
         return player.part == 1 or player.part == 3
@@ -102,6 +105,13 @@ class Belief(Page):
         # print("current payoff is", player.current_payoff, "= 150 + max(0,150 - 0.00375*(", player.num_x_belief, "-", player.num_x_true, ")^2")
         if self.round_number == self.participant.vars['payment_round']:
             player.payoff = player.current_payoff
+
+        timeout_happened = self.timeout_happened
+        if timeout_happened:
+            player.timeout = True
+            self.participant.vars['timeout_counter'] += 1
+
+        print("time out counter is ", self.participant.vars['timeout_counter'])
 
         # store belief in participant vars in the position of the project id to make it easily callable on donation page
         if player.part == 1:
@@ -190,26 +200,16 @@ class CostBelief(Page):
         return self.round_number == Constants.num_rounds
 
 
-class Outro(Page):
+class Questionnaire(Page):
+    form_model = 'player'
+    form_fields = ['age', 'gender', 'levelOfEducation', 'political', 'income', 'employment', 'finishing_time']
+
     def is_displayed(self):
         return self.round_number == Constants.num_rounds
 
-    def vars_for_template(self):
-        final_payoff = self.participant.payoff
-        final_payoff_plus_part_fee = self.participant.payoff_plus_participation_fee()
-
-        return {'final_payoff_display': final_payoff, 'final_payoff_plus_part_fee_display': final_payoff_plus_part_fee}
-
 
 page_sequence = [
-    IntroWelcome,
-    Instructions,
-    Sliders,
-    TrialBelief,
-    Introbelief,
     Belief,
-    Donation,
-    CarbonBelief,
-    CostBelief,
-    Outro
+    IntroWelcome,
+    Questionnaire
 ]

@@ -38,6 +38,7 @@ class Constants(BaseConstants):
     num_sliders = 1
 
     sec_per_matrix = 10
+    sec_to_answer = 15
 
     real_world_kg_co2_per_x = 0.5
     car_km_per_kg_co2 = 6  # source: atmosfair.de
@@ -48,6 +49,7 @@ class Subsession(BaseSubsession):
         if self.round_number == 1:
             for p in self.session.get_participants():
                 paras = Constants.paras.copy()
+                p.vars['timeout_counter'] = 0  # initialize timeout counter
 
                 # generate participant varlist for beliefs by part, to store beliefs using project_id
                 p.vars['beliefs_part1'] = [0] * len(paras)
@@ -117,6 +119,9 @@ class Group(BaseGroup):
 
 
 class Player(SliderPlayer):
+    starting_time = models.IntegerField(doc="Time at which Informed Consent is given and experiment starts")
+    finishing_time = models.IntegerField(doc="Time at which Outro Page is Shown")
+
     window_width = models.IntegerField(blank=True, doc="Documents the respondent's browser window's width.")
     window_height = models.IntegerField(blank=True, doc="Documents the respondent's browser window's height.")
 
@@ -129,6 +134,7 @@ class Player(SliderPlayer):
     gif_watched = models.BooleanField(blank=True, doc="check box field where people confirm they clicked on the gif")
     equation_clicked = models.BooleanField(blank=True,
                                            doc="automatically filled if people click on equation for quadratic scoring rule")
+    timeout = models.BooleanField(blank=True, doc="True if a time-out occured on a belief-elicitation page")
 
     trial_belief_1 = models.IntegerField(min=0, max=400)
     trial_belief_2 = models.IntegerField(min=0, max=400)
@@ -225,6 +231,79 @@ class Player(SliderPlayer):
         if value != 3:
             self.wrong_answer4 += 1
             return "Wrong answer."
+
+    age = models.IntegerField(min=18, max=99, label="What is your age?")
+    gender = models.IntegerField(
+        label="What is your gender?",
+        choices=[
+            [1, "Female"],
+            [2, "Male"],
+            [3, "Non-binary"],
+            [4, "Prefer Not to Specify"],
+        ],
+        widget=widgets.RadioSelect,
+    )
+
+    levelOfEducation = models.IntegerField(
+        label="What is the highest degree or level of education you have completed?",
+        choices=[
+            [0, 'Less than High School diploma'],
+            [1, 'High School or equivalent'],
+            [2, 'Bachelor degree (e.g. BA, BSc)'],
+            [3, 'Master degree (e.g. MA, MSc, MEd)'],
+            [4, 'Doctorate (e.g. PhD, EdD, DBA)'],
+            [5, 'other'],
+        ],
+        widget=widgets.RadioSelect,
+    )
+
+    income = models.IntegerField(
+        label="What is your household income per year?",
+        choices=[
+            [0, 'Less than £10,000'],
+            [1, '£10,000 - £19,999'],
+            [2, '£20,000 - £29,999'],
+            [3, '£30,000 - £39,999'],
+            [4, '£40,000 - £49,999'],
+            [5, '£50,000 - £59,999'],
+            [6, '£60,000 - £69,999'],
+            [7, '£70,000 - £79,999'],
+            [8, '£80,000 - £89,999'],
+            [9, '£90,000 - £99,999'],
+            [10, '£100,000 - £149,999'],
+            [11, '£150,000 or more'],
+        ],
+        widget=widgets.RadioSelect,
+    )
+
+    political = models.IntegerField(
+        label="Which of the following best describes your political views?",
+        choices=[
+            [0, 'very liberal'],
+            [1, 'liberal'],
+            [2, 'somewhat liberal'],
+            [3, 'moderate'],
+            [4, 'somewhat conservative'],
+            [5, 'conservative'],
+            [6, 'very conservative'],
+            [7, 'none of the above'],
+        ],
+        widget=widgets.RadioSelect,
+    )
+
+    employment = models.IntegerField(
+        label="What is your current employment status?",
+        choices=[
+            [0, 'employed full time'],
+            [1, 'employed part time'],
+            [2, 'I have occasional gigs'],
+            [3, 'unemployed and looking for work'],
+            [4, 'unemployed and not looking for work'],
+            [5, 'retired'],
+            [6, 'student'],
+        ],
+        widget=widgets.RadioSelect,
+    )
 
 
 class Slider(BaseSlider):  # Class that is needed for the slider task

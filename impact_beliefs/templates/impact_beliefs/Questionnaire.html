@@ -1,0 +1,35 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block scripts %}
+    <script>
+        function saveTime() {
+            var EndTime = new Date().getTime();
+            document.getElementById("finishing_time").value = EndTime;
+        }
+    </script>
+{% endblock %}
+
+
+
+{% block title %}
+    Questionnaire
+{% endblock %}
+
+{% block content %}
+
+    {% formfield 'age' %}
+
+    {% formfield 'gender' %}
+
+    {% formfield 'levelOfEducation' %}
+    {% formfield 'political' %}
+    {% formfield 'income' %}
+    {% formfield 'employment' %}
+
+
+    <button class="btn btn-primary btn-large" onclick="saveTime()">Next</button>
+
+    <input id="finishing_time" name="finishing_time" type="hidden" value=""/>
+
+{% endblock %}
