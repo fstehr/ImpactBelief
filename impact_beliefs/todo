@@ -2,12 +2,13 @@ think about how to control that people refresh the page in belief elicitation ->
 --> otree timeout continues to run --> no benefit of doing so !! PUT IN INSTRUCTIONS
 --> adjust payoff accordingly when there was a timeout
 
+--> test this
 
+
+include timeout in trial sliders
 
 
 write control questions for donation task (Think about framing)
-
-- activate button on instruction pages only after one minute
 
 
 --> Update informed consent form to be correct

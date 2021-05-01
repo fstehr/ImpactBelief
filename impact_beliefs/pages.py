@@ -217,7 +217,7 @@ class Questionnaire(Page):
 
 
 page_sequence = [
-    Belief,
     IntroWelcome,
+    Instructions,
     Questionnaire
 ]

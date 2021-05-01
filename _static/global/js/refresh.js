@@ -3,6 +3,7 @@
 // A $( document ).ready() block.
 $( document ).ready(function() {
     console.log( "ready!" );
+
     classCheck = $('div').hasClass("otree-form-errors alert alert-danger");
     console.log("classCeck", classCheck);
 
@@ -11,6 +12,21 @@ $( document ).ready(function() {
     }
 });
 
+var startTime = new Date().getTime();
+console.log("Time printed is", startTime)
+
+function resetTabs(){
+    time_clicked = new Date().getTime();
+    time_spent_in_sec = (time_clicked - startTime)/1000
+    console.log("time spent in secs is", time_spent_in_sec)
+    if ((time_spent_in_sec < 60) && !($('div').hasClass("otree-form-errors alert alert-danger"))){
+        event.preventDefault();
+        alert("Please take your time to read the instructions before answering the comprehension questions.");
+        console.log("btn clicked to early")
+    }
+
+
+}
 
 
 
