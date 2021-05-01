@@ -2,7 +2,7 @@ think about how to control that people refresh the page in belief elicitation ->
 --> otree timeout continues to run --> no benefit of doing so !! PUT IN INSTRUCTIONS
 --> adjust payoff accordingly when there was a timeout
 
---> test this
+--> test this properly
 
 
 include timeout in trial sliders
@@ -11,10 +11,7 @@ include timeout in trial sliders
 write control questions for donation task (Think about framing)
 
 
---> Update informed consent form to be correct
---> include trigger warning for photosensitivity
---> check consent forms here: https://www.maastrichtuniversity.nl/ethical-review-committee-inner-city-faculties-ercic
-
+--> Update informed consent form to be correct, esp. privacy part
 
 include Carbon Footprint calculator as sep app
 instruct people to answer for their pre-pandemic behavior
@@ -28,7 +25,6 @@ then convert pdf into pngs
 in parameter csv file - rename all image names to matrix_40_1.PNG (i.e. append .png everywhere)
 
 
-include honey-pots in the program to check that no bots participated
 
 
 

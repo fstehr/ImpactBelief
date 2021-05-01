@@ -305,6 +305,9 @@ class Player(SliderPlayer):
         widget=widgets.RadioSelect,
     )
 
+    honeypot = models.IntegerField(blank=True,
+                                   doc="hidden field which will only be filled by bots")
+
 
 class Slider(BaseSlider):  # Class that is needed for the slider task
     player = ForeignKey(Player,

@@ -18,7 +18,7 @@ class IntroWelcome(Page):
 
 class Instructions(Page):
     form_model = 'player'
-    form_fields = ['window_width', 'window_height', 'gif_clicked', 'gif_watched', 'equation_clicked'] \
+    form_fields = ['window_width', 'window_height', 'gif_clicked', 'gif_watched', 'equation_clicked', 'honeypot'] \
                   + ['cq{}'.format(i) for i in range(1, 5)]
 
     # display always in the first round of a new part.
