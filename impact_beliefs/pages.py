@@ -68,7 +68,7 @@ class Belief(Page):
     form_model = 'player'
     form_fields = ['num_x_belief']
 
-    timeout_seconds = 3 + Constants.sec_per_matrix + Constants.sec_to_answer
+    timeout_seconds = 3 + Constants.sec_per_matrix + Constants.sec_to_answer +1000
 
     def is_displayed(self):
         player = self.player
@@ -114,7 +114,7 @@ class Belief(Page):
         if timeout_happened:
             player.timeout = True
             self.participant.vars['timeout_counter'] += 1
-        print("time out counter is ", self.participant.vars['timeout_counter'])
+        # print("time out counter is ", self.participant.vars['timeout_counter'])
 
 
         # store belief in participant vars in the position of the project id to make it easily callable on donation page
@@ -218,6 +218,7 @@ class Questionnaire(Page):
 
 page_sequence = [
     IntroWelcome,
-    Instructions,
+    TrialBelief,
+    Belief,
     Questionnaire
 ]

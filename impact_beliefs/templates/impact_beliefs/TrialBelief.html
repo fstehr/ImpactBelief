@@ -1,13 +1,17 @@
 {% extends "global/Page.html" %}
 {% load otree %}
 
+{% block scripts %}
+    <script src="{% static 'js/trialsliders.js' %}"></script>
+{% endblock %}
+
 {% block title %}
     Trial Rounds - The Estimation Task
 {% endblock %}
 
 {% block content %}
 
-    <body onload="HideImageLoadForm();" onkeydown="return (event.keyCode != 116)">
+    <body onload="HideImageLoadForm();">
 
         <div class="alert alert-danger" id="alert" style="text-align: center;display:block;margin-left:auto; margin-right:auto; width:70%;">
             <p>
@@ -25,6 +29,15 @@
         <img src = "{% static 'img/Matrix_320.png' %}" id="matrix2" style="display:none;margin-left:auto; margin-right:auto; width:60%;"/>
         <img src = "{% static 'img/Matrix_200.png' %}" id="matrix3" style="display:none;margin-left:auto; margin-right:auto; width:60%;"/>
 
+
+        <div class="alert alert-warning" id="time-alert" style="display:none; text-align: center; margin-left:auto; margin-right:auto; width:70%;">
+            <p>
+                Time left to complete this page (in secs):
+                <span style="font-weight:bold">
+                    <span id="count">15</span>
+                </span>
+            </p>
+        </div>
 
         <div id="Question" style="display:none; margin-left:auto; margin-right:auto; width:50%;">
             <p>
@@ -59,62 +72,4 @@
     </body>
 
 
-{% endblock %}
-
-
-{% block scripts %}
-    <script>
-        let Intro = 3 * 1000;
-        let Delay = js_vars.sec_per_matrix * 1000;
-
-        function HideImageLoadForm() {
-            setTimeout(function(){
-                document.getElementById('alert').style.display="none"
-                document.getElementById('matrix1').style.display="block"
-            },Intro);
-            setTimeout(function(){
-                document.getElementById('matrix1').style.display="none"
-                document.getElementById('Question').style.display="block"
-                document.getElementById('field1').style.display="block"
-                document.getElementById('btn-nosubmit').style.display="block"
-
-            }, Delay+Intro);
-        }
-
-        function Show_next_form1() {
-            document.getElementById('Question').style.display="none"
-            document.getElementById('field1').style.display="none"
-            document.getElementById('btn-nosubmit').style.display="none"
-            document.getElementById('alert').style.display="block"
-
-            setTimeout(function(){
-                document.getElementById('alert').style.display="none"
-                document.getElementById('matrix2').style.display="block"
-            },Intro);
-            setTimeout(function(){
-                document.getElementById('matrix2').style.display="none"
-                document.getElementById('Question').style.display="block"
-                document.getElementById('field2').style.display="block"
-                document.getElementById('btn-nosubmit2').style.display="block"
-            }, Delay+Intro);
-        }
-        function Show_next_form2() {
-            document.getElementById('Question').style.display="none"
-            document.getElementById('field2').style.display="none"
-            document.getElementById('btn-nosubmit2').style.display="none"
-            document.getElementById('alert').style.display="block"
-
-            setTimeout(function(){
-                document.getElementById('alert').style.display="none"
-                document.getElementById('matrix3').style.display="block"
-            },Intro);
-            setTimeout(function(){
-                document.getElementById('matrix3').style.display="none"
-                document.getElementById('Question').style.display="block"
-                document.getElementById('field3').style.display="block"
-                document.getElementById('btn-submit').style.display="block"
-            }, Delay+Intro);
-        }
-
-    </script>
 {% endblock %}
