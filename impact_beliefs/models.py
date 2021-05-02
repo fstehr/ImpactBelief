@@ -132,6 +132,7 @@ class Player(SliderPlayer):
 
     gif_clicked = models.BooleanField(blank=True, doc="automatically filled if people click on gif")
     gif_watched = models.BooleanField(blank=True, doc="check box field where people confirm they clicked on the gif")
+    clicked_early = models.BooleanField(blank=True, doc="True if person tried to continue from instructions < 60 sec")
     equation_clicked = models.BooleanField(blank=True,
                                            doc="automatically filled if people click on equation for quadratic scoring rule")
     timeout = models.BooleanField(blank=True, doc="True if a time-out occured on a belief-elicitation page")

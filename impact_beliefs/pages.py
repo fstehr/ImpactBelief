@@ -18,7 +18,7 @@ class IntroWelcome(Page):
 
 class Instructions(Page):
     form_model = 'player'
-    form_fields = ['window_width', 'window_height', 'gif_clicked', 'gif_watched', 'equation_clicked', 'honeypot'] \
+    form_fields = ['window_width', 'window_height', 'gif_clicked', 'gif_watched', 'equation_clicked', 'honeypot', 'clicked_early'] \
                   + ['cq{}'.format(i) for i in range(1, 5)]
 
     # display always in the first round of a new part.
@@ -68,7 +68,7 @@ class Belief(Page):
     form_model = 'player'
     form_fields = ['num_x_belief']
 
-    timeout_seconds = 3 + Constants.sec_per_matrix + Constants.sec_to_answer +1000
+    timeout_seconds = 3 + Constants.sec_per_matrix + Constants.sec_to_answer
 
     def is_displayed(self):
         player = self.player
@@ -218,7 +218,6 @@ class Questionnaire(Page):
 
 page_sequence = [
     IntroWelcome,
-    TrialBelief,
-    Belief,
-    Questionnaire
+    Instructions,
+    Belief
 ]

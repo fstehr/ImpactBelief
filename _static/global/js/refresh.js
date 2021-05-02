@@ -19,12 +19,14 @@ function resetTabs(){
     time_clicked = new Date().getTime();
     time_spent_in_sec = (time_clicked - startTime)/1000
     console.log("time spent in secs is", time_spent_in_sec)
+
     if ((time_spent_in_sec < 60) && !($('div').hasClass("otree-form-errors alert alert-danger"))){
         event.preventDefault();
         alert("Please take your time to read the instructions before answering the comprehension questions.");
-        console.log("btn clicked to early")
+        console.log("btn clicked too early")
+        let early_click = document.getElementById("clicked_early");
+        early_click.value = "True";
     }
-
 
 }
 
