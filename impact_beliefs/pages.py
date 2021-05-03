@@ -228,6 +228,5 @@ class Questionnaire(Page):
 
 
 page_sequence = [
-    IntroWelcome,
-    Instructions
+    Instructions,
 ]
