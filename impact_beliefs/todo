@@ -6,15 +6,9 @@ think about how to control that people refresh the page in belief elicitation ->
 
 ==> OBS!!  gif clicked value and equation clicked value are re-set to false when the page is re-loaded
 
-refresh.js:28 Uncaught TypeError: Cannot set property 'value' of null
-    at resetTabs (refresh.js:28)
-    at HTMLButtonElement.onclick ((index):353)
-resetTabs @ refresh.js:28
-onclick @ (index):353
+check why there is a time problem on instructions page [Violation] 'click' handler took 2274ms
 
-
-
-write control questions for donation task (Think about framing)
+# UPDATE GIFS WITH TIMEOUT SHOWING
 
 
 --> Update informed consent form to be correct, esp. privacy part

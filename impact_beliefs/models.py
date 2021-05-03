@@ -180,13 +180,16 @@ class Player(SliderPlayer):
     wrong_answer3 = models.IntegerField(doc="Counts the number of wrong guesses for cq3.", initial=0)
     wrong_answer4 = models.IntegerField(doc="Counts the number of wrong guesses for cq4.", initial=0)
 
-    cq1 = models.BooleanField(doc="Comprehension Question 1")
+    cq1 = models.BooleanField(doc="Comprehension Question 1", choices=[
+            [True, 'True'],
+            [False, 'False'],
+        ])
     def cq1_error_message(self, value):
         if self.round_number == 1 and value != True:
             self.wrong_answer1 += 1
             return "Wrong answer."
 
-    cq2 = models.IntegerField(doc="Comprehension Question 2", min=0, max=200)
+    cq2 = models.IntegerField(doc="Comprehension Question 2", min=0, max=400)
     def cq2_error_message(self, value):
         if self.round_number == 1 and value != 50:
             self.wrong_answer2 += 1
@@ -194,8 +197,14 @@ class Player(SliderPlayer):
         elif self.round_number == 2 and value != 150:
             self.wrong_answer2 += 1
             return "Wrong answer."
+        elif self.round_number == len(Constants.paras) + 2 and value != 280:
+            self.wrong_answer2 += 1
+            return "Wrong answer."
 
-    cq3 = models.BooleanField(doc="Comprehension Question 3")
+    cq3 = models.BooleanField(doc="Comprehension Question 3", choices=[
+            [True, 'True'],
+            [False, 'False'],
+        ])
     def cq3_error_message(self, value):
         if value != True:
             self.wrong_answer3 += 1
@@ -207,31 +216,38 @@ class Player(SliderPlayer):
             choices = [
                         [1, "The sum of the participation fee and the earnings in all five tasks"],
                         [2, "Either the participation fee or the earnings in all five tasks"],
-                        [3, "The sum of the participation fee and the earnings in one decision of the five tasks"],
+                        [3, "The sum of the participation fee and the earnings in one decision of the five tasks"],   # Correct Answer
                         [4, "Either the participation fee or the earnings in one decision of the five tasks"],
             ]
         elif player.round_number == 2:    # How many Xs can there be in a given matrix?
             choices = [
                         [1, "at least 50 Xs"],
-                        [2, "at most 260 Xs"],
-                        [3, "Between 0 and 400 Xs"],
+                        [2, "Between 0 and 400 Xs"],   # Correct Answer
+                        [3, "at most 260 Xs"],
                         [4, "This cannot be known"],
             ]
-        elif player.round_number == len(Constants.paras) + 1:    # How many Xs can there be in a given matrix?
+        elif player.round_number == len(Constants.paras) + 2:    # Which of the following statements about the consequences of your decision is correct?
             choices = [
-                        [1, "at least 50 Xs"],
-                        [2, "at most 260 Xs"],
-                        [3, "Between 0 and 400 Xs"],
-                        [4, "This cannot be known"],
+                        [1, "When I decide not to donate, a fixed fee is subtracted from my earnings and donated."],
+                        [2, "When I decide to donate, a fixed fee is subtracted from my earnings and donated to carbonfund.org."],
+                        [3, "When I decide not to donate, I earn nothing in this task."],
+                        [4, "When I decide to donate, the price of the project is subtracted from my earnings and donated to carbonfund.org."],   # Correct Answer
             ]
         else:
             choices = []
         return choices
 
     def cq4_error_message(self, value):
-        if value != 3:
+        if self.round_number == 1 and value != 3:
             self.wrong_answer4 += 1
             return "Wrong answer."
+        elif self.round_number == 2 and value != 2:
+            self.wrong_answer4 += 1
+            return "Wrong answer."
+        elif self.round_number == len(Constants.paras) + 2 and value != 4:
+            self.wrong_answer4 += 1
+            return "Wrong answer."
+
 
     age = models.IntegerField(min=18, max=99, label="What is your age?")
     gender = models.IntegerField(

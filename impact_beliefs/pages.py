@@ -18,8 +18,19 @@ class IntroWelcome(Page):
 
 class Instructions(Page):
     form_model = 'player'
-    form_fields = ['window_width', 'window_height', 'gif_clicked', 'gif_watched', 'equation_clicked', 'honeypot', 'clicked_early'] \
+
+    def get_form_fields(player):
+        if player.round_number == 1:
+            return ['window_width', 'window_height', 'honeypot', 'clicked_early'] \
                   + ['cq{}'.format(i) for i in range(1, 5)]
+        elif player.round_number == 2:
+            return ['gif_clicked', 'gif_watched', 'equation_clicked', 'honeypot', 'clicked_early'] \
+                  + ['cq{}'.format(i) for i in range(1, 5)]
+        elif player.round_number == len(Constants.paras) +2:
+            return ['equation_clicked', 'honeypot', 'clicked_early'] \
+                   + ['cq{}'.format(i) for i in range(1, 5)]
+        else:
+            return ['equation_clicked', 'honeypot', 'clicked_early']
 
     # display always in the first round of a new part.
     def is_displayed(self):
@@ -218,6 +229,5 @@ class Questionnaire(Page):
 
 page_sequence = [
     IntroWelcome,
-    Instructions,
-    Belief
+    Instructions
 ]
