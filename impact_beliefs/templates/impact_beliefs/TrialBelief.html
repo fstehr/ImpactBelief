@@ -11,6 +11,8 @@
 
 {% block content %}
 
+{{ form.trial_belief_1.errors }}
+
     <body onload="HideImageLoadForm();">
 
         <div class="alert alert-danger" id="alert" style="text-align: center;display:block;margin-left:auto; margin-right:auto; width:70%;">
@@ -63,6 +65,9 @@
                     Next
                 </button>
             </div>
+
+            <input type="hidden" id="timeoutcount" name="trial_timeout" value="0">
+
 
             <div id="btn-submit" style="display:none;">
                 {% next_button %}

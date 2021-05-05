@@ -4,8 +4,10 @@ think about how to control that people refresh the page in belief elicitation ->
 
 --> test payoff consequences properly
 
+- fix timeout on trialsliders page (esp. passing on timeout counter to form!)
+
 ==> OBS!!  gif clicked value and equation clicked value are re-set to false when the page is re-loaded
-        Do this in the reset tabs function
+        Do this in the reset tabs function using local storage
         Using the two lines of code from noel on how to get current value from html
         Value=get element by id(). Value
         Get element by id. Value = value
@@ -14,19 +16,20 @@ check why there is a time problem on instructions page [Violation] 'click' handl
 
 --> Update informed consent form to be correct, esp. privacy part
 
-include Carbon Footprint calculator as sep app
-instruct people to answer for their pre-pandemic behavior
-
-
-for carbon beliefs: fix form validation using = java eventlistener and only let people pass if they touched all sliders
-
 
 Update matrix pictures - use different latex preamble (beamer document class with small margins)
 then convert pdf into pngs
 in parameter csv file - rename all image names to matrix_40_1.PNG (i.e. append .png everywhere)
 
 
+## from trying all pages - layoutwise
+- on beliefinstructions1 and donationinstruction1 nav arrows are further apart than on other instr pages
+- right align otree btn
+- on carbon belief and costbelief change spacing above next button
 
+
+
+for carbon beliefs: fix form validation using = java eventlistener and only let people pass if they touched all sliders
 
 
 ## LAYOUT STUFF i.e. nice to have

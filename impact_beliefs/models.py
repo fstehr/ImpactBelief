@@ -137,9 +137,10 @@ class Player(SliderPlayer):
                                            doc="automatically filled if people click on equation for quadratic scoring rule")
     timeout = models.BooleanField(blank=True, doc="True if a time-out occured on a belief-elicitation page")
 
-    trial_belief_1 = models.IntegerField(min=0, max=400)
-    trial_belief_2 = models.IntegerField(min=0, max=400)
-    trial_belief_3 = models.IntegerField(min=0, max=400)
+    trial_belief_1 = models.IntegerField(blank=True, min=0, max=400)
+    trial_belief_2 = models.IntegerField(blank=True, min=0, max=400)
+    trial_belief_3 = models.IntegerField(blank=True, min=0, max=400)
+    trial_timeout = models.IntegerField(blank=True, doc="Counts how many time-outs occured on trial belief page")
 
     num_x_belief = models.IntegerField(min=0, max=400, doc="records belief on number of Xs in matrix")
     donation = models.BooleanField(

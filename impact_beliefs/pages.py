@@ -59,7 +59,7 @@ class Sliders(SliderTaskPage):
 
 class TrialBelief(Page):
     form_model = 'player'
-    form_fields = ['trial_belief_{}'.format(i) for i in range(1, 4)]
+    form_fields = ['trial_timeout']+['trial_belief_{}'.format(i) for i in range(1, 4)]
 
     def js_vars(self):
         return dict(
@@ -227,6 +227,17 @@ class Questionnaire(Page):
         return self.round_number == Constants.num_rounds
 
 
+#page_sequence = [TrialBelief]
+
 page_sequence = [
+    IntroWelcome,
     Instructions,
-]
+    Sliders,
+    TrialBelief,
+    Introbelief,
+    Belief,
+    Donation,
+    CarbonBelief,
+    CostBelief,
+    Questionnaire
+    ]

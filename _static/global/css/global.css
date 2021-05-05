@@ -6,3 +6,7 @@ p {
 h5 {
     margin-top: 32pt;
 }
+
+.otree-btn-next {
+    text-align: right;
+}

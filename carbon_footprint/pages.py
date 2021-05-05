@@ -3,13 +3,8 @@ from ._builtin import Page, WaitPage
 from .models import Constants
 
 
-class Demographics(Page):
-    form_model = 'player'
-    form_fields = ['nationality']
-
 class Energy(Page):
     form_model = 'player'
-    #form_fields = ['cf_{}'.format(i) for i in range(1, 4)]
     form_fields = ['hh_members', 'electricity_kwh', 'green_electricity','gas_kwh',
                    'fossil_fuels','fossil_fuels_oil', 'fossil_fuels_coal', 'fossil_fuels_wood', 'fossil_fuels_gas']
 
@@ -32,7 +27,6 @@ class Mobility(Page):
         self.player.set_plane_co2()
 
 
-
 class Food(Page):
     form_model = 'player'
     form_fields = ['food_org', 'food_meat', 'food_miles', 'food_pac', 'food_com', 'food_was']
@@ -50,7 +44,6 @@ class Miscellaneous(Page):
         # self.player.set_footprint()
         self.player.set_mis_sum_co2()
         self.player.set_total_footprint()
-
 
 
 class Results(Page):
@@ -84,4 +77,8 @@ class Results(Page):
         )
 
 
-page_sequence = [Energy, Mobility, Food, Miscellaneous, Results]
+page_sequence = [Energy,
+                 Mobility,
+                 Food,
+                 Miscellaneous,
+                 Results]
