@@ -1,0 +1,71 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block styles %}
+    <style>
+        .radioGroup label {
+            display: inline-block;
+            margin: 1.0em;
+        }
+        .radioGroup label input[type="radio"] {
+            margin: 1.5;
+        }
+    </style>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'js/button.js' %}"></script>
+{% endblock %}
+
+
+{% block title %}
+    Carbon Footprint Calculator
+{% endblock %}
+
+
+{% block content %}
+
+<div style="margin-bottom: 18pt">
+    <div class="progress" style="margin-bottom: 12pt">
+            <div class="progress-bar" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">75%</div>
+     </div>
+    <p>
+        With your answers below, we will calculate your carbon footprint. Please try to answer as precisely as possible, to the
+        best of your knowledge.
+    </p>
+</div>
+
+    <div class="container">
+        <table class="table table-striped" style="width:80%; margin-right: auto; margin-left: auto;">
+            <thead>
+                <tr>
+                    <th style="text-align: center">Your General Consumption Habits</th>
+                </tr>
+            </thead>
+                <tbody>
+
+                    <!-- FOOD QUESTIONS -->
+
+                    {% for field in form %}
+                    <tr>
+                        <td>{{ field.label }}</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            {{ field }}
+                        </td>
+                    </tr>
+                {% endfor %}
+
+
+                </tbody>
+              </table>
+            </div>
+
+
+    <div style="margin-top: 12pt; text-align: right;">
+        <button  class="btn btn-primary btn-large">Next</button>
+    </div>
+
+
+{% endblock %}

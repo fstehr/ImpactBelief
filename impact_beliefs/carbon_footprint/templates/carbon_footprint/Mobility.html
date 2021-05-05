@@ -1,0 +1,160 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block styles %}
+    <style>
+        .radioGroup label {
+            display: inline-block;
+            margin: 1.0em;
+        }
+        .radioGroup label input[type="radio"] {
+            margin: 1.5;
+        }
+    </style>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'js/button.js' %}"></script>
+{% endblock %}
+
+
+{% block title %}
+    Carbon Footprint Calculator
+{% endblock %}
+
+
+{% block content %}
+
+
+<div style="margin-bottom: 18pt">
+    <div class="progress" style="margin-bottom: 12pt">
+            <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+     </div>
+    <p>
+        With your answers below, we will calculate your carbon footprint. Please try to answer as precisely as possible, to the
+        best of your knowledge.
+    </p>
+</div>
+
+<div class="alert alert-warning" style="width:80%; margin-right: auto; margin-left: auto;">
+    <p>
+        On this page, we ask you for individual-level information about your mobility behavior.
+        <strong>When answering the questions about mobility, please answer for your pre-pandemic behavior</strong>.
+    </p>
+</div>
+
+
+    <!-- MOBILITY QUESTIONS -->
+    <div class="container">
+        <table class="table table-striped" style="width:80%; margin-right: auto; margin-left: auto;">
+            <thead>
+                <tr>
+                    <th style="text-align: center">Your Mobility Behavior</th>
+                </tr>
+            </thead>
+                <tbody>
+
+                    <!-- CAR QUESTION -->
+                    <div>
+                        <tr>
+                            <td>{{ form.car_miles.label }}</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <ul>
+                                    <li>
+                                        <label for="id_car_miles_1"><input type="radio" name="car_miles" value="0" required="" id="id_car_miles_1" class="form-check-input" onClick="show_hide_car(1);">
+                                        I never travel by car</label>
+                                    </li>
+                                    <li>
+                                        <label for="id_car_miles_2"><input type="radio" name="car_miles" value="6000" required="" id="id_car_miles_2" class="form-check-input" onClick="show_hide_car(2);">
+                                        Little (6,000 miles)</label>
+                                    </li>
+                                    <li>
+                                        <label for="id_car_miles_3"><input type="radio" name="car_miles" value="9000" required="" id="id_car_miles_3" class="form-check-input" onClick="show_hide_car(3);">
+                                        Average (9,000 miles)</label>
+                                    </li>
+                                    <li>
+                                        <label for="id_car_miles_4"><input type="radio" name="car_miles" value="12000" required="" id="id_car_miles_4" class="form-check-input" onClick="show_hide_car(4);">
+                                        Much (12,000 miles)</label>
+                                    </li>
+                                    <li>
+                                        <label for="id_car_miles_5"><input type="radio" name="car_miles" value="-99" required="" id="id_car_miles_5" class="form-check-input" onClick="show_hide_car(5);">
+                                        Enter actual miles travelled:</label>
+                                    </li>
+
+                                    <div id ="miles" style="display:none">
+                                        <input id="miles_field" class = "form-control" type="number" name="miles_field" min="1" oninput="calculate_car_miles(1);">
+                                    </div>
+                                </ul>
+
+                                <div id="car" style="display:none">
+                                    {{ form.car_size_mpg.label }}
+
+                                    <ul>
+                                        <li>
+                                        <label for="id_car_mpg_1"><input type="radio" name="car_size_mpg" value="35" id="id_car_mpg_1" class="form-check-input">
+                                            Sports car or large SUV</label>
+                                        </li>
+                                        <li>
+                                        <label for="id_car_mpg_2"><input type="radio" name="car_size_mpg" value="46" id="id_car_mpg_2" class="form-check-input">
+                                            Small or medium SUV, or MPV</label>
+                                        </li>
+                                        <li>
+                                        <label for="id_car_mpg_3"><input type="radio" name="car_size_mpg" value="52" id="id_car_mpg_3" class="form-check-input">
+                                            City, small, medium, large or estate car</label>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                    </div>
+
+
+                    <!-- BUS QUESTION -->
+                    <div>
+                        <tr>
+                            <td>{{ form.bus_miles.label }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ form.bus_miles }}</td>
+                        </tr>
+                    </div>
+
+
+                    <!-- TRAIN QUESTION -->
+                    <div>
+                        <tr>
+                            <td>{{ form.train_miles.label }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ form.train_miles }}</td>
+                        </tr>
+                    </div>
+
+
+                    <!-- PLANE QUESTION -->
+                    <div>
+                        <tr>
+                            <td>{{ form.plane_hours.label }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ form.plane_hours }}</td>
+                        </tr>
+                    </div>
+
+                </tbody>
+              </table>
+            </div>
+
+
+    <div style="margin-top: 12pt; text-align: right;">
+        <button  class="btn btn-primary btn-large">Next</button>
+    </div>
+
+
+
+
+
+{% endblock %}

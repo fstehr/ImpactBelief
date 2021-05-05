@@ -1,0 +1,207 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block styles %}
+    <style>
+        .radioGroup label {
+            display: inline-block;
+            margin: 1.0em;
+        }
+        .radioGroup label input[type="radio"] {
+            margin: 1.5;
+        }
+    </style>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'js/button.js' %}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+{% endblock %}
+
+
+{% block title %}
+    Carbon Footprint Calculator
+{% endblock %}
+
+
+{% block content %}
+
+
+<div style="margin-bottom: 18pt">
+    <div class="progress" style="margin-bottom: 12pt">
+            <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+     </div>
+    <p>
+        With your answers below, we will calculate your carbon footprint. Please try to answer as precisely as possible, to the
+        best of your knowledge.
+    </p>
+</div>
+
+
+<div class="alert alert-warning" style="width:80%; margin-right: auto; margin-left: auto;">
+    <p>
+        On this page, we ask you for household-level information regarding your energy-consumption.
+        To calculate your individual carbon footprint, we then divide the respective emissions by the number of individuals in your household.
+    </p>
+</div>
+
+
+
+<div class="container">
+    <table class="table table-striped" style="width:80%; margin-right: auto; margin-left: auto;">
+        <thead>
+            <tr>
+                <th style="text-align: center"> Energy </th>
+            </tr>
+        </thead>
+            <tbody>
+
+                <!-- HOUSEHOLD MEMBERS QUESTION -->
+                <div>
+                    <tr>
+                        <td>{{ form.hh_members.label }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ form.hh_members }}</td>
+                    </tr>
+                </div>
+
+
+                <!-- ELECTRICITY QUESTION -->
+                <div>
+                    <tr>
+                        <td>{{ form.electricity_kwh.label }}</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <ul>
+                                <li>
+                                    <label for="electricity_kwh_1"><input type="radio" name="electricity_kwh" value="3000" required="" id="electricity_kwh_1" class="form-check-input" onClick="show_hide_elec(1);">
+                                    Small house / flat (3,000 kWh)</label>
+                                </li>
+                                <li>
+                                    <label for="electricity_kwh_2"><input type="radio" name="electricity_kwh" value="4800" required="" id="electricity_kwh_2" class="form-check-input" onClick="show_hide_elec(2);" >
+                                    Medium (4,800 kWh)</label>
+                                </li>
+                                <li>
+                                    <label for="electricity_kwh_3"><input type="radio" name="electricity_kwh" value="7000" required="" id="electricity_kwh_3" class="form-check-input" onClick="show_hide_elec(3);">
+                                    Large house (7,000 kWh)</label>
+                                </li>
+                                <li>
+                                    <label for="electricity_kwh_4"><input type="radio" name="electricity_kwh" value="2000" required="" id="electricity_kwh_4" class="form-check-input" onClick="show_hide_elec(4);">
+                                    Hall of residence (2,000 kWh)</label>
+                                </li>
+                                <li>
+                                    <label for="electricity_kwh_5"><input type="radio" name="electricity_kwh" value="-99" required="" id="electricity_kwh_5" class="form-check-input" onClick="show_hide_elec(5);">
+                                    Enter actual amount used from your bills from the past 12 months (in kWh):</label>
+                                </li>
+
+                                <div id ="elec" style="display:none">
+                                    <input id="kWh_field" class="form-control" type="number" name="kWh_field" min="1" oninput="calculate_elec();">
+                                </div>
+
+                                <br>
+
+                                <div>
+                                    {% formfield 'green_electricity' %}
+                                </div>
+                            </ul>
+                        </td>
+                    </tr>
+                </div>
+
+
+                <!-- GAS QUESTION -->
+                <div>
+                    <tr>
+                        <td>{{ form.gas_kwh.label }}</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <ul>
+                                <li>
+                                    <label for="id_gas_kwh_1"><input type="radio" name="gas_kwh" value="12000" required="" id="id_gas_kwh_1" class="form-check-input" onClick="show_hide_gas(1);">
+                                     Small house / flat (12,000 kWh)</label>
+                                </li>
+                                <li>
+                                    <label for="id_gas_kwh_2"><input type="radio" name="gas_kwh" value="18000" required="" id="id_gas_kwh_2" class="form-check-input" onClick="show_hide_gas(2);" >
+                                     Medium (18,000 kWh)</label>
+                                </li>
+                                <li>
+                                    <label for="id_gas_kwh_3"><input type="radio" name="gas_kwh" value="27000" required="" id="id_gas_kwh_3" class="form-check-input" onClick="show_hide_gas(3);">
+                                     Large house (27,000 kWh)</label>
+                                </li>
+                                <li>
+                                    <label for="id_gas_kwh_4"><input type="radio" name="gas_kwh" value="5000" required="" id="id_gas_kwh_4" class="form-check-input" onClick="show_hide_gas(4);">
+                                     Hall of residence (5,000 kWh)</label>
+                                </li>
+
+                                <li>
+                                    <label for="id_gas_kwh_5"><input type="radio" name="gas_kwh" value="-99" required="" id="id_gas_kwh_5" class="form-check-input" onClick="show_hide_gas(5);">
+                                     Enter actual kWh used:</label>
+                                </li>
+
+                                <div id ="gas" style="display:none">
+                                    <input id="gas_kWh_field" class="form-control" type="number" name="gas_kWh_field" min="1" oninput="calculate_gas();">
+                                    {{ form.gas_kwh.errors }}
+                                </div>
+                            </ul>
+                        </td>
+                    </tr>
+                </div>
+
+
+                <!-- HEATING QUESTION -->
+                <div>
+                    <tr>
+                        <td>{{ form.fossil_fuels.label }}</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <ul>
+                                <li>
+                                    <label for="id_fossil_fuels_0"><input type="radio" name="fossil_fuels" value="False" required="" id="id_fossil_fuels_0" class="form-check-input" onClick="show_hide_oil(1);">
+                                     No</label>
+                                </li>
+                                <li>
+                                    <label for="id_fossil_fuels_1"><input type="radio" name="fossil_fuels" value="True" required="" id="id_fossil_fuels_1" class="form-check-input" onClick="show_hide_oil(2);">
+                                     Yes</label>
+                                </li>
+
+                                <div id="fossilfuel" style="display:none">
+                                    Please enter your use over the last year:
+                                    <table class="table table-light">
+                                        <tr>
+                                            <td>{{ form.fossil_fuels_oil.label }}</td>
+                                            <td>{{ form.fossil_fuels_oil }} </td>
+                                        </tr>
+                                        <tr>
+                                            <td>{{ form.fossil_fuels_coal.label }}</td>
+                                            <td>{{ form.fossil_fuels_coal }} </td>
+                                        </tr>
+                                        <tr>
+                                            <td>{{ form.fossil_fuels_wood.label }}</td>
+                                            <td>{{ form.fossil_fuels_wood }} </td>
+                                        </tr>
+                                        <tr>
+                                            <td>{{ form.fossil_fuels_gas.label }}</td>
+                                            <td>{{ form.fossil_fuels_gas }} </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </ul>
+                        </td>
+                    </tr>
+                </div>
+
+            </tbody>
+          </table>
+        </div>
+
+
+        <div style="margin-top: 12pt; text-align: right;">
+            <button  class="btn btn-primary btn-large">Next</button>
+        </div>
+
+{% endblock %}

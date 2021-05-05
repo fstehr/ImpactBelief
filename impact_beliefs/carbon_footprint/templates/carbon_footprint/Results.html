@@ -1,0 +1,52 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block scripts %}
+    <script type="text/javascript" src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+    <script type="text/javascript" src="https://www.amcharts.com/lib/3/serial.js"></script>
+
+    <script type="text/javascript" src="{% static 'js/barchart.js' %}"></script>
+{% endblock %}
+
+
+{% block title %}
+    Your Carbon Footprint
+{% endblock %}
+
+{% block content %}
+
+<div style="margin-bottom: 18pt">
+    <div class="progress">
+            <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100%</div>
+     </div>
+</div>
+
+
+    <div class="card" style="width: 100%">
+        <div class="card-header" style="text-align: center">
+            Your Total Carbon Footprint: <strong>{{ player.total_footprint_co2 }} Tonnes of CO<sub>2</sub></strong>
+        </div>
+
+        <div class="card-body">
+            <body>
+                <figure>
+                    <div id="chartdiv" style="width: 60%; height: 400px;margin-left: auto;margin-right: auto; background-color: #FFFFFF;" ></div>
+                    <figcaption style="margin-top:10pt; font-style:italic; margin-left:auto; margin-right:auto; width:60%;text-align: center">Hover over the bar chart to see the precise values.</figcaption>
+                </figure>
+            </body>
+
+            <div class="alert alert-info" style="width:60%; margin-left: auto; margin-right: auto">
+                As a comparison: To reach the global goal of staying within 2&#176; C temperature increase by 2100 with reasonably high probability (66%),
+                we would need to reduce our individual carbon footprints to <strong>1.6 Tonnes of CO<sub>2</sub> per year </strong>.
+                <!-- Source: https://www.nature.com/articles/s41893-018-0021-4 -->
+            </div>
+        </div>
+    </div>
+
+    <div style="margin-top: 12pt; text-align: right;">
+        <button  class="btn btn-primary btn-large">Next</button>
+    </div>
+
+{% endblock %}
+
+
