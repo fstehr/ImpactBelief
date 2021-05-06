@@ -60,7 +60,7 @@ class Results(Page):
         avg_mis_cons = player.avg_mis_sum_co2
 
         # personal values for graph
-        elec_heat = player.ele_co2 + player.gas_co2 + player.fossil_fuels_co2
+        elec_heat = (player.ele_co2 + player.gas_co2 + player.fossil_fuels_co2) / player.hh_members
         transportation = player.car_co2 + player.bus_co2 + player.train_co2 + player.plane_co2
         food = player.food_sum_co2
         mis_cons = player.mis_sum_co2
