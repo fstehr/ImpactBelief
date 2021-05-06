@@ -25,7 +25,19 @@
     {% formfield 'levelOfEducation' %}
     {% formfield 'political' %}
     {% formfield 'income' %}
-    {% formfield 'employment' %}
+
+    {% formfield 'altruism' %}
+
+    {{ form.env_attitude.label }}
+    <table>
+        <tbody>
+            <tr>
+                <td style="width:20%"><em>"Economic growth and creating jobs should be the top priority, even if the environment suffers to some extent."</em></td>
+                <td style="text-align: center">{{ form.env_attitude}}</td>
+                <td style="width:20%"><em>"Protecting the environment should be given priority, even if it causes slower economic growth and some loss of jobs."</em></td>
+            </tr>
+        </tbody>
+    </table>
 
 
     <button class="btn btn-primary btn-large" onclick="saveTime()">Next</button>

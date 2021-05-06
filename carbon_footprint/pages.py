@@ -70,8 +70,8 @@ class Results(Page):
             avg_transportation=avg_transportation,
             avg_food=avg_food,
             avg_mis_cons=avg_mis_cons,
-            elec_heat_i= elec_heat,
-            transportation_i= transportation,
+            elec_heat_i=elec_heat,
+            transportation_i=transportation,
             food_i=food,
             mis_cons_i=mis_cons,
         )

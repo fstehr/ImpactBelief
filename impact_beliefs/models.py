@@ -250,7 +250,17 @@ class Player(SliderPlayer):
             return "Wrong answer."
 
 
-    age = models.IntegerField(min=18, max=99, label="What is your age?")
+    age = models.IntegerField(label="What is your age?",
+                              choices=[
+                                  [1, "17 or younger"],
+                                  [2, "18 - 20"],
+                                  [3, "30 - 39"],
+                                  [4, "40 - 49"],
+                                  [5, "50 - 59"],
+                                  [6, "60 or older"],
+
+                              ])
+
     gender = models.IntegerField(
         label="What is your gender?",
         choices=[
@@ -259,7 +269,7 @@ class Player(SliderPlayer):
             [3, "Non-binary"],
             [4, "Prefer Not to Specify"],
         ],
-        widget=widgets.RadioSelect,
+        widget=widgets.RadioSelectHorizontal,
     )
 
     levelOfEducation = models.IntegerField(
@@ -272,7 +282,6 @@ class Player(SliderPlayer):
             [4, 'Doctorate (e.g. PhD, EdD, DBA)'],
             [5, 'other'],
         ],
-        widget=widgets.RadioSelect,
     )
 
     income = models.IntegerField(
@@ -291,7 +300,6 @@ class Player(SliderPlayer):
             [10, '£100,000 - £149,999'],
             [11, '£150,000 or more'],
         ],
-        widget=widgets.RadioSelect,
     )
 
     political = models.IntegerField(
@@ -306,22 +314,25 @@ class Player(SliderPlayer):
             [6, 'very conservative'],
             [7, 'none of the above'],
         ],
-        widget=widgets.RadioSelect,
     )
 
-    employment = models.IntegerField(
-        label="What is your current employment status?",
-        choices=[
-            [0, 'employed full time'],
-            [1, 'employed part time'],
-            [2, 'I have occasional gigs'],
-            [3, 'unemployed and looking for work'],
-            [4, 'unemployed and not looking for work'],
-            [5, 'retired'],
-            [6, 'student'],
-        ],
-        widget=widgets.RadioSelect,
-    )
+    altruism = models.IntegerField(
+        choices=range(0, 11),
+        widget=widgets.RadioSelectHorizontal,
+        label='How do you assess your willingness to share with others without expecting anything in '
+        'return when it comes to charity? Please use a scale from 0 to 10, where 0 means you '
+        'are “completely unwilling to share” and a 10 means you are “very willing to share”. '
+        'You can also use the values in between to indicate where you fall on the scale.')
+
+    env_attitude = models.IntegerField(label="Here are two statements people sometimes make when discussing the environment"
+                                                 " and economic growth. Which of them comes closer to your own point of view?",
+                                                 choices=range(0,11),
+                                                 widget=widgets.RadioSelectHorizontal,
+                                                 doc=" environmental attitudes Q111 from 2017 wave of world value survey. " \
+                                                     "0= Economic growth and creating jobs should be the top priority, even if the"
+                                                     "environment suffers to some extent. 10= Protecting the environment should"
+                                                     "be given priority, even if it causes slower economic growth and some"
+                                                     "loss of jobs.")
 
     honeypot = models.IntegerField(blank=True,
                                    doc="hidden field which will only be filled by bots")
