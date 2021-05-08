@@ -1,6 +1,14 @@
 {% extends "global/Page.html" %}
 {% load otree %}
 
+{% block styles %}
+<style>
+    .otree-timer {
+        display: none;
+    }
+</style>
+{% endblock %}
+
 {% block scripts %}
     <script src="{% static 'js/trialsliders.js' %}"></script>
 {% endblock %}
@@ -10,8 +18,6 @@
 {% endblock %}
 
 {% block content %}
-
-{{ form.trial_belief_1.errors }}
 
     <body onload="HideImageLoadForm();">
 
@@ -27,10 +33,7 @@
         </div>
 
 
-        <img src = "{% static 'img/Matrix_80.png' %}" id="matrix1" style="display:none;margin-left:auto; margin-right:auto; width:60%;"/>
-        <img src = "{% static 'img/Matrix_320.png' %}" id="matrix2" style="display:none;margin-left:auto; margin-right:auto; width:60%;"/>
-        <img src = "{% static 'img/Matrix_200.png' %}" id="matrix3" style="display:none;margin-left:auto; margin-right:auto; width:60%;"/>
-
+        <img src = "{% static 'img/Matrix_80.png' %}" id="matrix" style="display:none;margin-left:auto; margin-right:auto; width:60%;"/>
 
         <div class="alert alert-warning" id="time-alert" style="display:none; text-align: center; margin-left:auto; margin-right:auto; width:70%;">
             <p>
@@ -45,26 +48,10 @@
             <p>
                 Please enter how many Xs you think were in the matrix:
             </p>
-            <p id="field1" style="display:none;">
+            <p id="field" style="display:none;">
                 {{ form.trial_belief_1 }}
             </p>
-            <p id="field2" style="display:none;">
-                {{ form.trial_belief_2 }}
-            </p>
-            <p id="field3" style="display:none;">
-                {{ form.trial_belief_3 }}
-            </p>
 
-            <div id="btn-nosubmit" style="display:none;">
-                <button type="button" class="btn btn-primary"  onclick="Show_next_form1()">
-                    Next
-                </button>
-            </div>
-            <div id="btn-nosubmit2" style="display:none;">
-                <button type="button" class="btn btn-primary"  onclick="Show_next_form2()">
-                    Next
-                </button>
-            </div>
 
             <input type="hidden" id="timeoutcount" name="trial_timeout" value="0">
 

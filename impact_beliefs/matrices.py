@@ -3,7 +3,7 @@ from math import ceil
 from tabulate import tabulate
 
 
-
+"""
 # Create the basic list of 100 os
 columns = 20
 dimension = columns ** 2
@@ -47,6 +47,4 @@ for i in number_Xs:
     print("}")
     print()
     print("\\pagebreak")
-
-
-
+"""

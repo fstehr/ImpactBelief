@@ -1,10 +1,5 @@
-think about how to control that people refresh the page in belief elicitation -> Check that refresh button/ F5 is disabled
---> otree timeout continues to run --> no benefit of doing so !! PUT IN INSTRUCTIONS
---> adjust payoff accordingly when there was a timeout
-
 --> test payoff consequences properly
 
-- fix timeout on trialsliders page (esp. passing on timeout counter to form!)
 
 ==> OBS!!  gif clicked value and equation clicked value are re-set to false when the page is re-loaded
         Do this in the reset tabs function using local storage
@@ -14,7 +9,7 @@ think about how to control that people refresh the page in belief elicitation ->
 
 check why there is a time problem on instructions page [Violation] 'click' handler took 2274ms
 
---> Update informed consent form to be correct, esp. privacy part
+- layout Questionnaire Page better
 
 
 Update matrix pictures - use different latex preamble (beamer document class with small margins)
@@ -23,8 +18,6 @@ in parameter csv file - rename all image names to matrix_40_1.PNG (i.e. append .
 
 
 ## from trying all pages - layoutwise
-- on beliefinstructions1 and donationinstruction1 nav arrows are further apart than on other instr pages
-- right align otree btn
 - on carbon belief and costbelief change spacing above next button
 
 

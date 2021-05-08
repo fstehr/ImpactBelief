@@ -25,6 +25,7 @@ function checkTouched() {
                 }
                 else {
                     event.preventDefault();
+                    window.scrollTo(0, 0)
                     document.getElementById('alert').style.display="block";
                 }
             }

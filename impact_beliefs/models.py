@@ -49,6 +49,7 @@ class Subsession(BaseSubsession):
         if self.round_number == 1:
             for p in self.session.get_participants():
                 paras = Constants.paras.copy()
+                p.vars['trial_timeout_counter'] = 0  # initialize trial timeout counter
                 p.vars['timeout_counter'] = 0  # initialize timeout counter
 
                 # generate participant varlist for beliefs by part, to store beliefs using project_id
@@ -140,7 +141,7 @@ class Player(SliderPlayer):
     trial_belief_1 = models.IntegerField(blank=True, min=0, max=400)
     trial_belief_2 = models.IntegerField(blank=True, min=0, max=400)
     trial_belief_3 = models.IntegerField(blank=True, min=0, max=400)
-    trial_timeout = models.IntegerField(blank=True, doc="Counts how many time-outs occured on trial belief page")
+    trial_timeout = models.IntegerField(initial=0, blank=True, doc="Counts how many time-outs occured on trial belief page")
 
     num_x_belief = models.IntegerField(min=0, max=400, doc="records belief on number of Xs in matrix")
     donation = models.BooleanField(

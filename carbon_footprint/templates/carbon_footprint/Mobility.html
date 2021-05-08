@@ -3,13 +3,7 @@
 
 {% block styles %}
     <style>
-        .radioGroup label {
-            display: inline-block;
-            margin: 1.0em;
-        }
-        .radioGroup label input[type="radio"] {
-            margin: 1.5;
-        }
+
     </style>
 {% endblock %}
 
@@ -63,19 +57,19 @@
                             <td>
                                 <ul>
                                     <li>
-                                        <label for="id_car_miles_1"><input type="radio" name="car_miles" value="0" required="" id="id_car_miles_1" class="form-check-input" onClick="show_hide_car(1);">
+                                        <label for="id_car_miles_1"><input type="radio" name="car_miles" value="0" required="" id="id_car_miles_1" class="form-check-input" onClick="show_hide_car(1);calculate_car_miles();">
                                         I never travel by car</label>
                                     </li>
                                     <li>
-                                        <label for="id_car_miles_2"><input type="radio" name="car_miles" value="6000" required="" id="id_car_miles_2" class="form-check-input" onClick="show_hide_car(2);">
+                                        <label for="id_car_miles_2"><input type="radio" name="car_miles" value="6000" required="" id="id_car_miles_2" class="form-check-input" onClick="show_hide_car(2);calculate_car_miles();">
                                         Little (6,000 miles)</label>
                                     </li>
                                     <li>
-                                        <label for="id_car_miles_3"><input type="radio" name="car_miles" value="9000" required="" id="id_car_miles_3" class="form-check-input" onClick="show_hide_car(3);">
+                                        <label for="id_car_miles_3"><input type="radio" name="car_miles" value="9000" required="" id="id_car_miles_3" class="form-check-input" onClick="show_hide_car(3);calculate_car_miles();">
                                         Average (9,000 miles)</label>
                                     </li>
                                     <li>
-                                        <label for="id_car_miles_4"><input type="radio" name="car_miles" value="12000" required="" id="id_car_miles_4" class="form-check-input" onClick="show_hide_car(4);">
+                                        <label for="id_car_miles_4"><input type="radio" name="car_miles" value="12000" required="" id="id_car_miles_4" class="form-check-input" onClick="show_hide_car(4);calculate_car_miles();">
                                         Much (12,000 miles)</label>
                                     </li>
                                     <li>
@@ -84,7 +78,7 @@
                                     </li>
 
                                     <div id ="miles" style="display:none">
-                                        <input id="miles_field" class = "form-control" type="number" name="miles_field" min="1" oninput="calculate_car_miles(1);">
+                                        <input id="miles_field" class = "form-control" type="number" name="miles_field" min="1" oninput="calculate_car_miles();">
                                     </div>
                                 </ul>
 
@@ -150,7 +144,7 @@
 
 
     <div style="margin-top: 12pt; text-align: right;">
-        <button  class="btn btn-primary btn-large">Next</button>
+        <button  class="btn btn-primary btn-large" onclick="validate_mobility()">Next</button>
     </div>
 
 

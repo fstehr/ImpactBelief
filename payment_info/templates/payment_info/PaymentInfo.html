@@ -9,21 +9,23 @@
 
     {% if timeout %}
 
-        Your participation in this experiment was terminated, because you did not answer on time twice.
+        Your participation in this experiment was terminated, because you did not answer on time too often.
 
     {% endif %}
 
     <p>
-        Thank you for your participation in this experiment.
+        Thank you for your participation in this experiment!
     </p>
 
     <p>
-        This is your final payoff {{ final_payoff_display }}.
+        This is your final payoff: {{ final_payoff_display }}.
     </p>
 
     <p>
-        And this your final payoff plus participation fee {{ final_payoff_plus_part_fee_display }}.
+        This your final payoff plus participation fee: {{ final_payoff_plus_part_fee_display }}.
     </p>
+
+    <p> You will receive your payments through your Prolific Account.</p>
 
 {% endblock %}
 

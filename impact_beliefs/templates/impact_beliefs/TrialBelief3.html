@@ -1,0 +1,67 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block styles %}
+<style>
+    .otree-timer {
+        display: none;
+    }
+</style>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'js/trialsliders.js' %}"></script>
+{% endblock %}
+
+{% block title %}
+    Trial Rounds - The Estimation Task
+{% endblock %}
+
+{% block content %}
+
+    <body onload="HideImageLoadForm();">
+
+        <div class="alert alert-danger" id="alert" style="text-align: center;display:block;margin-left:auto; margin-right:auto; width:70%;">
+            <p>
+                In three seconds, you will here see the matrix of Xs. <br> Your task is to estimate the number of Xs.
+            </p>
+            <p>
+                <strong>
+                    Please stay alert, as the matrix is only displayed for {{ Constants.sec_per_matrix }} seconds.
+                </strong>
+            </p>
+        </div>
+
+        <img src = "{% static 'img/Matrix_200.png' %}" id="matrix" style="display:none;margin-left:auto; margin-right:auto; width:60%;"/>
+
+
+        <div class="alert alert-warning" id="time-alert" style="display:none; text-align: center; margin-left:auto; margin-right:auto; width:70%;">
+            <p>
+                Time left to complete this page (in secs):
+                <span style="font-weight:bold">
+                    <span id="count">15</span>
+                </span>
+            </p>
+        </div>
+
+        <div id="Question" style="display:none; margin-left:auto; margin-right:auto; width:50%;">
+            <p>
+                Please enter how many Xs you think were in the matrix:
+            </p>
+            <p id="field" style="display:none;">
+                {{ form.trial_belief_3 }}
+            </p>
+
+
+            <input type="hidden" id="timeoutcount" name="trial_timeout" value="0">
+
+
+            <div id="btn-submit" style="display:none;">
+                {% next_button %}
+            </div>
+        </div>
+
+    </body>
+
+
+{% endblock %}

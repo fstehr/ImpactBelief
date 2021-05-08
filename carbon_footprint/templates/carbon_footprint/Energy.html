@@ -2,21 +2,16 @@
 {% load otree static %}
 
 {% block styles %}
-    <style>
-        .radioGroup label {
-            display: inline-block;
-            margin: 1.0em;
-        }
-        .radioGroup label input[type="radio"] {
-            margin: 1.5;
-        }
-    </style>
+<style>
+
+</style>
 {% endblock %}
 
 {% block scripts %}
     <script src="{% static 'js/button.js' %}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
 {% endblock %}
 
 
@@ -26,6 +21,12 @@
 
 
 {% block content %}
+{% if form.electricity_kwh.errors  %}
+<div class="alert alert-danger" role="alert">
+    <p>Please enter the kWh amount used for electricity in your household </p>
+</div>
+{% endif %}
+
 
 
 <div style="margin-bottom: 18pt">
@@ -77,19 +78,19 @@
                         <td>
                             <ul>
                                 <li>
-                                    <label for="electricity_kwh_1"><input type="radio" name="electricity_kwh" value="3000" required="" id="electricity_kwh_1" class="form-check-input" onClick="show_hide_elec(1);">
+                                    <label for="electricity_kwh_1"><input type="radio" name="electricity_kwh" value="3000" required="" id="electricity_kwh_1" class="form-check-input" onClick="show_hide_elec(1);calculate_elec();">
                                     Small house / flat (3,000 kWh)</label>
                                 </li>
                                 <li>
-                                    <label for="electricity_kwh_2"><input type="radio" name="electricity_kwh" value="4800" required="" id="electricity_kwh_2" class="form-check-input" onClick="show_hide_elec(2);" >
+                                    <label for="electricity_kwh_2"><input type="radio" name="electricity_kwh" value="4800" required="" id="electricity_kwh_2" class="form-check-input" onClick="show_hide_elec(2);calculate_elec();" >
                                     Medium (4,800 kWh)</label>
                                 </li>
                                 <li>
-                                    <label for="electricity_kwh_3"><input type="radio" name="electricity_kwh" value="7000" required="" id="electricity_kwh_3" class="form-check-input" onClick="show_hide_elec(3);">
+                                    <label for="electricity_kwh_3"><input type="radio" name="electricity_kwh" value="7000" required="" id="electricity_kwh_3" class="form-check-input" onClick="show_hide_elec(3);calculate_elec();">
                                     Large house (7,000 kWh)</label>
                                 </li>
                                 <li>
-                                    <label for="electricity_kwh_4"><input type="radio" name="electricity_kwh" value="2000" required="" id="electricity_kwh_4" class="form-check-input" onClick="show_hide_elec(4);">
+                                    <label for="electricity_kwh_4"><input type="radio" name="electricity_kwh" value="2000" required="" id="electricity_kwh_4" class="form-check-input" onClick="show_hide_elec(4);calculate_elec();">
                                     Hall of residence (2,000 kWh)</label>
                                 </li>
                                 <li>
@@ -100,6 +101,7 @@
                                 <div id ="elec" style="display:none">
                                     <input id="kWh_field" class="form-control" type="number" name="kWh_field" min="1" oninput="calculate_elec();">
                                 </div>
+
 
                                 <br>
 
@@ -121,19 +123,19 @@
                         <td>
                             <ul>
                                 <li>
-                                    <label for="id_gas_kwh_1"><input type="radio" name="gas_kwh" value="12000" required="" id="id_gas_kwh_1" class="form-check-input" onClick="show_hide_gas(1);">
+                                    <label for="id_gas_kwh_1"><input type="radio" name="gas_kwh" value="12000" required="" id="id_gas_kwh_1" class="form-check-input" onClick="show_hide_gas(1);calculate_gas();">
                                      Small house / flat (12,000 kWh)</label>
                                 </li>
                                 <li>
-                                    <label for="id_gas_kwh_2"><input type="radio" name="gas_kwh" value="18000" required="" id="id_gas_kwh_2" class="form-check-input" onClick="show_hide_gas(2);" >
+                                    <label for="id_gas_kwh_2"><input type="radio" name="gas_kwh" value="18000" required="" id="id_gas_kwh_2" class="form-check-input" onClick="show_hide_gas(2);calculate_gas();" >
                                      Medium (18,000 kWh)</label>
                                 </li>
                                 <li>
-                                    <label for="id_gas_kwh_3"><input type="radio" name="gas_kwh" value="27000" required="" id="id_gas_kwh_3" class="form-check-input" onClick="show_hide_gas(3);">
+                                    <label for="id_gas_kwh_3"><input type="radio" name="gas_kwh" value="27000" required="" id="id_gas_kwh_3" class="form-check-input" onClick="show_hide_gas(3);calculate_gas();">
                                      Large house (27,000 kWh)</label>
                                 </li>
                                 <li>
-                                    <label for="id_gas_kwh_4"><input type="radio" name="gas_kwh" value="5000" required="" id="id_gas_kwh_4" class="form-check-input" onClick="show_hide_gas(4);">
+                                    <label for="id_gas_kwh_4"><input type="radio" name="gas_kwh" value="5000" required="" id="id_gas_kwh_4" class="form-check-input" onClick="show_hide_gas(4);calculate_gas();">
                                      Hall of residence (5,000 kWh)</label>
                                 </li>
 
@@ -201,7 +203,7 @@
 
 
         <div style="margin-top: 12pt; text-align: right;">
-            <button  class="btn btn-primary btn-large">Next</button>
+            <button  class="btn btn-primary btn-large" onclick="validate_energy()">Next</button>
         </div>
 
 {% endblock %}
