@@ -1,16 +1,10 @@
 {% extends "global/Page.html" %}
 {% load otree %}
 
-{% block scripts %}
-    <script>
-        function saveTime() {
-            var EndTime = new Date().getTime();
-            document.getElementById("finishing_time").value = EndTime;
-        }
-    </script>
+{% block styles %}
+<style>
+</style>
 {% endblock %}
-
-
 
 {% block title %}
     Questionnaire
@@ -18,32 +12,119 @@
 
 {% block content %}
 
-    {% formfield 'age' %}
 
-    {% formfield 'gender' %}
+<div style="margin-bottom: 18pt">
+    <p>
+        You have now reached the end of the payment relevant choices. Before you leave, we ask you to answer a few questions on
+        your background.
+    </p>
+</div>
 
-    {% formfield 'levelOfEducation' %}
+    <div class="container">
+        <table class="table table-striped" style="width:100%; margin-right: auto; margin-left: auto;">
+            <thead>
+                <tr>
+                    <th style="text-align: center">Questionnaire</th>
+                </tr>
+            </thead>
+                <tbody>
 
-    {% formfield 'political' %}
-
-    {% formfield 'income' %}
-
-    {% formfield 'altruism' %}
-
-    {{ form.env_attitude.label }}
-    <table>
-        <tbody>
-            <tr>
-                <td style="width:20%"><em>"Economic growth and creating jobs should be the top priority, even if the environment suffers to some extent."</em></td>
-                <td style="text-align: center">{{ form.env_attitude}}</td>
-                <td style="width:20%"><em>"Protecting the environment should be given priority, even if it causes slower economic growth and some loss of jobs."</em></td>
-            </tr>
-        </tbody>
-    </table>
+                    <!-- AGE QUESTION -->
+                    <div>
+                        <tr>
+                            <td>{{ form.age.label }}</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div style="text-align: center">
+                                    {{ form.age }}
+                                </div>
+                            </td>
+                        </tr>
+                    </div>
 
 
-    <button class="btn btn-primary btn-large" onclick="saveTime()">Next</button>
+                    <!-- GENDER QUESTION -->
+                    <div>
+                        <tr>
+                            <td>{{ form.gender.label }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ form.gender }}</td>
+                        </tr>
+                    </div>
 
-    <input id="finishing_time" name="finishing_time" type="hidden" value=""/>
+
+                    <!-- EDUCATION QUESTION -->
+                    <div>
+                        <tr>
+                            <td>{{ form.levelOfEducation.label }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ form.levelOfEducation }}</td>
+                        </tr>
+                    </div>
+
+
+                    <!-- POLITICAL ATTITUDES QUESTION -->
+                    <div>
+                        <tr>
+                            <td>{{ form.political.label }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ form.political }}</td>
+                        </tr>
+                    </div>
+
+
+                    <!-- INCOME QUESTION -->
+                    <div>
+                        <tr>
+                            <td>{{ form.income.label }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ form.income }}</td>
+                        </tr>
+                    </div>
+
+
+                    <!-- ALTRUISM QUESTION -->
+                    <div>
+                        <tr>
+                            <td>{{ form.altruism.label }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ form.altruism }}</td>
+                        </tr>
+                    </div>
+
+
+                    <!-- ENVIRONMENTAL ATTITUDE QUESTION -->
+                    <div>
+                        <tr>
+                            <td>{{ form.env_attitude.label }}</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <table class="table-light">
+                                    <tbody>
+                                        <tr style="background-color: white">
+                                            <td style="width:20%"><em>"Economic growth and creating jobs should be the top priority, even if the environment suffers to some extent."</em></td>
+                                            <td style="text-align: center">{{ form.env_attitude}}</td>
+                                            <td style="width:20%"><em>"Protecting the environment should be given priority, even if it causes slower economic growth and some loss of jobs."</em></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                    </div>
+
+                </tbody>
+              </table>
+            </div>
+
+	<div style="margin-top:12pt; text-align: right">
+        <button class="btn btn-primary btn-large">Next</button>
+    </div>
 
 {% endblock %}

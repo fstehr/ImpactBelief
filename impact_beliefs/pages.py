@@ -284,25 +284,25 @@ class CostBelief(Page):
 class Questionnaire(Page):
     form_model = 'player'
     form_fields = ['age', 'gender', 'levelOfEducation', 'political', 'income',
-                   'altruism', 'env_attitude', 'finishing_time']
+                   'altruism', 'env_attitude']
 
     def is_displayed(self):
         return self.round_number == Constants.num_rounds
 
 
-# page_sequence = [Instructions, TrialBelief1, TrialBelief2, TrialBelief3, Introbelief]
+page_sequence = [Questionnaire]
 
-page_sequence = [
-    IntroWelcome,
-    Instructions,
-    Sliders,
-    TrialBelief1,
-    TrialBelief2,
-    TrialBelief3,
-    Introbelief,
-    Belief,
-    Donation,
-    CarbonBelief,
-    CostBelief,
-    Questionnaire
-    ]
+# page_sequence = [
+#     IntroWelcome,
+#     Instructions,
+#     Sliders,
+#     TrialBelief1,
+#     TrialBelief2,
+#     TrialBelief3,
+#     Introbelief,
+#     Belief,
+#     Donation,
+#     CarbonBelief,
+#     CostBelief,
+#     Questionnaire
+#     ]

@@ -31,4 +31,5 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    pass
+    finishing_time = models.IntegerField(doc="Time at which Outro Page is Shown")
+
