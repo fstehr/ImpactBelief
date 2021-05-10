@@ -140,7 +140,8 @@ class Player(SliderPlayer):
     trial_belief_1 = models.IntegerField(blank=True, min=0, max=400)
     trial_belief_2 = models.IntegerField(blank=True, min=0, max=400)
     trial_belief_3 = models.IntegerField(blank=True, min=0, max=400)
-    trial_timeout = models.IntegerField(initial=0, blank=True, doc="Counts how many time-outs occured on trial belief page")
+    trial_timeout = models.IntegerField(initial=0, blank=True,
+                                        doc="Counts how many time-outs occured on trial belief page")
 
     num_x_belief = models.IntegerField(min=0, max=400, doc="records belief on number of Xs in matrix")
     donation = models.BooleanField(
@@ -182,15 +183,17 @@ class Player(SliderPlayer):
     wrong_answer4 = models.IntegerField(doc="Counts the number of wrong guesses for cq4.", initial=0)
 
     cq1 = models.BooleanField(doc="Comprehension Question 1", choices=[
-            [True, 'True'],
-            [False, 'False'],
-        ])
+        [True, 'True'],
+        [False, 'False'],
+    ])
+
     def cq1_error_message(self, value):
-        if self.round_number == 1 and value != True:
+        if not value:
             self.wrong_answer1 += 1
             return "Wrong answer."
 
     cq2 = models.IntegerField(doc="Comprehension Question 2", min=0, max=400)
+
     def cq2_error_message(self, value):
         if self.round_number == 1 and value != 50:
             self.wrong_answer2 += 1
@@ -203,36 +206,43 @@ class Player(SliderPlayer):
             return "Wrong answer."
 
     cq3 = models.BooleanField(doc="Comprehension Question 3", choices=[
-            [True, 'True'],
-            [False, 'False'],
-        ])
+        [True, 'True'],
+        [False, 'False'],
+    ])
+
     def cq3_error_message(self, value):
         if value != True:
             self.wrong_answer3 += 1
             return "Wrong answer."
 
     cq4 = models.IntegerField(doc="Comprehension Question 4", widget=widgets.RadioSelect)
+
     def cq4_choices(player):
         if player.round_number == 1:  # Your final earnings are determined as follows
             choices = [
-                        [1, "The sum of the participation fee and the earnings in all five tasks"],
-                        [2, "Either the participation fee or the earnings in all five tasks"],
-                        [3, "The sum of the participation fee and the earnings in one decision of the five tasks"],   # Correct Answer
-                        [4, "Either the participation fee or the earnings in one decision of the five tasks"],
+                [1, "The sum of the participation fee and the earnings in all five tasks"],
+                [2, "Either the participation fee or the earnings in all five tasks"],
+                [3, "The sum of the participation fee and the earnings in one decision of the five tasks"],
+                # Correct Answer
+                [4, "Either the participation fee or the earnings in one decision of the five tasks"],
             ]
-        elif player.round_number == 2:    # How many Xs can there be in a given matrix?
+        elif player.round_number == 2:  # How many Xs can there be in a given matrix?
             choices = [
-                        [1, "at least 50 Xs"],
-                        [2, "Between 0 and 400 Xs"],   # Correct Answer
-                        [3, "at most 260 Xs"],
-                        [4, "This cannot be known"],
+                [1, "at least 50 Xs"],
+                [2, "Between 0 and 400 Xs"],  # Correct Answer
+                [3, "at most 260 Xs"],
+                [4, "This cannot be known"],
             ]
-        elif player.round_number == len(Constants.paras) + 2:    # Which of the following statements about the consequences of your decision is correct?
+        elif player.round_number == len(
+                Constants.paras) + 2:  # Which of the following statements about the consequences of your decision is correct?
             choices = [
-                        [1, "When I decide not to donate, a fixed fee is subtracted from my earnings and donated."],
-                        [2, "When I decide to donate, a fixed fee is subtracted from my earnings and donated to carbonfund.org."],
-                        [3, "When I decide not to donate, I earn nothing in this task."],
-                        [4, "When I decide to donate, the price of the project is subtracted from my earnings and donated to carbonfund.org."],   # Correct Answer
+                [1, "When I decide not to donate, a fixed fee is subtracted from my earnings and donated."],
+                [2,
+                 "When I decide to donate, a fixed fee is subtracted from my earnings and donated to carbonfund.org."],
+                [3, "When I decide not to donate, I earn nothing in this task."],
+                [4,
+                 "When I decide to donate, the price of the project is subtracted from my earnings and donated to carbonfund.org."],
+                # Correct Answer
             ]
         else:
             choices = []
@@ -248,7 +258,6 @@ class Player(SliderPlayer):
         elif self.round_number == len(Constants.paras) + 2 and value != 4:
             self.wrong_answer4 += 1
             return "Wrong answer."
-
 
     age = models.IntegerField(label="What is your age?",
                               choices=[
@@ -320,19 +329,20 @@ class Player(SliderPlayer):
         choices=range(0, 11),
         widget=widgets.RadioSelectHorizontal,
         label='How do you assess your willingness to share with others without expecting anything in '
-        'return when it comes to charity? Please use a scale from 0 to 10, where 0 means you '
-        'are “completely unwilling to share” and a 10 means you are “very willing to share”. '
-        'You can also use the values in between to indicate where you fall on the scale.')
+              'return when it comes to charity? Please use a scale from 0 to 10, where 0 means you '
+              'are “completely unwilling to share” and a 10 means you are “very willing to share”. '
+              'You can also use the values in between to indicate where you fall on the scale.')
 
-    env_attitude = models.IntegerField(label="Here are two statements people sometimes make when discussing the environment"
-                                                 " and economic growth. Which of them comes closer to your own point of view?",
-                                                 choices=range(0,11),
-                                                 widget=widgets.RadioSelectHorizontal,
-                                                 doc=" environmental attitudes Q111 from 2017 wave of world value survey. " \
-                                                     "0= Economic growth and creating jobs should be the top priority, even if the"
-                                                     "environment suffers to some extent. 10= Protecting the environment should"
-                                                     "be given priority, even if it causes slower economic growth and some"
-                                                     "loss of jobs.")
+    env_attitude = models.IntegerField(
+        label="Here are two statements people sometimes make when discussing the environment"
+              " and economic growth. Which of them comes closer to your own point of view?",
+        choices=range(0, 11),
+        widget=widgets.RadioSelectHorizontal,
+        doc=" environmental attitudes Q111 from 2017 wave of world value survey. " \
+            "0= Economic growth and creating jobs should be the top priority, even if the"
+            "environment suffers to some extent. 10= Protecting the environment should"
+            "be given priority, even if it causes slower economic growth and some"
+            "loss of jobs.")
 
     honeypot = models.IntegerField(blank=True,
                                    doc="hidden field which will only be filled by bots")

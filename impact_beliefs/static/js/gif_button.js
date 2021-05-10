@@ -27,6 +27,8 @@
 		// set variable gif clicked
 		var touch_element = document.getElementById("gif_click");
     	touch_element.value = "True";
+    	localStorage.setItem("gif_click", "True");
+
 
 		var $this   = $(this),
 				$index  = $this.index(),
@@ -46,6 +48,26 @@
 
 
 function set_clicked() {
-	var touch_element = document.getElementById("equation_click");
+	let touch_element = document.getElementById("equation_click");
 	touch_element.value = "True";
+	localStorage.setItem("eq_click", "True");
+	console.log("local storage eq click:", localStorage.getItem('eq_click'))
 }
+
+function set_gif() {
+	let touch_element = document.getElementById("gif_watched");
+	touch_element.value = "True";
+	localStorage.setItem("gif_watch", "True");
+	console.log("local storage gif watched:", localStorage.getItem('gif_watch'))
+}
+
+
+$(document).ready(function () {
+	let eq_click = localStorage.getItem('eq_click');
+	let gif_click = localStorage.getItem('gif_click');
+	let gif_watch = localStorage.getItem('gif_watch');
+
+	if (eq_click !== null) $('#equation_click').val(eq_click);
+	if (gif_click !== null) $('#gif_click').val(gif_click);
+	if (gif_watch !== null) $('#gif_click').val(gif_watch);
+});

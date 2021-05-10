@@ -290,7 +290,7 @@ class Questionnaire(Page):
         return self.round_number == Constants.num_rounds
 
 
-page_sequence = [Sliders]
+page_sequence = [Instructions]
 
 # page_sequence = [
 #     IntroWelcome,
