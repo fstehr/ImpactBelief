@@ -348,7 +348,7 @@ class Player(BasePlayer):
                                ])
 
     food_meat = models.FloatField(widget=widgets.RadioSelect,
-                               label="Compared to others in our country, how much meat/dairy do you eat personally?",
+                               label="Compared to others in your country, how much meat/dairy do you eat personally?",
                                choices=[
                                    [0.6, "Above-average meat/dairy"],
                                    [0.4, "Average meat/dairy"],
@@ -358,7 +358,7 @@ class Player(BasePlayer):
                                ])
 
     food_miles = models.FloatField(widget=widgets.RadioSelect,
-                               label="Compared to others in our country, how much of your food is produced locally?",
+                               label="Compared to others in your country, how much of your food is produced locally?",
                                choices=[
                                    [0.5, "Very little (much foreign / out of season food)"],
                                    [0.3, "Average"],
@@ -367,7 +367,7 @@ class Player(BasePlayer):
                                ])
 
     food_pac = models.FloatField(widget=widgets.RadioSelect,
-                               label="Compared to others in our country, how much of your food is packaged / processed (e.g. 'ready meals', tins)?",
+                               label="Compared to others in your country, how much of your food is packaged / processed (e.g. 'ready meals', tins)?",
                                choices=[
                                    [0.6, "Above average"],
                                    [0.4, "Average"],
@@ -376,7 +376,7 @@ class Player(BasePlayer):
                                ])
 
     food_com = models.FloatField(widget=widgets.RadioSelect,
-                               label="How much do you compost potato peelings, leftover and unused food etc?",
+                               label="How much of your unused food (potato peelings, leftovers, etc.) do you compost?",
                                choices=[
                                    [1.0, "None"], #NOT CO2 values
                                    [0.5, "Some"],
@@ -384,12 +384,12 @@ class Player(BasePlayer):
                                ])
 
     food_was = models.FloatField(widget=widgets.RadioSelect,
-                               label="How much food do you waste (on average, over one fifth of edible food is thrown away)?",
+                               label="How much food do you waste? (On average, over one fifth of edible food is thrown away)",
                                choices=[
-                                   [0.375, "Above average (50% more)"], #NOT CO2 values
+                                   [0.375, "Above average"], #NOT CO2 values
                                    [0.25, "Average"],
-                                   [0.125, "Below average (50% less)"],
-                                   [0.025, "Very little (90% less)"]
+                                   [0.125, "Below average"],
+                                   [0.025, "Very little"]
                                ])
 
     # Public Sector Emissions (unavoidable)

@@ -1,0 +1,55 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+    Task {{ task_number }} - The work task
+{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" type="text/css" href="{% static "slider_task/sliders.css" %}">
+{% endblock %}
+
+{% block content %}
+
+    <p>
+        Please move all sliders to the position 50. You can only continue with the experiment when all
+        sliders have been repositioned correctly.
+    </p>
+
+
+    {{ slider_formset.management_form }}
+    
+    <table class="slider_table">
+        <tr>
+        {% for chunk in slider_values_and_forms %}
+            <td>
+            {% for offset, min, max, start, form in chunk %}
+                <div class="slidecontainer" style="margin-left: {{ offset }}%;">
+                            <label for="{{ form.end_pos.id_for_label }}"></label>
+                    <input type="range" min="{{ min }}" max="{{ max }}" value="{{ start }}" class="slider" id="{{ form.end_pos.id_for_label }}" name="{{ form.end_pos.html_name }}">
+                    		<label for="{{ form.end_pos.id_for_label }}">{{ max }}</label>
+                    <input type="hidden" id="{{ form.touched.id_for_label }}" name="{{ form.touched.html_name }}" value="False">
+                    <input type="hidden" id="{{ form.id.id_for_label }}" name="{{ form.id.html_name }}" value="{{ form.id.value }}">
+                </div>
+            {% endfor %}
+            </td>
+        {% endfor %}
+        </tr>
+    </table>
+
+	<div>
+       <button name="slider_task_check" id="test" class="btn btn-primary btn-large" onclick="myFunction()">Next</button>
+    </div>
+
+    <p>
+        <div>
+            <span id="errormessage" style="color:#ff87b1;font-weight:bold;font-size:1em"></span>
+        </div>
+    </p>
+
+
+{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript" src="{% static "slider_task/sliders.js" %}"></script>
+{% endblock %}
