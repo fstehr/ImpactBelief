@@ -1,7 +1,5 @@
- oTree-may-overwrite-this-file
- IF YOU MODIFY THIS FILE, remove these comments.
- otherwise, oTree will automatically overwrite it.
-otree>=3.3.5
+# oTree-may-not-overwrite-this-file
+otree>=3.3.11,<5
 psycopg2>=2.8.4
 sentry-sdk==0.7.9
 slider_task

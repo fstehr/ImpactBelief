@@ -31,5 +31,5 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    finishing_time = models.IntegerField(doc="Time at which Outro Page is Shown")
+    finishing_time = models.StringField(doc="Time at which Outro Page is Left")
 

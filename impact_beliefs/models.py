@@ -120,7 +120,7 @@ class Group(BaseGroup):
 
 
 class Player(SliderPlayer):
-    starting_time = models.IntegerField(doc="Time at which Informed Consent is given and experiment starts")
+    starting_time = models.LongStringField(doc="Time at which Informed Consent is given and experiment starts")
 
     window_width = models.IntegerField(blank=True, doc="Documents the respondent's browser window's width.")
     window_height = models.IntegerField(blank=True, doc="Documents the respondent's browser window's height.")
