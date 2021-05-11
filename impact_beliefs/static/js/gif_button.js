@@ -27,7 +27,9 @@
 		// set variable gif clicked
 		var touch_element = document.getElementById("gif_click");
     	touch_element.value = "True";
-    	localStorage.setItem("gif_click", "True");
+    	sessionStorage.setItem("gif_click", "True");
+    	console.log("local storage gif clicked:", sessionStorage.getItem('gif_click'))
+
 
 
 		var $this   = $(this),
@@ -47,27 +49,45 @@
 })(jQuery);
 
 
+// SET HIDDEN FORM FIELDS
 function set_clicked() {
 	let touch_element = document.getElementById("equation_click");
 	touch_element.value = "True";
-	localStorage.setItem("eq_click", "True");
-	console.log("local storage eq click:", localStorage.getItem('eq_click'))
+	sessionStorage.setItem("eq_click", "True");
+	console.log("local storage eq click:", sessionStorage.getItem('eq_click'));
 }
-
-function set_gif() {
-	let touch_element = document.getElementById("gif_watched");
-	touch_element.value = "True";
-	localStorage.setItem("gif_watch", "True");
-	console.log("local storage gif watched:", localStorage.getItem('gif_watch'))
-}
-
 
 $(document).ready(function () {
-	let eq_click = localStorage.getItem('eq_click');
-	let gif_click = localStorage.getItem('gif_click');
-	let gif_watch = localStorage.getItem('gif_watch');
+	// get var values from local storage
+	let early_click = sessionStorage.getItem("early_click");
+	let eq_click = sessionStorage.getItem('eq_click');
+	let gif_click = sessionStorage.getItem('gif_click');
 
+	// set field values to value from local storage
+	if (early_click !== null) $('#clicked_early').val(early_click);
 	if (eq_click !== null) $('#equation_click').val(eq_click);
 	if (gif_click !== null) $('#gif_click').val(gif_click);
-	if (gif_watch !== null) $('#gif_click').val(gif_watch);
 });
+
+// https://www.sitepoint.com/quick-tip-persist-checkbox-checked-state-after-page-reload/
+// get change for check box
+$("#checkbox-container :checkbox").on("change", function(){
+  console.log("The checkbox with the ID '" + this.id + "' changed");
+});
+
+// set local storage var to checked if this happened
+var checkboxValues = JSON.parse(sessionStorage.getItem('checkboxValues')) || {};
+var $checkboxes = $("#checkbox-container :checkbox");
+
+$checkboxes.on("change", function(){
+  $checkboxes.each(function(){
+    checkboxValues[this.id] = this.checked;
+  });
+  sessionStorage.setItem("checkboxValues", JSON.stringify(checkboxValues));
+});
+
+// on page load set value of checkboxes accordingly
+$.each(checkboxValues, function(key, value) {
+  $("#" + key).prop('checked', value);
+});
+

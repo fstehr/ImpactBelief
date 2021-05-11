@@ -1,14 +1,5 @@
 --> test payoff consequences properly
 
-
-==> OBS!!  gif clicked value and equation clicked value are re-set to false when the page is re-loaded
-        Do this in the reset tabs function using local storage
-        Using the two lines of code from noel on how to get current value from html
-        Value=get element by id(). Value
-        Get element by id. Value = value
-
-        something is still wrong in this function!!!
-
 check why there is a time problem on instructions page [Violation] 'click' handler took 2274ms
 
 - layout Questionnaire Page better

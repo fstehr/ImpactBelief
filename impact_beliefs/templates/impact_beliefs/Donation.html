@@ -65,13 +65,11 @@
 
     <script>
         function delimiter() {
-            var km = js_vars.display_km;
-            var km_delim = km.toLocaleString();
-            document.getElementById("km").innerHTML = km_delim;
+            let km = js_vars.display_km;
+            let co2 = js_vars.display_co2;
 
-            var co2 = js_vars.display_co2;
-            var co2_delim = co2.toLocaleString();
-            document.getElementById("Co2").innerHTML = co2_delim;
+            document.getElementById("km").innerHTML = km.toLocaleString();
+            document.getElementById("Co2").innerHTML = co2.toLocaleString();
         }
     </script>
 

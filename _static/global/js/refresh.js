@@ -26,8 +26,8 @@ function resetTabs(){
         console.log("btn clicked too early")
         let early_click = document.getElementById("clicked_early");
         early_click.value = "True";
+        sessionStorage.setItem("early_click", "True");
     }
-
 }
 
 

@@ -69,7 +69,7 @@
                             If you do not submit your estimate on time, the page will automatically be submitted and you forfeit your payments for this decision.
                             If you do not submit estimates on time twice, you will not be allowed to continue with the experiment, and also forgo your participation fee.
                             Note, that the timer continues to run even when you try to refresh the page. Hence, you cannot gain time by refreshing the page.
-                            <strong> It is therefore crucial that you try to answer with your best guest within the {{ Constants.sec_to_answer }} seconds.</strong>
+                            <strong> It is therefore crucial that you try to answer with your best guess within the {{ Constants.sec_to_answer }} seconds.</strong>
                         </p>
 
 
@@ -111,8 +111,10 @@
                         <input id="gif_click" name="gif_clicked" type="hidden" value="False">
 
                         <div class="alert alert-secondary" style="margin-top: 20pt; display:block;margin-left:auto; margin-right:auto; width:70%;">
-                            <input type="checkbox" id="gif_watched" name="gif_watched" style="cursor:pointer" value="True" onclick="set_gif()">
-                            <label for="gif_watched"> I have watched the video above.</label>
+                            <div id="checkbox-container">
+                                <input type="checkbox" id="gif_watched" name="gif_watched" style="cursor:pointer" value="True">
+                                <label for="gif_watched"> I have watched the video above.</label>
+                            </div>
                         </div>
 
                     </div>
@@ -244,6 +246,7 @@
 
 </div>
 
+</div>
 
 </body>
 
