@@ -262,11 +262,12 @@ class Player(SliderPlayer):
     age = models.IntegerField(label="What is your age?",
                               choices=[
                                   [1, "17 or younger"],
-                                  [2, "18 - 20"],
-                                  [3, "30 - 39"],
-                                  [4, "40 - 49"],
-                                  [5, "50 - 59"],
-                                  [6, "60 or older"],
+                                  [2, "18 - 19"],
+                                  [3, "20 - 29"],
+                                  [4, "30 - 39"],
+                                  [5, "40 - 49"],
+                                  [6, "50 - 59"],
+                                  [7, "60 or older"],
 
                               ])
 
@@ -294,7 +295,8 @@ class Player(SliderPlayer):
     )
 
     income = models.IntegerField(
-        label="What is your household income per year?",
+        label="What is your household income per year? In your answer, please consider only people with whom you share finances as part of your household. "
+              "This would, for example, most likely exclude other members from your student dorm.",
         choices=[
             [0, 'Less than £10,000'],
             [1, '£10,000 - £19,999'],

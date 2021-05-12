@@ -38,3 +38,4 @@ var sliders = document.getElementsByClassName("slider");
     for (i = 0; i < sliders.length; i++) {
         sliders[i].addEventListener('change', set_touched);
     }
+

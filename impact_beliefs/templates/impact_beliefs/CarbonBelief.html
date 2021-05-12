@@ -3,6 +3,8 @@
 
 {% block styles %}
     <link rel="stylesheet" type="text/css" href="{% static "css/sliders.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "css/slider_bubbles.css" %}">
+
     <style>
       th, td {
         padding: 5px;
@@ -73,7 +75,7 @@
 
     <div style="margin-bottom:1cm;margin-top:1cm">
         <p>
-            Please indicate how many kg CO<sub>2</sub> you believe each item in the list below is emitting:
+            For each item in the list below, please indicate how many kg of CO<sub>2</sub> you think could be saved annually by this behavior.
         </p>
     </div>
 
@@ -92,7 +94,7 @@
             <tbody>
                 {% for field in form %}
                     <tr>
-                        <td>{{ field.label }}</td>
+                        <td style="height:35px">{{ field.label }}</td>
                         <td>
                             <div class="slidecontainer" style="">
                                 <span>0</span>
