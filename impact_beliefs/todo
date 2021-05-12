@@ -10,7 +10,6 @@ then convert pdf into pngs
 in parameter csv file - rename all image names to matrix_40_1.PNG (i.e. append .png everywhere)
 
 
-for carbon beliefs: fix form validation using = java eventlistener and only let people pass if they touched all sliders
 
 
 ## LAYOUT STUFF i.e. nice to have

@@ -1,3 +1,4 @@
+// display current value next to slider
 $(function()
 {
 $('.slider').on('input change', function(){
@@ -10,17 +11,10 @@ $('.slider').on('input change', function(){
 })
 
 
-// for now define it based on element being zero; change later using event listener & set touched function
+// on form submission, check that all elements have been moved
 function checkTouched() {
-              var sliders = document.getElementsByClassName("slider");
-              var num_touched = 0;
-
-                for (i = 0; i < sliders.length; i++) {
-                    if (sliders[i].value != 0) {
-                        num_touched = num_touched + 1;
-                    }
-                }
-                if (num_touched == sliders.length ) {
+                var sliders = document.getElementsByClassName("slider");
+                if (touched == sliders.length ) {
                       form.submit();
                 }
                 else {
@@ -31,16 +25,16 @@ function checkTouched() {
             }
 
 
-            /*
-            function set_touched(event) {
-                var hidden_field_id = this.id.substring(0, this.id.length-7) + "touched";
-                var touch_element = document.getElementById(hidden_field_id);
-                touch_element.value = "True";
-                this.removeEventListener('change', set_touched)
-                }
+// define touched as counter with eventlistener on change
+touched = 0
 
-            var sliders = document.getElementsByClassName("slider");
-                for (i = 0; i < sliders.length; i++) {
-                    sliders[i].addEventListener('change', set_touched);
-                }
-             */
+function set_touched(event) {
+    touched += 1;
+    // console.log("touched counter is", touched);
+    this.removeEventListener('change', set_touched);
+    }
+
+var sliders = document.getElementsByClassName("slider");
+    for (i = 0; i < sliders.length; i++) {
+        sliders[i].addEventListener('change', set_touched);
+    }

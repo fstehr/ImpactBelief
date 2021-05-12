@@ -238,10 +238,10 @@ class Player(SliderPlayer):
             choices = [
                 [1, "When I decide not to donate, a fixed fee is subtracted from my earnings and donated."],
                 [2,
-                 "When I decide to donate, a fixed fee is subtracted from my earnings and donated to carbonfund.org."],
+                 "When I decide to donate, a fixed fee is subtracted from my earnings and donated to climatecare.org."],
                 [3, "When I decide not to donate, I earn nothing in this task."],
                 [4,
-                 "When I decide to donate, the price of the project is subtracted from my earnings and donated to carbonfund.org."],
+                 "When I decide to donate, the price of the project is subtracted from my earnings and donated to climatecare.org."],
                 # Correct Answer
             ]
         else:

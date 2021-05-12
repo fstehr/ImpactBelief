@@ -12,9 +12,9 @@
 		return gif;
 	}
 
-	var gif = getGif();
 
 	// Preload all the gif images.
+	//var gif = getGif();
 	//var image = [];
 
 	//$.each(gif, function(index) {
