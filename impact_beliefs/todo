@@ -2,8 +2,9 @@
 
 check why there is a time problem on instructions page [Violation] 'click' handler took 2274ms
 
-- layout Questionnaire Page better
+- include a counter on belief & donation page that shows progress
 
+- maybe put task 4 & 5 instructions on slides as well
 
 Update matrix pictures - use different latex preamble (beamer document class with small margins)
 then convert pdf into pngs

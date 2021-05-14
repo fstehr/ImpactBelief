@@ -46,7 +46,7 @@
                         </h5>
                         <p>
                             Climate change is an increasing threat to our societies and livelihoods. In this experiment, we give you the
-                            opportunity to donate some of your earnings to climatecare.org, a certified B corporation that
+                            opportunity to donate some of your earnings to climatecare.org, a company that
                             eliminates CO<sub>2</sub> emissions from the atmosphere. Thus, through your
                             donation <strong>real CO<sub>2</sub> emissions in the atmosphere will be reduced </strong>. However,
                             before we get to the Donation Task in Task 3 of the experiment, you have to do an Estimation Task.
@@ -64,13 +64,33 @@
                         </p>
 
                         <p>
-                            It is important that you stay alert in this task, as you will only get to see the matrix for <strong>{{ Constants.sec_per_matrix }} seconds</strong>.
+                            You will only get to see the matrix for <strong>{{ Constants.sec_per_matrix }} seconds</strong>.
                             Then, you will have <strong>{{ Constants.sec_to_answer }} seconds</strong> to fill in your estimate of the number of Xs you saw.
-                            If you do not submit your estimate on time, the page will automatically be submitted and you forfeit your payments for this decision.
+                            If you do not submit your estimate on time, you forfeit your payments for this decision.
                             If you do not submit estimates on time twice, you will not be allowed to continue with the experiment, and also forgo your participation fee.
                             Note, that the timer continues to run even when you try to refresh the page. Hence, you cannot gain time by refreshing the page.
                             <strong> It is therefore crucial that you try to answer with your best guess within the {{ Constants.sec_to_answer }} seconds.</strong>
                         </p>
+
+
+                        <figure>
+                            {% if player.treatment == "Motivated" %}
+                            <img src="{% static 'img/Belief_instructions_motivated.png' %}" alt="Static Image"
+                                 data-alt="/static/img/Belief_instructions_motivated.gif" style="display:block;margin-left:auto; margin-right:auto; width:70%;cursor:pointer;"/>
+                            {% else %}
+                            <img src="{% static 'img/Belief_instructions_neutral.png' %}" alt="Static Image"
+                                 data-alt="/static/img/Belief_instructions_neutral.gif" style="display:block;margin-left:auto; margin-right:auto; width:70%;cursor:pointer;"/>
+                            {% endif %}
+                            <figcaption style="font-style:italic; margin-left:auto; margin-right:auto; width:70%;text-align: center">Click on the 'Play'-button to watch a real-time video of the decision page.</figcaption>
+                        </figure>
+                        <input id="gif_click" name="gif_clicked" type="hidden" value="False">
+
+                        <div class="alert alert-secondary" style="margin-top: 20pt; display:block;margin-left:auto; margin-right:auto; width:70%;">
+                            <div id="checkbox-container">
+                                <input type="checkbox" id="gif_watched" name="gif_watched" style="cursor:pointer" value="True">
+                                <label for="gif_watched"> I have watched the video above.</label>
+                            </div>
+                        </div>
 
 
                         {% if player.treatment == "Motivated" %}
@@ -83,39 +103,7 @@
                                 This means that if a matrix contains for example 100 Xs, the project will eliminate 50 kg of CO<sub>2</sub>
                                 which is equivalent to the emissions caused by driving 300 km with an average car.
                             </p>
-                            <p>
-                                After indicating your estimates of the number of Xs for a variety of matrices, you will be given the opportunity
-                                to donate to the projects. When you see the matrix for your estimation task, you will also be able to
-                                see how much it will cost you to donate to this project. You will receive further instructions about the donation task
-                                at a later stage of this experiment.
-                            </p>
-                            <p>
-                                If you decide to donate to a project and this round is selected for payment,
-                                we will donate the amount to climatecare.org, a certified B Corporation
-                                that eliminates CO<sub>2</sub> emissions from the atmosphere. Thus, through your
-                                donation <strong>real CO<sub>2</sub> emissions in the atmosphere will be reduced </strong>.
-                            </p>
                         {% endif %}
-
-
-                        <figure>
-                            {% if player.treatment == "Motivated" %}
-                            <img src="{% static 'img/Belief_instructions_motivated.png' %}" alt="Static Image"
-                                 data-alt="/static/img/Belief_instructions_motivated.gif" style="display:block;margin-left:auto; margin-right:auto; width:70%;cursor:pointer;"/>
-                            {% else %}
-                            <img src="{% static 'img/Belief_instructions_neutral.png' %}" alt="Static Image"
-                                 data-alt="/static/img/Belief_instructions_neutral.gif" style="display:block;margin-left:auto; margin-right:auto; width:70%;cursor:pointer;"/>
-                            {% endif %}
-                            <figcaption style="font-style:italic; margin-left:auto; margin-right:auto; width:70%;text-align: center">Click on the image to see a real-time video of the decision page.</figcaption>
-                        </figure>
-                        <input id="gif_click" name="gif_clicked" type="hidden" value="False">
-
-                        <div class="alert alert-secondary" style="margin-top: 20pt; display:block;margin-left:auto; margin-right:auto; width:70%;">
-                            <div id="checkbox-container">
-                                <input type="checkbox" id="gif_watched" name="gif_watched" style="cursor:pointer" value="True">
-                                <label for="gif_watched"> I have watched the video above.</label>
-                            </div>
-                        </div>
 
                     </div>
 
@@ -152,19 +140,19 @@
                 <div class="card-body">
                     <div>
                         <p>
-                            For completing the task on time, you will receive {{ Constants.beliefs_fixed_payment }} Points,
+                            You will receive {{ Constants.beliefs_fixed_payment }} Points for submitting your estimate on time
                             if a round of this task is selected for payment.
-                            You can earn more money depending on the accuracy of your estimate. In particular, <strong>you earn more
+                            You can earn up to 150 Points more depending on the accuracy of your estimate. In particular, <strong>you earn more
                             the closer you are to the correct number of Xs</strong>. If you get the correct number of Xs,
-                            you earn {{ Constants.beliefs_max_payment }} Points.
+                            you thus earn {{ Constants.beliefs_max_payment }} Points.
                             The further your estimate is away from the correct number of Xs, the less you earn.
                             If you miss the number of Xs by more than 200, your extra payoff for accuracy in this task will be zero.
                         </p>
                         <p>
                             Your specific extra earnings for accuracy are based on a mathematical formula. It is not necessary for you to precisely understand the formulas,
-                            but it is important that you understand that you earn more the closer your estimate is to the true number of Xs in a matrix.
-                            Importantly, it does not make a difference whether you over- or underestimate the true number of Xs. It only matters by how much
-                            you are away from the true number of Xs. If you would like to see the precise mathematical formula, you can click
+                            you only need to understand that you earn more the closer your estimate is to the true number of Xs in a matrix.
+                            Whether you overestimate or underestimate the number of Xs will affect your payment in the same way.
+                            If you would like to see the precise mathematical formula, you can click
                             <a class="button btn-link" href="#" role="button" onclick="set_clicked()" data-toggle="modal" data-target="#incentives-modal">here</a>.
                             <input id="equation_click" name="equation_clicked" type="hidden" value="False">
                         </p>

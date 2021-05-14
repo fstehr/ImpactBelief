@@ -28,7 +28,7 @@ var mis_co2 = 0
 
 var foo_org = 0 //organic food
 var foo_mea = 0 // meat
-var foo_tra = 0.1 // transport
+var foo_tra = 0.1 //
 var foo_pac = 0 // packaged and processed
 var foo_com = 0 // proportion composted
 var foo_was = 0.25 // food wasted as proportion of eaten

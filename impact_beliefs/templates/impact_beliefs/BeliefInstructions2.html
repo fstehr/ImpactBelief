@@ -1,13 +1,13 @@
 {% load otree %}
 
-    <div class="card bg-light instructions">
+    <div class="card instructions">
         <div class="card-body">
 
-            <h4>Task 4 - Instructions</h4>
+            <h4 style="margin-bottom: 16pt">Task 4 - Instructions</h4>
 
             <p>
-                In this task you are again asked to estimate the number of Xs in a matrix. As in Task 1, the Xs represent the amount
-                CO<sub>2</sub> emissions, you can eliminate in the donation task in Task 4. As before, 1 X in the matrix
+                In this task you are again asked to estimate the number of Xs in a matrix. As in Task 2, the Xs represent the amount
+                CO<sub>2</sub> emissions, you can eliminate in the donation task in Task 5. As before, 1 X in the matrix
                 stands for {{ Constants.real_world_kg_co2_per_x }} kg CO<sub>2</sub>.
             </p>
             <p>
@@ -15,7 +15,7 @@
                 so make sure you pay close attention. After the image of the matrix has disappeared
                 you are asked to indicate your estimate on the number of Xs.
                 You will have <strong>{{ Constants.sec_to_answer }} seconds</strong> to fill in your estimate of the number of Xs you saw.
-                If you do not submit your estimate on time, the page will automatically be submitted and you forfeit your payments for this decision.
+                If you do not submit your estimate on time, you forfeit your payments for this decision.
                 If you do not submit estimates on time twice, you will not be allowed to continue with the experiment, and also forgo your participation fee.
                 Note, that the timer continues to run even when you try to refresh the page. Hence, you cannot gain time by refreshing the page.
                 <strong>It is therefore crucial that you try to answer with your best guess within the {{ Constants.sec_to_answer }} seconds.</strong>
@@ -23,11 +23,11 @@
             <p>
                 Your bonus payment in this task is determined like in Task 1:
                 <p>
-                    For completing the task on time, you will receive {{ Constants.beliefs_fixed_payment }} Points,
+                    You will receive {{ Constants.beliefs_fixed_payment }} Points for completing the task on time,
                     if a round of this task is selected for payment.
-                    You can earn more money depending on the accuracy of your estimate. In particular, <strong>you earn more
+                    You can earn up to 150 Points more depending on the accuracy of your estimate. In particular, <strong>you earn more
                     the closer you are to the correct number of Xs</strong>. If you get the correct number of Xs,
-                    you earn {{ Constants.beliefs_max_payment }} Points.
+                    you thus earn {{ Constants.beliefs_max_payment }} Points.
                     The further your estimate is away from the correct number of Xs, the less you earn.
                     If you miss the number of Xs by more than 200, your extra payoff for accuracy in this task will be zero.
                     You can see the precise mathematical formula here

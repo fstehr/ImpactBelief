@@ -25,14 +25,19 @@
             <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
      </div>
     <p>
-        With your answers below, we will calculate your carbon footprint. Please try to answer as precisely as possible, to the
+        With your answers below, we will determine your carbon footprint. At the end of the calculator, you will also receive
+        feedback on how your footprint compares to the average in the UK. Therefore, please try to answer as precisely as possible, to the
         best of your knowledge.
     </p>
 </div>
 
 <div class="alert alert-warning" style="width:80%; margin-right: auto; margin-left: auto;">
     <p>
-        On this page, we ask you for individual-level information about your mobility behavior.
+        On this page, we ask you for individual-level information about your mobility behavior. In your answers,
+        please consider all private trips, i.e., please also include commuting trips to your work. Business trips (i.e., trips
+        you must take during your working time) should be excluded.
+    </p>
+    <p>
         <strong>When answering the questions about mobility, please answer for your pre-pandemic behavior</strong>.
     </p>
 </div>
@@ -51,7 +56,7 @@
                     <!-- CAR QUESTION -->
                     <div>
                         <tr>
-                            <td>{{ form.car_miles.label }}</td>
+                            <td><img style="width: 3%;margin-right:0.5cm" src="{% static 'img/car.png' %}">{{ form.car_miles.label }}</td>
                         </tr>
                         <tr>
                             <td>
@@ -62,15 +67,15 @@
                                     </li>
                                     <li>
                                         <label for="id_car_miles_2"><input type="radio" name="car_miles" value="6000" required="" id="id_car_miles_2" class="form-check-input" onClick="show_hide_car(2);calculate_car_miles();">
-                                        Little (6,000 miles)</label>
+                                        Little (6000 miles)</label>
                                     </li>
                                     <li>
                                         <label for="id_car_miles_3"><input type="radio" name="car_miles" value="9000" required="" id="id_car_miles_3" class="form-check-input" onClick="show_hide_car(3);calculate_car_miles();">
-                                        Average (9,000 miles)</label>
+                                        Average (9000 miles)</label>
                                     </li>
                                     <li>
                                         <label for="id_car_miles_4"><input type="radio" name="car_miles" value="12000" required="" id="id_car_miles_4" class="form-check-input" onClick="show_hide_car(4);calculate_car_miles();">
-                                        Much (12,000 miles)</label>
+                                        Much (12000 miles)</label>
                                     </li>
                                     <li>
                                         <label for="id_car_miles_5"><input type="radio" name="car_miles" value="-99" required="" id="id_car_miles_5" class="form-check-input" onClick="show_hide_car(5);">
@@ -78,7 +83,7 @@
                                     </li>
 
                                     <div id ="miles" style="display:none">
-                                        <input id="miles_field" class = "form-control" type="number" name="miles_field" min="1" oninput="calculate_car_miles();">
+                                        <input id="miles_field" class = "form-control" type="number" name="miles_field" min="1" max="50000" oninput="calculate_car_miles();">
                                     </div>
                                 </ul>
 
@@ -88,15 +93,15 @@
                                     <ul>
                                         <li>
                                         <label for="id_car_mpg_1"><input type="radio" name="car_size_mpg" value="35" id="id_car_mpg_1" class="form-check-input">
-                                            Sports car or large SUV</label>
+                                            Sports car or large SUV (35 mpg)</label>
                                         </li>
                                         <li>
                                         <label for="id_car_mpg_2"><input type="radio" name="car_size_mpg" value="46" id="id_car_mpg_2" class="form-check-input">
-                                            Small or medium SUV, or MPV</label>
+                                            Small or medium SUV, or MPV (46 mpg)</label>
                                         </li>
                                         <li>
                                         <label for="id_car_mpg_3"><input type="radio" name="car_size_mpg" value="52" id="id_car_mpg_3" class="form-check-input">
-                                            City, small, medium, large or estate car</label>
+                                            City, small, medium, large or estate car (52 mpg)</label>
                                         </li>
 
                                     </ul>
@@ -109,10 +114,23 @@
                     <!-- BUS QUESTION -->
                     <div>
                         <tr>
-                            <td>{{ form.bus_miles.label }}</td>
+                            <td><img style="width: 3%;margin-right:0.5cm" src="{% static 'img/bus.png' %}"> How much did you travel by bus before the pandemic? </td>
                         </tr>
                         <tr>
-                            <td>{{ form.bus_miles }}</td>
+                            <td>
+                                <table class="table table-light">
+                                    <body>
+                                    <tr style="background-color: white">
+                                        <td style="width:80%">How many miles did you travel by bus each week <em>for commuting trips</em> before the pandemic?</td>
+                                        <td>{{ form.bus_miles_commute }}</td>
+                                    </tr>
+                                    <tr style="background-color: white">
+                                        <td>How many miles have you travelled by bus in an average year <em>for vacation/travel trips</em> before the pandemic?</td>
+                                        <td>{{ form.bus_miles_travel }}</td>
+                                    </tr>
+                                    </body>
+                                </table>
+                            </td>
                         </tr>
                     </div>
 
@@ -120,10 +138,23 @@
                     <!-- TRAIN QUESTION -->
                     <div>
                         <tr>
-                            <td>{{ form.train_miles.label }}</td>
+                            <td><img style="width: 3%;margin-right:0.5cm" src="{% static 'img/train.png' %}">How much did you travel by train before the pandemic?</td>
                         </tr>
                         <tr>
-                            <td>{{ form.train_miles }}</td>
+                            <td>
+                                <table class="table table-light">
+                                    <body>
+                                    <tr style="background-color: white">
+                                        <td style="width:80%">How many miles did you travel by train each week <em>for commuting trips</em> before the pandemic?</td>
+                                        <td>{{ form.train_miles_commute }}</td>
+                                    </tr>
+                                    <tr style="background-color: white">
+                                        <td>How many miles have you travelled by train in an average year <em>for vacation/travel trips</em> before the pandemic?</td>
+                                        <td>{{ form.train_miles_travel }}</td>
+                                    </tr>
+                                    </body>
+                                </table>
+                            </td>
                         </tr>
                     </div>
 
@@ -131,7 +162,7 @@
                     <!-- PLANE QUESTION -->
                     <div>
                         <tr>
-                            <td>{{ form.plane_hours.label }}</td>
+                            <td><img style="width: 3%;margin-right:0.5cm" src="{% static 'img/plane.png' %}">{{ form.plane_hours.label }}</td>
                         </tr>
                         <tr>
                             <td>{{ form.plane_hours }}</td>

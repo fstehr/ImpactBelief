@@ -14,9 +14,6 @@ class Energy(Page):
                    'fossil_fuels','fossil_fuels_oil', 'fossil_fuels_coal', 'fossil_fuels_wood', 'fossil_fuels_gas']
 
 
-
-
-
     def before_next_page(self):
         # self.player.set_footprint()
         self.player.set_ele_co2()
@@ -26,7 +23,8 @@ class Energy(Page):
 
 class Mobility(Page):
     form_model = 'player'
-    form_fields = ['car_miles', 'car_size_mpg', 'bus_miles','train_miles', 'plane_hours']
+    form_fields = ['car_miles', 'car_size_mpg', 'bus_miles_commute', 'bus_miles_travel',
+                   'train_miles_commute', 'train_miles_travel', 'plane_hours']
 
     def before_next_page(self):
         # self.player.set_footprint()
@@ -39,7 +37,7 @@ class Mobility(Page):
 
 class Food(Page):
     form_model = 'player'
-    form_fields = ['food_org', 'food_meat', 'food_miles', 'food_pac', 'food_com', 'food_was']
+    form_fields = ['food_org', 'food_meat', 'food_miles', 'food_fresh', 'food_com', 'food_was']
 
     def before_next_page(self):
         # self.player.set_footprint()

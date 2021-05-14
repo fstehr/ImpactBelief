@@ -40,8 +40,8 @@
 
                     <div>
                         <p>
-                            In this experiment, you are asked to complete 5 tasks. In each task, you can earn a bonus payment
-                            which depends on your choices in the task. Tasks can consist of multiple rounds of the same task.
+                            In this experiment, you are asked to complete 5 tasks, each of which can consist of multiple rounds.
+                            In each task, you can earn a bonus payment which may depend on your choices in the task.
                         </p>
 
                         <p>
@@ -114,27 +114,24 @@
                 <div class="card-body">
                     <div>
                         <p>
-                            Before we begin with four decision tasks, you have to work on a task, we call the slider task.
-                            In this task, a set of sliders is presented on your screen. You can adjust the slider to any
-                            number between 0 and 100 by clicking on the slider with your mouse and dragging it to the
-                            desired position. Your task is to drag the slider to the target position. The target
-                            position for each slider is the number 50. The number on the right-hand side of the slider
-                            tells you the current position of your slider. A slider is correctly adjusted when the
-                            current position is equal to 50.
+                            The first task is a work task, where a set of sliders is presented on your screen.
+                            You can adjust the slider to any number between 0 and 100 by clicking on the slider with
+                            your mouse and dragging it to the
+                            desired position. Your task is to drag the slider to the target position, which is 50.
+                            The number on the right-hand side of the slider indicates the current position of your slider.
+                            A slider is correctly adjusted when the current position is equal to 50.
                         </p>
                         <div style="margin-bottom: 16pt">
                             <img src="{% static 'img/sliders.png' %}" style="width:70%; display: block; margin-left: auto; margin-right: auto;">
                         </div>
                         <p>
-                            For example, in the upper slider, the current position of the slider is 27.
-                            The slider is therefore not correctly placed yet. In the second example, you can see that
-                            the slider is correctly placed, as the position of the slider is directly at the target position.
+                            In the example you can see that the upper slider is not correctly placed yet,
+                            since it is positioned at 27 instead of 50. In the lower example, the slider is correctly placed at 50, the target position.
                             All sliders you have to solve will be displayed on one screen.
                         </p>
                         <p>
-                            In the first part of the experiment, we ask you to solve {{ Constants.num_sliders }} sliders
-                            on the screen to proceed to the next part of the experiment. <strong>If this decision is selected for
-                            payment, you will receive {{ Constants.endowment }} Points for the completion of the task </strong>.
+                            We ask you to solve {{ Constants.num_sliders }} sliders on the screen before you proceed to Task 2. <strong>If Task 1 is selected for
+                            payment, you will earn additional {{ Constants.endowment }} Points for the completion of the task </strong>.
                         </p>
 
 
