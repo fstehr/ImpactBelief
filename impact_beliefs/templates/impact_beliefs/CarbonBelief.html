@@ -16,6 +16,13 @@
 {% endblock %}
 
 
+{% block scripts %}
+    <script type="text/javascript" src="{% static 'js/sliders.js' %}"></script>
+{% endblock %}
+
+
+
+
 {% block title %}
     Estimate the Carbon Emissions
 {% endblock %}
@@ -32,7 +39,7 @@
 
         <div>
             <p>
-                On this page, we ask you to estimate how many kg CO<sub>2</sub> are associated with different behaviors.
+                On this page, we ask you to estimate how many kg CO<sub>2</sub> can be saved with different behaviors.
             </p>
         </div>
 
@@ -75,7 +82,8 @@
 
     <div style="margin-bottom:1cm;margin-top:1cm">
         <p>
-            For each item in the list below, please indicate how many kg of CO<sub>2</sub> you think could be saved annually by this behavior.
+            For each item in the list below, please indicate how many kg of CO<sub>2</sub> you think could on average be
+            saved <em>annually</em> by this behavior.
         </p>
     </div>
 
@@ -117,10 +125,4 @@
 
 
 {% endblock %}
-
-
-{% block scripts %}
-    <script type="text/javascript" src="{% static 'js/sliders.js' %}"></script>
-{% endblock %}
-
 
