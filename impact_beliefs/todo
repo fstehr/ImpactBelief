@@ -6,6 +6,10 @@ check why there is a time problem on instructions page [Violation] 'click' handl
 
 - maybe put task 4 & 5 instructions on slides as well
 
+- check that instructions for donation are the same in beliefinstr1 & donationinst1 (for neutral on donation page, as for motivated on belief page)
+
+- check for consistency in British vs American English (e.g. all -z spellings!)
+
 Update matrix pictures - use different latex preamble (beamer document class with small margins)
 then convert pdf into pngs
 in parameter csv file - rename all image names to matrix_40_1.PNG (i.e. append .png everywhere)

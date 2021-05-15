@@ -32,7 +32,9 @@ class Constants(BaseConstants):
     num_rounds = num_decision_rounds + num_work_rounds
     endowment = 280
     beliefs_fixed_payment = 150
-    beliefs_max_payment = 2 * beliefs_fixed_payment
+    beliefs_max_accuracy_bonus = beliefs_fixed_payment
+    beliefs_max_payment = beliefs_fixed_payment + beliefs_max_accuracy_bonus
+
 
     # slider_columns = 3  # uncomment this if you want sliders in the slider task to be displayed in multiple columns
     num_sliders = 1
@@ -144,10 +146,10 @@ class Player(SliderPlayer):
                                         doc="Counts how many time-outs occured on trial belief page")
 
     num_x_belief = models.IntegerField(min=0, max=400, doc="records belief on number of Xs in matrix")
-    donation = models.BooleanField(
+    donation = models.BooleanField(widget=widgets.RadioSelectHorizontal,
         choices=[
-            [False, 'No'],
             [True, 'Yes'],
+            [False, 'No'],
         ]
     )
     project_id = models.IntegerField()
@@ -188,7 +190,10 @@ class Player(SliderPlayer):
     ])
 
     def cq1_error_message(self, value):
-        if not value:
+        if self.round_number < len(Constants.paras) + 2 and not value:
+            self.wrong_answer1 += 1
+            return "Wrong answer."
+        elif self.round_number == len(Constants.paras) + 2 and value:
             self.wrong_answer1 += 1
             return "Wrong answer."
 
@@ -236,9 +241,9 @@ class Player(SliderPlayer):
         elif player.round_number == len(
                 Constants.paras) + 2:  # Which of the following statements about the consequences of your decision is correct?
             choices = [
-                [1, "When I decide not to donate, a fixed fee is subtracted from my earnings and donated."],
+                [1, "When I decide not to donate, 50 Points are subtracted from my earnings and donated."],
                 [2,
-                 "When I decide to donate, a fixed fee is subtracted from my earnings and donated to climatecare.org."],
+                 "When I decide to donate, 50 Points are subtracted from my earnings and donated to climatecare.org."],
                 [3, "When I decide not to donate, I earn nothing in this task."],
                 [4,
                  "When I decide to donate, the price of the project is subtracted from my earnings and donated to climatecare.org."],

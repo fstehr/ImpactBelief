@@ -44,36 +44,50 @@
                         {% if player.treatment == "Motivated" %}
                             What is this experiment about?
                         </h5>
+
                         <p>
-                            Climate change is an increasing threat to our societies and livelihoods. In this experiment, we give you the
-                            opportunity to donate some of your earnings to climatecare.org, a company that
-                            eliminates CO<sub>2</sub> emissions from the atmosphere. Thus, through your
-                            donation <strong>real CO<sub>2</sub> emissions in the atmosphere will be reduced </strong>. However,
-                            before we get to the Donation Task in Task 3 of the experiment, you have to do an Estimation Task.
-                            Here, you receive the instructions for the Estimation Task in this task (Task 2). In the beginning of Task 3,
-                            you will receive further instructions about the Donation Task.
+                            Climate change is a growing threat to our societies and livelihoods.
+                            In this experiment, we give you the opportunity to donate a portion
+                            of your earnings to climatecare.org, an organization that eliminates CO<sub>2</sub> emissions from the atmosphere.
+                            So <strong>your donation will reduce real CO<sub>2</sub> emissions in the atmosphere</strong>. You will make your
+                            donation decisions in Task 3 of the experiment. Before that, however, you must complete Task 2,
+                            an Estimation Task. Here you will get the instructions for the Estimation Task.
+                            At the beginning of Task 3, you will receive further instructions on donations.
                         </p>
 
                         <h5> {% endif %}
                             The Estimation Task
                         </h5>
                         <p>
-                            In this task you are asked to estimate the number of Xs in a matrix.
+                            In this task, you are asked to estimate the number of Xs in a matrix.
                             You can find an example image of a matrix in the instruction video below.
                             There can be between 0 and 400 Xs in a matrix.
                         </p>
 
                         <p>
-                            You will only get to see the matrix for <strong>{{ Constants.sec_per_matrix }} seconds</strong>.
-                            Then, you will have <strong>{{ Constants.sec_to_answer }} seconds</strong> to fill in your estimate of the number of Xs you saw.
-                            If you do not submit your estimate on time, you forfeit your payments for this decision.
-                            If you do not submit estimates on time twice, you will not be allowed to continue with the experiment, and also forgo your participation fee.
-                            Note, that the timer continues to run even when you try to refresh the page. Hence, you cannot gain time by refreshing the page.
-                            <strong> It is therefore crucial that you try to answer with your best guess within the {{ Constants.sec_to_answer }} seconds.</strong>
+                            You get to see each matrix for only <strong>{{ Constants.sec_per_matrix }} seconds</strong>.
+                            Then you have <strong>{{ Constants.sec_to_answer }} seconds</strong> to enter your estimate
+                            of the number of Xs you saw. If you don't submit your guess in time, your payments for that
+                            decision will be forfeited. If you fail to submit your estimate on time twice,
+                            you will not be allowed to continue the experiment and will also forfeit your participation fee.
+                            Note that the timer keeps running even if you try to refresh the page.
+                            So you cannot gain time by refreshing the page. <strong>It is therefore important that you try to
+                            answer with your best guess within the {{ Constants.sec_to_answer }} seconds.</strong>
                         </p>
 
+                        {% if player.treatment == "Motivated" %}
+                            <h5>
+                                The Meaning of the Xs
+                            </h5>
+                            <p>
+                                Each matrix belongs to a project to which you can donate later.
+                                Specifically, <strong>each X in a matrix represents {{ Constants.real_world_kg_co2_per_x }} kg of CO<sub>2</sub></strong>.
+                                This means that if a matrix contains, for example, 100 Xs, the project will eliminate 50 kg of CO<sub>2</sub>
+                                which corresponds to the emissions caused by driving 300 km in an average car.
+                            </p>
+                        {% endif %}
 
-                        <figure>
+                        <figure style="margin-top: 16pt">
                             {% if player.treatment == "Motivated" %}
                             <img src="{% static 'img/Belief_instructions_motivated.png' %}" alt="Static Image"
                                  data-alt="/static/img/Belief_instructions_motivated.gif" style="display:block;margin-left:auto; margin-right:auto; width:70%;cursor:pointer;"/>
@@ -92,18 +106,6 @@
                             </div>
                         </div>
 
-
-                        {% if player.treatment == "Motivated" %}
-                            <h5>
-                                The Meaning of the Xs
-                            </h5>
-                            <p>
-                                Each matrix belongs to a project to which you can later donate.
-                                In particular, <strong>each X in a matrix represents {{ Constants.real_world_kg_co2_per_x }} kg of CO<sub>2</sub></strong>.
-                                This means that if a matrix contains for example 100 Xs, the project will eliminate 50 kg of CO<sub>2</sub>
-                                which is equivalent to the emissions caused by driving 300 km with an average car.
-                            </p>
-                        {% endif %}
 
                     </div>
 
@@ -140,19 +142,20 @@
                 <div class="card-body">
                     <div>
                         <p>
-                            You will receive {{ Constants.beliefs_fixed_payment }} Points for submitting your estimate on time
-                            if a round of this task is selected for payment.
-                            You can earn up to 150 Points more depending on the accuracy of your estimate. In particular, <strong>you earn more
-                            the closer you are to the correct number of Xs</strong>. If you get the correct number of Xs,
-                            you thus earn {{ Constants.beliefs_max_payment }} Points.
-                            The further your estimate is away from the correct number of Xs, the less you earn.
-                            If you miss the number of Xs by more than 200, your extra payoff for accuracy in this task will be zero.
+                            You will earn {{ Constants.beliefs_fixed_payment }} Points for submitting your estimate on time
+                            when a round of this task is selected for payment. Depending on the accuracy of your estimate,
+                            you can earn up to {{ Constants.beliefs_max_accuracy_bonus }} Points more.
+                            In particular, <strong>the closer you are to the correct number of Xs, the more you earn</strong>.
+                            So, if you get the correct number of Xs, you will earn {{ Constants.beliefs_max_payment }} Points.
+                            The farther your estimate is from the correct number of Xs, the less you earn.
+                            If you miss the number of Xs by more than 200, your additional earnings for accuracy in this task are zero.
                         </p>
                         <p>
-                            Your specific extra earnings for accuracy are based on a mathematical formula. It is not necessary for you to precisely understand the formulas,
-                            you only need to understand that you earn more the closer your estimate is to the true number of Xs in a matrix.
-                            Whether you overestimate or underestimate the number of Xs will affect your payment in the same way.
-                            If you would like to see the precise mathematical formula, you can click
+                            Your specific bonus earnings for accuracy are based on a mathematical formula.
+                            It is not necessary that you understand the formulas exactly, you just need to understand
+                            that the closer your estimate is to the true number of Xs in a matrix, the more you earn.
+                            Whether you overestimate or underestimate the number of Xs will affect your pay in the same way.
+                            If you want to see the exact mathematical formula, you can click
                             <a class="button btn-link" href="#" role="button" onclick="set_clicked()" data-toggle="modal" data-target="#incentives-modal">here</a>.
                             <input id="equation_click" name="equation_clicked" type="hidden" value="False">
                         </p>
@@ -201,9 +204,9 @@
                     </div>
 
                     <div class="alert alert-dark">
-                        Before we start with the real task, you will be given the opportunity to familiarize yourself with the task in 3 practice trials.
-                        Your answers in these practice trials will not affect your final earnings. Please stay alert anyway, as you will only be admitted to
-                        the payment relevant part, if you answer on time at least once.
+                        Before we start with the actual task, we will give you the opportunity to familiarize yourself
+                        with the task in 3 practice trials. Your answers in these practice trials will not affect your final score.
+                        Nevertheless, please remain attentive, as you will only be admitted to the payout-relevant part if you answer at least once in time.
                     </div>
 
                     <div style="display:none">
@@ -256,11 +259,13 @@
           <p>
               Your extra payments for accuracy in this task are determined by the following formula:
           </p>
-          $$ {{ Constants.beliefs_fixed_payment }} - 0.00375 * \left( \text{Your estimate} - \text{true number of Xs} \right)^2 $$
+          $$
+            {{ Constants.beliefs_fixed_payment }} - 0.00375 * \left( \text{Your estimate} - \text{true number of Xs} \right)^2
+          $$
           <p>
-              This formula will become negative, if your estimate is further away from the true number of Xs than 200.
-              If this should be the case, we will not subtract anything from your fixed bonus for this task. Instead, your
-              extra earnings for accuracy will become zero.
+              If your estimate is further than 200 away from the true number of Xs this formula will become negative.
+              If this is the case, we will not deduct anything from your fixed bonus for this task.
+              Instead, your additional earnings for accuracy will become zero.
           </p>
       </div>
     </div>

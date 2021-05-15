@@ -176,7 +176,7 @@ class Belief(Page):
         player = self.player
         timeout_happened = self.timeout_happened
 
-        player.current_payoff = Constants.beliefs_fixed_payment + max(0, Constants.beliefs_fixed_payment - 0.00375 * (
+        player.current_payoff = Constants.beliefs_fixed_payment + max(0, Constants.beliefs_max_accuracy_bonus - 0.00375 * (
                 (player.num_x_belief - player.num_x_true) ** 2))
         # print("current payoff is", player.current_payoff, "= 150 + max(0,150 - 0.00375*(", player.num_x_belief, "-", player.num_x_true, ")^2")
         if self.round_number == self.participant.vars['payment_round']:
@@ -290,19 +290,19 @@ class Questionnaire(Page):
         return self.round_number == Constants.num_rounds
 
 
-page_sequence = [Instructions]
+# page_sequence = [Instructions]
 
-# page_sequence = [
-#     IntroWelcome,
-#     Instructions,
-#     Sliders,
-#     TrialBelief1,
-#     TrialBelief2,
-#     TrialBelief3,
-#     Introbelief,
-#     Belief,
-#     Donation,
-#     CarbonBelief,
-#     CostBelief,
-#     Questionnaire
-#     ]
+page_sequence = [
+    IntroWelcome,
+    Instructions,
+    Sliders,
+    TrialBelief1,
+    TrialBelief2,
+    TrialBelief3,
+    Introbelief,
+    Belief,
+    Donation,
+    CarbonBelief,
+    CostBelief,
+    Questionnaire
+    ]

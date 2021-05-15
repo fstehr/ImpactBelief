@@ -6,70 +6,28 @@
             <h4 style="margin-bottom: 16pt">Task 4 - Instructions</h4>
 
             <p>
-                In this task you are again asked to estimate the number of Xs in a matrix. As in Task 2, the Xs represent the amount
-                CO<sub>2</sub> emissions, you can eliminate in the donation task in Task 5. As before, 1 X in the matrix
-                stands for {{ Constants.real_world_kg_co2_per_x }} kg CO<sub>2</sub>.
+                In this task, you are again asked to estimate the number of Xs in a matrix.
+                As in Task 2, the Xs stand for the amount of CO<sub>2</sub> emissions you can eliminate through the Donation
+                Task in Task 5. As before, 1 X in the matrix represents {{ Constants.real_world_kg_co2_per_x }} kg of CO<sub>2</sub>.
             </p>
             <p>
-                As before, you will be able to see each matrix for {{ Constants.sec_per_matrix }} seconds only,
-                so make sure you pay close attention. After the image of the matrix has disappeared
-                you are asked to indicate your estimate on the number of Xs.
-                You will have <strong>{{ Constants.sec_to_answer }} seconds</strong> to fill in your estimate of the number of Xs you saw.
-                If you do not submit your estimate on time, you forfeit your payments for this decision.
-                If you do not submit estimates on time twice, you will not be allowed to continue with the experiment, and also forgo your participation fee.
-                Note, that the timer continues to run even when you try to refresh the page. Hence, you cannot gain time by refreshing the page.
-                <strong>It is therefore crucial that you try to answer with your best guess within the {{ Constants.sec_to_answer }} seconds.</strong>
+                You only get to see the matrix for <strong>{{ Constants.sec_per_matrix }} seconds</strong>.
+                After that, you have <strong>{{ Constants.sec_to_answer }} seconds</strong> to fill in your estimate
+                of the number of X's seen. If you fail to submit your estimate on time more than twice,
+                your payments will be forfeited.
             </p>
             <p>
-                Your bonus payment in this task is determined like in Task 1:
-                <p>
-                    You will receive {{ Constants.beliefs_fixed_payment }} Points for completing the task on time,
-                    if a round of this task is selected for payment.
-                    You can earn up to 150 Points more depending on the accuracy of your estimate. In particular, <strong>you earn more
-                    the closer you are to the correct number of Xs</strong>. If you get the correct number of Xs,
-                    you thus earn {{ Constants.beliefs_max_payment }} Points.
-                    The further your estimate is away from the correct number of Xs, the less you earn.
-                    If you miss the number of Xs by more than 200, your extra payoff for accuracy in this task will be zero.
-                    You can see the precise mathematical formula here
-                    <a class="button btn-link" href="#" role="button" onclick="set_clicked()" data-toggle="modal" data-target="#incentives-modal">here</a>.
-                    <input id="equation_click" name="equation_clicked" type="hidden" value="False">
-                </p>
+                Your bonus payment in this task will be determined as in Task 2:
+            </p>
+            <p>
+                You will receive {{ Constants.beliefs_fixed_payment }} Points for completing the task on time
+                if one round of this task is selected for payment. Depending on the accuracy of your estimate,
+                you can earn up to {{ Constants.beliefs_max_accuracy_bonus }} points more.
+                In particular, <strong>you earn more the closer you are to the correct number of Xs</strong>.
             </p>
         </div>
     </div>
 
-            <div style="margin-top: 12pt; text-align: right;">
-                <button  class="btn btn-primary btn-large">Start the Estimation Task</button>
-            </div>
-
-
-
-
-
-
-
-<!-- Modal with explanation of Quadratic Scoring Rule -->
-<div class="modal" id="incentives-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenteredLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title" id="exampleModalCenteredLabel">Bonus Payment Formula</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-          <p>
-              Your extra payments for accuracy in this task are determined by the following formula:
-          </p>
-          $$ {{ Constants.beliefs_fixed_payment }} - 0.00375 * \left( \text{Your estimate} - \text{true number of Xs} \right)^2 $$
-          <p>
-              This formula will become negative, if your estimate is further away from the true number of Xs than 200.
-              If this should be the case, we will not subtract anything from your fixed bonus for this task. Instead, your
-              extra earnings for accuracy will become zero.
-          </p>
-      </div>
+    <div style="margin-top: 12pt; text-align: right;">
+        <button  class="btn btn-primary btn-large">Start the Estimation Task</button>
     </div>
-  </div>
-</div>
-

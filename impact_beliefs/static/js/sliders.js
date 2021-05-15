@@ -19,7 +19,7 @@ function checkTouched() {
                 }
                 else {
                     event.preventDefault();
-                    window.scrollTo(0, 0)
+                    window.scrollTo(0, 0);
                     document.getElementById('alert').style.display="block";
                 }
             }
@@ -31,11 +31,11 @@ touched = 0
 function set_touched(event) {
     touched += 1;
     // console.log("touched counter is", touched);
-    this.removeEventListener('change', set_touched);
+    this.removeEventListener('mouseup', set_touched);
     }
 
 var sliders = document.getElementsByClassName("slider");
     for (i = 0; i < sliders.length; i++) {
-        sliders[i].addEventListener('change', set_touched);
+        sliders[i].addEventListener('mouseup', set_touched);
     }
 

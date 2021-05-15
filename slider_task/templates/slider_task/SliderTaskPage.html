@@ -11,6 +11,11 @@
 
 {% block content %}
 
+    <div class="alert alert-danger" id="alert" style="display:none;">
+        Please move all sliders to the position 50.
+    </div>
+
+
     <p>
         Please move all sliders to the position 50. You can only continue with the experiment when all
         sliders have been repositioned correctly.
@@ -41,11 +46,6 @@
        <button name="slider_task_check" id="test" class="btn btn-primary btn-large" onclick="myFunction()">Next</button>
     </div>
 
-    <p>
-        <div>
-            <span id="errormessage" style="color:#ff87b1;font-weight:bold;font-size:1em"></span>
-        </div>
-    </p>
 
 
 {% endblock %}

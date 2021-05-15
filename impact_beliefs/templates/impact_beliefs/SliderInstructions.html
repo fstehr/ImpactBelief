@@ -53,14 +53,14 @@
                         </ul>
                         <p>
                             Specifically, we <strong>randomly select one round out of the five tasks to be the round-that-counts</strong> for your payments.
-                            Each round contains one decision and each decision in each part is equally likely to be randomly selected for payment.
-                            Therefore, you should put the same effort in all decisions in each of the five tasks.
+                            Each round contains one decision and each decision is equally likely to be randomly selected for payment.
+                            Therefore, you should put the same effort in all decisions during the experiment.
                             You will be paid your final earnings through Prolific.
                         </p>
                         <p>
                             Throughout the experiment, we will use Points to refer to your earnings.
                             At the end of the experiment, when a decision was randomly selected,
-                            these points will be converted into &pound and added to your fixed payment.
+                            the points that result from this decision will be converted into &pound and added to your fixed payment.
                             In particular, we use the following conversion rate:
                         </p>
                         <p style="text-align: center">
@@ -114,10 +114,10 @@
                 <div class="card-body">
                     <div>
                         <p>
-                            The first task is a work task, where a set of sliders is presented on your screen.
+                            In the first task, you will have to work on a set of sliders.
                             You can adjust the slider to any number between 0 and 100 by clicking on the slider with
                             your mouse and dragging it to the
-                            desired position. Your task is to drag the slider to the target position, which is 50.
+                            desired position. <strong>Your task is to drag the slider to the target position, which is 50.</strong>
                             The number on the right-hand side of the slider indicates the current position of your slider.
                             A slider is correctly adjusted when the current position is equal to 50.
                         </p>
@@ -130,7 +130,7 @@
                             All sliders you have to solve will be displayed on one screen.
                         </p>
                         <p>
-                            We ask you to solve {{ Constants.num_sliders }} sliders on the screen before you proceed to Task 2. <strong>If Task 1 is selected for
+                            We ask you to solve {{ Constants.num_sliders }} sliders before you proceed to Task 2. <strong>If Task 1 is selected for
                             payment, you will earn additional {{ Constants.endowment }} Points for the completion of the task </strong>.
                         </p>
 
@@ -173,7 +173,7 @@
 
                         {% formfield player.cq2 label="To which position do you have to drag the sliders in Task 1?"  %}
 
-                        {% formfield player.cq3 label="Your earnings in the end of the experiment depend on the choices you made."  %}
+                        {% formfield player.cq3 label="Your earnings in the end of the experiment may depend on the choices you made."  %}
 
                         {% formfield player.cq4 label="Your final earnings are determined as follows"  %}
 

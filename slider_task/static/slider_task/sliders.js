@@ -35,12 +35,13 @@ $('.slider').on('input change', function(){
                     }
                 }
                 if (num_centered == sliders.length ) {
-                      form.submit();
+                    form.submit();
                     text = ""
                 }
                 else {
-                  event.preventDefault();
-                    text = "Please place all sliders at 50."
+                    event.preventDefault();
+                    window.scrollTo(0, 0);
+                    document.getElementById('alert').style.display="block";
                 }
                 document.getElementById("errormessage").innerHTML = text;
             }

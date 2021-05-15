@@ -6,37 +6,36 @@
             <h4 style="margin-bottom: 16pt">Task 5 - Instructions</h4>
 
             <p>
-                In this task, you are again given the opportunity to donate some of your earnings from your work in Task 1.
-                For each decision, we will show you one project. You will be informed of the price of the donation to this project.
-                You will also be informed of
+                This task is similar to Task 3. You again have the option to donate a portion of your earnings
+                from the work in Task 1. For each decision, we will show you one project. You will be informed
+                of the price of the donation to that project. You will also be
                 {% if player.treatment == "Info" %}
-                    the true number of Xs in the matrix, and the true amount of CO<sub>2</sub> emissions that are eliminated if you decide to donate to this project.
+                    <strong>informed of the true number of Xs in the matrix and the true amount of CO<sub>2</sub>emissions</strong>
+                    that are eliminated if you decide to donate to this project.
                 {% else %}
-                    your estimate of how much CO<sub>2</sub> emissions will be eliminated through this project,
-                    so your estimate on the number of Xs of this project in the previous task.
+                    reminded of <strong>your estimate of the number of Xs</strong> of this project in the previous task,
+                    that is, your estimate of how much CO<sub>2</sub> emissions will be avoided by this project.
                 {% endif %}
             </p>
+
             <p>
-                If you decide to donate to a project in a given round and this round is selected for payment,
-                we will donate the amount to climatecare.org, a company that eliminates CO<sub>2</sub> emissions from the atmosphere. Thus, through your
-                donation <strong>real CO<sub>2</sub> emissions in the atmosphere will be reduced </strong>.
+                If you decide to donate to a project in a particular round and that round is selected for payment,
+                we will donate the amount to climatecare.org. If this decision is selected as the decision for your
+                payments, your payments will be determined as follows:
             </p>
 
-            <div>
-                <p>
-                    If you decide to donate to a given project, and this decision is selected to be the decision-that-counts for your payments,
-                    your payments will be determined as follows:
-                </p>
-                <p style="text-align: center">
-                    {{ Constants.endowment }} Points - the price of the given project.
-                </p>
-                <p>
-                    If you decide not to donate, and this decision is selected to count, nothing will be subtracted from your earnings from the work task, and you will be paid:
-                </p>
-                <p style="text-align: center">
-                    {{ Constants.endowment }} Points.
-                </p>
-            </div>
+            <p style="text-align: center">
+                {{ Constants.endowment }} Points - the price of the given project.
+            </p>
+
+            <p>
+                If you decide not to donate and this decision is selected as counting decision, you will be paid:
+            </p>
+
+            <p style="text-align: center">
+                {{ Constants.endowment }} Points.
+            </p>
+
         </div>
     </div>
 
