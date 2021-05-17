@@ -3,7 +3,6 @@ from math import ceil
 from tabulate import tabulate
 
 
-"""
 # Create the basic list of 100 os
 columns = 20
 dimension = columns ** 2
@@ -38,13 +37,15 @@ for i in number_Xs:
     index = number_Xs.index(i) + 1
     print()
     
-    # OBS make this white font so that you can see it in the latex document but not in the screenshots
-    
+    print("\\begin{frame}")    
     exec('print("This is Table", index, "with", %s, "Xs")' % i)
+    print("\\end{frame}")    
     print()
+    print("\\begin{frame}")
+    print("\\resizebox{\linewidth}{!}{")
     print("\\texttt{")
     exec("print(tabulate(matrix_%s, tablefmt='latex'))" % i)
     print("}")
+    print("}")
+    print("\\end{frame}")
     print()
-    print("\\pagebreak")
-"""
