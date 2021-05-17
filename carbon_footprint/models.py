@@ -119,7 +119,11 @@ class Player(BasePlayer):
                                           self.fossil_fuels_wood * co2_fac_wood * 100 +
                                           self.fossil_fuels_gas * co2_fac_bg * 100) / 100
         else:
-            self.fossil_fuels_co2 = 0
+            self.fossil_fuels_co2 = 0 # Fossil fuel has zero CO2 impact
+            self.fossil_fuels_gas = -99
+            self.fossil_fuels_wood = -99
+            self.fossil_fuels_coal = -99
+            self.fossil_fuels_oil = -99
 
         self.avg_fossil_fuels_co2 = round(avg_oil * co2_fac_oil * 100 +
                                           avg_coal * co2_fac_coal * 100 +
@@ -260,7 +264,7 @@ class Player(BasePlayer):
 
 
     # Calculator questions
-    hh_members = models.FloatField(label="How many people are there in your household?",
+    hh_members = models.FloatField(label="How many people live in your household? You can enter a decimal, e.g. 3.5, if you have a family member who is away from home for part of the year.",
                              min=1.0,
                              max=10.0)
 
@@ -417,13 +421,16 @@ class Player(BasePlayer):
                                              min=0,
                                              max=25000)
 
-    plane_hours = models.IntegerField(label="How many hours have you travelled by plane in an average year before the pandemic?",
+    plane_hours = models.IntegerField(label="How many hours did travel by plane in an average year before the pandemic?",
                                       min=0,
                                       max=500)
 
 
     mis_spending = models.FloatField(widget=widgets.RadioSelect,
-                                   label="How would you classify the level of your miscellaneous spending (e.g., on clothing, recreating, hygiene)?",
+                                   label="How would you classify the level of your miscellaneous spending (e.g., on clothing, recreation, technology, hygiene)? "
+                                         "(The average UK household spends around £1000 a month on these categories.)",
+                                     # Source: (2018) https://www.ons.gov.uk/peoplepopulationandcommunity/personalandhouseholdfinances/expenditure/datasets/componentsofhouseholdexpenditureuktablea1
+                                     # £1038 = Sum of average weekly spendings on all categories which are not already elicited (= £259.8) * 4
                                    choices=[
                                        [5, "Above-average"],
                                        [3.4, "Average"],
@@ -446,26 +453,24 @@ class Player(BasePlayer):
                                    ])
 
 
-#To Dos (12.05.21):
+
+#To Dos (17.05.21):
 # - Mit Seb sprechen, wies genau weitergehen soll
 # - Feedback bei Team für rechner einholen.
 # - Explain (and maybe improve) food calculation, wait for Ian's reply
-# - hh members: int or float field? -> in the original calculator float makes sense because you can enter
-#   "half members" like "3.5", if we want to do this as well we should add a note and explain this.
-# - Improve Layout and labels of new bus/train fields
-# - Export could be improved, --> clearer variable names; replace none values with "-99" etc.
-# - Talk about min, max values of bus/train/plane fields
+# - Export could be improved, --> maybe clearer variable names?
+
 
 
 # Fossil fuel min. max values explanations:
 # - Using the values from our calculator: The UK citizens produces 3.24 tonnes of CO2 for heating
-#    their house per year ( var avg_gas_co2)
+#    their house per year (var avg_gas_co2)
 # - Assuming the specific fossil fuel is the only heating source in the house the following amount is
 #   needed to heat an average house for a year:
 #   - Heating oil: avg_gas_co2 / co2_fac_oil == 3.24 / 0.00296 ~ 1100 litres of heating oil
 #   - Coal:  avg_gas_co2 / co2_fac_coal == 3.24 / 0.00326 ~ 1000 kg of coal
 #   - Wood: avg_gas_co2 / co2_fac_wood == 3.24 / 0.0001 ~ 32400 kg of wood
-#   - Bottled glass: avg_gas_co2 / co2_fac_gas == 3.24 / 0.00368 ~ 880 kg of bottled glass
+#   - Bottled gas: avg_gas_co2 / co2_fac_gas == 3.24 / 0.00368 ~ 880 kg of bottled gas
 # - Based on these values the maximal value for the fossil fuels are set as follows:
 #   - Heating oil max = 2000; Coal max = 2000; Wood max = 60000; Bottled glass max = 1500
 
