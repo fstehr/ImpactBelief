@@ -1,12 +1,10 @@
 --> test payoff consequences properly
+--> OBS! When timeout in part 4, final payoff is still positive & show-up fee should also be deducted
+ when timeout occured!
 
 check why there is a time problem on instructions page [Violation] 'click' handler took 2274ms
 
 - include a counter on belief & donation page that shows progress
-
-- maybe put task 4 & 5 instructions on slides as well
-
-- check that instructions for donation are the same in beliefinstr1 & donationinst1 (for neutral on donation page, as for motivated on belief page)
 
 - check for consistency in British vs American English (e.g. all -z spellings!)
 
