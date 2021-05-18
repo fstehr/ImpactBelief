@@ -35,7 +35,6 @@ class Constants(BaseConstants):
     beliefs_max_accuracy_bonus = beliefs_fixed_payment
     beliefs_max_payment = beliefs_fixed_payment + beliefs_max_accuracy_bonus
 
-
     # slider_columns = 3  # uncomment this if you want sliders in the slider task to be displayed in multiple columns
     num_sliders = 1
 
@@ -53,6 +52,7 @@ class Subsession(BaseSubsession):
                 paras = Constants.paras.copy()
                 p.vars['trial_timeout_counter'] = 0  # initialize trial timeout counter
                 p.vars['timeout_counter'] = 0  # initialize timeout counter
+                p.vars['forced_timeout'] = 0
 
                 # generate participant varlist for beliefs by part, to store beliefs using project_id
                 p.vars['beliefs_part1'] = [0] * len(paras)
@@ -116,6 +116,17 @@ class Subsession(BaseSubsession):
                 else:
                     p.treatment = "Info"
 
+    def vars_for_admin_report(self):
+        participants = [p for p in self.session.get_participants()]
+        for p in self.session.get_participants():
+            final_payoff = p.payoff
+            final_payoff_plus_part_fee = p.payoff_plus_participation_fee()
+        return {
+            'participants': participants,
+            'final_payoff': final_payoff,
+            'final_payoff_plus_part_fee': final_payoff_plus_part_fee,
+        }
+
 
 class Group(BaseGroup):
     pass
@@ -137,7 +148,6 @@ class Player(SliderPlayer):
     clicked_early = models.BooleanField(blank=True, doc="True if person tried to continue from instructions < 60 sec")
     equation_clicked = models.BooleanField(blank=True,
                                            doc="automatically filled if people click on equation for quadratic scoring rule")
-    timeout = models.BooleanField(blank=True, doc="True if a time-out occured on a belief-elicitation page")
 
     trial_belief_1 = models.IntegerField(blank=True, min=0, max=400)
     trial_belief_2 = models.IntegerField(blank=True, min=0, max=400)
@@ -146,12 +156,15 @@ class Player(SliderPlayer):
                                         doc="Counts how many time-outs occured on trial belief page")
 
     num_x_belief = models.IntegerField(min=0, max=400, doc="records belief on number of Xs in matrix")
+    timeout = models.BooleanField(blank=True, doc="True if a time-out occured on a belief-elicitation page")
+    forced_timeout = models.BooleanField(blank=True,
+                                         doc="True if subject was forced to quit because of too many time-outs")
     donation = models.BooleanField(widget=widgets.RadioSelectHorizontal,
-        choices=[
-            [True, 'Yes'],
-            [False, 'No'],
-        ]
-    )
+                                   choices=[
+                                       [True, 'Yes'],
+                                       [False, 'No'],
+                                   ]
+                                   )
     project_id = models.IntegerField()
     num_x_true = models.IntegerField()
     price = models.FloatField()

@@ -18,14 +18,16 @@
 {% block content %}
 
     {% if timeout %}
-
-        Your participation in this experiment was terminated, because you did not answer on time too often.
-
+        <p>
+                Your participation in this experiment was terminated, because you did not answer on time too often.
+        </p>
+    {% else %}
+        <p>
+            Thank you for your participation in this experiment!
+        </p>
     {% endif %}
 
-    <p>
-        Thank you for your participation in this experiment!
-    </p>
+
 
     <p>
         This is your final payoff: {{ final_payoff_display }}.

@@ -130,6 +130,8 @@ class TrialBelief3(Page):
 
     def app_after_this_page(self, upcoming_apps):
         if self.participant.vars['trial_timeout_counter'] == 3:
+            self.player.forced_timeout = True
+            self.participant.vars['forced_timeout'] = True
             return "payment_info"
 
 
@@ -202,6 +204,8 @@ class Belief(Page):
 
     def app_after_this_page(self, upcoming_apps):
         if self.participant.vars['timeout_counter'] == 2:
+            self.player.forced_timeout = True
+            self.participant.vars['forced_timeout'] = True
             return "payment_info"
 
 
@@ -293,16 +297,16 @@ class Questionnaire(Page):
 # page_sequence = [Instructions]
 
 page_sequence = [
-    IntroWelcome,
-    Instructions,
-    Sliders,
+    #IntroWelcome,
+    #Instructions,
+    #Sliders,
     TrialBelief1,
     TrialBelief2,
     TrialBelief3,
-    Introbelief,
-    Belief,
-    Donation,
-    CarbonBelief,
-    CostBelief,
-    Questionnaire
+    # Introbelief,
+    # Belief,
+    # Donation,
+    # CarbonBelief,
+    # CostBelief,
+    # Questionnaire
     ]
