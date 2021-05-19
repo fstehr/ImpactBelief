@@ -267,9 +267,8 @@ class CarbonBelief(Page):
     form_model = 'player'
 
     def get_form_fields(player):
-        fields = ['co2_belief_car', 'co2_belief_plane', 'co2_belief_renewables', 'co2_belief_hybrid',
-                  'co2_belief_vegan', 'co2_belief_laundry', 'co2_belief_recycle', 'co2_belief_dryer',
-                  'co2_belief_led']
+        fields = ['co2_belief_car', 'co2_belief_plane', 'co2_belief_renewables', 'co2_belief_vegan',
+                  'co2_belief_laundry', 'co2_belief_recycle', 'co2_belief_dryer', 'co2_belief_led']
         random.shuffle(fields)
         return fields
 
@@ -281,9 +280,8 @@ class CostBelief(Page):
     form_model = 'player'
 
     def get_form_fields(player):
-        fields = ['cost_belief_car', 'cost_belief_plane', 'cost_belief_renewables', 'cost_belief_hybrid',
-                  'cost_belief_vegan', 'cost_belief_laundry', 'cost_belief_recycle', 'cost_belief_dryer',
-                  'cost_belief_led']
+        fields = ['cost_belief_car', 'cost_belief_plane', 'cost_belief_renewables', 'cost_belief_vegan',
+                  'cost_belief_laundry', 'cost_belief_recycle', 'cost_belief_dryer', 'cost_belief_led']
         random.shuffle(fields)
         return fields
 
