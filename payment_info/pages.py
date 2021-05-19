@@ -12,14 +12,21 @@ class PaymentInfo(Page):
 
         if participant.vars['trial_timeout_counter'] == 3 or participant.vars['timeout_counter'] == 2:
             timeout = True
+            attention_fail = False
             final_payoff = 0
-            final_payoff_plus_part_fee = 0
+            final_payoff_plus_part_fee = self.session.config.participation_fee
+        elif self.participant.vars['attention_check_failed']:
+            timeout = False
+            attention_fail = True
+            final_payoff = 0
+            final_payoff_plus_part_fee = self.session.config.participation_fee
         else:
             timeout = False
+            attention_fail = False
             final_payoff = participant.payoff
             final_payoff_plus_part_fee = participant.payoff_plus_participation_fee()
 
-        return {'timeout': timeout, 'final_payoff_display': final_payoff,
+        return {'timeout': timeout, 'attention_check_failed': attention_fail, 'final_payoff_display': final_payoff,
                 'final_payoff_plus_part_fee_display': final_payoff_plus_part_fee}
         # dict(redemption_code=participant.label or participant.code)
 

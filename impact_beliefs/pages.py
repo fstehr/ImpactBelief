@@ -21,7 +21,7 @@ class Instructions(Page):
 
     def get_form_fields(player):
         if player.round_number == 1:
-            return ['window_width', 'window_height', 'honeypot', 'clicked_early'] \
+            return ['window_width', 'window_height', 'honeypot', 'clicked_early', 'attention_check'] \
                   + ['cq{}'.format(i) for i in range(1, 5)]
         elif player.round_number == 2:
             return ['gif_clicked', 'gif_watched', 'equation_clicked', 'honeypot', 'clicked_early'] \
@@ -40,6 +40,12 @@ class Instructions(Page):
     def vars_for_template(self):
         exchange_rate = int(1 / self.session.config['real_world_currency_per_point'])
         return {'exchange_rate': exchange_rate}
+
+    def app_after_this_page(self, upcoming_apps):
+        if self.player.attention_check != 23:
+            self.player.attention_check_failed = True
+            self.participant.vars['attention_check_failed'] = True
+            return "payment_info"
 
 
 class Sliders(SliderTaskPage):
@@ -294,7 +300,7 @@ class Questionnaire(Page):
         return self.round_number == Constants.num_rounds
 
 
-page_sequence = [CostBelief]
+page_sequence = [Instructions]
 #
 # page_sequence = [
 #     IntroWelcome,

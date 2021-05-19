@@ -143,6 +143,10 @@ class Player(SliderPlayer):
     order = models.StringField()
     treatment = models.StringField()
 
+    # https://www-jstor-org.ezproxy.ub.unimaas.nl/stable/24363518?seq=1#metadata_info_tab_contents
+    attention_check = models.IntegerField(min=0, max=100, doc="Asks to fill in 23 as random number as attention check.")
+    attention_check_failed = models.BooleanField(blank=True, doc="True if subject failed to put in 23 as random answer")
+
     gif_clicked = models.BooleanField(blank=True, doc="automatically filled if people click on gif")
     gif_watched = models.BooleanField(blank=True, doc="check box field where people confirm they clicked on the gif")
     clicked_early = models.BooleanField(blank=True, doc="True if person tried to continue from instructions < 60 sec")
