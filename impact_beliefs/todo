@@ -1,10 +1,13 @@
 --> test payoff consequences properly
 --> OBS! When timeout in part 4, final payoff is still positive & show-up fee should also be deducted
  when timeout occured!
+ - OBS double check with prolific whether you can actually remove participation fee as well?
+
 
 check why there is a time problem on instructions page [Violation] 'click' handler took 2274ms
 
-- include a counter on belief & donation page that shows progress
+
+- include a counter on belief & donation page that shows progress?
 
 - check for consistency in British vs American English (e.g. all -z spellings!)
 

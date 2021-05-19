@@ -66,6 +66,11 @@
                         </h5>
 
                         <p>
+                            {% if player.treatment == "Motivated" %}
+                                In this task, you can you can donate some of the {{ Constants.endowment }} Points
+                                you earned through your work in Task 1 to climatecare.org, an organization that
+                                eliminates CO<sub>2</sub> emissions from the atmosphere.
+                            {% endif %}
                             For each donation decision we will show you one project. You will be informed about the
                             price of the donation for this project. Prices can range between 11.25 and 138.75 Points.
                             We remind you of your estimate of the number of Xs of this project in the previous task.

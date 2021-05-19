@@ -294,19 +294,19 @@ class Questionnaire(Page):
         return self.round_number == Constants.num_rounds
 
 
-# page_sequence = [Instructions]
-
-page_sequence = [
-    #IntroWelcome,
-    #Instructions,
-    #Sliders,
-    TrialBelief1,
-    TrialBelief2,
-    TrialBelief3,
-    # Introbelief,
-    # Belief,
-    # Donation,
-    # CarbonBelief,
-    # CostBelief,
-    # Questionnaire
-    ]
+page_sequence = [CostBelief]
+#
+# page_sequence = [
+#     IntroWelcome,
+#     Instructions,
+#     Sliders,
+#     TrialBelief1,
+#     TrialBelief2,
+#     TrialBelief3,
+#     Introbelief,
+#     Belief,
+#     Donation,
+#     CarbonBelief,
+#     CostBelief,
+#     Questionnaire
+#     ]

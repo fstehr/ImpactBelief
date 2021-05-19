@@ -8,14 +8,27 @@
         padding: 5px;
       }
       td:nth-child(1) {
-          width: 17%;
+          width: 15%;
+          font-style: italic;
+          margin-left: 12pt;
+      }
+      td:nth-child(2) {
+          text-align: center;
+          font-weight: bold;
+          vertical-align: middle;
+      }
+      td:nth-child(3) {
+          width: 10%;
+          text-align: right;
+          vertical-align: middle;
+          font-style: italic;
       }
     </style>
 {% endblock %}
 
 
 {% block title %}
-    Adoption costs
+    Adoption Costs
 {% endblock %}
 
 
@@ -27,14 +40,14 @@
 
     <div class="alert alert-light" style="border-color: lightgrey; color: black">
             <p>
-                On this page, we ask you to indicate how costly it would be to you to adopt various behaviors. The scale
-                goes from 0 to 100, with 0 indicating "Not costly at all" and 100 indicating "prohibitively costly".
-                When considering costs, please think about <em>monetary costs</em>,
+                On this page, we ask you to indicate <strong>how costly it would be to you personally to adopt various behaviors</strong>.
+                The scale goes from "not costly at all" to "prohibitively costly".
+                When considering costs, please think not only about <em>monetary costs</em>,
                 but also about how <em>difficult</em> it would be to you personally to adopt this behavior.
             </p>
     </div>
 
-    <div style="margin-bottom:1cm;margin-top:1cm">
+    <div  style="margin-bottom:1cm; margin-top:1cm; position:sticky; top: -1px; padding: 10px 0px; background-color: white; z-index:5;">
         <p>
             Please indicate how <strong>costly</strong> the adoption of each item in the list below is to you:
         </p>
@@ -44,27 +57,31 @@
 		<div style="overflow-x: auto;">
 
         <!-- Adding table in the web page -->
-        <table style="width:100%">
+        <table class="table table-striped" style="width:80%; margin-right: auto; margin-left: auto;">
             <thead>
                 <tr>
-                    <th>Category</th>
-                    <th style="text-align:center">CO<sub>2</sub> Emissions</th>
+                    <th></th>
+                    <th style="text-align:center">Adoption Costs</th>
+                    <th></th>
                 </tr>
             </thead>
 
             <tbody>
                 {% for field in form %}
                     <tr>
+                        <td></td>
                         <td>{{ field.label }}</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td style="padding-bottom: 18pt; padding-top: 18pt">Not costly at all</td>
                         <td>
-                            <div class="slidecontainer" style="">
-                                <span>0</span>
-                                <input type="range" name="{{ field.name }}" min="0" max="100" value="0" step="1" id="{{ field.name }}" class="slider">
-                                100
-                                <span style="font-weight: bold;color:#007bff" class="slider_label"></span>
+                            <div class="slidecontainer" style="margin-left: auto; margin-right: auto">
+                                <input type="range" name="{{ field.name }}" min="0" max="100" value="0" step="1" id="{{ field.name }}" class="slider" style="width: 100%">
                             </div>
                             <div> {{ field.errors }}</div>
                         </td>
+                        <td>prohibitively costly</td>
                     </tr>
                 {% endfor %}
             </tbody>
