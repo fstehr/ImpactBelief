@@ -3,6 +3,12 @@
 
 {% block styles %}
     <link rel="stylesheet" type="text/css" href="{% static "css/sliders.css" %}">
+    <style>
+        .form-check-input {
+            margin-right: 0px;
+            margin-left: -7.5px;
+        }
+    </style>
 {% endblock %}
 
 {% block scripts %}
@@ -92,7 +98,33 @@
                             <td>{{ form.altruism.label }}</td>
                         </tr>
                         <tr>
-                            <td>{{ form.altruism }}</td>
+                            <td>
+                                <table class="table table-borderless">
+                                    <tbody>
+                                        <tr style="background-color: white">
+                                            <td style="width:10%; padding: 0; text-align: right; vertical-align: middle"><em>"completely unwilling to share"</em></td>
+                                            <td style="vertical-align: middle">
+                                                 <table class="table table-borderless">
+                                                    <tbody>
+                                                        <tr style="background-color: white; padding: 0">
+                                                            {% for choice in form.altruism %}
+                                                                    <td style="width: 9%; text-align: center; padding: 0; ">{{ choice.choice_label }}</td>
+                                                            {% endfor %}
+                                                        </tr>
+                                                        <tr style="background-color: white; padding: 0;">
+                                                            {% for choice in form.altruism %}
+                                                                    <td style="width: 9%; text-align: center; padding:0">{{ choice.tag }}</td>
+                                                            {% endfor %}
+                                                        </tr>
+                                                    </tbody>
+                                                 </table>
+                                            </td>
+                                            <td style="width:10%; padding:0; text-align: left; vertical-align: middle"><em>"very willing to share"</em></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            </td>
                         </tr>
                     </div>
 
@@ -103,21 +135,7 @@
                             <td>{{ form.politics_right.label }}</td>
                         </tr>
                         <tr>
-                            <td>
-                                <table class="table table-borderless">
-                                    <tbody>
-                                        <tr style="background-color: white">
-                                            <td style="width:20%; padding-bottom:0; text-align: right"><em>"The Left"</em></td>
-                                            <td style="text-align: center; vertical-align: middle">
-                                                <div class="slidecontainer" style="margin-left: auto; margin-right: auto">
-                                                    <input type="range" name="politics_right" min="0" max="100" value="0" step="1" id="politics_right" class="slider" style="width: 100%">
-                                                </div>
-                                            </td>
-                                            <td style="width:20%; padding-bottom:0; text-align: left"><em>"The Right"</em></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </td>
+                            <td>{{ form.politics_right }}</td>
                         </tr>
                     </div>
 

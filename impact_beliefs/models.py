@@ -333,9 +333,16 @@ class Player(SliderPlayer):
         ],
     )
 
-    # Barnes, S.H., Kaase, M.et al. 1979 Political Action: Mass Participation in Five Western Democracies, Beverley Hills: Sage.
+    # https://medium.com/pew-research-center-decoded/small-changes-in-survey-scales-can-matter-when-measuring-political-ideology-in-europe-4a10d9a015c5
     politics_right = models.IntegerField(
-        label="In political matters people talk of 'the left' and 'the right'. Using the slider, please indicate where you see yourself on that scale.",
+        label= "In political matters people talk of 'the left' and 'the right'. Please pick the category that you identify most with.",
+        choices=[[1, "left"],
+                 [2, "leaning left"],
+                 [3, "center"],
+                 [4, "leaning right"],
+                 [5, "right"]
+                 ],
+        widget=widgets.RadioSelectHorizontal,
     )
 
     altruism = models.IntegerField(
