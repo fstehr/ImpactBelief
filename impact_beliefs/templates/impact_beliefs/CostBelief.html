@@ -27,6 +27,11 @@
 {% endblock %}
 
 
+{% block scripts %}
+    <script type="text/javascript" src="{% static 'js/sliders.js' %}"></script>
+{% endblock %}
+
+
 {% block title %}
     Adoption Costs
 {% endblock %}
@@ -35,7 +40,7 @@
 {% block content %}
 
     <div class="alert alert-danger" id="alert" style="display:none;">
-        Please indicate your estimate for all items.
+        Please indicate your estimate for all items. If you would like to answer '0' for an item, please make sure to click on the slider once.
     </div>
 
     <div class="alert alert-light" style="border-color: lightgrey; color: black">
@@ -93,13 +98,4 @@
        <button name="slider_task_check" id="test" class="btn btn-primary btn-large" onclick="checkTouched()">Next</button>
     </div>
 
-
-
 {% endblock %}
-
-
-{% block scripts %}
-    <script type="text/javascript" src="{% static 'js/sliders.js' %}"></script>
-{% endblock %}
-
-

@@ -2,7 +2,7 @@
 {% load otree %}
 
 {% block title %}
-    Task {{ task_number }} - The Investment Task
+    Task {{ task_number }} - The Donation Task
 {% endblock %}
 
 {% block content %}
@@ -15,6 +15,9 @@
         <p>
             When you decide to donate to a project, and this task is selected for payment, we will donate the money to climatecare.org.
             They will eliminate the amount of CO<sub>2</sub> from the atmosphere that is proportional to the true number of project's Xs in the matrix you saw earlier.
+        </p>
+        <p>
+            {{ exchange_rate }} Points = &pound1.
         </p>
     </div>
 
@@ -36,11 +39,11 @@
 
     <div class="alert" style="display:block; margin-top:0pt; margin-left:auto; margin-right:auto; width:90%;">
         <p>
-            Your earnings from the work task were {{ Constants.endowment }} Points. The price of investing in this project is <strong>{{ price_to_show }} Points</strong>.
+            Your earnings from the work task were {{ Constants.endowment }} Points. The price of donating to this project is <strong>{{ price_to_show }} Points</strong>.
         </p>
 
         <p>
-            Would you like to invest in this project?
+            Would you like to donate to this project?
         </p>
         <p>
             {{ form.donation }}

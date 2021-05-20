@@ -2,15 +2,24 @@
 {% load otree %}
 
 {% block styles %}
-<style>
-</style>
+    <link rel="stylesheet" type="text/css" href="{% static "css/sliders.css" %}">
 {% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript" src="{% static 'js/sliders.js' %}"></script>
+{% endblock %}
+
 
 {% block title %}
     Questionnaire
 {% endblock %}
 
+
 {% block content %}
+
+    <div class="alert alert-danger" id="alert" style="display:none;">
+        Please indicate your estimate for all items. Please make sure to click on each slider once.
+    </div>
 
 
 <div style="margin-bottom: 18pt">
@@ -66,17 +75,6 @@
                     </div>
 
 
-                    <!-- POLITICAL ATTITUDES QUESTION -->
-                    <div>
-                        <tr>
-                            <td>{{ form.political.label }}</td>
-                        </tr>
-                        <tr>
-                            <td>{{ form.political }}</td>
-                        </tr>
-                    </div>
-
-
                     <!-- INCOME QUESTION -->
                     <div>
                         <tr>
@@ -99,6 +97,31 @@
                     </div>
 
 
+                    <!-- POLITICAL ATTITUDES QUESTION -->
+                    <div>
+                        <tr>
+                            <td>{{ form.politics_right.label }}</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <table class="table table-borderless">
+                                    <tbody>
+                                        <tr style="background-color: white">
+                                            <td style="width:20%; padding-bottom:0; text-align: right"><em>"The Left"</em></td>
+                                            <td style="text-align: center; vertical-align: middle">
+                                                <div class="slidecontainer" style="margin-left: auto; margin-right: auto">
+                                                    <input type="range" name="politics_right" min="0" max="100" value="0" step="1" id="politics_right" class="slider" style="width: 100%">
+                                                </div>
+                                            </td>
+                                            <td style="width:20%; padding-bottom:0; text-align: left"><em>"The Right"</em></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                    </div>
+
+
                     <!-- ENVIRONMENTAL ATTITUDE QUESTION -->
                     <div>
                         <tr>
@@ -106,12 +129,16 @@
                         </tr>
                         <tr>
                             <td>
-                                <table class="table-light">
+                                <table class="table table-borderless">
                                     <tbody>
                                         <tr style="background-color: white">
-                                            <td style="width:20%"><em>"Economic growth and creating jobs should be the top priority, even if the environment suffers to some extent."</em></td>
-                                            <td style="text-align: center">{{ form.env_attitude}}</td>
-                                            <td style="width:20%"><em>"Protecting the environment should be given priority, even if it causes slower economic growth and some loss of jobs."</em></td>
+                                            <td style="width:19%; padding: 0; text-align: right"><em>"Economic growth and creating jobs should be the top priority, even if the environment suffers to some extent."</em></td>
+                                            <td style="text-align: center; vertical-align: middle">
+                                                <div class="slidecontainer" style="margin-left: auto; margin-right: auto">
+                                                    <input type="range" name="env_attitude" min="0" max="100" value="0" step="1" id="env_attitude" class="slider" style="width: 100%">
+                                                </div>
+                                            </td>
+                                            <td style="width:20%; padding:0; text-align: left"><em>"Protecting the environment should be given priority, even if it causes slower economic growth and some loss of jobs."</em></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -124,7 +151,7 @@
             </div>
 
 	<div style="margin-top:12pt; text-align: right">
-        <button class="btn btn-primary btn-large">Next</button>
+       <button name="slider_task_check" id="test" class="btn btn-primary btn-large" onclick="checkTouched()">Next</button>
     </div>
 
 {% endblock %}

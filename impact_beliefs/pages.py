@@ -42,7 +42,7 @@ class Instructions(Page):
         return {'exchange_rate': exchange_rate}
 
     def app_after_this_page(self, upcoming_apps):
-        if self.player.attention_check != 23:
+        if self.round_number == 1 and self.player.attention_check != 23:
             self.player.attention_check_failed = True
             self.participant.vars['attention_check_failed'] = True
             return "payment_info"
@@ -226,6 +226,7 @@ class Donation(Page):
     def vars_for_template(self):
         player = self.player
         task_number = player.part + 1
+        exchange_rate = int(1 / self.session.config['real_world_currency_per_point'])
         project = self.participant.vars['parameters'][self.round_number - 2]
         player.project_id = int(project['project_id'])
         player.price = float(project['price_ECU'])
@@ -237,8 +238,8 @@ class Donation(Page):
         elif player.part == 4:
             player.num_x_belief = self.participant.vars['beliefs_part3'][player.project_id - 1]
 
-        return {'task_number': task_number, 'project': player.project_id, 'price_to_show': player.price,
-                'belief': player.num_x_belief, 'num_X_true': player.num_x_true}
+        return {'task_number': task_number, 'exchange_rate': exchange_rate, 'project': player.project_id,
+                'price_to_show': player.price, 'belief': player.num_x_belief, 'num_X_true': player.num_x_true}
 
     def js_vars(self):
         player = self.player
@@ -291,14 +292,14 @@ class CostBelief(Page):
 
 class Questionnaire(Page):
     form_model = 'player'
-    form_fields = ['age', 'gender', 'levelOfEducation', 'political', 'income',
+    form_fields = ['age', 'gender', 'levelOfEducation', 'politics_right', 'income',
                    'altruism', 'env_attitude']
 
     def is_displayed(self):
         return self.round_number == Constants.num_rounds
 
 
-page_sequence = [Instructions]
+page_sequence = [Questionnaire]
 #
 # page_sequence = [
 #     IntroWelcome,

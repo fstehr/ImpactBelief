@@ -333,18 +333,9 @@ class Player(SliderPlayer):
         ],
     )
 
-    political = models.IntegerField(
-        label="Which of the following best describes your political views?",
-        choices=[
-            [0, 'very liberal'],
-            [1, 'liberal'],
-            [2, 'somewhat liberal'],
-            [3, 'moderate'],
-            [4, 'somewhat conservative'],
-            [5, 'conservative'],
-            [6, 'very conservative'],
-            [7, 'none of the above'],
-        ],
+    # Barnes, S.H., Kaase, M.et al. 1979 Political Action: Mass Participation in Five Western Democracies, Beverley Hills: Sage.
+    politics_right = models.IntegerField(
+        label="In political matters people talk of 'the left' and 'the right'. Using the slider, please indicate where you see yourself on that scale.",
     )
 
     altruism = models.IntegerField(
@@ -357,9 +348,7 @@ class Player(SliderPlayer):
 
     env_attitude = models.IntegerField(
         label="Here are two statements people sometimes make when discussing the environment"
-              " and economic growth. Which of them comes closer to your own point of view?",
-        choices=range(0, 11),
-        widget=widgets.RadioSelectHorizontal,
+              " and economic growth. Please use the slider to indicate which of them comes closer to your own point of view?",
         doc=" environmental attitudes Q111 from 2017 wave of world value survey. " \
             "0= Economic growth and creating jobs should be the top priority, even if the"
             "environment suffers to some extent. 10= Protecting the environment should"
