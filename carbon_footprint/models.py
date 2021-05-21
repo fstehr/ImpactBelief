@@ -73,7 +73,7 @@ class Player(BasePlayer):
         ele_ren = 1
         if self.green_electricity:
             ele_ren = 0.75
-        avg_ele_ren = 0.75 # this reflects energy mix
+        avg_ele_ren = 0.75  # this reflects energy mix
 
         # CALCULATION
         self.ele_co2 = round(self.electricity_kwh * ele_ren * co2_fac_ele * 100) / 100
@@ -216,7 +216,7 @@ class Player(BasePlayer):
         # Very little (90% less) -> 0.82
 
         food_use_fac = (1 + self.food_was) / 1.25
-        food_pac = 1-self.food_fresh   # un-do 1- transformation from below, to have variable defined as packaging impact not fresh impact.
+        food_pac = 1-self.food_fresh   # undo (1-food_pac) transformation from below, to have variable defined as packaging impact not fresh impact.
 
         # Food sum calculation / 0.2 is hard to avoid
         self.food_sum_co2 = round((0.2 + self.food_org + self.food_meat + self.food_miles +
