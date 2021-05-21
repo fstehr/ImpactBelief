@@ -249,9 +249,9 @@ class Donation(Page):
         else:
             carbon_emissions = player.num_x_belief * Constants.real_world_kg_co2_per_x
 
-        car_km = carbon_emissions * Constants.car_km_per_kg_co2
+        car_miles = carbon_emissions / Constants.car_kg_co2_per_mile
         return dict(
-            display_km=car_km,
+            display_miles=car_miles,
             display_co2=carbon_emissions,
         )
 
@@ -299,7 +299,7 @@ class Questionnaire(Page):
         return self.round_number == Constants.num_rounds
 
 
-page_sequence = [Questionnaire]
+page_sequence = [Donation]
 #
 # page_sequence = [
 #     IntroWelcome,

@@ -27,11 +27,11 @@
                     {% if player.treatment == "Info" %}
                         The correct number of Xs in the matrix of the current project was {{ num_X_true }}.
                         This means that <strong>this project eliminates <span id="Co2"></span> kg CO<sub>2</sub></strong>.
-                        This amount of carbon emissions is equivalent to riding <span id="km"></span> km with an average car.
+                        This amount of carbon emissions is equivalent to riding <span id="miles"></span> miles with an average car.
                     {% else %}
                         You estimated the number of Xs in the matrix for the current project to be {{ belief }}.
                         This means that <strong>you believe this project eliminates <span id="Co2"></span> kg CO<sub>2</sub></strong>.
-                        This amount of carbon emissions is equivalent to riding <span id="km"></span> km with an average car.
+                        This amount of carbon emissions is equivalent to riding <span id="miles"></span> miles with an average car.
                     {% endif %}
                 </p>
             </div>
@@ -63,10 +63,10 @@
 
     <script>
         function delimiter() {
-            let km = js_vars.display_km;
+            let miles = js_vars.display_miles;
             let co2 = js_vars.display_co2;
 
-            document.getElementById("km").innerHTML = km.toLocaleString();
+            document.getElementById("miles").innerHTML = miles.toLocaleString();
             document.getElementById("Co2").innerHTML = co2.toLocaleString();
         }
     </script>

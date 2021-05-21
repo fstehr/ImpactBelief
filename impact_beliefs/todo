@@ -15,7 +15,7 @@ Update matrix pictures - use different latex preamble (beamer document class wit
 then convert pdf into pngs
 in parameter csv file - rename all image names to matrix_40_1.PNG (i.e. append .png everywhere)
 
-
+- maybe adjust km values to miles
 
 
 ## LAYOUT STUFF i.e. nice to have

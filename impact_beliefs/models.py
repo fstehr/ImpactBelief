@@ -42,7 +42,7 @@ class Constants(BaseConstants):
     sec_to_answer = 15
 
     real_world_kg_co2_per_x = 0.5
-    car_km_per_kg_co2 = 6  # source: atmosfair.de
+    car_kg_co2_per_mile = 0.275  # source: carbonindependent.org with avg mpg=52
 
 
 class Subsession(BaseSubsession):
