@@ -91,23 +91,25 @@
         <table class="table table-striped" style="width:90%; margin-right: auto; margin-left: auto;">
             <thead>
                 <tr>
-                    <th style="text-align:center">CO<sub>2</sub> Emissions</th>
+                    <th style="text-align:center">kg of CO<sub>2</sub> Emissions</th>
                 </tr>
             </thead>
 
             <tbody>
                 {% for field in form %}
                     <tr>
-                        <td style="height:40px; text-align: center">{{ field.label }}</td>
+                        <td style="text-align: justify"> {{ field.label }} </td>
                     </tr>
                     <tr>
                         <td style="height:60px">
+                            <br>
                             <div class="slidecontainer" style="">
                                 <span>0</span>
                                 <input type="range" name="{{ field.name }}" min="0" max="2500" value="0" step="1" id="{{ field.name }}" class="slider">
                                 2500
                                 <span style="font-weight: bold;color:#007bff" class="slider_label"></span>
                             </div>
+                            <br>
                             <div> {{ field.errors }}</div>
                         </td>
                     </tr>

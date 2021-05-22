@@ -3,19 +3,20 @@
  when timeout occured!
  - OBS double check with prolific whether you can actually remove participation fee as well?
 
+# include mobile phone selector
+- https://s3.amazonaws.com/otreehub/browsable_source/1e38462b-46c7-4ca1-bca5-536462f90131/detect_mobile/index.html
 
-check why there is a time problem on instructions page [Violation] 'click' handler took 2274ms
-
+# check with attention checks
+- if everything but attention check is answered correctly, people will still be thrown out of the study...
+--> might not be desirable & also not policy conform
+- https://researcher-help.prolific.co/hc/en-gb/articles/360009223553-Using-attention-checks-as-a-measure-of-data-quality
 
 - include a counter on belief & donation page that shows progress?
 
 - check for consistency in British vs American English (e.g. all -z spellings!)
 
-Update matrix pictures - use different latex preamble (beamer document class with small margins)
-then convert pdf into pngs
+update csv file!
 in parameter csv file - rename all image names to matrix_40_1.PNG (i.e. append .png everywhere)
-
-- maybe adjust km values to miles
 
 
 ## LAYOUT STUFF i.e. nice to have

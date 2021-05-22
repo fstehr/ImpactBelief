@@ -11,7 +11,7 @@ list_of_os = ['o'] * dimension
 # print(list_of_os)
 
 # Create lists of Xs (different numbers)
-number_Xs_low = [int(0.5*dimension), int(0.2*dimension), int(0.3*dimension)]
+number_Xs_low = [30, 40, 50, 60, 70, 80, 90]
 number_Xs_high = [dimension - i for i in number_Xs_low]
 number_Xs = number_Xs_low + number_Xs_high
 print('number Xs is', number_Xs)
