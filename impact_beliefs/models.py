@@ -135,6 +135,7 @@ class Group(BaseGroup):
 class Player(SliderPlayer):
     starting_time = models.LongStringField(doc="Time at which Informed Consent is given and experiment starts")
 
+    is_mobile = models.BooleanField(doc="Automatic check through JS whether gadget is phone or not")
     window_width = models.IntegerField(blank=True, doc="Documents the respondent's browser window's width.")
     window_height = models.IntegerField(blank=True, doc="Documents the respondent's browser window's height.")
 
@@ -143,9 +144,6 @@ class Player(SliderPlayer):
     order = models.StringField()
     treatment = models.StringField()
 
-    # https://www-jstor-org.ezproxy.ub.unimaas.nl/stable/24363518?seq=1#metadata_info_tab_contents
-    attention_check = models.IntegerField(min=0, max=100, doc="Asks to fill in 23 as random number as attention check.")
-    attention_check_failed = models.BooleanField(blank=True, doc="True if subject failed to put in 23 as random answer")
 
     gif_clicked = models.BooleanField(blank=True, doc="automatically filled if people click on gif")
     gif_watched = models.BooleanField(blank=True, doc="check box field where people confirm they clicked on the gif")
@@ -155,7 +153,10 @@ class Player(SliderPlayer):
 
     trial_belief_1 = models.IntegerField(blank=True, min=0, max=400)
     trial_belief_2 = models.IntegerField(blank=True, min=0, max=400)
-    trial_belief_3 = models.IntegerField(blank=True, min=0, max=400)
+    # https://www-jstor-org.ezproxy.ub.unimaas.nl/stable/24363518?seq=1#metadata_info_tab_contents
+    attention_check = models.IntegerField(blank=True, min=0, max=400, doc="Asks to fill in 54 as random number as attention check.")
+    attention_check_failed = models.BooleanField(blank=True, doc="True if subject failed to put in 23 as random answer")
+
     trial_timeout = models.IntegerField(initial=0, blank=True,
                                         doc="Counts how many time-outs occured on trial belief page")
 

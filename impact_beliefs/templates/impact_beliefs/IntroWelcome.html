@@ -15,10 +15,28 @@
             document.getElementById("starting_time").value = startTime;
         }
         document.title = "Welcome to this study!";
+
+        function isMobile() {
+            const toMatch = [
+                /Android/i,
+                /iPhone/i,
+                /iPad/i,
+            ];
+
+            return toMatch.some((toMatchItem) => {
+                return navigator.userAgent.match(toMatchItem);
+            });
+        }
+
+        // here is an alternative technique that checks screen resolution
+        // function isMobile() {
+        //     return ((window.innerWidth <= 800) && (window.innerHeight <= 600));
+        // }
+
+        document.getElementById('is_mobile').value = isMobile() ? 1 : 0;
+
     </script>
-
 {% endblock %}
-
 
 
 {% block title %}
@@ -278,6 +296,8 @@
                         </div>
 
                         <input id="starting_time" name="starting_time" type="hidden" value=""/>
+
+                        <input type="hidden" name="is_mobile" id="is_mobile">
 
                     </div>
                 </div>

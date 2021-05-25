@@ -6,10 +6,6 @@
 # include mobile phone selector
 - https://s3.amazonaws.com/otreehub/browsable_source/1e38462b-46c7-4ca1-bca5-536462f90131/detect_mobile/index.html
 
-# check with attention checks
-- if everything but attention check is answered correctly, people will still be thrown out of the study...
---> might not be desirable & also not policy conform
-- https://researcher-help.prolific.co/hc/en-gb/articles/360009223553-Using-attention-checks-as-a-measure-of-data-quality
 
 - include a counter on belief & donation page that shows progress?
 
@@ -17,6 +13,8 @@
 
 update csv file!
 in parameter csv file - rename all image names to matrix_40_1.PNG (i.e. append .png everywhere)
+
+remember to update number of sliders before running the study!
 
 
 ## LAYOUT STUFF i.e. nice to have

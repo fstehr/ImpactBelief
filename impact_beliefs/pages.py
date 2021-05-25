@@ -10,10 +10,15 @@ import random
 
 class IntroWelcome(Page):
     form_model = 'player'
-    form_fields = ['starting_time']
+    form_fields = ['starting_time', 'is_mobile']
 
     def is_displayed(self):
         return self.round_number == 1
+
+
+class SorryNoPhone(Page):
+    def is_displayed(self):
+        return self.is_mobile
 
 
 class Instructions(Page):
@@ -21,7 +26,7 @@ class Instructions(Page):
 
     def get_form_fields(player):
         if player.round_number == 1:
-            return ['window_width', 'window_height', 'honeypot', 'clicked_early', 'attention_check'] \
+            return ['window_width', 'window_height', 'honeypot', 'clicked_early'] \
                   + ['cq{}'.format(i) for i in range(1, 5)]
         elif player.round_number == 2:
             return ['gif_clicked', 'gif_watched', 'equation_clicked', 'honeypot', 'clicked_early'] \
@@ -40,12 +45,6 @@ class Instructions(Page):
     def vars_for_template(self):
         exchange_rate = int(1 / self.session.config['real_world_currency_per_point'])
         return {'exchange_rate': exchange_rate}
-
-    def app_after_this_page(self, upcoming_apps):
-        if self.round_number == 1 and self.player.attention_check != 23:
-            self.player.attention_check_failed = True
-            self.participant.vars['attention_check_failed'] = True
-            return "payment_info"
 
 
 class Sliders(SliderTaskPage):
@@ -111,9 +110,10 @@ class TrialBelief2(Page):
         print("time out counter is ", player.trial_timeout)
 
 
+# Page where a random attention check is performed. Subjects are asked to answer 54 instead of their estimate.
 class TrialBelief3(Page):
     form_model = 'player'
-    form_fields = ['trial_belief_3']
+    form_fields = ['attention_check']
 
     timeout_seconds = 3 + Constants.sec_per_matrix + Constants.sec_to_answer
 
@@ -138,6 +138,10 @@ class TrialBelief3(Page):
         if self.participant.vars['trial_timeout_counter'] == 3:
             self.player.forced_timeout = True
             self.participant.vars['forced_timeout'] = True
+            return "payment_info"
+        if self.player.attention_check != 54:
+            self.player.attention_check_failed = True
+            self.participant.vars['attention_check_failed'] = True
             return "payment_info"
 
 
@@ -299,19 +303,20 @@ class Questionnaire(Page):
         return self.round_number == Constants.num_rounds
 
 
-page_sequence = [Belief]
+# page_sequence = [Belief]
 #
-# page_sequence = [
-#     IntroWelcome,
-#     Instructions,
-#     Sliders,
-#     TrialBelief1,
-#     TrialBelief2,
-#     TrialBelief3,
-#     Introbelief,
-#     Belief,
-#     Donation,
-#     CarbonBelief,
-#     CostBelief,
-#     Questionnaire
-#     ]
+page_sequence = [
+    IntroWelcome,
+    SorryNoPhone,
+    Instructions,
+    Sliders,
+    TrialBelief1,
+    TrialBelief2,
+    TrialBelief3,
+    Introbelief,
+    Belief,
+    Donation,
+    CarbonBelief,
+    CostBelief,
+    Questionnaire
+    ]
