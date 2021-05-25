@@ -1,6 +1,22 @@
 {% extends "global/Page.html" %}
 {% load otree %}
 
+{% block scripts %}
+
+    <script>
+        function delimiter() {
+            let miles = js_vars.display_miles;
+            let co2 = js_vars.display_co2;
+
+            document.getElementById("miles").innerHTML = miles.toLocaleString();
+            document.getElementById("Co2").innerHTML = co2.toLocaleString();
+        }
+    </script>
+
+{% endblock %}
+
+
+
 {% block title %}
     Task {{ task_number }} - The Donation Task
 {% endblock %}
@@ -52,24 +68,4 @@
         {% next_button %}
 
     </div>
-
-
 {% endblock %}
-
-
-
-
-{% block scripts %}
-
-    <script>
-        function delimiter() {
-            let miles = js_vars.display_miles;
-            let co2 = js_vars.display_co2;
-
-            document.getElementById("miles").innerHTML = miles.toLocaleString();
-            document.getElementById("Co2").innerHTML = co2.toLocaleString();
-        }
-    </script>
-
-{% endblock %}
-

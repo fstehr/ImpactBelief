@@ -20,7 +20,7 @@ Experiment on motivated beliefs of impact of other-regarding behavior"""
 
 
 class Constants(BaseConstants):
-    name_in_url = 'impact_beliefs'
+    name_in_url = 'experiment'
     players_per_group = None
 
     # Get experimental parameters from csv file
@@ -176,9 +176,9 @@ class Player(SliderPlayer):
 
     current_payoff = models.FloatField()
 
-    co2_belief_car = models.FloatField(label="Consider a household that drives on average 8,000 miles a year. How much emissions could be saved in a year if this household were to live car-free? Assume in your answer that they would walk or take the bike instead.", )
-    co2_belief_plane = models.FloatField(label="Consider a transatlantic round-trip flight from London to New York. How much emissions could be saved by avoiding this flight?", )
-    co2_belief_renewables = models.FloatField(label="Consider a household which uses 4,800 kWh of energy a year. How much emissions could be saved in a year if this household would switch to renewable energy?", )
+    co2_belief_car = models.FloatField(label="Consider a household that drives on average 8,000 miles a year. How much emissions could be saved in a year if this household were to live car-free? Assume in your answer that they would walk or take the bike instead.",)
+    co2_belief_plane = models.FloatField(label="Consider a transatlantic round-trip flight from London to New York. How much emissions could be saved by avoiding this flight?",)
+    co2_belief_renewables = models.FloatField(label="Consider a household which uses 4,800 kWh of energy a year. How much emissions could be saved in a year if this household would switch to renewable energy?",)
     co2_belief_vegan = models.FloatField(label="Consider a household that consumes around 1.2 kg of meat and 2.2 kg of dairy a week. How much emissions could be saved in a year if they were to adopt a plant-based diet?",)
     co2_belief_laundry = models.FloatField(label="Consider a household which washes around 165 loads per year. How much emissions would be saved in a year if they were to change washer temperature settings from “hot wash, warm rinse” to “warm wash, cold rinse” for all laundry?",)
     co2_belief_dryer = models.FloatField(label="Consider a household which washes around 165 loads per year. How much emissions would be saved in a year if they were to air-dry all laundry instead of using an electric dryer?",)
@@ -335,7 +335,7 @@ class Player(SliderPlayer):
         label= "In political matters people talk of 'the left' and 'the right'. Please pick the category that you identify most with.",
         choices=[[1, "left"],
                  [2, "leaning left"],
-                 [3, "center"],
+                 [3, "centre"],
                  [4, "leaning right"],
                  [5, "right"]
                  ],

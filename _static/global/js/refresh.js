@@ -5,7 +5,7 @@ $( document ).ready(function() {
     console.log( "ready!" );
 
     classCheck = $('div').hasClass("otree-form-errors alert alert-danger");
-    console.log("classCeck", classCheck);
+    console.log("classCheck", classCheck);
 
     if ($('div').hasClass("otree-form-errors alert alert-danger")) {
         $('.nav-tabs a:last').tab('show');   // show last tab

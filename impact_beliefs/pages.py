@@ -18,7 +18,7 @@ class IntroWelcome(Page):
 
 class SorryNoPhone(Page):
     def is_displayed(self):
-        return self.is_mobile
+        return self.player.is_mobile
 
 
 class Instructions(Page):
@@ -303,20 +303,20 @@ class Questionnaire(Page):
         return self.round_number == Constants.num_rounds
 
 
-# page_sequence = [Belief]
+page_sequence = [Questionnaire]
 #
-page_sequence = [
-    IntroWelcome,
-    SorryNoPhone,
-    Instructions,
-    Sliders,
-    TrialBelief1,
-    TrialBelief2,
-    TrialBelief3,
-    Introbelief,
-    Belief,
-    Donation,
-    CarbonBelief,
-    CostBelief,
-    Questionnaire
-    ]
+# page_sequence = [
+#     IntroWelcome,
+#     SorryNoPhone,
+#     Instructions,
+#     Sliders,
+#     TrialBelief1,
+#     TrialBelief2,
+#     TrialBelief3,
+#     Introbelief,
+#     Belief,
+#     Donation,
+#     CarbonBelief,
+#     CostBelief,
+#     Questionnaire
+#     ]

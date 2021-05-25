@@ -1,10 +1,7 @@
 --> test payoff consequences properly
 --> OBS! When timeout in part 4, final payoff is still positive & show-up fee should also be deducted
- when timeout occured!
+ when timeout occurred!
  - OBS double check with prolific whether you can actually remove participation fee as well?
-
-# include mobile phone selector
-- https://s3.amazonaws.com/otreehub/browsable_source/1e38462b-46c7-4ca1-bca5-536462f90131/detect_mobile/index.html
 
 
 - include a counter on belief & donation page that shows progress?
