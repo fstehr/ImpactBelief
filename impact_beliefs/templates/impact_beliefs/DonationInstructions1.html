@@ -46,18 +46,23 @@
 
                         <p>
                             Climate change is a global threat. In this experiment, you can donate some of the {{ Constants.endowment }} Points
-                            you earned through your work in Task 1 to climatecare.org, an organization that
+                            you earned through your work in Task 1 to climatecare.org, an organisation that
                             eliminates CO<sub>2</sub> emissions from the atmosphere.
                             <strong>Your donation will reduce real CO<sub>2</sub> emissions in the atmosphere</strong>.
+                        </p>
+                        <p>
+                            You will see {{ num_projects }} projects, which differ in price and CO<sub>2</sub> emissions
+                            saved. In this task, you make your decisions of whether or not to donate to a specific project.
                         </p>
 
                         <h5>
                             The Meaning of the Xs
                         </h5>
                         <p>
-                            Each matrix in the Estimation Task before belonged to a project to which you can now donate.
-                            <strong>Each X in a matrix represented {{ Constants.real_world_kg_co2_per_x }} kg of CO<sub>2</sub></strong>.
-                            This means that if a matrix contained, for example, 100 Xs, the project will eliminate 50 kg of CO<sub>2</sub>
+                            Each matrix in the Estimation Task before belonged to one of the {{ num_projects }} projects to which you can now donate.
+                            <strong>Each X in a matrix represented {{ Constants.real_world_kg_co2_per_x }} kg of CO<sub>2</sub></strong>
+                            that your donation will eliminate. This means that if a matrix contained, for example, 100 Xs,
+                            your donation to this project will eliminate 50 kg of CO<sub>2</sub>
                             which corresponds to the emissions caused by driving 300 km in an average car.
                         </p>
 
@@ -67,21 +72,19 @@
 
                         <p>
                             {% if player.treatment == "Motivated" %}
-                                In this task, you can you can donate some of the {{ Constants.endowment }} Points
-                                you earned through your work in Task 1 to climatecare.org, an organization that
-                                eliminates CO<sub>2</sub> emissions from the atmosphere.
+                                In this task you will see {{ num_projects }} projects, which differ in price and CO<sub>2</sub> emissions
+                                saved.
                             {% endif %}
-                            For each donation decision we will show you one project. You will be informed about the
-                            price of the donation for this project. Prices can range between 11.25 and 138.75 Points.
+                            When making your donation decision, you will be informed about the price of the donation for this project. You then decide whether or not you want to
+                            donate to this specific project. <strong>Prices can range between 11.25 and 138.75 Points.</strong>
                             We remind you of your estimate of the number of Xs of this project in the previous task.
-                            We also tell you how much CO<sub>2</sub> emissions - according to your estimate of the Xs
-                            - will be avoided by this project.
+                            We also translate your estimate of the Xs into how much CO<sub>2</sub> emissions would be
+                            avoided by your donation to this project.
                         </p>
                         {% if player.treatment == "Motivated" %}
                         <p>
                             If you choose to donate to a project in a round and that round is selected for payment,
-                            we will donate the amount to climatecare.org, an organization that eliminates CO<sub>2</sub>
-                            emissions from the atmosphere. So <strong>your donation will reduce real CO<sub>2</sub> emissions in the atmosphere</strong>.
+                            we will donate the amount to climatecare.org. <strong>Your donation will reduce real CO<sub>2</sub> emissions in the atmosphere</strong>.
                         </p>
                         {% endif %}
                     </div>

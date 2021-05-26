@@ -1,15 +1,13 @@
 --> test payoff consequences properly
 --> OBS! When timeout in part 4, final payoff is still positive & show-up fee should also be deducted
  when timeout occurred!
- - OBS double check with prolific whether you can actually remove participation fee as well?
 
-
-- include a counter on belief & donation page that shows progress?
-
-- check for consistency in British vs American English (e.g. all -z spellings!)
+to make prolific compatible include participant labels
+If you’re using Prolific, you can add participant_label={{%PROLIFIC_PID%}} to your study URL. When the user clicks the link, Prolific will replace that with the participant’s actual Prolific ID.
 
 update csv file!
 in parameter csv file - rename all image names to matrix_40_1.PNG (i.e. append .png everywhere)
+test once yourself & try to see how long it takes
 
 remember to update number of sliders before running the study!
 

@@ -4,6 +4,8 @@
 {% block scripts %}
 
     <script>
+        document.title = "The Donation Task";
+
         function delimiter() {
             let miles = js_vars.display_miles;
             let co2 = js_vars.display_co2;
@@ -18,7 +20,14 @@
 
 
 {% block title %}
-    Task {{ task_number }} - The Donation Task
+    <table class="table">
+        <tr>
+            <td style="width:70%;border-color:transparent">Task {{ task_number }} - The Donation Task</td>
+            <td style="width:30%;border-color:transparent;text-align: right;font-size: medium; font-weight: lighter">
+                Project {{ project_number }} of {{ num_projects }}
+            </td>
+        </tr>
+    </table>
 {% endblock %}
 
 {% block content %}

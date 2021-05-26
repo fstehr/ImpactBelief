@@ -44,15 +44,15 @@
                         {% if player.treatment == "Motivated" %}
                             What is this experiment about?
                         </h5>
-
                         <p>
                             Climate change is a global threat. In this experiment, you can donate some of the {{ Constants.endowment }} Points
-                            you earned through your work in Task 1 to climatecare.org, an organization that
+                            you earned through your work in Task 1 to climatecare.org, an organisation that
                             eliminates CO<sub>2</sub> emissions from the atmosphere.
                             <strong>Your donation will reduce real CO<sub>2</sub> emissions in the atmosphere</strong>.
                         </p>
                         <p>
-                            You will make your donation decisions in Task 3 of the experiment.
+                            You will see {{ num_projects }} projects, which differ in price and CO<sub>2</sub> emissions
+                            saved. You make your decisions of whether or not to donate to a specific project in Task 3 of the experiment.
                             Before that, however, you have to estimate how many CO<sub>2</sub> emissions
                             will be eliminated through your donation.
                         </p>
@@ -68,24 +68,27 @@
 
                         <p>
                             You get to see each matrix for only <strong>{{ Constants.sec_per_matrix }} seconds</strong>.
-                            Then you have <strong>{{ Constants.sec_to_answer }} seconds</strong> to enter your estimate
-                            of the number of Xs. If you don't submit your guess in time, your payments for that
+                            Then you will be automatically taken to the page where you have to submit your estimate of the number of Xs.
+                            You have <strong>{{ Constants.sec_to_answer }} seconds</strong> to enter your estimate.
+                            If you don't submit your guess in time, your payments for that
                             decision will be forfeited. If you fail to submit your estimate on time twice,
                             you will not be allowed to continue the experiment and will also forfeit your participation fee.
                             Note that the timer keeps running even if you try to refresh the page.
                             So you cannot gain time by refreshing the page. <strong>It is therefore important that you try to
                             answer with your best guess within the {{ Constants.sec_to_answer }} seconds.</strong>
                         </p>
-
                         {% if player.treatment == "Motivated" %}
                             <h5>
                                 The Meaning of the Xs
                             </h5>
                             <p>
-                                Each matrix belongs to a project to which you can donate in Task 3.
-                                Specifically, <strong>each X in a matrix represents {{ Constants.real_world_kg_co2_per_x }} kg of CO<sub>2</sub></strong>.
-                                This means that if a matrix contains, for example, 100 Xs, the project will eliminate 50 kg of CO<sub>2</sub>
+                                Each matrix belongs to one of the projects to which you can donate in Task 3.
+                                Specifically, <strong>each X in a matrix represents {{ Constants.real_world_kg_co2_per_x }} kg of CO<sub>2</sub></strong>
+                                that your donation will eliminate. This means that if a matrix contains, for example, 100 Xs,
+                                your donation to this project will eliminate 50 kg of CO<sub>2</sub>
                                 which corresponds to the emissions caused by driving 180 miles in an average car.
+                                When you submit the estimate, you will also see the price it will cost to donate to this particular project.
+                                <strong>Prices can range between 11.25 and 138.75 Points.</strong>
                             </p>
                         {% endif %}
 

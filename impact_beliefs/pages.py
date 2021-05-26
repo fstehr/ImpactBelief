@@ -44,7 +44,8 @@ class Instructions(Page):
 
     def vars_for_template(self):
         exchange_rate = int(1 / self.session.config['real_world_currency_per_point'])
-        return {'exchange_rate': exchange_rate}
+        num_projects = len(Constants.paras)
+        return {'exchange_rate': exchange_rate, 'num_projects': num_projects}
 
 
 class Sliders(SliderTaskPage):
@@ -162,7 +163,12 @@ class Belief(Page):
 
     def vars_for_template(self):
         player = self.player
+
+        # to display progress
         task_number = player.part + 1
+        num_projects = len(Constants.paras)
+        project_number = (player.round_number - player.part * num_projects) + (num_projects - 1)  # calculates a counter for the current project
+
         # get current project from list of 'parameters'
         project = self.participant.vars['parameters'][self.round_number - 2]
         player.project_id = int(project['project_id'])
@@ -176,7 +182,8 @@ class Belief(Page):
             image += project['image_title_2']
         # print("The current project is", project)
 
-        return {'task_number': task_number, 'img_to_show': image, 'project': player.project_id,
+        return {'task_number': task_number, 'project_number': project_number, 'num_projects': num_projects,
+                'img_to_show': image, 'project': player.project_id,
                 'price_to_show': player.price}
 
     def js_vars(self):
@@ -229,7 +236,13 @@ class Donation(Page):
 
     def vars_for_template(self):
         player = self.player
+
+        # to display progress
         task_number = player.part + 1
+        num_projects = len(Constants.paras)
+        project_number = (player.round_number - player.part * num_projects) + (num_projects - 1) #calculates a counter for the current project
+
+        # get project parameters
         exchange_rate = int(1 / self.session.config['real_world_currency_per_point'])
         project = self.participant.vars['parameters'][self.round_number - 2]
         player.project_id = int(project['project_id'])
@@ -242,7 +255,8 @@ class Donation(Page):
         elif player.part == 4:
             player.num_x_belief = self.participant.vars['beliefs_part3'][player.project_id - 1]
 
-        return {'task_number': task_number, 'exchange_rate': exchange_rate, 'project': player.project_id,
+        return {'task_number': task_number, 'project_number': project_number, 'num_projects': num_projects,
+                'exchange_rate': exchange_rate, 'project': player.project_id,
                 'price_to_show': player.price, 'belief': player.num_x_belief, 'num_X_true': player.num_x_true}
 
     def js_vars(self):
@@ -303,7 +317,7 @@ class Questionnaire(Page):
         return self.round_number == Constants.num_rounds
 
 
-page_sequence = [Questionnaire]
+page_sequence = [Belief, Donation]
 #
 # page_sequence = [
 #     IntroWelcome,
