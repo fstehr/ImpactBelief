@@ -24,7 +24,7 @@ class Constants(BaseConstants):
     players_per_group = None
 
     # Get experimental parameters from csv file
-    with open('impact_beliefs/Parameters.csv', encoding='utf-8-sig') as parameters:
+    with open('impact_beliefs/static/Parameters.csv', encoding='utf-8-sig') as parameters:
         paras = list(csv.DictReader(parameters, dialect='excel'))
 
     num_work_rounds = 1
@@ -36,7 +36,7 @@ class Constants(BaseConstants):
     beliefs_max_payment = beliefs_fixed_payment + beliefs_max_accuracy_bonus
 
     # slider_columns = 3  # uncomment this if you want sliders in the slider task to be displayed in multiple columns
-    num_sliders = 1
+    num_sliders = 60
 
     sec_per_matrix = 10
     sec_to_answer = 15
@@ -53,6 +53,7 @@ class Subsession(BaseSubsession):
                 p.vars['trial_timeout_counter'] = 0  # initialize trial timeout counter
                 p.vars['timeout_counter'] = 0  # initialize timeout counter
                 p.vars['forced_timeout'] = 0
+                p.vars['attention_check_failed'] = 0
 
                 # generate participant varlist for beliefs by part, to store beliefs using project_id
                 p.vars['beliefs_part1'] = [0] * len(paras)

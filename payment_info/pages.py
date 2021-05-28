@@ -9,17 +9,16 @@ class PaymentInfo(Page):
 
     def vars_for_template(self):
         participant = self.participant
-
         if participant.vars['trial_timeout_counter'] == 3 or participant.vars['timeout_counter'] == 2:
             timeout = True
             attention_fail = False
             final_payoff = 0
             final_payoff_plus_part_fee = self.session.config.participation_fee
-        elif self.participant.vars['attention_check_failed']:
-            timeout = False
-            attention_fail = True
-            final_payoff = 0
-            final_payoff_plus_part_fee = self.session.config.participation_fee
+        # elif participant.vars['attention_check_failed']== True:
+        #     timeout = False
+        #     attention_fail = True
+        #     final_payoff = 0
+        #     final_payoff_plus_part_fee = self.session.config.participation_fee
         else:
             timeout = False
             attention_fail = False

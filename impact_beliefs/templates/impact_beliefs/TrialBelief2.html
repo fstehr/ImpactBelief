@@ -19,7 +19,6 @@
 
 {% block content %}
 
-
     <body onload="HideImageLoadForm();">
 
         <div class="alert alert-danger" id="alert" style="text-align: center;display:block;margin-left:auto; margin-right:auto; width:70%;">
@@ -33,8 +32,7 @@
             </p>
         </div>
 
-
-        <img src = "{% static 'img/Matrix_320.png' %}" id="matrix" style="display:none;margin-left:auto; margin-right:auto; width:60%;"/>
+        <img src = "{% static 'img/Matrix_200.png' %}" id="matrix" style="display:none;margin-left:auto; margin-right:auto; width:60%;"/>
 
 
         <div class="alert alert-warning" id="time-alert" style="display:none; text-align: center; margin-left:auto; margin-right:auto; width:70%;">
@@ -48,11 +46,12 @@
 
         <div id="Question" style="display:none; margin-left:auto; margin-right:auto; width:50%;">
             <p>
-                Please enter how many Xs you think were in the matrix:
+                This is an attention check. Please enter '54' here:
             </p>
             <p id="field" style="display:none;">
-                {{ form.trial_belief_2 }}
+                {{ form.attention_check }}
             </p>
+
 
             <input type="hidden" id="timeoutcount" name="trial_timeout" value="0">
 

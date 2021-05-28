@@ -84,35 +84,10 @@ class TrialBelief1(Page):
         if timeout_happened:
             player.trial_timeout += 1
             self.participant.vars['trial_timeout_counter'] += 1
-        print("time out counter is ", player.trial_timeout)
+            print("time out counter is ", player.trial_timeout)
 
 
 class TrialBelief2(Page):
-    form_model = 'player'
-    form_fields = ['trial_belief_2']
-
-    timeout_seconds = 3 + Constants.sec_per_matrix + Constants.sec_to_answer
-
-    def js_vars(self):
-        return dict(
-            sec_per_matrix=Constants.sec_per_matrix,
-        )
-
-    def is_displayed(self):
-        return self.round_number == 2
-
-    def before_next_page(self):
-        player = self.player
-        timeout_happened = self.timeout_happened
-
-        if timeout_happened:
-            player.trial_timeout += 1
-            self.participant.vars['trial_timeout_counter'] += 1
-        print("time out counter is ", player.trial_timeout)
-
-
-# Page where a random attention check is performed. Subjects are asked to answer 54 instead of their estimate.
-class TrialBelief3(Page):
     form_model = 'player'
     form_fields = ['attention_check']
 
@@ -133,17 +108,45 @@ class TrialBelief3(Page):
         if timeout_happened:
             player.trial_timeout += 1
             self.participant.vars['trial_timeout_counter'] += 1
-        print("time out counter is ", player.trial_timeout)
+            print("time out counter is ", player.trial_timeout)
+
+    def app_after_this_page(self, upcoming_apps):
+        if self.player.attention_check != 54:
+            self.player.attention_check_failed = True
+            self.participant.vars['attention_check_failed'] = True
+            return "payment_info"
+
+
+# Page where a random attention check is performed. Subjects are asked to answer 54 instead of their estimate.
+class TrialBelief3(Page):
+    form_model = 'player'
+    form_fields = ['trial_belief_2']
+
+    timeout_seconds = 3 + Constants.sec_per_matrix + Constants.sec_to_answer
+
+    def js_vars(self):
+        return dict(
+            sec_per_matrix=Constants.sec_per_matrix,
+        )
+
+    def is_displayed(self):
+        return self.round_number == 2
+
+    def before_next_page(self):
+        player = self.player
+        timeout_happened = self.timeout_happened
+
+        if timeout_happened:
+            player.trial_timeout += 1
+            self.participant.vars['trial_timeout_counter'] += 1
+            print("time out counter is ", player.trial_timeout)
 
     def app_after_this_page(self, upcoming_apps):
         if self.participant.vars['trial_timeout_counter'] == 3:
             self.player.forced_timeout = True
             self.participant.vars['forced_timeout'] = True
             return "payment_info"
-        if self.player.attention_check != 54:
-            self.player.attention_check_failed = True
-            self.participant.vars['attention_check_failed'] = True
-            return "payment_info"
+
 
 
 class Introbelief(Page):
@@ -317,20 +320,20 @@ class Questionnaire(Page):
         return self.round_number == Constants.num_rounds
 
 
-page_sequence = [Belief, Donation]
+# page_sequence = [Belief, Donation]
 #
-# page_sequence = [
-#     IntroWelcome,
-#     SorryNoPhone,
-#     Instructions,
-#     Sliders,
-#     TrialBelief1,
-#     TrialBelief2,
-#     TrialBelief3,
-#     Introbelief,
-#     Belief,
-#     Donation,
-#     CarbonBelief,
-#     CostBelief,
-#     Questionnaire
-#     ]
+page_sequence = [
+    IntroWelcome,
+    SorryNoPhone,
+    Instructions,
+    Sliders,
+    TrialBelief1,
+    TrialBelief2,
+    TrialBelief3,
+    Introbelief,
+    Belief,
+    Donation,
+    CarbonBelief,
+    CostBelief,
+    Questionnaire
+    ]
