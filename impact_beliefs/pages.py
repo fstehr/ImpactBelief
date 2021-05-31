@@ -158,7 +158,7 @@ class Belief(Page):
     form_model = 'player'
     form_fields = ['num_x_belief']
 
-    timeout_seconds = 3 + Constants.sec_per_matrix + Constants.sec_to_answer
+    timeout_seconds = Constants.sec_intro + Constants.sec_per_matrix + Constants.sec_to_answer
 
     def is_displayed(self):
         player = self.player
@@ -191,7 +191,8 @@ class Belief(Page):
 
     def js_vars(self):
         return dict(
-            sec_per_matrix=Constants.sec_per_matrix,
+            sec_intro = Constants.sec_intro,
+            sec_per_matrix = Constants.sec_per_matrix,
         )
 
     def before_next_page(self):
@@ -320,7 +321,7 @@ class Questionnaire(Page):
         return self.round_number == Constants.num_rounds
 
 
-page_sequence = [Belief, Donation]
+page_sequence = [Instructions, Belief]
 #
 # page_sequence = [
 #     IntroWelcome,

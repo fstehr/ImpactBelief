@@ -20,7 +20,7 @@
         var startTime = new Date().getTime();
         console.log("Time printed is", startTime)
 
-        let Intro = 3*1000;
+        let Intro = js_vars.sec_intro * 1000;
         let Delay = js_vars.sec_per_matrix * 1000;
 
         function HideImageLoadForm() {
@@ -43,7 +43,7 @@
         <tr>
             <td style="width:70%;border-color:transparent">Task {{ task_number }} - The Estimation Task</td>
             <td style="width:30%;border-color:transparent;text-align: right;font-size: medium; font-weight: lighter">
-                Project {{ project_number }} of {{ num_projects }}
+               Project {{ project_number }} of {{ num_projects }}
             </td>
         </tr>
     </table>
@@ -57,7 +57,8 @@
 
         <div class="alert alert-danger" id="alert" style="text-align: center;display:block;margin-left:auto; margin-right:auto; width:70%;">
             <p>
-                In three seconds, you will here see the matrix of Xs. <br> Your task is to estimate the number of Xs.
+                In {{ Constants.sec_intro }} seconds, you will here see the matrix of Xs. <br>
+                Your task is to estimate the number of Xs.
             </p>
             <p>
                 <strong>

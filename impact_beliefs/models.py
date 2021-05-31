@@ -38,6 +38,7 @@ class Constants(BaseConstants):
     # slider_columns = 3  # uncomment this if you want sliders in the slider task to be displayed in multiple columns
     num_sliders = 60
 
+    sec_intro = 10
     sec_per_matrix = 10
     sec_to_answer = 15
 
