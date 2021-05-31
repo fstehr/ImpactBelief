@@ -52,7 +52,7 @@
                         </p>
                         <p>
                             You will see {{ num_projects }} projects, which differ in price and CO<sub>2</sub> emissions
-                            saved. You make your decisions of whether or not to donate to a specific project in Task 3 of the experiment.
+                            saved. You make your decisions of whether or not to donate to these projects in Task 3 of the experiment.
                             Before that, however, you have to estimate how many CO<sub>2</sub> emissions
                             will be eliminated through your donation.
                         </p>
@@ -62,10 +62,20 @@
                         </h5>
                         <p>
                             In this task, you are asked to estimate the number of Xs in a matrix.
-                            You can find an example image of a matrix in the instruction video below.
+                            You can find an example image of a matrix in the video below.
                             There are between 0 and 400 Xs in a matrix. Each matrix consists of 20 rows with 20 letters each.
                         </p>
-
+                        {% if player.treatment == "Motivated" %}
+                            <p>
+                                Each matrix belongs to one of the projects to which you can donate in Task 3.
+                                <strong>Each X in a matrix represents {{ Constants.real_world_kg_co2_per_x }} kg of CO<sub>2</sub></strong>
+                                that your donation will eliminate. This means that if a matrix contains, for example, 100 Xs,
+                                your donation to this project will eliminate 50 kg of CO<sub>2</sub>
+                                which corresponds to the emissions caused by driving 180 miles in an average car.
+                                When you submit the estimate, you will also see the price it will cost to donate to this particular project.
+                                <strong>Prices can range between 11.25 and 138.75 Points.</strong>
+                            </p>
+                        {% endif %}
                         <p>
                             You get to see each matrix for only <strong>{{ Constants.sec_per_matrix }} seconds</strong>.
                             Then you will be automatically taken to the page where you have to submit your estimate of the number of Xs.
@@ -77,20 +87,7 @@
                             So you cannot gain time by refreshing the page. <strong>It is therefore important that you try to
                             answer with your best guess within the {{ Constants.sec_to_answer }} seconds.</strong>
                         </p>
-                        {% if player.treatment == "Motivated" %}
-                            <h5>
-                                The Meaning of the Xs
-                            </h5>
-                            <p>
-                                Each matrix belongs to one of the projects to which you can donate in Task 3.
-                                Specifically, <strong>each X in a matrix represents {{ Constants.real_world_kg_co2_per_x }} kg of CO<sub>2</sub></strong>
-                                that your donation will eliminate. This means that if a matrix contains, for example, 100 Xs,
-                                your donation to this project will eliminate 50 kg of CO<sub>2</sub>
-                                which corresponds to the emissions caused by driving 180 miles in an average car.
-                                When you submit the estimate, you will also see the price it will cost to donate to this particular project.
-                                <strong>Prices can range between 11.25 and 138.75 Points.</strong>
-                            </p>
-                        {% endif %}
+
 
                         <figure style="margin-top: 16pt">
                             {% if player.treatment == "Motivated" %}
@@ -100,7 +97,7 @@
                             <img src="{% static 'img/Belief_instructions_neutral.png' %}" alt="Static Image"
                                  data-alt="/static/img/Belief_instructions_neutral.gif" style="display:block;margin-left:auto; margin-right:auto; width:70%;cursor:pointer;"/>
                             {% endif %}
-                            <figcaption style="font-style:italic; margin-left:auto; margin-right:auto; width:70%;text-align: center">Click on the 'Play'-button to watch a real-time video of the decision page.</figcaption>
+                            <figcaption style="font-style:italic; margin-left:auto; margin-right:auto; width:70%;text-align: center">Click on the 'Play'-button to watch a real-time recording of the decision page (no audio needed).</figcaption>
                         </figure>
                         <input id="gif_click" name="gif_clicked" type="hidden" value="False">
 
