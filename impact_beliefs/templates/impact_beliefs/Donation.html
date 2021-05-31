@@ -1,6 +1,15 @@
 {% extends "global/Page.html" %}
 {% load otree %}
 
+{% block styles %}
+    <style>
+      td:nth-child(2) {
+          text-align: right;
+      }
+    </style>
+{% endblock %}
+
+
 {% block scripts %}
 
     <script>
@@ -10,8 +19,8 @@
             let miles = js_vars.display_miles;
             let co2 = js_vars.display_co2;
 
-            document.getElementById("miles").innerHTML = miles.toLocaleString();
-            document.getElementById("Co2").innerHTML = co2.toLocaleString();
+            document.getElementById("miles").innerHTML = miles.toLocaleString(undefined, {maximumFractionDigits: 2});
+            document.getElementById("Co2").innerHTML = co2.toLocaleString(undefined, {maximumFractionDigits: 2});
         }
     </script>
 
@@ -34,40 +43,52 @@
 
     <div class="alert alert-secondary" id="alert" style="display:block;margin-left:auto; margin-right:auto; width:90%;">
         <p>
-            In this task, you have the opportunity to donate your earnings from your work in Task 1.
-            The projects you can invest in are the same as those, whose impact you estimated in the previous task.
+            In this task, you can donate your earnings from your work in Task 1.
+            The projects you can donate to are the same as those, whose impact you estimated in the previous task.
+            {{ exchange_rate }} Points in the experiment are equal to &pound1.
         </p>
         <p>
             When you decide to donate to a project, and this task is selected for payment, we will donate the money to climatecare.org.
             They will eliminate the amount of CO<sub>2</sub> from the atmosphere that is proportional to the true number of project's Xs in the matrix you saw earlier.
         </p>
-        <p>
-            {{ exchange_rate }} Points = &pound1.
-        </p>
     </div>
 
     <body onload="delimiter()">
-            <div class="alert" style="display:block; margin-bottom: 0pt; margin-left:auto; margin-right:auto; width:90%;">
-                <p style="margin-bottom: 0pt;">
-                    {% if player.treatment == "Info" %}
-                        The correct number of Xs in the matrix of the current project was {{ num_X_true }}.
-                        This means that <strong>this project eliminates <span id="Co2"></span> kg CO<sub>2</sub></strong>.
-                        This amount of carbon emissions is equivalent to riding <span id="miles"></span> miles with an average car.
-                    {% else %}
-                        You estimated the number of Xs in the matrix for the current project to be {{ belief }}.
-                        This means that <strong>you believe this project eliminates <span id="Co2"></span> kg CO<sub>2</sub></strong>.
-                        This amount of carbon emissions is equivalent to riding <span id="miles"></span> miles with an average car.
-                    {% endif %}
-                </p>
-            </div>
+
+        <div class="alert" style="text-align:center; margin-bottom: 16pt; margin-left:auto; margin-right:auto; width:90%;">
+            Your earnings from the work task were {{ Constants.endowment }} Points. Here we inform you of the current project.
+        </div>
+        <table class="table table-hover" style="margin-left:auto; margin-right:auto; width:80%;">
+            <tbody>
+                {% if player.treatment == "Info" %}
+                    <tr>
+                        <td>The <strong>correct number of Xs</strong> in the matrix:</td>
+                      <td>{{ num_X_true }}</td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td>Your <strong>estimated number of Xs</strong> in the matrix:</td>
+                        <td>{{ belief }}</td>
+                    </tr>
+                {% endif %}
+                    <tr>
+                        <td>This translates to the following <strong>amount of CO<sub>2</sub></strong>:</td>
+                        <td> <strong> <span id="Co2"></span> kg</strong> </td>
+                    </tr>
+                    <tr>
+                        <td>This is equivalent to the emissions by riding with an average car this distance:</td>
+                        <td><span id="miles"></span> miles</td>
+                    </tr>
+                    <tr>
+                        <td>The <strong>price of donating</strong> to this project is:</td>
+                        <td><strong>{{ price_to_show }} Points</strong></td>
+                    </tr>
+              </tbody>
+            </table>
     </body>
 
-    <div class="alert" style="display:block; margin-top:0pt; margin-left:auto; margin-right:auto; width:90%;">
-        <p>
-            Your earnings from the work task were {{ Constants.endowment }} Points. The price of donating to this project is <strong>{{ price_to_show }} Points</strong>.
-        </p>
-
-        <p>
+    <div class="alert" style="margin-top: 16pt; text-align:center; margin-left:auto; margin-right:auto; width:90%;">
+        <p style="" >
             Would you like to donate to this project?
         </p>
         <p>
