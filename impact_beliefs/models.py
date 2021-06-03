@@ -30,7 +30,7 @@ class Constants(BaseConstants):
     num_work_rounds = 1
     num_decision_rounds = len(paras) * 4
     num_rounds = num_decision_rounds + num_work_rounds
-    endowment = 280
+    endowment = 300
     beliefs_fixed_payment = 150
     beliefs_max_accuracy_bonus = beliefs_fixed_payment
     beliefs_max_payment = beliefs_fixed_payment + beliefs_max_accuracy_bonus
