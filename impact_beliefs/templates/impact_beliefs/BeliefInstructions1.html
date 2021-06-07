@@ -195,7 +195,7 @@
                 </div>
                 <div class="card-body">
                     <div>
-                        {% formfield player.cq1 label="Your bonus in this task depends on the accuracy of your estimate of the number of Xs." %}
+                        {% formfield player.cq1 label="Your bonus payment in this task depends on the accuracy of your estimate of the number of Xs." %}
 
                         {% formfield player.cq2 label="What is your extra fixed payment (in Points) for completing the task on time?"  %}
 
@@ -206,9 +206,9 @@
                     </div>
 
                     <div class="alert alert-dark">
-                        Before we start with the actual task, we will give you the opportunity to familiarise yourself
+                        Before we start with the actual task, we give you the opportunity to familiarise yourself
                         with the task in 3 practice trials. Your answers in these practice trials will not affect your final payment.
-                        Nevertheless, you have to remain attentive as you will only be admitted to the payment-relevant part
+                        Remain attentive as you will only be admitted to the payment-relevant part
                         if you answer in time and pass some attention checks.
                     </div>
 
@@ -266,9 +266,9 @@
             {{ Constants.beliefs_fixed_payment }} - 0.00375 * \left( \text{Your estimate} - \text{true number of Xs} \right)^2
           $$
           <p>
-              If your estimate is further than 200 away from the true number of Xs this formula will become negative.
-              We will not deduct anything from your fixed bonus for this task if this happens.
-              Instead, your additional earnings for accuracy will become zero.
+              If your estimate is further than 200 away from the true number of Xs, this formula becomes negative.
+              We will not deduct anything from your fixed bonus for answering on time if this happens.
+              Only your additional earnings for accuracy will become zero.
           </p>
       </div>
     </div>

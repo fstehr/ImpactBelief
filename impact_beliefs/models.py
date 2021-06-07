@@ -56,6 +56,7 @@ class Subsession(BaseSubsession):
                 paras = Constants.paras.copy()
                 p.vars['trial_timeout_counter'] = 0  # initialize trial timeout counter
                 p.vars['timeout_counter'] = 0  # initialize timeout counter
+                p.vars['timeout_in_payment_round'] = 0  # initialize timeout counter
                 p.vars['forced_timeout'] = 0
                 p.vars['attention_check_failed'] = 0
 

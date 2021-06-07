@@ -29,10 +29,13 @@ class PaymentInfo(Page):
 
     def vars_for_template(self):
         participant = self.participant
+        timeout_in_payment_round = participant.vars['timeout_in_payment_round']
+
         final_payoff = participant.payoff
         final_payoff_plus_part_fee = participant.payoff_plus_participation_fee()
 
-        return {'final_payoff_display': final_payoff,
+        return {'timeout_in_payment_round': timeout_in_payment_round,
+                'final_payoff_display': final_payoff,
                 'final_payoff_plus_part_fee_display': final_payoff_plus_part_fee}
         # dict(redemption_code=participant.label or participant.code)
 

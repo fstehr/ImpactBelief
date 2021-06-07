@@ -191,8 +191,8 @@ class Belief(Page):
 
     def js_vars(self):
         return dict(
-            sec_intro = Constants.sec_intro,
-            sec_per_matrix = Constants.sec_per_matrix,
+            sec_intro=Constants.sec_intro,
+            sec_per_matrix=Constants.sec_per_matrix,
         )
 
     def before_next_page(self):
@@ -205,6 +205,7 @@ class Belief(Page):
         if self.round_number == self.participant.vars['payment_round']:
             if timeout_happened:
                 player.payoff = 0
+                self.participant.vars['timeout_in_payment_round'] = 1  # initialize timeout counter
             else:
                 player.payoff = player.current_payoff
 
@@ -321,7 +322,7 @@ class Questionnaire(Page):
         return self.round_number == Constants.num_rounds
 
 
-page_sequence = [Instructions, Belief]
+page_sequence = [Belief]
 #
 # page_sequence = [
 #     IntroWelcome,
