@@ -73,7 +73,7 @@
                                 your donation to this project will eliminate 50 kg of CO<sub>2</sub>
                                 which corresponds to the emissions caused by driving 180 miles in an average car.
                                 When you submit the estimate, you will also see the price it will cost to donate to this particular project.
-                                <strong>Prices can range between 11.25 and 138.75 Points.</strong>
+                                <strong>Prices can range between {{ Constants.min_price }} and {{ Constants.max_price }} Points.</strong>
                             </p>
                         {% endif %}
                         <p>
@@ -207,8 +207,9 @@
 
                     <div class="alert alert-dark">
                         Before we start with the actual task, we will give you the opportunity to familiarise yourself
-                        with the task in 3 practice trials. Your answers in these practice trials will not affect your final score.
-                        Nevertheless, please remain attentive as you will only be admitted to the payment-relevant part if you answer at least once in time.
+                        with the task in 3 practice trials. Your answers in these practice trials will not affect your final payment.
+                        Nevertheless, you have to remain attentive as you will only be admitted to the payment-relevant part
+                        if you answer in time and pass some attention checks.
                     </div>
 
                     <div style="display:none">

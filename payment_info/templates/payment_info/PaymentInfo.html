@@ -17,21 +17,10 @@
 
 {% block content %}
 
-    {% if timeout %}
-        <p>
-            Your participation in this experiment was terminated, because you did not answer on time too often.
-        </p>
-    {% elif attention_check_failed %}
-        <p>
-            Your participation in this experiment was terminated, because you did not correctly answer an attention check question.
-        </p>
-    {% else %}
-        <p>
-            Thank you for your participation in this experiment!
-        </p>
-    {% endif %}
 
-
+    <p>
+        Thank you for your participation in this experiment!
+    </p>
 
     <p>
         This is your final bonus payment: {{ final_payoff_display }}.

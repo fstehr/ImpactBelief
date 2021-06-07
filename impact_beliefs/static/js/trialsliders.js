@@ -1,4 +1,4 @@
-let Intro = 3 * 1000;
+let Intro = 10 * 1000;
 let Delay = js_vars.sec_per_matrix * 1000;
 
 function HideImageLoadForm() {

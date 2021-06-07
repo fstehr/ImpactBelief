@@ -45,6 +45,9 @@ class Constants(BaseConstants):
     real_world_kg_co2_per_x = 0.5
     car_kg_co2_per_mile = 0.275  # source: carbonindependent.org with avg mpg=52
 
+    min_price = 12.75
+    max_price = 157.25
+
 
 class Subsession(BaseSubsession):
     def creating_session(self):
@@ -217,10 +220,10 @@ class Player(SliderPlayer):
         if self.round_number == 1 and value != 50:
             self.wrong_answer2 += 1
             return "Wrong answer."
-        elif self.round_number == 2 and value != 150:
+        elif self.round_number == 2 and value != Constants.beliefs_fixed_payment:
             self.wrong_answer2 += 1
             return "Wrong answer."
-        elif self.round_number == len(Constants.paras) + 2 and value != 280:
+        elif self.round_number == len(Constants.paras) + 2 and value != Constants.endowment:
             self.wrong_answer2 += 1
             return "Wrong answer."
 

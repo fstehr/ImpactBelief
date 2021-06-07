@@ -321,7 +321,7 @@ class Questionnaire(Page):
         return self.round_number == Constants.num_rounds
 
 
-page_sequence = [TrialBelief1, TrialBelief2]
+page_sequence = [Instructions, Belief]
 #
 # page_sequence = [
 #     IntroWelcome,

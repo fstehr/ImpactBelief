@@ -70,7 +70,13 @@
 
         {% if player.treatment == "Motivated" %}
             <div class="alert alert-dark" style="text-align: center;display:block;margin-left:auto; margin-right:auto; width:70%;">
-                <strong> The price of investing in this project is {{ price_to_show }} Points. </strong>
+                <p>
+                    The number Xs indicates the CO<sub>2</sub> emissions saved by donating to this project.
+                </p>
+                <p>
+                    If you decide to donate to the following project to eliminate CO<sub>2</sub> emissions in Task 3,
+                    the <strong>price of donating will be {{ price_to_show }} Points. </strong>
+                </p>
             </div>
         {% endif %}
 
@@ -94,4 +100,3 @@
 
 <p style="margin-top:30cm;"></p>
 {% endblock %}
-}

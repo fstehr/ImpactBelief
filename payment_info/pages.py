@@ -3,31 +3,38 @@ from otree.api import Currency as c, currency_range
 from .models import Constants
 
 
-class PaymentInfo(Page):
+class Terminated(Page):
     form_model = 'player'
     form_fields = ['finishing_time']
+
+    def is_displayed(self):
+        return self.participant.vars['trial_timeout_counter'] == 3 or self.participant.vars['timeout_counter'] == 2 \
+               or self.participant.vars['attention_check_failed'] == True
 
     def vars_for_template(self):
         participant = self.participant
         if participant.vars['trial_timeout_counter'] == 3 or participant.vars['timeout_counter'] == 2:
             timeout = True
             attention_fail = False
-            final_payoff = 0
-            final_payoff_plus_part_fee = self.session.config.participation_fee
-        # elif participant.vars['attention_check_failed']== True:
-        #     timeout = False
-        #     attention_fail = True
-        #     final_payoff = 0
-        #     final_payoff_plus_part_fee = self.session.config.participation_fee
-        else:
+        elif participant.vars['attention_check_failed'] == True:
             timeout = False
-            attention_fail = False
-            final_payoff = participant.payoff
-            final_payoff_plus_part_fee = participant.payoff_plus_participation_fee()
+            attention_fail = True
+        return {'timeout': timeout, 'attention_check_failed': attention_fail}
+        # dict(redemption_code=participant.label or participant.code)
 
-        return {'timeout': timeout, 'attention_check_failed': attention_fail, 'final_payoff_display': final_payoff,
+
+class PaymentInfo(Page):
+    form_model = 'player'
+    form_fields = ['finishing_time']
+
+    def vars_for_template(self):
+        participant = self.participant
+        final_payoff = participant.payoff
+        final_payoff_plus_part_fee = participant.payoff_plus_participation_fee()
+
+        return {'final_payoff_display': final_payoff,
                 'final_payoff_plus_part_fee_display': final_payoff_plus_part_fee}
         # dict(redemption_code=participant.label or participant.code)
 
 
-page_sequence = [PaymentInfo]
+page_sequence = [Terminated, PaymentInfo]
