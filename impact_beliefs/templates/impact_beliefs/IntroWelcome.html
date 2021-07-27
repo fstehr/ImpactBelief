@@ -16,27 +16,31 @@
         }
         document.title = "Welcome to this study!";
 
+        function show_hide_instructions() {
 
-        function isMobile() {
-            const toMatch = [
-                /Android/i,
-                /iPhone/i,
-                /iPad/i,
-            ];
+            function isMobile() {
+                const toMatch = [
+                    /Android/i,
+                    /iPhone/i,
+                    /iPad/i,
+                ];
+                return toMatch.some((toMatchItem) => {
+                    return navigator.userAgent.match(toMatchItem);
+                });
+            }
 
-            return toMatch.some((toMatchItem) => {
-                return navigator.userAgent.match(toMatchItem);
-            });
-            console.log("match item is", navigator.userAgent.match(toMatchItem))
+            document.getElementById('is_mobile').value = isMobile() ? "True" : "False";
+            console.log("is_mobile is", document.getElementById('is_mobile').value)
+
+            // display an error message when the gadget is a mobile device
+            if (document.getElementById('is_mobile').value == "True") {
+                document.getElementById("Phone").style.display = "block"
+                document.getElementById("NoPhone").style.display = "none"
+            } else {                   // otherwise display instructions
+                document.getElementById("Phone").style.display = "none"
+                document.getElementById("NoPhone").style.display = "block"
+            }
         }
-
-        // here is an alternative technique that checks screen resolution
-        // function isMobile() {
-        //     return ((window.innerWidth <= 800) && (window.innerHeight <= 600));
-        // }
-
-        document.getElementById('is_mobile').value = isMobile() ? "True" : "False";
-        console.log("is_mobile is", document.getElementById('is_mobile').value)
     </script>
 {% endblock %}
 
@@ -56,14 +60,22 @@
 
 {% block content %}
 
-<div class="alert-danger">
+<div>
     {{ form.is_mobile.errors }}
 </div>
 
-<body>
-    <!-- Header <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist"> -->
+<body onload="show_hide_instructions();">
+    <div class="alert alert-danger" id="Phone">
+        This study cannot be completed on a mobile gadget, please copy the link to a computer browser.
+        Then you can continue with the experiment. <br>
+        If you wish to exit this study, please click the button below. <br>
+        <em>Note that you cannot return to the study once you pressed the exit button.</em> <br>
+        <button class="btn btn-primary btn-large" onclick="saveTime()">Exit the study</button>
+    </div>
 
-    <div class="card">
+
+    <!-- Header <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist"> -->
+    <div class="card" id="NoPhone" >
         <div class="card-header">
         <nav  role="navigation">
 
