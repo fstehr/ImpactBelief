@@ -2,9 +2,6 @@ from otree.api import Currency as c, currency_range
 from ._builtin import Page, WaitPage
 from .models import Constants
 
-from .models import Slider
-from slider_task.pages import SliderTaskPage
-
 import random
 
 
@@ -26,41 +23,21 @@ class Instructions(Page):
 
     def get_form_fields(player):
         if player.round_number == 1:
-            return ['window_width', 'window_height', 'honeypot', 'clicked_early'] \
+            return ['window_width', 'window_height', 'gif_clicked', 'gif_watched', 'equation_clicked', 'honeypot', 'clicked_early'] \
                   + ['cq{}'.format(i) for i in range(1, 5)]
-        elif player.round_number == 2:
-            return ['gif_clicked', 'gif_watched', 'equation_clicked', 'honeypot', 'clicked_early'] \
-                  + ['cq{}'.format(i) for i in range(1, 5)]
-        elif player.round_number == len(Constants.paras) +2:
+        elif player.round_number == len(Constants.paras) + 1:
             return ['equation_clicked', 'honeypot', 'clicked_early'] \
                    + ['cq{}'.format(i) for i in range(1, 5)]
         else:
-            return ['equation_clicked', 'honeypot', 'clicked_early']
+            return ['honeypot']
 
-    # display always in the first round of a new part.
-    def is_displayed(self):
-        return self.round_number == 1 \
-               or self.round_number == len(Constants.paras) * (self.player.part - 1) + 2
+    def is_displayed(self):     # display always in the first round of a new part.
+        return self.round_number == len(Constants.paras) * (self.player.part - 1) + 1
 
     def vars_for_template(self):
         exchange_rate = int(1 / self.session.config['real_world_currency_per_point'])
         num_projects = len(Constants.paras)
         return {'exchange_rate': exchange_rate, 'num_projects': num_projects}
-
-
-class Sliders(SliderTaskPage):
-    Constants = Constants
-    Slider = Slider
-
-    def is_displayed(self):
-        return self.round_number == 1
-
-    def before_next_page(self):
-        player = self.player
-        player.current_payoff = Constants.endowment
-        # print("current payoff is", player.current_payoff, "=", Constants.endowment, "-", player.price, "*", player.donation)
-        if self.round_number == self.participant.vars['payment_round']:
-            player.payoff = player.current_payoff
 
 
 class TrialBelief1(Page):
@@ -75,7 +52,7 @@ class TrialBelief1(Page):
         )
 
     def is_displayed(self):
-        return self.round_number == 2
+        return self.round_number == 1
 
     def before_next_page(self):
         player = self.player
@@ -87,7 +64,7 @@ class TrialBelief1(Page):
             print("time out counter is ", player.trial_timeout)
 
 
-class TrialBelief2(Page):
+class TrialBelief2(Page):   # Page where a random attention check is performed. Subjects are asked to answer 54 instead of their estimate.
     form_model = 'player'
     form_fields = ['attention_check']
 
@@ -99,7 +76,7 @@ class TrialBelief2(Page):
         )
 
     def is_displayed(self):
-        return self.round_number == 2
+        return self.round_number == 1
 
     def before_next_page(self):
         player = self.player
@@ -117,7 +94,6 @@ class TrialBelief2(Page):
             return "payment_info"
 
 
-# Page where a random attention check is performed. Subjects are asked to answer 54 instead of their estimate.
 class TrialBelief3(Page):
     form_model = 'player'
     form_fields = ['trial_belief_2']
@@ -130,7 +106,7 @@ class TrialBelief3(Page):
         )
 
     def is_displayed(self):
-        return self.round_number == 2
+        return self.round_number == 1
 
     def before_next_page(self):
         player = self.player
@@ -148,10 +124,9 @@ class TrialBelief3(Page):
             return "payment_info"
 
 
-
 class Introbelief(Page):
     def is_displayed(self):
-        return self.round_number == 2
+        return self.round_number == 1
 
 
 class Belief(Page):
@@ -165,15 +140,16 @@ class Belief(Page):
         return player.part == 1 or player.part == 3
 
     def vars_for_template(self):
+        global image
         player = self.player
 
         # to display progress
         task_number = player.part + 1
         num_projects = len(Constants.paras)
-        project_number = (player.round_number - player.part * num_projects) + (num_projects - 1)  # calculates a counter for the current project
+        project_number = (player.round_number - player.part * num_projects) + (num_projects)  # calculates a counter for the current project
 
         # get current project from list of 'parameters'
-        project = self.participant.vars['parameters'][self.round_number - 2]
+        project = self.participant.vars['parameters'][self.round_number - 1]
         player.project_id = int(project['project_id'])
         player.price = float(project['price_ECU'])
         player.num_x_true = int(project['num_x'])
@@ -243,13 +219,13 @@ class Donation(Page):
         player = self.player
 
         # to display progress
-        task_number = player.part + 1
+        task_number = player.part
         num_projects = len(Constants.paras)
-        project_number = (player.round_number - player.part * num_projects) + (num_projects - 1) #calculates a counter for the current project
+        project_number = (player.round_number - player.part * num_projects) + (num_projects) #calculates a counter for the current project
 
         # get project parameters
         exchange_rate = int(1 / self.session.config['real_world_currency_per_point'])
-        project = self.participant.vars['parameters'][self.round_number - 2]
+        project = self.participant.vars['parameters'][self.round_number - 1]
         player.project_id = int(project['project_id'])
         player.price = float(project['price_ECU'])
         player.num_x_true = int(project['num_x'])  # store true num of xs again in dataset in same row as donation
@@ -280,7 +256,6 @@ class Donation(Page):
 
     def before_next_page(self):
         player = self.player
-        # store belief in participant vars in the position of the project id to make it easily callable on donation page
         player.current_payoff = Constants.endowment - (player.price * player.donation)
         # print("current payoff is", player.current_payoff, "=", Constants.endowment, "-", player.price, "*", player.donation)
         if self.round_number == self.participant.vars['payment_round']:
@@ -328,7 +303,6 @@ page_sequence = [
     IntroWelcome,
     SorryNoPhone,
     Instructions,
-    Sliders,
     TrialBelief1,
     TrialBelief2,
     TrialBelief3,

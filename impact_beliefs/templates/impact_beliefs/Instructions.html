@@ -31,9 +31,7 @@
 
 {% block content %}
 
-    {% if player.part == 0 %}
-        {% include 'impact_beliefs/SliderInstructions.html' %}
-    {% elif player.part == 1 %}
+    {% if player.part == 1 %}
         {% include 'impact_beliefs/BeliefInstructions1.html' %}
     {% elif player.part == 2 %}
         {% include 'impact_beliefs/DonationInstructions1.html' %}
