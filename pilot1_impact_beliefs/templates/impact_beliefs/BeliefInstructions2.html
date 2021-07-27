@@ -1,0 +1,26 @@
+{% load otree %}
+
+    <div class="card instructions">
+        <div class="card-body">
+
+            <h4 style="margin-bottom: 16pt">Task 4 - Instructions</h4>
+
+            <p>
+                We ask you to estimate once more the number of Xs in a matrix.
+                Each X is {{ Constants.real_world_kg_co2_per_x }} kg of CO<sub>2</sub> that you can eliminate.
+                Each matrix is shown for {{ Constants.sec_per_matrix }} seconds
+                and you have {{ Constants.sec_to_answer }} seconds to estimate the number of Xs.
+            </p>
+            <p>
+                Your bonus payment in this task will be determined as in Task 2: <br>
+
+                You will receive {{ Constants.beliefs_fixed_payment }} Points for completing the task on time
+                if one round of this task is selected for payment.
+                You can earn up to {{ Constants.beliefs_max_accuracy_bonus }} points more the closer you are to the correct number of Xs.
+            </p>
+        </div>
+    </div>
+
+    <div style="margin-top: 12pt; text-align: right;">
+        <button  class="btn btn-primary btn-large">Start the Estimation Task</button>
+    </div>

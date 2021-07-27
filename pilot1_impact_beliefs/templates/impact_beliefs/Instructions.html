@@ -1,0 +1,47 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block styles %}
+    <link href="{% static 'global/css/global.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'global/js/basics.js' %}"></script>
+    <script src="{% static 'global/js/browser_info.js' %}"></script>
+    <script src="{% static 'global/js/navbuttons.js' %}"></script>
+    <script src="{% static 'global/js/refresh.js' %}"></script>
+    <script src="{% static 'js/gif_button.js' %}"></script>
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <script>
+        function displayBtn(){
+            let TimeToRead = 60*1000;
+            setTimeout(function(){
+            document.getElementById('submit-btn').style.display="block"
+            },TimeToRead);
+        }
+    </script>
+{% endblock %}
+
+{% block title %}
+    Instructions
+{% endblock %}
+
+{% block content %}
+
+    {% if player.part == 0 %}
+        {% include 'impact_beliefs/SliderInstructions.html' %}
+    {% elif player.part == 1 %}
+        {% include 'impact_beliefs/BeliefInstructions1.html' %}
+    {% elif player.part == 2 %}
+        {% include 'impact_beliefs/DonationInstructions1.html' %}
+    {% elif player.part == 3 %}
+        {% include 'impact_beliefs/BeliefInstructions2.html' %}
+    {% elif player.part == 4 %}
+        {% include 'impact_beliefs/DonationInstructions2.html' %}
+    {% endif %}
+
+{% endblock %}
+

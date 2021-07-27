@@ -33,10 +33,12 @@ class PaymentInfo(Page):
 
         final_payoff = participant.payoff
         final_payoff_plus_part_fee = participant.payoff_plus_participation_fee()
+        link = 'https://app.prolific.co/submissions/complete?cc=F4F99D60'
 
         return {'timeout_in_payment_round': timeout_in_payment_round,
                 'final_payoff_display': final_payoff,
-                'final_payoff_plus_part_fee_display': final_payoff_plus_part_fee}
+                'final_payoff_plus_part_fee_display': final_payoff_plus_part_fee,
+                'link': link}
         # dict(redemption_code=participant.label or participant.code)
 
 

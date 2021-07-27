@@ -1,0 +1,317 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block styles %}
+    <link href="{% static 'global/css/global.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'global/js/basics.js' %}"></script>
+    <script src="{% static 'global/js/navbuttons.js' %}"></script>
+
+    <script>
+        function saveTime() {
+            let startTime = new Date().getTime();
+            document.getElementById("starting_time").value = startTime;
+        }
+        document.title = "Welcome to this study!";
+
+
+        function isMobile() {
+            const toMatch = [
+                /Android/i,
+                /iPhone/i,
+                /iPad/i,
+            ];
+
+            return toMatch.some((toMatchItem) => {
+                return navigator.userAgent.match(toMatchItem);
+            });
+            console.log("match item is", navigator.userAgent.match(toMatchItem))
+        }
+
+        // here is an alternative technique that checks screen resolution
+        // function isMobile() {
+        //     return ((window.innerWidth <= 800) && (window.innerHeight <= 600));
+        // }
+
+        document.getElementById('is_mobile').value = isMobile() ? "True" : "False";
+        console.log("is_mobile is", document.getElementById('is_mobile').value)
+    </script>
+{% endblock %}
+
+
+{% block title %}
+    <table class="table">
+        <tr>
+            <td style="width:70%;border-color:transparent">Welcome to this study!</td>
+            <td style="width:30%;border-color:transparent;text-align: right;">
+                <img src="{% static 'img/UM_logo.jpg' %}" style="width:90%;">
+            </td>
+        </tr>
+    </table>
+{% endblock %}
+
+
+
+{% block content %}
+
+<div class="alert-danger">
+    {{ form.is_mobile.errors }}
+</div>
+
+<body>
+    <!-- Header <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist"> -->
+
+    <div class="card">
+        <div class="card-header">
+        <nav  role="navigation">
+
+             <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
+                <li class="nav-item" >
+                    <a class="nav-link back-and-forth active" id="part1-tab" data-toggle="tab" href="#part1" role="tab" aria-controls="part1"> Welcome </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link back-and-forth" id="part2-tab" data-toggle="tab" href="#part2" role="tab" aria-controls="part2"> Your Data </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link back-and-forth" id="part3-tab" data-toggle="tab" href="#part3" role="tab" aria-controls="part3"> Informed Consent </a>
+                </li>
+
+            </ul>
+
+        </nav>
+        </div>
+
+        <!-- Instructions -->
+
+        <div class="tab-content" id="myTabContent">
+
+            <!-- Part 1: WHATEVER FIRST TAB HERE -->
+            <div class="tab-pane show active" id="part1" role="tabpanel" aria-labelledby="part1-tab">
+                <div class="card-header bg-white border-bottom-0 sticky-top mt-3">
+                    <p class="h4">Welcome</p>
+                </div>
+                <div class="card-body">
+
+                    <div>
+                        <p>
+                            Welcome to this experiment conducted by Frauke Stehr, a researcher at Maastricht University.
+                            In the experiment you will be able to earn money based on the choices you make.
+                            You will earn a fixed participation fee of {{ session.config.participation_fee }} for completing the study.
+                            Depending on your choices in the experiment, you may earn substantially more.
+                            We have calibrated the payments so that participants who finish the experiment <strong>earn at least
+                            &pound2.95, and &pound4.35 on average</strong>. Your precise payments can, however,
+                            be larger or smaller depending on your decisions during the experiment.
+                        </p>
+                        <p>
+                            In case you have questions about this research, you can reach the researcher at
+                        </p>
+                        <p style="margin-left:10pt">
+                            Frauke Stehr <br>
+                            Tongersestraat 53 <br>
+                            6211 LM Maastricht<br>
+                            The Netherlands<br>
+                            Or via e-mail: f.stehr@maastrichtuniversity.nl
+                        </p>
+                        <p>
+                            The experiment will take an average of 35 minutes. It is important to note that we apply
+                            a strict "no-deception" rule, meaning that everything we write is true and implemented exactly as described.
+                            The experiment was ethically approved by the Ethical Review Committee of Inner-City
+                            Faculties of Maastricht University.
+                        </p>
+                    </div>
+
+
+                    <!-- on Card Navigation  Arrows -->
+
+                    <!-- greyed out left arrow on first page -->
+                    <div class="row justify-content-md-center mt-5">
+                        <div class="col col-lg-2">
+                            <p class="prevtab text-secondary text-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#D3D3D3" class="bi-arrow-left-circle" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                    <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z"/>
+                                </svg>
+                            </p>
+                        </div>
+
+                        <div class="col col-lg-2">
+                            <p onclick="topFunction()" class="nexttab text-center" data-toggle="tooltip" data-placement="top" title="Next">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#076bff" class="bi bi-arrow-right-circle" viewBox="0 0 16 16" style="cursor: pointer">
+                                    <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                    <path fill-rule="evenodd" d="M4 8a.5.5 0 0 0 .5.5h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5A.5.5 0 0 0 4 8z"/>
+                                </svg>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Part 2: WHATEVER SECOND TAB HERE  -->
+            <div class="tab-pane" id="part2" role="tabpanel" aria-labelledby="part2-tab">
+                <div class="card-header bg-white border-bottom-0 mt-3 sticky-top">
+                    <p class="h4">Your Data</p>
+                </div>
+                <div class="card-body">
+                    <div>
+                        <h5 style="margin-top: 0;">
+                            What information do we collect and why?
+                        </h5>
+                        <p>
+                            Upon your consent, we collect responses to the experiment you provide.
+                            No individual can be personally identified from the collection of this data.
+                            The data is anonymous, with the exception of your Prolific ID, which is required to administer payments.
+                            The researcher does not have access to any other personal data and therefore cannot link
+                            this ID with any other personal data. After the payment has been processed, we will
+                            separate the Prolific IDs from the dataset and thereby anonymise it. The Prolific IDs will
+                            be stored separately and safely on a Maastricht University server. After this anonymisation,
+                            it will not be possible to identify participants based on their responses.
+                        </p>
+                        <p>
+                            The data collected in this experiment will be used for academic research in behavioural economics.
+                            We will publish the results in academic papers. These papers will contain only anonymous data
+                            presented as tables and figures (e.g., percentages and averages).
+                        </p>
+
+
+                        <h5>
+                            Cookies policy
+                        </h5>
+
+                        <p>
+                            We do not use cookies. We do store some technical information (e.g., your screen resolution) automatically to
+                            be able to analyse technical problems.
+                        </p>
+
+
+                        <h5>
+                            What is the legal basis for holding these data?
+                        </h5>
+
+                        <p>
+                            The lawful basis for processing this information is Article 6(1.e) of the General Data
+                            Protection Regulation (GDPR): processing is necessary for the performance of a task carried
+                            out in the public interest or in the exercise of official authority vested in the controller.
+                        </p>
+                        <p>
+                            Your data will not be used for other purposes. Only fully anonymised data will be shared
+                            for the sole purpose of replicating the analysis if requested by scientific journals.
+                            You have the right to request access to your data and/or deletion of your Prolific ID from
+                            our data by sending an email to f.stehr@maastrichtuniversity.nl.
+                        </p>
+
+
+                        <h5>
+                            How do we store the data?
+                        </h5>
+
+                        <p>
+                            The study uses the app oTree, which is hosted on the servers of Heroku, a cloud platform
+                            based in San Francisco (USA) and owned by Salesforce. To send emails to you the study
+                            uses the services of Academic Prolific. These companies declare to be compliant with
+                            the GDPR. No personal data other than your Prolific ID will be shared with these companies.
+                            Your Prolific ID is stored encrypted in the Heroku cloud database and cannot be read by
+                            anyone outside the research team. All raw data collected in the experiments is stored
+                            securely on servers at Maastricht University. Maastricht University stores all data for
+                            at least 10 years. After that, the data is destroyed or transferred to other media for
+                            longer storage if needed.
+                        </p>
+                        <p>
+                            The faculty's Privacy Officer is Eric Soemers. For questions or
+                            complaints about the privacy legislation of this research
+                            you can contact him at SBE Administration Office – IT and Facilities,
+                            via h.soemers@maastrichtuniversity.nl.
+                        </p>
+                    </div>
+
+
+
+
+
+                    <!-- on Card Navigation  Arrows -->
+                    <div class="row justify-content-md-center mt-5">
+                        <div class="col col-lg-2">
+                            <p onclick="topFunction()" class="prevtab text-center" data-toggle="tooltip" data-placement="top" title="Back">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#076bff" class="bi bi-arrow-left-circle" viewBox="0 0 16 16" style="cursor: pointer">
+                                    <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                    <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z"/>
+                                </svg>
+                            </p>
+                        </div>
+
+                        <div class="col col-lg-2">
+                            <p onclick="topFunction()" class="nexttab text-center" data-toggle="tooltip" data-placement="top" title="Next">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#076bff" class="bi bi-arrow-right-circle" viewBox="0 0 16 16" style="cursor: pointer">
+                                    <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                    <path fill-rule="evenodd" d="M4 8a.5.5 0 0 0 .5.5h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5A.5.5 0 0 0 4 8z"/>
+                                </svg>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- Part 3: WHATEVER FINAL TAB HERE -->
+            <div class="tab-pane" id="part3" role="tabpanel" aria-labelledby="part3-tab">
+                <div class="card-header bg-white border-bottom-0 mt-3 sticky-top">
+                    <p class="h4">Your consent to participate</p>
+                </div>
+                <div class="card-body">
+                    <div style="margin-left: 10pt; font-style: italic">
+                        <p>
+                            I hereby give permission for my data to be used for scientific purposes.
+                            I have had enough time to decide whether I want to participate in the experiment.
+                            I know that participation is voluntary and I know that I can decide to withdraw from
+                            the experiment at any time. I do not have to justify such a decision to withdraw.
+                            If I withdraw I will forfeit any payments.
+                        </p>
+                        <p>
+                            I understand that the data will be stored anonymously and thus can only be published anonymously.
+                            I give permission for the researcher to use my anonymised responses in subsequent experiments.
+                        </p>
+                        <p>
+                            I understand that for people with photosensitivity, the characteristics of some of the
+                            images in the experiment may cause dizziness or other symptoms.
+                        </p>
+                    </div>
+
+                    <br>
+                    <p>
+                        Before you begin, please turn off your phone/e-mails/music so that you can concentrate on this experiment. Thank you!
+                    </p>
+
+
+                    <!-- on Card Navigation  Arrows -->
+                    <div class="row justify-content-md-center mt-5">
+                        <div class="col col-lg-2">
+                            <p onclick="topFunction()" class="prevtab text-center" data-toggle="tooltip" data-placement="top" title="Back">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#076bff" class="bi bi-arrow-left-circle" viewBox="0 0 16 16" style="cursor: pointer">
+                                    <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                    <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z"/>
+                                </svg>
+                            </p>
+                        </div>
+
+                        <div class="col col-lg-2">
+                            <button class="btn btn-primary btn-large" onclick="saveTime()">Participate in this study</button>
+                        </div>
+
+                        <input id="starting_time" name="starting_time" type="hidden" value=""/>
+                        <input type="hidden" name="is_mobile" id="is_mobile">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+{% endblock %}

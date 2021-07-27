@@ -1,0 +1,128 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block styles %}
+    <link rel="stylesheet" type="text/css" href="{% static "css/sliders.css" %}">
+    <style>
+      th, td, tr {
+        padding: 5px;
+      }
+      td:nth-child(1) {
+          width: 17%;
+      }
+    </style>
+{% endblock %}
+
+
+{% block scripts %}
+    <script type="text/javascript" src="{% static 'js/sliders.js' %}"></script>
+{% endblock %}
+
+
+
+
+{% block title %}
+    Estimate the Carbon Emissions
+{% endblock %}
+
+
+{% block content %}
+
+    <div class="alert alert-danger" id="alert" style="display:none;">
+        Please indicate your estimate for all items. If you would like to answer '0' for an item, please make sure to click the slider once.
+    </div>
+
+    <div class="alert alert-light" style="border-color: lightgrey; color: black">
+
+        <div>
+            <p>
+                On this page, we ask you to estimate how many kg CO<sub>2</sub> can be saved with different behaviours.
+            </p>
+        </div>
+
+
+        <div>
+            <p>
+                In order for you to get a better understanding of what 1 kg CO<sub>2</sub> means, we include here the CO<sub>2</sub> emissions from two car-rides:
+            </p>
+        </div>
+
+        <div style="overflow-x: auto;">
+            <table style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th style="text-align:center">CO<sub>2</sub> Emissions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            1,000 miles with an average car emits 275 kg CO<sub>2</sub>:
+                        </td>
+                        <td style="text-align:center">
+                            <img src="{% static 'img/car_impact_low.png' %}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                           5,000 miles with an average car emits 1,375 kg CO<sub>2</sub>:
+                        </td>
+                        <td style="text-align:center">
+                            <img src="{% static 'img/car_impact_medium.png' %}">
+                        </td>
+                    </tr>
+            </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div style="margin-bottom:1cm;margin-top:1cm; position:sticky; top: -1px; padding: 10px 0px; background-color: white; z-index:5;">
+        <p>
+            For each item in the following list, please indicate how many kg of CO<sub>2</sub> you think could be saved
+            on average <strong>annually</strong> by this behaviour.
+        </p>
+    </div>
+
+    <!-- Making the table responsive -->
+    <div style="overflow-x: auto;">
+
+        <!-- Adding table in the web page -->
+        <table class="table table-striped" style="width:90%; margin-right: auto; margin-left: auto;">
+            <thead>
+                <tr>
+                    <th style="text-align:center">kg of CO<sub>2</sub> Emissions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for field in form %}
+                    <tr>
+                        <td style="text-align: justify"> {{ field.label }} </td>
+                    </tr>
+                    <tr>
+                        <td style="height:60px">
+                            <br>
+                            <div class="slidecontainer" style="">
+                                <span>0</span>
+                                <input type="range" name="{{ field.name }}" min="0" max="2500" value="0" step="1" id="{{ field.name }}" class="slider">
+                                2500
+                                <span style="font-weight: bold;color:#007bff" class="slider_label"></span>
+                            </div>
+                            <br>
+                            <div> {{ field.errors }}</div>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+
+	<div style="margin-top:12pt; text-align: right">
+       <button name="slider_task_check" id="test" class="btn btn-primary btn-large" onclick="checkTouched()">Next</button>
+    </div>
+
+
+{% endblock %}
+

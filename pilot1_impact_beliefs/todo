@@ -1,0 +1,20 @@
+--> test payoff consequences properly
+--> OBS! When timeout in part 4, final payoff is still positive & show-up fee should also be deducted
+ when timeout occurred!
+
+to make prolific compatible include participant labels
+If you’re using Prolific, you can add participant_label={{%PROLIFIC_PID%}} to your study URL. When the user clicks the link, Prolific will replace that with the participant’s actual Prolific ID.
+
+
+hjk
+
+remember to update number of sliders before running the study!
+
+
+## LAYOUT STUFF i.e. nice to have
+in case carousel needs to be updated without the tabs: https://stackoverflow.com/questions/18760225/how-to-disable-bootstrap-carousel-animation#18760366
+
+for carbon beliefs: make sliders fill color to the left
+https://stackoverflow.com/questions/18389224/how-to-style-html5-range-input-to-have-different-color-before-and-after-slider
+https://www.a11ywithlindsey.com/blog/creating-accessible-range-slider-css
+https://css-tricks.com/styling-cross-browser-compatible-range-inputs-css/
