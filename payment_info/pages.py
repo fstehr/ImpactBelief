@@ -29,13 +29,13 @@ class PaymentInfo(Page):
 
     def vars_for_template(self):
         participant = self.participant
-        timeout_in_payment_round = participant.vars['timeout_in_payment_round']
+        timeout_in_payment_decision = participant.vars['timeout_in_payment_decision']
 
         final_payoff = participant.payoff
         final_payoff_plus_part_fee = participant.payoff_plus_participation_fee()
         link = 'https://app.prolific.co/submissions/complete?cc=F4F99D60'
 
-        return {'timeout_in_payment_round': timeout_in_payment_round,
+        return {'timeout_in_payment_decision': timeout_in_payment_decision,
                 'final_payoff_display': final_payoff,
                 'final_payoff_plus_part_fee_display': final_payoff_plus_part_fee,
                 'link': link}

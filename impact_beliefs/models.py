@@ -26,8 +26,7 @@ class Constants(BaseConstants):
     with open('impact_beliefs/static/Parameters.csv', encoding='utf-8-sig') as parameters:
         paras = list(csv.DictReader(parameters, dialect='excel'))
 
-    num_decision_rounds = len(paras) * 4
-    num_rounds = num_decision_rounds
+    num_rounds = len(paras) * 2   # same projects are shown in two parts within subject
     endowment = 300
     beliefs_fixed_payment = 150
     beliefs_max_accuracy_bonus = beliefs_fixed_payment
@@ -52,57 +51,48 @@ class Subsession(BaseSubsession):
                 paras = Constants.paras.copy()
                 random.shuffle(paras)
                 new_paras = Constants.paras.copy()  # defines a helplist of parameters, which is shuffled then appended to original paras list
-                for i in [0, 1, 2]:  # repeat three times to get four parts (original + 3 times shuffled)
-                    random.shuffle(new_paras)  # shuffles helplist
-                    paras = paras + new_paras  # appends shuffled helplist to list of parameters
-                p.vars['parameters'] = paras  # store shuffled list of parameters in participant vars, then access each element by round number
+                random.shuffle(new_paras)  # shuffles helplist
+                paras = paras + new_paras  # appends shuffled helplist to list of parameters
+                p.vars['parameters'] = paras  # store shuffled list of parameters in participant vars, then access each element by project_id=round number
                 # print(p.vars['parameters'])  # prints participant vars to double check randomization
 
                 # intialize several participant vars
                 p.vars['trial_timeout_counter'] = 0  # initialize trial timeout counter
                 p.vars['timeout_counter'] = 0  # initialize timeout counter
-                p.vars['timeout_in_payment_round'] = 0  # initialize timeout counter
+                p.vars['timeout_in_payment_decision'] = 0  # initialize timeout counter
                 p.vars['forced_timeout'] = 0
                 p.vars['attention_check_failed'] = 0
 
                 # generate participant varlist for beliefs by part, to store beliefs using project_id
                 p.vars['beliefs_part1'] = [0] * len(paras)
-                p.vars['beliefs_part3'] = [0] * len(paras)
+                p.vars['beliefs_part2'] = [0] * len(paras)
 
                 # randomly assign treatment order to participants
                 orders = ["NeutralMotivated", "MotivatedInfo"]
                 p.vars['order'] = random.choice(orders)
 
-                # randomly assign payment round
-                rounds = range(1, Constants.num_rounds + 1)
-                p.vars['payment_round'] = random.choice(rounds)
-                print("Payment round is", p.vars['payment_round'])
+                # randomly assign payment decision
+                decisions = range(1, Constants.num_rounds * 2 + 1)   # 2 decisions per round (belief & donation)
+                p.vars['payment_decision'] = random.choice(decisions)
+                print("Payment decision is", p.vars['payment_decision'])
 
         for p in self.get_players():
             # Define "part" variable in the beginning of the experiment
             if self.round_number <= len(Constants.paras):
-                p.part = 1  # belief rounds 1
-                p.round_type = "belief"
-            elif self.round_number <= len(Constants.paras) * 2:
-                p.part = 2  # donation rounds 1
-                p.round_type = "donation"
-            elif self.round_number <= len(Constants.paras) * 3:
-                p.part = 3  # belief rounds 2
-                p.round_type = "belief"
-            else:
-                p.part = 4  # donation rounds 2
-                p.round_type = "donation"
+                p.part = 1
+            elif self.round_number <= Constants.num_rounds:
+                p.part = 2
 
             # Assign treatment to players in all rounds using treatment order assigned in first round
             if p.participant.vars['order'] == "NeutralMotivated":
                 p.order = "NeutralMotivated"
-                if p.part == 1 or p.part == 2:
+                if p.part == 1:
                     p.treatment = "Neutral"
                 else:
                     p.treatment = "Motivated"
             elif p.participant.vars['order'] == "MotivatedInfo":
                 p.order = "MotivatedInfo"
-                if p.part == 1 or p.part == 2:
+                if p.part == 1:
                     p.treatment = "Motivated"
                 else:
                     p.treatment = "Info"
@@ -130,7 +120,6 @@ class Player(BasePlayer):
     window_height = models.IntegerField(blank=True, doc="Documents the respondent's browser window's height.")
 
     part = models.IntegerField()
-    round_type = models.StringField()
     order = models.StringField()
     treatment = models.StringField()
 
@@ -163,7 +152,9 @@ class Player(BasePlayer):
     num_x_true = models.IntegerField()
     price = models.FloatField()
 
-    current_payoff = models.FloatField()
+    current_payoff_belief = models.FloatField()
+    current_payoff_donation = models.FloatField()
+
 
     co2_belief_car = models.FloatField(label="Consider a household that drives on average 8,000 miles a year. How much emissions could be saved in a year if this household were to live car-free? Assume in your answer that they would walk or take the bike instead.",)
     co2_belief_plane = models.FloatField(label="Consider a transatlantic round-trip flight from London to New York. How much emissions could be saved by avoiding this flight?",)

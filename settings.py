@@ -3,10 +3,16 @@ from os import environ
 
 SESSION_CONFIGS = [
     dict(
-        name='impact_beliefs',
-        display_name='Impact Beliefs',
-        num_demo_participants=2,
-        app_sequence=['impact_beliefs', 'carbon_footprint', 'payment_info'],
+        name = 'impact_beliefs',
+        display_name = 'Impact Beliefs',
+        num_demo_participants = 2,
+        app_sequence = ['impact_beliefs', 'carbon_footprint', 'payment_info'],
+    ),
+    dict(
+        name = 'eightyk_hours',
+        display_name = '80000 hours idea evaluation',
+        num_demo_participants = 2,
+        app_sequence = ['eightyk_hours'],
     ),
 ]
 

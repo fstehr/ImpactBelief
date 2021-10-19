@@ -128,23 +128,18 @@ class Introbelief(Page):
     def is_displayed(self):
         return self.round_number == 1
 
-
 class Belief(Page):
     form_model = 'player'
     form_fields = ['num_x_belief']
 
     timeout_seconds = Constants.sec_intro + Constants.sec_per_matrix + Constants.sec_to_answer
 
-    def is_displayed(self):
-        player = self.player
-        return player.part == 1 or player.part == 3
-
     def vars_for_template(self):
         global image
         player = self.player
 
         # to display progress
-        task_number = player.part + 1
+        task_number = player.part
         num_projects = len(Constants.paras)
         project_number = (player.round_number - player.part * num_projects) + (num_projects)  # calculates a counter for the current project
 
@@ -175,15 +170,17 @@ class Belief(Page):
         player = self.player
         timeout_happened = self.timeout_happened
 
-        player.current_payoff = Constants.beliefs_fixed_payment + max(0, Constants.beliefs_max_accuracy_bonus - 0.00375 * (
+        player.current_payoff_belief = Constants.beliefs_fixed_payment + max(0, Constants.beliefs_max_accuracy_bonus - 0.00375 * (
                 (player.num_x_belief - player.num_x_true) ** 2))
-        # print("current payoff is", player.current_payoff, "= 150 + max(0,150 - 0.00375*(", player.num_x_belief, "-", player.num_x_true, ")^2")
-        if self.round_number == self.participant.vars['payment_round']:
+        # print("current payoff is", player.current_payoff_belief, "= 150 + max(0,150 - 0.00375*(", player.num_x_belief, "-", player.num_x_true, ")^2")
+        decision_number = self.round_number * 2 - 1   # define a help variable which counts decisions (odd numbers for beliefs)
+        if decision_number == self.participant.vars['payment_decision']:
             if timeout_happened:
                 player.payoff = 0
-                self.participant.vars['timeout_in_payment_round'] = 1  # initialize timeout counter
+                self.participant.vars['timeout_in_payment_decision'] = 1  # initialize timeout counter
             else:
-                player.payoff = player.current_payoff
+                player.payoff = player.current_payoff_belief
+            print(player.payoff)
 
         if timeout_happened:
             player.timeout = True
@@ -196,8 +193,8 @@ class Belief(Page):
             # belief_list = self.participant.vars['beliefs_part1']
             # print("Belief list in current treatment is", belief_list)
         elif player.part == 3:
-            self.participant.vars['beliefs_part3'][player.project_id - 1] = player.num_x_belief
-            # belief_list = self.participant.vars['beliefs_part3']
+            self.participant.vars['beliefs_part2'][player.project_id - 1] = player.num_x_belief
+            # belief_list = self.participant.vars['beliefs_part2']
             # print("Belief list in current treatment is", belief_list)
 
     def app_after_this_page(self, upcoming_apps):
@@ -210,10 +207,6 @@ class Belief(Page):
 class Donation(Page):
     form_model = 'player'
     form_fields = ['donation']
-
-    def is_displayed(self):
-        player = self.player
-        return player.part == 2 or player.part == 4
 
     def vars_for_template(self):
         player = self.player
@@ -234,7 +227,7 @@ class Donation(Page):
         if player.part == 2:
             player.num_x_belief = self.participant.vars['beliefs_part1'][player.project_id - 1]
         elif player.part == 4:
-            player.num_x_belief = self.participant.vars['beliefs_part3'][player.project_id - 1]
+            player.num_x_belief = self.participant.vars['beliefs_part2'][player.project_id - 1]
 
         return {'task_number': task_number, 'project_number': project_number, 'num_projects': num_projects,
                 'exchange_rate': exchange_rate, 'project': player.project_id,
@@ -256,10 +249,12 @@ class Donation(Page):
 
     def before_next_page(self):
         player = self.player
-        player.current_payoff = Constants.endowment - (player.price * player.donation)
-        # print("current payoff is", player.current_payoff, "=", Constants.endowment, "-", player.price, "*", player.donation)
-        if self.round_number == self.participant.vars['payment_round']:
-            player.payoff = player.current_payoff
+        player.current_payoff_donation = Constants.endowment - (player.price * player.donation)
+        # print("current payoff is", player.current_payoff_donation, "=", Constants.endowment, "-", player.price, "*", player.donation)
+        decision_number = self.round_number * 2    # define a help variable which counts decisions (even numbers for donation)
+        if decision_number == self.participant.vars['payment_decision']:
+            player.payoff = player.current_payoff_donation
+            print(player.payoff)
 
 
 class CarbonBelief(Page):
@@ -296,20 +291,21 @@ class Questionnaire(Page):
     def is_displayed(self):
         return self.round_number == Constants.num_rounds
 
-
-# page_sequence = [IntroWelcome]
-
 page_sequence = [
-    IntroWelcome,
-    SorryNoPhone,
-    Instructions,
-    TrialBelief1,
-    TrialBelief2,
-    TrialBelief3,
-    Introbelief,
     Belief,
-    Donation,
-    CarbonBelief,
-    CostBelief,
-    Questionnaire
-    ]
+    Donation]
+
+# page_sequence = [
+#     IntroWelcome,
+#     SorryNoPhone,
+#     Instructions,
+#     TrialBelief1,
+#     TrialBelief2,
+#     TrialBelief3,
+#     Introbelief,
+#     Belief,
+#     Donation,
+#     CarbonBelief,
+#     CostBelief,
+#     Questionnaire
+#     ]
