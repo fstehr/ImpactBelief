@@ -8,11 +8,18 @@ class Welcome(Page):
 
 
 class Evaluation(Page):
-    form_fields = ['pressingness', 'contribution', 'personal_fit', 'enthusiasm', 'individual', 'comments']
+    form_model = 'player'
+    form_fields = ['env{}'.format(i) for i in range(1, 30)] + \
+                  ['pol{}'.format(i) for i in range(1, 4)] + \
+                  ['edu{}'.format(i) for i in range(1, 5)] + \
+                  ['dec{}'.format(i) for i in range(1, 10)] + \
+                  ['soc{}'.format(i) for i in range(1, 4)] + \
+                  ['hea{}'.format(i) for i in range(1, 3)]
+    print(form_fields)
 
 
-class Results(Page):
-    pass
+class Comments(Page):
+    form_fields = ['comments']
 
 
-page_sequence = [Welcome, Evaluation, Results]
+page_sequence = [Welcome, Evaluation, Comments]

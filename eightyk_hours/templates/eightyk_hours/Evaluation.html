@@ -1,0 +1,73 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block styles %}
+    <style>
+        div.sticky {
+          position: -webkit-sticky;
+          position: sticky;
+          top: 0;
+          background-color: #5F9EA0;
+          padding: 20px;
+          font-size: 20px;
+            z-index: 10;
+        }
+    </style>
+{% endblock %}
+
+{% block title %}
+    Bewertung - {% if player.round_number == 1 %} Dringlichkeit {% elif player.round_number == 2 %} {% endif %}
+{% endblock %}
+
+{% block content %}
+
+<div class="sticky">
+    {% if player.round_number == 1 %}
+        Als wie dringlich bewertest du das von der Idee angegangene Problem auf einer Skala von 1 (= überhaupt nicht) bis 10 (= extrem)?
+    {% elif player.round_number == 2 %}
+
+    {% elif player.round_number == 3 %}
+
+    {% elif player.round_number == 4 %}
+
+    {% elif player.round_number == 5 %}
+
+    {% endif %}
+
+</div>
+
+<div style="overflow-x: auto;">
+    <table class="table table-striped" style="width:100%; margin-right: auto; margin-left: auto;">
+        <thead>
+            <tr>
+                <th></th>
+                <th style="width:50px; text-align: center">0</th>
+                <th style="width:50px; text-align: center">1</th>
+                <th style="width:50px; text-align: center">2</th>
+                <th style="width:50px; text-align: center">3</th>
+                <th style="width:50px; text-align: center">4</th>
+                <th style="width:50px; text-align: center">5</th>
+                <th style="width:50px; text-align: center">6</th>
+                <th style="width:50px; text-align: center">7</th>
+                <th style="width:50px; text-align: center">8</th>
+                <th style="width:50px; text-align: center">9</th>
+                <th style="width:50px; text-align: center">10</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for field in form %}
+                <tr>
+                    <td>{{ field.label }}</td>
+                    {% for choice in field %}
+                        <td style="text-align:right">{{ choice.tag }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+    {% next_button %}
+{% endblock %}
+
+
