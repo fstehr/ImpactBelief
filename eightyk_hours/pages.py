@@ -2,9 +2,14 @@ from otree.api import Currency as c, currency_range
 from ._builtin import Page, WaitPage
 from .models import Constants
 
+from django.shortcuts import render
+
 
 class Welcome(Page):
     pass
+
+
+
 
 
 class Evaluation(Page):
@@ -15,7 +20,6 @@ class Evaluation(Page):
                   ['dec{}'.format(i) for i in range(1, 10)] + \
                   ['soc{}'.format(i) for i in range(1, 4)] + \
                   ['hea{}'.format(i) for i in range(1, 3)]
-    print(form_fields)
 
 
 class Comments(Page):

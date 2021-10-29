@@ -21,9 +21,10 @@
 
 {% block content %}
 
-<div class="sticky">
+<div class="sticky" style="width:101%; margin-right: auto; margin-left: auto;">
     {% if player.round_number == 1 %}
-        Als wie dringlich bewertest du das von der Idee angegangene Problem auf einer Skala von 1 (= überhaupt nicht) bis 10 (= extrem)?
+        Als wie dringlich bewertest du das von der Idee angegangene Problem <br>
+        auf einer Skala von 1 (= überhaupt nicht) bis 10 (= extrem)?
     {% elif player.round_number == 2 %}
 
     {% elif player.round_number == 3 %}
@@ -34,10 +35,30 @@
 
     {% endif %}
 
+    <table class="sticky" style="width: 900px; margin-right: auto; margin-left: auto; font-size: 14px ">
+        <thead>
+            <tr>
+                <th style="width:300px;"></th>
+                <th style="width:50px; text-align: center">0</th>
+                <th style="width:50px; text-align: center">1</th>
+                <th style="width:50px; text-align: center">2</th>
+                <th style="width:50px; text-align: center">3</th>
+                <th style="width:50px; text-align: center">4</th>
+                <th style="width:50px; text-align: center">5</th>
+                <th style="width:50px; text-align: center">6</th>
+                <th style="width:50px; text-align: center">7</th>
+                <th style="width:50px; text-align: center">8</th>
+                <th style="width:50px; text-align: center">9</th>
+                <th style="width:50px; text-align: center">10</th>
+            </tr>
+        </thead>
+    </table>
+
 </div>
 
-<div style="overflow-x: auto;">
-    <table class="table table-striped" style="width:100%; margin-right: auto; margin-left: auto;">
+
+<div style="">
+    <table class="table table-striped" style="width: 1000px; margin-right: auto; margin-left: auto;">
         <thead>
             <tr>
                 <th></th>

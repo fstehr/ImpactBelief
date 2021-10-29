@@ -28,7 +28,6 @@ def make_likert_field(label):  # create a Likert type field with a 10 point scal
     )
 
 
-
 class Constants(BaseConstants):
     name_in_url = 'eightyk_hours'
     players_per_group = None
@@ -57,7 +56,6 @@ class Constants(BaseConstants):
                 society.append(items[i])
             elif items[i]['header1'] == "Global Health":
                 health.append(items[i])
-            print(len(environment), len(politics), len(education), len(decision), len(society), len(health))
 
     num_rounds = 5
 
@@ -137,4 +135,14 @@ class Player(BasePlayer):
 
     # Free form comments
     comments = models.LongStringField()
+
+    #test
+    a1 = models.IntegerField()
+    a2 = models.IntegerField()
+    a3 = models.IntegerField()
+    a4 = models.IntegerField()
+
+    b1 = models.StringField()
+    b2 = models.StringField()
+    b3 = models.StringField()
 
