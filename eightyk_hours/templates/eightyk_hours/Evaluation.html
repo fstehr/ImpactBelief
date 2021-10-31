@@ -7,38 +7,54 @@
           position: -webkit-sticky;
           position: sticky;
           top: 0;
-          background-color: #5F9EA0;
           padding: 20px;
           font-size: 20px;
             z-index: 10;
+        }
+        h2 {
+            margin-top: 15pt;
         }
     </style>
 {% endblock %}
 
 {% block title %}
-    Bewertung - {% if player.round_number == 1 %} Dringlichkeit {% elif player.round_number == 2 %} {% endif %}
+    Bewertung -
+        {% if player.round_number == 1 %} Dringlichkeit
+        {% elif player.round_number == 2 %} Impact
+        {% elif player.round_number == 3 %} Begeisterung
+        {% elif player.round_number == 4 %} Machbarkeit
+        {% elif player.round_number == 5 %} Persönlicher Fit
+        {% endif %}
 {% endblock %}
 
 {% block content %}
 
-<div class="sticky" style="width:101%; margin-right: auto; margin-left: auto;">
+<div class="sticky" style="width:1000px; margin-right: auto; margin-left: auto; background-color:#90a2fc;">
+    <p>
     {% if player.round_number == 1 %}
-        Als wie dringlich bewertest du das von der Idee angegangene Problem <br>
+        Als wie <u>dringlich</u> bewertest du das von der Idee angegangene Problem <br>
         auf einer Skala von 1 (= überhaupt nicht) bis 10 (= extrem)?
     {% elif player.round_number == 2 %}
-
+        Wie bewertest du den <u>Beitrag (impact) dieser Idee zur Lösung</u> des adressierten Problems<br>
+        auf einer Skala von 1 (= minimal) bis 10 (= extrem gross)?
     {% elif player.round_number == 3 %}
-
+        Wie <u>enthusiastisch</u> bist du bezüglich dieser Idee <br>
+        auf einer Skala von 1 (= überhaupt nicht) bis 10 (= extrem)?
     {% elif player.round_number == 4 %}
-
+        Inwiefern denkst du, ist es <u>möglich</u> mit der Arbeit an dieser Idee <u>alleine zu starten</u> <br>
+        auf einer Skala von 1 (= überhaupt nicht) bis 10 (= sehr einfach)?
     {% elif player.round_number == 5 %}
-
+        Wie bewertest du <u>Fraukes persönlichen Fit</u> mit dieser Idee (Skills, Interessen, ...) <br>
+        auf einer Skala von 1 (= gar keine Überlappung) bis 10 (= extrem große Überlappung)?
     {% endif %}
+    </p>
 
-    <table class="sticky" style="width: 900px; margin-right: auto; margin-left: auto; font-size: 14px ">
+    <br>
+
+    <table class="sticky" style="width: 980px; background-color:#90a2fc; margin-right: auto; margin-left: auto; font-size: medium">
         <thead>
             <tr>
-                <th style="width:300px;"></th>
+                <th style="width:700px;"></th>
                 <th style="width:50px; text-align: center">0</th>
                 <th style="width:50px; text-align: center">1</th>
                 <th style="width:50px; text-align: center">2</th>
@@ -57,36 +73,227 @@
 </div>
 
 
-<div style="">
-    <table class="table table-striped" style="width: 1000px; margin-right: auto; margin-left: auto;">
-        <thead>
-            <tr>
-                <th></th>
-                <th style="width:50px; text-align: center">0</th>
-                <th style="width:50px; text-align: center">1</th>
-                <th style="width:50px; text-align: center">2</th>
-                <th style="width:50px; text-align: center">3</th>
-                <th style="width:50px; text-align: center">4</th>
-                <th style="width:50px; text-align: center">5</th>
-                <th style="width:50px; text-align: center">6</th>
-                <th style="width:50px; text-align: center">7</th>
-                <th style="width:50px; text-align: center">8</th>
-                <th style="width:50px; text-align: center">9</th>
-                <th style="width:50px; text-align: center">10</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for field in form %}
-                <tr>
-                    <td>{{ field.label }}</td>
-                    {% for choice in field %}
-                        <td style="text-align:right">{{ choice.tag }}</td>
+
+    <h2>Umwelt</h2>
+
+        <div style="">
+            <table class="table table-striped" style="width: 1000px; margin-right: auto; margin-left: auto;">
+                <thead>
+                    <tr>
+                        <th style="width:450px; border-top:none;"></th>
+                        <th style="width:50px; border-top:none;"></th>
+                        <th style="width:50px; border-top:none;"></th>
+                        <th style="width:50px; border-top:none;"></th>
+                        <th style="width:50px; border-top:none;"></th>
+                        <th style="width:50px; border-top:none;"></th>
+                        <th style="width:50px; border-top:none;"></th>
+                        <th style="width:50px; border-top:none;"></th>
+                        <th style="width:50px; border-top:none;"></th>
+                        <th style="width:50px; border-top:none;"></th>
+                        <th style="width:50px; border-top:none;"></th>
+                        <th style="width:50px; border-top:none;"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for field in form %}
+                        {% if  forloop.counter < 30 %}
+                            <tr>
+                                <td style="width:650px; word-wrap: break-word">{{ field.label }}</td>
+                                {% for choice in field %}
+                                    <td style="text-align:right">{{ choice.tag }}</td>
+                                {% endfor %}
+                            </tr>
+                        {% endif %}
                     {% endfor %}
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-</div>
+                </tbody>
+            </table>
+        </div>
+
+    <h2>Politische Teilhabe</h2>
+
+        <div style="">
+            <table class="table table-striped" style="width: 1000px; margin-right: auto; margin-left: auto;">
+                <thead>
+                    <tr>
+                        <th style="width:450px; border-top:none;"></th>
+                        <th style="width:50px; border-top:none;"></th>
+                        <th style="width:50px; border-top:none;"></th>
+                        <th style="width:50px; border-top:none;"></th>
+                        <th style="width:50px; border-top:none;"></th>
+                        <th style="width:50px; border-top:none;"></th>
+                        <th style="width:50px; border-top:none;"></th>
+                        <th style="width:50px; border-top:none;"></th>
+                        <th style="width:50px; border-top:none;"></th>
+                        <th style="width:50px; border-top:none;"></th>
+                        <th style="width:50px; border-top:none;"></th>
+                        <th style="width:50px; border-top:none;"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for field in form %}
+                        {% if  forloop.counter > 29 %}
+                        {% if  forloop.counter < 33 %}
+                            <tr>
+                                <td style="width:700px; word-wrap: break-word">{{ field.label }}</td>
+                                {% for choice in field %}
+                                    <td style="text-align:right">{{ choice.tag }}</td>
+                                {% endfor %}
+                            </tr>
+                        {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    <h2>Bildung</h2>
+
+        <div style="">
+            <table class="table table-striped" style="width: 1000px; margin-right: auto; margin-left: auto;">
+                <thead>
+                    <tr>
+                        <th style="width:450px; border-top:none;"></th>
+                        <th style="width:50px; border-top:none;"></th>
+                        <th style="width:50px; border-top:none;"></th>
+                        <th style="width:50px; border-top:none;"></th>
+                        <th style="width:50px; border-top:none;"></th>
+                        <th style="width:50px; border-top:none;"></th>
+                        <th style="width:50px; border-top:none;"></th>
+                        <th style="width:50px; border-top:none;"></th>
+                        <th style="width:50px; border-top:none;"></th>
+                        <th style="width:50px; border-top:none;"></th>
+                        <th style="width:50px; border-top:none;"></th>
+                        <th style="width:50px; border-top:none;"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for field in form %}
+                        {% if  forloop.counter > 32 %}
+                        {% if  forloop.counter < 37 %}
+                            <tr>
+                                <td style="width:800px; word-wrap: break-word">{{ field.label }}</td>
+                                {% for choice in field %}
+                                    <td style="text-align:right">{{ choice.tag }}</td>
+                                {% endfor %}
+                            </tr>
+                        {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    <h2>Qualität von Entscheidungen</h2>
+
+        <div style="">
+            <table class="table table-striped" style="width: 1000px; margin-right: auto; margin-left: auto;">
+                <thead>
+                    <tr>
+                        <th style="width:700px; border-top:none;"></th>
+                        <th style="width:50px; border-top:none;"></th>
+                        <th style="width:50px; border-top:none;"></th>
+                        <th style="width:50px; border-top:none;"></th>
+                        <th style="width:50px; border-top:none;"></th>
+                        <th style="width:50px; border-top:none;"></th>
+                        <th style="width:50px; border-top:none;"></th>
+                        <th style="width:50px; border-top:none;"></th>
+                        <th style="width:50px; border-top:none;"></th>
+                        <th style="width:50px; border-top:none;"></th>
+                        <th style="width:50px; border-top:none;"></th>
+                        <th style="width:50px; border-top:none;"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for field in form %}
+                        {% if  forloop.counter > 36 %}
+                        {% if  forloop.counter < 46 %}
+                            <tr>
+                                <td style="width:700px; word-wrap: break-word">{{ field.label }}</td>
+                                {% for choice in field %}
+                                    <td style="text-align:right">{{ choice.tag }}</td>
+                                {% endfor %}
+                            </tr>
+                        {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    <h2>Gesellschaftlicher Zusammenhalt</h2>
+
+        <div style="">
+            <table class="table table-striped" style="width: 1000px; margin-right: auto; margin-left: auto;">
+                <thead>
+                    <tr>
+                        <th style="width:450px; border-top:none;"></th>
+                        <th style="width:50px; border-top:none;"></th>
+                        <th style="width:50px; border-top:none;"></th>
+                        <th style="width:50px; border-top:none;"></th>
+                        <th style="width:50px; border-top:none;"></th>
+                        <th style="width:50px; border-top:none;"></th>
+                        <th style="width:50px; border-top:none;"></th>
+                        <th style="width:50px; border-top:none;"></th>
+                        <th style="width:50px; border-top:none;"></th>
+                        <th style="width:50px; border-top:none;"></th>
+                        <th style="width:50px; border-top:none;"></th>
+                        <th style="width:50px; border-top:none;"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for field in form %}
+                        {% if  forloop.counter > 45 %}
+                        {% if  forloop.counter < 49 %}
+                            <tr>
+                                <td style="width:800px; word-wrap: break-word">{{ field.label }}</td>
+                                {% for choice in field %}
+                                    <td style="text-align:right">{{ choice.tag }}</td>
+                                {% endfor %}
+                            </tr>
+                        {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    <h2>Globale Gesundheit</h2>
+
+        <div style="">
+            <table class="table table-striped" style="width: 1000px; margin-right: auto; margin-left: auto;">
+                <thead>
+                    <tr>
+                        <th style="width:450px;border-top:none;"></th>
+                        <th style="width:50px; border-top:none;"></th>
+                        <th style="width:50px; border-top:none;"></th>
+                        <th style="width:50px; border-top:none;"></th>
+                        <th style="width:50px; border-top:none;"></th>
+                        <th style="width:50px; border-top:none;"></th>
+                        <th style="width:50px; border-top:none;"></th>
+                        <th style="width:50px; border-top:none;"></th>
+                        <th style="width:50px; border-top:none;"></th>
+                        <th style="width:50px; border-top:none;"></th>
+                        <th style="width:50px; border-top:none;"></th>
+                        <th style="width:50px; border-top:none;"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for field in form %}
+                        {% if  forloop.counter > 48 %}
+                            <tr>
+                                <td style="width:800px; word-wrap: break-word">{{ field.label }}</td>
+                                {% for choice in field %}
+                                    <td style="text-align:right">{{ choice.tag }}</td>
+                                {% endfor %}
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+
+    <br>
 
     {% next_button %}
 {% endblock %}

@@ -134,15 +134,4 @@ class Player(BasePlayer):
     hea2 = make_likert_field(Constants.health[1]["item"])
 
     # Free form comments
-    comments = models.LongStringField()
-
-    #test
-    a1 = models.IntegerField()
-    a2 = models.IntegerField()
-    a3 = models.IntegerField()
-    a4 = models.IntegerField()
-
-    b1 = models.StringField()
-    b2 = models.StringField()
-    b3 = models.StringField()
-
+    comments = models.LongStringField(blank=True)

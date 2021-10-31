@@ -6,10 +6,8 @@ from django.shortcuts import render
 
 
 class Welcome(Page):
-    pass
-
-
-
+    def is_displayed(self):
+        return self.round_number == 1
 
 
 class Evaluation(Page):
@@ -23,7 +21,16 @@ class Evaluation(Page):
 
 
 class Comments(Page):
+    form_model = 'player'
     form_fields = ['comments']
 
+    def is_displayed(self):
+        return self.round_number == 5
 
-page_sequence = [Welcome, Evaluation, Comments]
+
+class Danke(Page):
+    def is_displayed(self):
+        return self.round_number == 5
+
+
+page_sequence = [Welcome, Evaluation, Comments, Danke]
