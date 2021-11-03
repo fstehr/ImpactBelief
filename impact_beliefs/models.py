@@ -138,37 +138,43 @@ class Player(BasePlayer):
     trial_timeout = models.IntegerField(initial=0, blank=True,
                                         doc="Counts how many time-outs occured on trial belief page")
 
-    num_x_belief = models.IntegerField(min=0, max=400, doc="records belief on number of Xs in matrix")
-    timeout = models.BooleanField(blank=True, doc="True if a time-out occured on a belief-elicitation page")
-    forced_timeout = models.BooleanField(blank=True,
-                                         doc="True if subject was forced to quit because of too many time-outs")
-    donation = models.BooleanField(widget=widgets.RadioSelectHorizontal,
+    # Characteristics of Project A
+    project_id_A = models.IntegerField()
+    price_A = models.FloatField()
+    num_x_true_A = models.IntegerField()
+    num_x_belief_A = models.IntegerField(min=0, max=400, doc="records belief on number of Xs in matrix")
+    num_x_belief_min_A = models.IntegerField(min=0, max=400, doc="records belief on number of Xs in matrix")
+    num_x_belief_max_A = models.IntegerField(min=0, max=400, doc="records belief on number of Xs in matrix")
+    donation_A = models.BooleanField(widget=widgets.RadioSelectHorizontal,
+                                     choices=[
+                                         [True, 'Yes'],
+                                         [False, 'No'],
+                                     ]
+                                     )
+
+    # Characteristics of Project B
+    project_id_B = models.IntegerField()
+    price_B = models.FloatField()
+    num_x_true_B = models.IntegerField()
+    num_x_belief_B = models.IntegerField(min=0, max=400, doc="records belief on number of Xs in matrix")
+    num_x_belief_min_B = models.IntegerField(min=0, max=400, doc="records belief on number of Xs in matrix")
+    num_x_belief_max_B = models.IntegerField(min=0, max=400, doc="records belief on number of Xs in matrix")
+    donation_B = models.BooleanField(widget=widgets.RadioSelectHorizontal,
                                    choices=[
                                        [True, 'Yes'],
                                        [False, 'No'],
                                    ]
                                    )
-    project_id = models.IntegerField()
-    num_x_true = models.IntegerField()
-    price = models.FloatField()
+
+    timeout = models.BooleanField(blank=True, doc="True if a time-out occured on a belief-elicitation page")
+    forced_timeout = models.BooleanField(blank=True,
+                                         doc="True if subject was forced to quit because of too many time-outs")
+
+
 
     current_payoff_belief = models.FloatField()
     current_payoff_donation = models.FloatField()
 
-
-    co2_belief_car = models.FloatField(label="Consider a household that drives on average 8,000 miles a year. How much emissions could be saved in a year if this household were to live car-free? Assume in your answer that they would walk or take the bike instead.",)
-    co2_belief_plane = models.FloatField(label="Consider a transatlantic round-trip flight from London to New York. How much emissions could be saved by avoiding this flight?",)
-    co2_belief_renewables = models.FloatField(label="Consider a household which uses 4,800 kWh of energy a year. How much emissions could be saved in a year if this household would switch to renewable energy?",)
-    co2_belief_vegan = models.FloatField(label="Consider a household that consumes around 1.2 kg of meat and 2.2 kg of dairy a week. How much emissions could be saved in a year if they were to adopt a plant-based diet?",)
-    co2_belief_laundry = models.FloatField(label="Consider a household which washes around 165 loads per year. How much emissions would be saved in a year if they were to change washer temperature settings from “hot wash, warm rinse” to “warm wash, cold rinse” for all laundry?",)
-    co2_belief_dryer = models.FloatField(label="Consider a household which washes around 165 loads per year. How much emissions would be saved in a year if they were to air-dry all laundry instead of using an electric dryer?",)
-
-    cost_belief_car = models.FloatField(label="Live car-free",)
-    cost_belief_plane = models.FloatField(label="Avoid one transatlantic round-trip flight",)
-    cost_belief_renewables = models.FloatField(label="Use renewable energy at home",)
-    cost_belief_vegan = models.FloatField(label="Adopt a plant-based diet",)
-    cost_belief_laundry = models.FloatField(label="Wash clothes in cold water",)
-    cost_belief_dryer = models.FloatField(label="Air-dry clothes",)
 
     # Comprehension Question Fields
     wrong_answer1 = models.IntegerField(doc="Counts the number of wrong guesses for cq1.", initial=0)

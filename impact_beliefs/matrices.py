@@ -3,12 +3,10 @@ from math import ceil
 from tabulate import tabulate
 
 
-# Create the basic list of 100 os
+# Create dimensions of the matrix
 columns = 20
 dimension = columns ** 2
 print(columns, dimension)
-list_of_os = ['o'] * dimension
-# print(list_of_os)
 
 # Create lists of Xs (different numbers)
 number_Xs_low = [30, 40, 50, 60, 70, 80, 90]
@@ -21,7 +19,7 @@ print('number Xs is', number_Xs)
 
 for i in number_Xs:
     # generates the content for the matrices and shuffles it
-    helplist = ['X'] * i + ['o'] * (dimension - i)
+    helplist = ['X'] * i + ['T'] * (dimension - i)
     random.shuffle(helplist)
 
     # splits these lists into a list of lists with length equal to the number of columns

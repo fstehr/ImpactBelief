@@ -1,0 +1,106 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block styles %}
+    <link href="{% static 'global/css/global.css' %}" rel="stylesheet">
+    <style>
+        table {
+            border-collapse: separate;
+            border-spacing: 22px;
+        }
+    </style>
+{% endblock %}
+
+{% block title %}
+    Beliefs - Test - Card Deck
+{% endblock %}
+
+{% block content %}
+
+  <div class="card-deck">
+
+      <div class="card">
+          <div class="card-body">
+
+              <p style="text-align: center; font-size: larger"> <u>Project A</u></p>
+
+              <img src = "{% static 'img/matrix_30_1.png' %}" id="matrix1" style="margin-left:auto; margin-right:auto; width:100%;"/>
+
+
+              <table style="width:100%;" id="beliefA">
+                  <tr>
+                      <td>How many Xs were in the matrix?</td>
+                      <td>{{ form.num_x_belief }}</td>
+                  </tr>
+              </table>
+
+              <p style="margin: 16pt 18pt;">
+                  I am certain there are between
+                  <input id="num_x_belief_min1" class = "form-control" type="number" name="num_x_belief" min="1" max="400" style="display: inline; width: 3em;">
+                  and
+                  <input id="num_x_belief_max2" class = "form-control" type="number" name="num_x_belief" min="1" max="400" style="display: inline; width: 3em;">
+                  Xs
+                  in the matrix.
+              </p>
+
+              <table style="width:100%;" id="donationA">
+                  <tr>
+                      <td>Would you like to donate to this project?</td>
+                      <td>{{ form.donation }}</td>
+                  </tr>
+            </table>
+
+          </div>
+      </div>
+
+
+
+      <div class="card">
+          <div class="card-body">
+
+              <p style="text-align: center; font-size: larger"> <u>Project B</u></p>
+
+              <img src = "{% static 'img/matrix_30_2.png' %}" id="matrix2" style="margin-left:auto; margin-right:auto; width:100%;"/>
+
+
+              <table style="width:100%;" id="beliefB">
+                  <tr>
+                      <td>How many Xs were in the matrix?</td>
+                      <td>{{ form.num_x_belief }}</td>
+                  </tr>
+              </table>
+
+              <p style="margin: 16pt 18pt;">
+                  I am certain there are between
+                  <input id="num_x_belief_min" class = "form-control" type="number" name="num_x_belief" min="1" max="400" style="display: inline; width: 3em;">
+                  and
+                  <input id="num_x_belief_max" class = "form-control" type="number" name="num_x_belief" min="1" max="400" style="display: inline; width: 3em;">
+                  Xs in the matrix.
+              </p>
+
+              <table style="width:100%;" id="donationB">
+                  <tr>
+                      <td>Would you like to donate to this project?</td>
+                      <td>{{ form.donation }}</td>
+                  </tr>
+            </table>
+
+          </div>
+      </div>
+
+  </div>
+</div>
+
+
+<div class="card" style="margin-top: 30px">
+    <div class="card-body text-center">
+            Money left for you:
+        <span style="font-weight: bold;color:#007bff" id="payoff"></span>
+    </div>
+</div>
+
+
+
+
+{% endblock %}
+

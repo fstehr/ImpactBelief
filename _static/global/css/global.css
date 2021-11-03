@@ -10,3 +10,7 @@ h5 {
 .otree-btn-next {
     text-align: right;
 }
+
+.otree-body {
+    max-width: 1050px;
+}

@@ -1,10 +1,4 @@
 # oTree-may-not-overwrite-this-file
 otree>=3.3.11,<5
-psycopg2>=2.8.4
+psycopg2>=2.8.4,<2.9
 sentry-sdk==0.7.9
-
-pip~=21.0.1
-wheel~=0.33.1
-setuptools~=54.0.0
-Django~=2.2.12
-tabulate~=0.8.9
