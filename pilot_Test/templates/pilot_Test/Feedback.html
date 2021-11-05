@@ -1,6 +1,15 @@
 {% extends "global/Page.html" %}
 {% load otree %}
 
+{% block styles %}
+    <style>
+        .form-check-input {
+            margin-right: 0px;
+            margin-left: -40px;
+        }
+    </style>
+{% endblock %}
+
 {% block scripts %}
     <script>
         function saveTime() {
@@ -17,11 +26,98 @@
 
 {% block content %}
 
-   {% formfields %}
+    <div>
+        Before the end of the study, we are interested in your experience during the estimation task.
+    </div>
 
     <br>
 
-    {% next_button %}
+    <!-- Fun QUESTION -->
+    <div>
+        <tr>
+            <td>{{ form.fun.label }}</td>
+        </tr>
+        <tr>
+            <td>
+                <table class="table table-borderless"> <!--  -->
+                    <tbody>
+                        <tr style="background-color: white">
+                            <td style="width:10%; padding: 0; text-align: right; vertical-align: middle"><em>"not at all"</em></td>
+                            <td style="vertical-align: bottom">
+                                 <table class="table table-borderless"> <!-- table-borderless -->
+                                    <tbody>
+                                        <tr style="background-color: white; padding: 0">
+                                            {% for choice in form.fun %}
+                                                <td style="width: 9%; text-align: center; padding: 0; ">{{ choice.choice_label }}</td>
+                                            {% endfor %}
+                                        </tr>
+                                        <tr style="background-color: white; padding: 0;">
+                                            {% for choice in form.fun %}
+                                                <td style="width: 9%; text-align: right; padding:0;margin-right: 120px">{{ choice.tag }}</td>
+                                            {% endfor %}
+                                        </tr>
+                                    </tbody>
+                                 </table>
+                            </td>
+                            <td style="width:10%; padding:0; text-align: left; vertical-align: bottom"><em>"extremely fun"</em></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </td>
+        </tr>
+    </div>
+
+    <br>
+
+    <!-- Difficulty QUESTION -->
+    <div>
+        <tr>
+            <td>{{ form.difficult.label }}</td>
+        </tr>
+        <tr>
+            <td>
+                <table class="table table-borderless"> <!--  -->
+                    <tbody>
+                        <tr style="background-color: white">
+                            <td style="width:10%; padding: 0; text-align: right; vertical-align: middle"><em>"not at all"</em></td>
+                            <td style="vertical-align: bottom">
+                                 <table class="table table-borderless"> <!-- table-borderless -->
+                                    <tbody>
+                                        <tr style="background-color: white; padding: 0">
+                                            {% for choice in form.difficult %}
+                                                <td style="width: 9%; text-align: center; padding: 0; ">{{ choice.choice_label }}</td>
+                                            {% endfor %}
+                                        </tr>
+                                        <tr style="background-color: white; padding: 0;">
+                                            {% for choice in form.difficult %}
+                                                <td style="width: 9%; text-align: right; padding:0;margin-right: 120px">{{ choice.tag }}</td>
+                                            {% endfor %}
+                                        </tr>
+                                    </tbody>
+                                 </table>
+                            </td>
+                            <td style="width:10%; padding:0; text-align: left; vertical-align: bottom"><em>"extremely difficult"</em></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </td>
+        </tr>
+    </div>
+
+    <br>
+
+    <!-- Free form COMMENTS -->
+    {% formfield 'comments' %}
+    <br>
+
+    <button class="otree-btn-next btn btn-primary" onclick="saveTime();">
+        Complete the study
+    </button>
+
+    <input id="finishing_time" name="finishing_time" type="hidden" value=""/>
+
 
 {% endblock %}
 

@@ -19,7 +19,7 @@ class Belief(Page):
 
 class Feedback(Page):
     form_model = 'player'
-    form_fields = ['fun', 'difficult', 'comments']
+    form_fields = ['fun', 'difficult', 'comments', 'finishing_time']
 
     def is_displayed(self):
         return self.round_number == Constants.num_rounds
@@ -30,4 +30,4 @@ class Thanks(Page):
         return self.round_number == Constants.num_rounds
 
 
-page_sequence = [Belief, Feedback, Thanks]
+page_sequence = [Welcome, Belief, Feedback, Thanks]
