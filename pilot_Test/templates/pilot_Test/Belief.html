@@ -12,7 +12,7 @@
 {% endblock %}
 
 {% block title %}
-    Beliefs - Test - Card Deck
+    Your estimates
 {% endblock %}
 
 {% block content %}
@@ -21,8 +21,6 @@
 
       <div class="card">
           <div class="card-body">
-
-              <p style="text-align: center; font-size: larger"> <u>Project A</u></p>
 
               <img src = "{% static 'img/matrix_30_1.png' %}" id="matrix1" style="margin-left:auto; margin-right:auto; width:100%;"/>
 
@@ -43,13 +41,6 @@
                   in the matrix.
               </p>
 
-              <table style="width:100%;" id="donationA">
-                  <tr>
-                      <td>Would you like to donate to this project?</td>
-                      <td>{{ form.donation_A }}</td>
-                  </tr>
-            </table>
-
           </div>
       </div>
 
@@ -57,8 +48,6 @@
 
       <div class="card">
           <div class="card-body">
-
-              <p style="text-align: center; font-size: larger"> <u>Project B</u></p>
 
               <img src = "{% static 'img/matrix_30_2.png' %}" id="matrix2" style="margin-left:auto; margin-right:auto; width:100%;"/>
 
@@ -78,29 +67,18 @@
                   Xs in the matrix.
               </p>
 
-              <table style="width:100%;" id="donationB">
-                  <tr>
-                      <td>Would you like to donate to this project?</td>
-                      <td>{{ form.donation_B }}</td>
-                  </tr>
-            </table>
-
           </div>
       </div>
 
   </div>
 </div>
 
+<br>
+<br>
 
-<div class="card" style="margin-top: 30px">
-    <div class="card-body text-center">
-            Money left for you:
-        <span style="font-weight: bold;color:#007bff" id="payoff"></span>
-    </div>
+<div style="text-align: right">
+    {% next_button %}
 </div>
-
-
-{% next_button %}
 
 {% endblock %}
 

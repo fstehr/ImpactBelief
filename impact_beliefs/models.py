@@ -170,8 +170,6 @@ class Player(BasePlayer):
     forced_timeout = models.BooleanField(blank=True,
                                          doc="True if subject was forced to quit because of too many time-outs")
 
-
-
     current_payoff_belief = models.FloatField()
     current_payoff_donation = models.FloatField()
 

@@ -9,6 +9,12 @@ SESSION_CONFIGS = [
         app_sequence = ['impact_beliefs', 'carbon_footprint', 'payment_info'],
     ),
     dict(
+        name='pilot_test',
+        display_name='Test',
+        num_demo_participants=2,
+        app_sequence=['pilot_Test'],
+    ),
+    dict(
         name = 'eightyk_hours',
         display_name = '80000 hours idea evaluation',
         num_demo_participants = 2,
