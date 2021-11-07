@@ -11,11 +11,29 @@ class Welcome(Page):
         return self.round_number == 1
 
 
+class Instructions(Page):
+    form_model = 'player'
+    form_fields = ['attention_check']
+
+    def is_displayed(self):
+        return self.round_number == 1
+
+
+class BeliefIntro(Page):
+    def is_displayed(self):
+        return self.round_number == 1
+
+
 class Belief(Page):
     form_model = 'player'
     form_fields = ['num_x_belief_A', 'num_x_belief_min_A', 'num_x_belief_max_A',
                    'num_x_belief_B', 'num_x_belief_min_B', 'num_x_belief_max_B']
 
+    def js_vars(self):
+        return dict(
+            sec_intro=Constants.sec_intro,
+            sec_per_matrix=Constants.sec_per_matrix,
+        )
 
 class Feedback(Page):
     form_model = 'player'
@@ -30,4 +48,4 @@ class Thanks(Page):
         return self.round_number == Constants.num_rounds
 
 
-page_sequence = [Welcome, Belief, Feedback, Thanks]
+page_sequence = [Welcome, Instructions, BeliefIntro, Belief, Feedback, Thanks]

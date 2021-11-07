@@ -1,0 +1,58 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block styles %}
+    <style>
+        li{
+            margin: 10px 0;
+        }
+    </style>
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}
+
+
+{% block title %}
+    Instructions
+{% endblock %}
+
+{% block content %}
+
+<div class="card">
+    <div class="card-body">
+        <p>
+            In this experiment, we ask you to <b>estimate the number of Xs</b> in several matrices.
+                <ul>
+                    <li>There can be between 0 and 400 Xs.</li>
+                    <li>You will see each matrix for {{ Constants.sec_per_matrix }} seconds.</li>
+                    <li>You then have {{ Constants.sec_to_answer }} seconds to fill in your best guess for the number of Xs you saw.</li>
+                    <li>Finally, we ask you to indicate a lower and upper bound of your estimate.</li>
+                    <li>You can earn a bonus payment of &#36;{{ Constants.accuracy_bonus }} if your best guesses
+                        are the most accurate of all participants.</li>
+                </ul>
+        </p>
+
+
+        <div style="margin: 30px 0">
+            <img src = "{% static 'img/Matrix_200.png' %}" id="matrix" style="  display: block;margin-left:auto; margin-right:auto; width:50%;"/>
+            <figcaption style="font-style:italic; margin-left:auto; margin-right:auto; width:70%;text-align: center">An example image of a matrix.</figcaption>
+        </div>
+
+        {% formfield player.attention_check %}
+
+        <div class="alert alert-warning">
+            Before you click next, please make sure you have understood the instructions.
+        </div>
+
+        <div style="text-align: right">
+            {% next_button %}
+        </div>
+
+</div>
+</div>
+
+
+{% endblock %}
+
+
