@@ -8,6 +8,10 @@
             border-collapse: separate;
             border-spacing: 22px;
         }
+        input:read-only {
+            color:grey;
+            background-color: grey;
+        }
     </style>
 {% endblock %}
 
@@ -15,19 +19,40 @@
     <script>
         let Intro = js_vars.sec_intro * 1000;
         let Delay = js_vars.sec_per_matrix * 1000;
+        let AnswerTime = js_vars.sec_to_answer * 1000;
+        console.log("answer time is", AnswerTime);
+
 
         function HideImageLoadForm() {
             setTimeout(function(){
                 document.getElementById('alert').style.display="none"
                 document.getElementById('matrix1_white').style.display="none"
                 document.getElementById('matrix1').style.display="block"
+                document.getElementById("num_x_belief_A").disabled = false;
+                document.getElementById("num_x_belief_min_A").disabled = false;
+                document.getElementById("num_x_belief_max_A").disabled = false;
             },Intro);
             setTimeout(function(){
                 document.getElementById('matrix1').style.display="none"
                 document.getElementById('matrix1_white').style.display="block"
-                document.getElementById("num_x_belief_A").disabled = true;
             }, Delay+Intro);
+            setTimeout(function(){
+                document.getElementById("num_x_belief_A").disabled = true;
+                document.getElementById("num_x_belief_min_A").disabled = true;
+                document.getElementById("num_x_belief_max_A").disabled = true;
+            }, Delay+Intro+AnswerTime);
         }
+
+        function resetFields() {
+            document.getElementById('num_x_belief_A').disabled = false;
+            document.getElementById("num_x_belief_min_A").disabled = false;
+            document.getElementById("num_x_belief_max_A").disabled = false;
+            document.getElementById('num_x_belief_B').disabled = false;
+            document.getElementById("num_x_belief_min_B").disabled = false;
+            document.getElementById("num_x_belief_max_B").disabled = false;
+        }
+
+
 
         document.getElementById("num_x_belief_B").disabled = true;
         document.getElementById("num_x_belief_min_B").disabled = true;
@@ -75,7 +100,7 @@
               <div class="card">
                   <div class="card-body">
 
-                      <img src = "{% static 'img/matrix_white.png' %}" id="matrix1_white" style="display:block;margin-left:auto; margin-right:auto; width:100%;"/>
+                      <img src = "{% static 'img/matrix_white.png' %}"  id="matrix1_white" style="display:block;margin-left:auto; margin-right:auto; width:100%;"/>
                       <img src = "{% static 'img/matrix_30_1.png' %}" id="matrix1" style="display:none;margin-left:auto; margin-right:auto; width:100%;"/>
 
 
@@ -83,15 +108,15 @@
                       <table style="width:100%;" id="beliefA">
                           <tr>
                               <td>How many Xs were in the matrix?</td>
-                              <td><input id="num_x_belief_A" class = "form-control" type="number" name="num_x_belief_A" min="1" max="400"></td>
+                              <td><input id="num_x_belief_A" disabled class="form-control" type="number" name="num_x_belief_A" min="1" max="400"></td>
                           </tr>
                       </table>
 
                       <p style="margin: 16pt 18pt;">
                           I am certain there are between
-                          <input id="num_x_belief_min_A" class = "form-control" type="number" name="num_x_belief_min_A" min="1" max="400" style="display: inline; width: 4em;">
+                          <input id="num_x_belief_min_A" disabled class = "form-control" type="number" name="num_x_belief_min_A" min="1" max="400" style="display: inline; width: 4em;">
                           and
-                          <input id="num_x_belief_max_A" class = "form-control" type="number" name="num_x_belief_max_A" min="1" max="400" style="display: inline; width: 4em;">
+                          <input id="num_x_belief_max_A" disabled class = "form-control" type="number" name="num_x_belief_max_A" min="1" max="400" style="display: inline; width: 4em;">
                           Xs in the matrix.
                       </p>
 
@@ -131,7 +156,7 @@
         <br>
 
         <div style="text-align: right">
-            {% next_button %}
+            <button class="btn btn-primary btn-large" onclick="resetFields();">Next</button>
         </div>
 
     </body>

@@ -33,6 +33,8 @@ class Belief(Page):
         return dict(
             sec_intro=Constants.sec_intro,
             sec_per_matrix=Constants.sec_per_matrix,
+            sec_to_answer=Constants.sec_to_answer,
+
         )
 
 class Feedback(Page):

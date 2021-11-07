@@ -191,8 +191,8 @@ class Belief(Page):
 
     def js_vars(self):
         return dict(
-            sec_intro=Constants.sec_intro,
-            sec_per_matrix=Constants.sec_per_matrix,
+            sec_intro = Constants.sec_intro,
+            sec_per_matrix = Constants.sec_per_matrix,
         )
 
     def before_next_page(self):
