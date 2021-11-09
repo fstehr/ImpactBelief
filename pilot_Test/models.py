@@ -23,8 +23,8 @@ class Constants(BaseConstants):
 
     duration_min = 10
     sec_intro = 3
-    sec_per_matrix = 10
-    sec_to_answer = 15
+    sec_per_matrix = 1
+    sec_to_answer = 30
     accuracy_bonus = 1
 
 
@@ -49,7 +49,6 @@ class Player(BasePlayer):
 
     # Characteristics of Project A
     project_id_A = models.IntegerField()
-    price_A = models.FloatField()
     num_x_true_A = models.IntegerField()
     num_x_belief_A = models.IntegerField(blank=True, min=0, max=400, doc="records belief on number of Xs in matrix")
     num_x_belief_min_A = models.IntegerField(blank=True, min=0, max=400, doc="records min belief on number of Xs in matrix")
@@ -57,7 +56,6 @@ class Player(BasePlayer):
 
     # Characteristics of Project B
     project_id_B = models.IntegerField()
-    price_B = models.FloatField()
     num_x_true_B = models.IntegerField()
     num_x_belief_B = models.IntegerField(blank=True, min=0, max=400, doc="records belief on number of Xs in matrix")
     num_x_belief_min_B = models.IntegerField(blank=True, min=0, max=400, doc="records belief on number of Xs in matrix")
@@ -72,9 +70,8 @@ class Player(BasePlayer):
 
 
 # TO DO
-# - include a counter for time outs
+# - include a counter for time-outs
 # - terminate if too often time-out
 # - finish java time line -> after clicking button that does not submit the form, start new counter which displays everything
 #   for card B; sets font on card A to grey etc.
-# - dynamic form field validation using java: https://www.w3schools.com/js/js_validation.asp
-
+# - include counter & hidden form-field which counts how many times browserpage was re-loaded
