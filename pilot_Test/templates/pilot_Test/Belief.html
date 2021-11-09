@@ -37,87 +37,88 @@
 
 {% block content %}
 
-    <body onload="HideImageLoadForm();" onkeydown="return (event.keyCode != 116 || event.keyCode != 13)">
+<body onload="HideImageLoadForm();" onkeydown="return (event.keyCode != 116 || event.keyCode != 13)">
 
+    <!-- Initial alert -->
     <div style="z-index: 100; position: fixed;">
         <div class="alert alert-danger" id="alert" style="margin-top: 200px;margin-left:auto;margin-right:auto; text-align: center; display:block; width:70%;">
                 <strong>
-                    Please stay alert, as the matrix is only displayed for {{ Constants.sec_per_matrix }} seconds.
+                    Please stay alert, as each matrix is only displayed for {{ Constants.sec_per_matrix }} seconds.
                 </strong>
                 You have {{ Constants.sec_to_answer }} seconds to fill in your estimate after the matrix disappears.
         </div>
     </div>
 
-        <div>
-        <div class="card-deck">
 
-              <div class="card">
-                  <div class="card-body" id="cardA" style="color: #6c757d">
+    <!-- Forms -->
+    <div class="card-deck">
 
-                      <img src = "{% static 'img/matrix_white.png' %}"  id="matrix1_white" style="display:block;margin-left:auto; margin-right:auto; width:100%;"/>
-                      <img src = "{% static 'img/matrix_30_1.png' %}" id="matrix1" style="display:none;margin-left:auto; margin-right:auto; width:100%;"/>
+        <!-- Form A -->
+        <div class="card">
+              <div class="card-body" id="cardA" style="color: #6c757d">
+
+                  <img src = "{% static 'img/matrix_white.png' %}"  id="matrix1_white" style="display:block;margin-left:auto; margin-right:auto; width:100%;"/>
+                  <img src = "{% static 'img/matrix_30_1.png' %}" id="matrix1" style="display:none;margin-left:auto; margin-right:auto; width:100%;"/>
 
 
-                      <table style="width:100%;" id="beliefA">
-                          <tr>
-                              <td>How many Xs were in the matrix?</td>
-                              <td><input id="num_x_belief_A" disabled class="form-control" type="number"
-                                         name="num_x_belief_A" min="1" max="400" data-toggle="tooltip" data-placement="bottom">
-                              </td>
-                          </tr>
-                      </table>
+                  <table style="width:100%;" id="beliefA">
+                      <tr>
+                          <td>How many Xs were in the matrix?</td>
+                          <td><input id="num_x_belief_A" disabled class="form-control" type="number"
+                                     name="num_x_belief_A" min="1" max="400" data-toggle="tooltip" data-placement="bottom">
+                          </td>
+                      </tr>
+                  </table>
 
-                      <p style="margin: 16pt 18pt;">
-                          I am certain there are between
-                          <input id="num_x_belief_min_A" disabled class = "form-control" type="number" name="num_x_belief_min_A" min="1" max="400" style="display: inline; width: 4em;">
-                          and
-                          <input id="num_x_belief_max_A" disabled class = "form-control" type="number" name="num_x_belief_max_A" min="1" max="400" style="display: inline; width: 4em;">
-                          Xs in the matrix.
-                      </p>
+                  <p style="margin: 16pt 18pt;">
+                      I am certain there are between
+                      <input id="num_x_belief_min_A" disabled class = "form-control" type="number" name="num_x_belief_min_A" min="1" max="400" style="display: inline; width: 4em;">
+                      and
+                      <input id="num_x_belief_max_A" disabled class = "form-control" type="number" name="num_x_belief_max_A" min="1" max="400" style="display: inline; width: 4em;">
+                      Xs in the matrix.
+                  </p>
 
-                  </div>
               </div>
-
-
-
-              <div class="card">
-                  <div class="card-body" id="cardB" style="color: #6c757d">
-
-                      <img src = "{% static 'img/matrix_white.png' %}" id="matrix2_white" style="display:block;margin-left:auto; margin-right:auto; width:100%;"/>
-                      <img src = "{% static 'img/matrix_30_2.png' %}" id="matrix2" style="display:none;margin-left:auto; margin-right:auto; width:100%;"/>
-
-
-                      <table style="width:100%;" id="beliefB">
-                          <tr>
-                              <td>How many Xs were in the matrix?</td>
-                              <td><input id="num_x_belief_B" disabled class = "form-control" type="number" name="num_x_belief_B" min="1" max="400"></td>
-                          </tr>
-                      </table>
-
-                      <p style="margin: 16pt 18pt;">
-                          I am certain there are between
-                          <input id="num_x_belief_min_B" disabled class = "form-control" type="number" name="num_x_belief_min_B" min="1" max="400" style="display: inline; width: 4em;">
-                          and
-                          <input id="num_x_belief_max_B" disabled class = "form-control" type="number" name="num_x_belief_max_B" min="1" max="400" style="display: inline; width: 4em;">
-                          Xs in the matrix.
-                      </p>
-
-                  </div>
-              </div>
-
           </div>
-        </div>
 
-        <br>
-        <br>
+        <!-- Form B -->
+        <div class="card">
+              <div class="card-body" id="cardB" style="color: #6c757d">
 
-        <div style="display:none; text-align: right" id="NextButton">
-            <button class="btn btn-primary btn-large" onclick="resetFields();">Next</button>
-        </div>
+                  <img src = "{% static 'img/matrix_white.png' %}" id="matrix2_white" style="display:block;margin-left:auto; margin-right:auto; width:100%;"/>
+                  <img src = "{% static 'img/matrix_30_2.png' %}" id="matrix2" style="display:none;margin-left:auto; margin-right:auto; width:100%;"/>
 
+
+                  <table style="width:100%;" id="beliefB">
+                      <tr>
+                          <td>How many Xs were in the matrix?</td>
+                          <td><input id="num_x_belief_B" disabled class = "form-control" type="number" name="num_x_belief_B" min="1" max="400"></td>
+                      </tr>
+                  </table>
+
+                  <p style="margin: 16pt 18pt;">
+                      I am certain there are between
+                      <input id="num_x_belief_min_B" disabled class = "form-control" type="number" name="num_x_belief_min_B" min="1" max="400" style="display: inline; width: 4em;">
+                      and
+                      <input id="num_x_belief_max_B" disabled class = "form-control" type="number" name="num_x_belief_max_B" min="1" max="400" style="display: inline; width: 4em;">
+                      Xs in the matrix.
+                  </p>
+
+              </div>
+          </div>
     </div>
 
-    </body>
+
+    <br>
+    <br>
+
+    <div style="display:none; text-align: right" id="NextButton">
+        <button class="btn btn-primary btn-large" onclick="resetFields();">Next</button>
+    </div>
+
+    <input type="hidden" name="page_loaded" id="page_loaded">
+
+</body>
 
 {% endblock %}
 

@@ -10,6 +10,7 @@
 {% endblock %}
 
 {% block scripts %}
+    <script src="{% static 'global/js/browser_info.js' %}"></script>
 {% endblock %}
 
 
@@ -47,11 +48,16 @@
             Before you click next, please make sure you have understood the instructions.
         </div>
 
+        <!-- Hidden Tracking Fields -->
+        <input type="hidden" name="window_width" id="id_window_width" value="0"/>
+        <input type="hidden" name="window_height" id="id_window_height" value="0"/>
+
+
         <div style="text-align: right">
             {% next_button %}
         </div>
 
-</div>
+    </div>
 </div>
 
 

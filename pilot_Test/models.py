@@ -11,15 +11,14 @@ from otree.api import (
 
 
 doc = """
-This application provides a webpage instructing participants how to get paid.
-Examples are given for the lab and Amazon Mechanical Turk (AMT).
+This is a pilot snippet testing the matrix belief elicitation task. 
 """
 
 
 class Constants(BaseConstants):
     name_in_url = 'study'
     players_per_group = None
-    num_rounds = 1
+    num_rounds = 2
 
     duration_min = 10
     sec_intro = 3
@@ -61,11 +60,15 @@ class Player(BasePlayer):
     num_x_belief_min_B = models.IntegerField(blank=True, min=0, max=400, doc="records belief on number of Xs in matrix")
     num_x_belief_max_B = models.IntegerField(blank=True, min=0, max=400, doc="records belief on number of Xs in matrix")
 
+    # Other behavior during elicitation
+    page_loaded = models.IntegerField()
+    time_out = models.BooleanField()
+
     # Feedback
     fun = models.IntegerField(min=0, max=10, label="How much did you enjoy the estimation task?",
-                              widget = widgets.RadioSelectHorizontal, choices = range(0, 11))
+                              widget=widgets.RadioSelectHorizontal, choices = range(0, 11))
     difficult = models.IntegerField(min=0, max=10, label="How difficult did you find the estimation task?",
-                              widget = widgets.RadioSelectHorizontal, choices = range(0, 11))
+                              widget=widgets.RadioSelectHorizontal, choices = range(0, 11))
     speed = models.IntegerField(min=0, max=10, label="How appropriate did you find the time to fill in your estimates?",
                                     widget=widgets.RadioSelectHorizontal, choices=range(0, 11))
     comments = models.LongStringField(blank=True, label="Do you have any additional feedback for us?")
@@ -74,6 +77,3 @@ class Player(BasePlayer):
 # TO DO
 # - include a counter for time-outs
 # - terminate if too often time-out
-# - finish java time line -> after clicking button that does not submit the form, start new counter which displays everything
-#   for card B; sets font on card A to grey etc.
-# - include counter & hidden form-field which counts how many times browserpage was re-loaded

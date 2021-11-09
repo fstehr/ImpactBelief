@@ -13,7 +13,7 @@ class Welcome(Page):
 
 class Instructions(Page):
     form_model = 'player'
-    form_fields = ['attention_check']
+    form_fields = ['window_width', 'window_height', 'attention_check']
 
     def is_displayed(self):
         return self.round_number == 1
@@ -27,7 +27,7 @@ class BeliefIntro(Page):
 class Belief(Page):
     form_model = 'player'
     form_fields = ['num_x_belief_A', 'num_x_belief_min_A', 'num_x_belief_max_A',
-                   'num_x_belief_B', 'num_x_belief_min_B', 'num_x_belief_max_B']
+                   'num_x_belief_B', 'num_x_belief_min_B', 'num_x_belief_max_B', 'page_loaded']
 
     def js_vars(self):
         return dict(
@@ -36,6 +36,7 @@ class Belief(Page):
             sec_to_answer=Constants.sec_to_answer,
 
         )
+
 
 class Feedback(Page):
     form_model = 'player'

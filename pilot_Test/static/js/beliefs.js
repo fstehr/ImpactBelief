@@ -26,6 +26,7 @@ let num_x_belief_max_B = document.getElementById("num_x_belief_max_B");
 let NextButton = document.getElementById("NextButton");
 
 function HideImageLoadForm() {
+    console.log("page was loaded",localStorage.getItem('counter'), "times")
     /* define protocol in seconds */
     setTimeout(function(){
         alert.style.display="none";
@@ -105,16 +106,6 @@ function HideImageLoadForm() {
     }, Intro+Delay+AnswerTime+Delay+AnswerTime);
 }
 
-/* on form submission enable all fields again */
-function resetFields() {
-    //Extract Each Element Value i.e. each form field
-    for (let i = 0; i < form.elements.length; i++) {
-        // enables each field
-        form.elements[i].disabled = false;
-    }
-}
-
-
 /* dynamically changing the minimum values for the form fields A */
 num_x_belief_A.onchange = function () {
     num_x_belief_A.reportValidity();
@@ -147,4 +138,25 @@ num_x_belief_min_B.onchange = function () {
 }
 num_x_belief_max_B.onchange = function () {
     num_x_belief_max_B.reportValidity();
+}
+
+
+/* count the number of times page has been refreshed */
+window.addEventListener("unload", function(){
+    let count = parseInt(localStorage.getItem('counter') || 0);
+    localStorage.setItem('counter', ++count)
+    console.log("page was unloaded",localStorage.getItem('counter'), "times")
+}, false);
+
+
+/* on form submission enable all fields again */
+function resetFields() {
+    //Extract Each Element Value i.e. each form field
+    for (let i = 0; i < form.elements.length; i++) {
+        // enables each field
+        form.elements[i].disabled = false;
+    }
+    let page_loaded = document.getElementById("page_loaded")
+    page_loaded.value = localStorage.getItem('counter')
+    localStorage.removeItem('counter')
 }
