@@ -23,8 +23,8 @@ class Constants(BaseConstants):
 
     duration_min = 10
     sec_intro = 3
-    sec_per_matrix = 1
-    sec_to_answer = 30
+    sec_per_matrix = 3
+    sec_to_answer = 20
     accuracy_bonus = 1
 
 
@@ -66,6 +66,8 @@ class Player(BasePlayer):
                               widget = widgets.RadioSelectHorizontal, choices = range(0, 11))
     difficult = models.IntegerField(min=0, max=10, label="How difficult did you find the estimation task?",
                               widget = widgets.RadioSelectHorizontal, choices = range(0, 11))
+    speed = models.IntegerField(min=0, max=10, label="How appropriate did you find the time to fill in your estimates?",
+                                    widget=widgets.RadioSelectHorizontal, choices=range(0, 11))
     comments = models.LongStringField(blank=True, label="Do you have any additional feedback for us?")
 
 

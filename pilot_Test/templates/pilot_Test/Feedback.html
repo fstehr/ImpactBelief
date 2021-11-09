@@ -108,6 +108,44 @@
 
     <br>
 
+  <!-- Difficulty QUESTION -->
+    <div>
+        <tr>
+            <td>{{ form.speed.label }}</td>
+        </tr>
+        <tr>
+            <td>
+                <table class="table table-borderless"> <!--  -->
+                    <tbody>
+                        <tr style="background-color: white">
+                            <td style="width:10%; padding: 0; text-align: right; vertical-align: middle"><em>"far too little time"</em></td>
+                            <td style="vertical-align: bottom">
+                                 <table class="table table-borderless"> <!-- table-borderless -->
+                                    <tbody>
+                                        <tr style="background-color: white; padding: 0">
+                                            {% for choice in form.speed %}
+                                                <td style="width: 9%; text-align: center; padding: 0; ">{{ choice.choice_label }}</td>
+                                            {% endfor %}
+                                        </tr>
+                                        <tr style="background-color: white; padding: 0;">
+                                            {% for choice in form.speed %}
+                                                <td style="width: 9%; text-align: right; padding:0;margin-right: 120px">{{ choice.tag }}</td>
+                                            {% endfor %}
+                                        </tr>
+                                    </tbody>
+                                 </table>
+                            </td>
+                            <td style="width:10%; padding:0; text-align: left; vertical-align: bottom"><em>"far too much time"</em></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </td>
+        </tr>
+    </div>
+
+    <br>
+
     <!-- Free form COMMENTS -->
     {% formfield 'comments' %}
     <br>

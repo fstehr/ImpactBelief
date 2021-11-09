@@ -39,7 +39,7 @@ class Belief(Page):
 
 class Feedback(Page):
     form_model = 'player'
-    form_fields = ['fun', 'difficult', 'comments', 'finishing_time']
+    form_fields = ['fun', 'speed', 'difficult', 'comments', 'finishing_time']
 
     def is_displayed(self):
         return self.round_number == Constants.num_rounds

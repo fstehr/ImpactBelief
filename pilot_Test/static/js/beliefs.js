@@ -7,6 +7,7 @@ let AnswerTime = js_vars.sec_to_answer * 1000;
 
 /* call all elements */
 let alert = document.getElementById('alert');
+let countdown = document.getElementById("countdown");
 
 let cardA = document.getElementById("cardA");
 let matrix1_white = document.getElementById('matrix1_white');
@@ -22,6 +23,7 @@ let num_x_belief_B = document.getElementById("num_x_belief_B");
 let num_x_belief_min_B = document.getElementById("num_x_belief_min_B");
 let num_x_belief_max_B = document.getElementById("num_x_belief_max_B");
 
+let NextButton = document.getElementById("NextButton");
 
 function HideImageLoadForm() {
     /* define protocol in seconds */
@@ -38,6 +40,24 @@ function HideImageLoadForm() {
         num_x_belief_A.disabled = false;
         num_x_belief_min_A.disabled = false;
         num_x_belief_max_A.disabled = false;
+
+        // display count down
+        countdown.style.display="block";
+        // set counter for count down
+        var counter = AnswerTime/1000;
+        setInterval(function() {
+            counter--;
+            if (counter >= 0) {
+                span = document.getElementById("count");
+                span.innerHTML = counter;
+            }
+            if (counter === 0) {
+                // alert('Please enter your estimate!');
+                clearInterval(counter);
+            }
+
+        }, 1000);
+
     }, Intro+Delay);
 
     setTimeout(function(){
@@ -45,6 +65,7 @@ function HideImageLoadForm() {
         num_x_belief_min_A.disabled = true;
         num_x_belief_max_A.disabled = true;
         matrix2_white.style.display="none";
+        countdown.style.display="none";
         matrix2.style.display="block";
         cardA.style.color = "#6c757d";
     }, Intro+Delay+AnswerTime);
@@ -56,8 +77,32 @@ function HideImageLoadForm() {
         num_x_belief_B.disabled = false;
         num_x_belief_min_B.disabled = false;
         num_x_belief_max_B.disabled = false;
+
+        // display count down
+        countdown.style.display="block";
+        // set counter for count down
+        var counter = AnswerTime/1000;
+        setInterval(function() {
+            counter--;
+            if (counter >= 0) {
+                span = document.getElementById("count");
+                span.innerHTML = counter;
+            }
+            if (counter === 0) {
+                clearInterval(counter);
+            }
+        }, 1000);
+
+        NextButton.style.display = "block";
+
     }, Intro+Delay+AnswerTime+Delay);
 
+    setTimeout(function(){
+        cardB.style.color = "#6c757d";
+        num_x_belief_B.disabled = true;
+        num_x_belief_min_B.disabled = true;
+        num_x_belief_max_B.disabled = true;
+    }, Intro+Delay+AnswerTime+Delay+AnswerTime);
 }
 
 /* on form submission enable all fields again */

@@ -14,20 +14,30 @@
 {% block scripts %}
     <script src="{% static 'js/beliefs.js' %}"></script>
     <script>
-        $(function () {
-            $('[data-toggle="tooltip"]').tooltip()
-        })
+        document.title = "Your estimates";
     </script>
 {% endblock %}
 
 
 {% block title %}
-    Your estimates
+    <table class="table">
+        <tr>
+            <td style="width:60%;border-color:transparent">Your estimates</td>
+            <td style="width:40%;border-color:transparent;text-align: right;font-size: medium; font-weight: lighter">
+                <p id="countdown" style="display: none">
+                     Time left to enter your estimate (in secs):
+                     <span>
+                         <span id="count">{{ Constants.sec_to_answer }}</span>
+                     </span>
+                 </p>
+            </td>
+        </tr>
+    </table>
 {% endblock %}
 
 {% block content %}
 
-    <body onload="HideImageLoadForm();" onkeydown="return (event.keyCode != 116)">
+    <body onload="HideImageLoadForm();" onkeydown="return (event.keyCode != 116 || event.keyCode != 13)">
 
     <div style="z-index: 100; position: fixed;">
         <div class="alert alert-danger" id="alert" style="margin-top: 200px;margin-left:auto;margin-right:auto; text-align: center; display:block; width:70%;">
@@ -101,7 +111,7 @@
         <br>
         <br>
 
-        <div style="text-align: right">
+        <div style="display:none; text-align: right" id="NextButton">
             <button class="btn btn-primary btn-large" onclick="resetFields();">Next</button>
         </div>
 
