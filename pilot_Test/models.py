@@ -21,6 +21,7 @@ class Constants(BaseConstants):
     players_per_group = None
     num_rounds = 1
 
+    duration_min = 10
     sec_intro = 3
     sec_per_matrix = 10
     sec_to_answer = 15

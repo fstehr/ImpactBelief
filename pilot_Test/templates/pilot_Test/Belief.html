@@ -8,75 +8,11 @@
             border-collapse: separate;
             border-spacing: 22px;
         }
-        input:read-only {
-            color:grey;
-            background-color: grey;
-        }
     </style>
 {% endblock %}
 
 {% block scripts %}
-    <script>
-        let Intro = js_vars.sec_intro * 1000;
-        let Delay = js_vars.sec_per_matrix * 1000;
-        let AnswerTime = js_vars.sec_to_answer * 1000;
-        console.log("answer time is", AnswerTime);
-
-
-        function HideImageLoadForm() {
-            setTimeout(function(){
-                document.getElementById('alert').style.display="none"
-                document.getElementById('matrix1_white').style.display="none"
-                document.getElementById('matrix1').style.display="block"
-                document.getElementById("num_x_belief_A").disabled = false;
-                document.getElementById("num_x_belief_min_A").disabled = false;
-                document.getElementById("num_x_belief_max_A").disabled = false;
-            },Intro);
-            setTimeout(function(){
-                document.getElementById('matrix1').style.display="none"
-                document.getElementById('matrix1_white').style.display="block"
-            }, Delay+Intro);
-            setTimeout(function(){
-                document.getElementById("num_x_belief_A").disabled = true;
-                document.getElementById("num_x_belief_min_A").disabled = true;
-                document.getElementById("num_x_belief_max_A").disabled = true;
-            }, Delay+Intro+AnswerTime);
-        }
-
-        function resetFields() {
-            document.getElementById('num_x_belief_A').disabled = false;
-            document.getElementById("num_x_belief_min_A").disabled = false;
-            document.getElementById("num_x_belief_max_A").disabled = false;
-            document.getElementById('num_x_belief_B').disabled = false;
-            document.getElementById("num_x_belief_min_B").disabled = false;
-            document.getElementById("num_x_belief_max_B").disabled = false;
-        }
-
-
-
-        document.getElementById("num_x_belief_B").disabled = true;
-        document.getElementById("num_x_belief_min_B").disabled = true;
-        document.getElementById("num_x_belief_max_B").disabled = true;
-
-        /* dynamically changing the minimum values for the form fields A */
-        document.getElementById("num_x_belief_A").onchange = function () {
-            /* maximum of minA must be < belief */
-            var input = document.getElementById("num_x_belief_min_A");
-            input.setAttribute("max", this.value);
-            /* minimum of maxA must be > belief */
-            var input2 = document.getElementById("num_x_belief_max_A");
-            input2.setAttribute("min", this.value);
-        }
-        /* dynamically changing the minimum values for the form fields B */
-        document.getElementById("num_x_belief_B").onchange = function () {
-            /* maximum of minA must be < belief */
-            var input = document.getElementById("num_x_belief_min_B");
-            input.setAttribute("max", this.value);
-            /* minimum of maxA must be > belief */
-            var input2 = document.getElementById("num_x_belief_max_B");
-            input2.setAttribute("min", this.value);
-        }
-    </script>
+        <script src="{% static 'js/beliefs.js' %}"></script>
 {% endblock %}
 
 
@@ -88,17 +24,20 @@
 
     <body onload="HideImageLoadForm();" onkeydown="return (event.keyCode != 116)">
 
-        <div class="alert alert-danger" id="alert" style="text-align: center;display:block;margin-left:auto; margin-right:auto; width:70%;">
+    <div style="z-index: 100; position: fixed;">
+        <div class="alert alert-danger" id="alert" style="margin-top: 200px;margin-left:auto;margin-right:auto; text-align: center; display:block; width:70%;">
                 <strong>
                     Please stay alert, as the matrix is only displayed for {{ Constants.sec_per_matrix }} seconds.
                 </strong>
                 You have {{ Constants.sec_to_answer }} seconds to fill in your estimate after the matrix disappears.
         </div>
+    </div>
 
-          <div class="card-deck">
+        <div>
+        <div class="card-deck">
 
               <div class="card">
-                  <div class="card-body">
+                  <div class="card-body" id="cardA" style="color: #6c757d">
 
                       <img src = "{% static 'img/matrix_white.png' %}"  id="matrix1_white" style="display:block;margin-left:auto; margin-right:auto; width:100%;"/>
                       <img src = "{% static 'img/matrix_30_1.png' %}" id="matrix1" style="display:none;margin-left:auto; margin-right:auto; width:100%;"/>
@@ -158,6 +97,8 @@
         <div style="text-align: right">
             <button class="btn btn-primary btn-large" onclick="resetFields();">Next</button>
         </div>
+
+    </div>
 
     </body>
 
