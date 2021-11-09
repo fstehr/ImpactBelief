@@ -8,11 +8,19 @@
             border-collapse: separate;
             border-spacing: 22px;
         }
+        .LV_valid_field {
+            border: 1px solid rgb(205, 212, 218);
+            width: 4em;
+        }
+        .LV_invalid_field {
+            border: 1px solid rgba(240, 0, 0, 0.75);
+            width: 4em;
+        }
     </style>
 {% endblock %}
 
 {% block scripts %}
-        <script src="{% static 'js/beliefs.js' %}"></script>
+    <script src="{% static 'js/beliefs.js' %}"></script>
 {% endblock %}
 
 
@@ -41,7 +49,6 @@
 
                       <img src = "{% static 'img/matrix_white.png' %}"  id="matrix1_white" style="display:block;margin-left:auto; margin-right:auto; width:100%;"/>
                       <img src = "{% static 'img/matrix_30_1.png' %}" id="matrix1" style="display:none;margin-left:auto; margin-right:auto; width:100%;"/>
-
 
 
                       <table style="width:100%;" id="beliefA">
@@ -73,15 +80,15 @@
                       <table style="width:100%;" id="beliefB">
                           <tr>
                               <td>How many Xs were in the matrix?</td>
-                              <td><input id="num_x_belief_B" class = "form-control" type="number" name="num_x_belief_B" min="1" max="400"></td>
+                              <td><input id="num_x_belief_B" disabled class = "form-control" type="number" name="num_x_belief_B" min="1" max="400"></td>
                           </tr>
                       </table>
 
                       <p style="margin: 16pt 18pt;">
                           I am certain there are between
-                          <input id="num_x_belief_min_B" class = "form-control" type="number" name="num_x_belief_min_B" min="1" max="400" style="display: inline; width: 4em;">
+                          <input id="num_x_belief_min_B" disabled class = "form-control" type="number" name="num_x_belief_min_B" min="1" max="400" style="display: inline; width: 4em;">
                           and
-                          <input id="num_x_belief_max_B" class = "form-control" type="number" name="num_x_belief_max_B" min="1" max="400" style="display: inline; width: 4em;">
+                          <input id="num_x_belief_max_B" disabled class = "form-control" type="number" name="num_x_belief_max_B" min="1" max="400" style="display: inline; width: 4em;">
                           Xs in the matrix.
                       </p>
 

@@ -76,4 +76,5 @@ class Player(BasePlayer):
 # - terminate if too often time-out
 # - finish java time line -> after clicking button that does not submit the form, start new counter which displays everything
 #   for card B; sets font on card A to grey etc.
+# - dynamic form field validation using java: https://www.w3schools.com/js/js_validation.asp
 
