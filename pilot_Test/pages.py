@@ -37,6 +37,21 @@ class Belief(Page):
 
         )
 
+    def before_next_page(self):
+        player = self.player
+        # store all answers in a list
+        fields = [player.num_x_belief_A, player.num_x_belief_min_A, player.num_x_belief_max_A,
+                  player.num_x_belief_B, player.num_x_belief_min_B, player.num_x_belief_max_B]
+        fields_filled = []   # define a list with all boolean values indicating whether a field was filled or not
+        for field in fields:
+            fields_filled.append(bool(field))   # appends False if field value is None
+
+        # check that no field was empty
+        if sum(fields_filled) != len(fields_filled):
+            player.time_out = 1
+        else:
+            player.time_out = 0
+
 
 class Feedback(Page):
     form_model = 'player'
@@ -51,4 +66,5 @@ class Thanks(Page):
         return self.round_number == Constants.num_rounds
 
 
-page_sequence = [Welcome, Instructions, BeliefIntro, Belief, Feedback, Thanks]
+page_sequence = [Belief, Thanks]
+# page_sequence = [Welcome, Instructions, BeliefIntro, Belief, Feedback, Thanks]

@@ -75,5 +75,4 @@ class Player(BasePlayer):
 
 
 # TO DO
-# - include a counter for time-outs
-# - terminate if too often time-out
+# - update matrices and load them through a data set
