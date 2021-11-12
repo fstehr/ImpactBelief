@@ -148,7 +148,6 @@ class TrialBelief3(Page):
             return "payment_info"
 
 
-
 class Introbelief(Page):
     def is_displayed(self):
         return self.round_number == 2

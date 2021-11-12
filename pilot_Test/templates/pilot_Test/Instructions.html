@@ -23,22 +23,22 @@
 <div class="card">
     <div class="card-body">
         <p>
-            In this experiment, we ask you to <b>estimate the number of Xs</b> in several matrices.
+           In this experiment, we ask you to estimate <b>the number of Xs</b> in several matrices.
                 <ul>
                     <li>There can be between 0 and 400 Xs.</li>
                     <li>You will see each matrix for {{ Constants.sec_per_matrix }} seconds.</li>
-                    <li>We then ask you to fill in your best guess for the number of Xs you saw.</li>
-                    <li>We ask you to indicate a lower and upper bound of your estimate.</li>
-                    <li>You have {{ Constants.sec_to_answer }} seconds to enter your estimates after a matrix disappears.</li>
-                    <li>After this time a new matrix appears.</li>
-                    <li>You can earn a bonus payment of &#36;{{ Constants.accuracy_bonus }} if your best guesses
+                    <li>We will then ask you to fill in your best guess for the number of Xs you saw.</li>
+                    <li>We ask you to enter a lower and upper bound for your estimate.</li>
+                    <li>You have {{ Constants.sec_to_answer }} seconds to enter your estimates after a matrix has disappeared.</li>
+                    <li>After this time, a new matrix will appear.</li>
+                    <li>You can receive a bonus payment of &pound;{{ Constants.accuracy_bonus }} if your best estimates
                         are the most accurate of all participants.</li>
                 </ul>
         </p>
 
 
         <div style="margin: 30px 0">
-            <img src = "{% static 'img/Matrix_200.png' %}" id="matrix" style="  display: block;margin-left:auto; margin-right:auto; width:50%;"/>
+            <img src = "{% static 'img/matrix_200.png' %}" id="matrix" style="  display: block;margin-left:auto; margin-right:auto; width:50%;"/>
             <figcaption style="font-style:italic; margin-left:auto; margin-right:auto; width:70%;text-align: center">An example image of a matrix.</figcaption>
         </div>
 

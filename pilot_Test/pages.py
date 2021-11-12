@@ -37,6 +37,21 @@ class Belief(Page):
 
         )
 
+    def vars_for_template(self):
+        player = self.player
+
+        # get current project from list of 'parameters'
+        project = self.participant.vars['parameters'][self.round_number - 2]
+        player.num_x_true_A = int(project['num_x_A'])
+        image_a = "img/"
+        image_a += project['image_title_A']
+
+        player.num_x_true_B = int(project['num_x_B'])
+        image_b = "img/"
+        image_b += project['image_title_B']
+        # print("The current project is", project)
+        return {'img_A': image_a, 'img_B': image_b}
+
     def before_next_page(self):
         player = self.player
         # store all answers in a list
@@ -66,5 +81,5 @@ class Thanks(Page):
         return self.round_number == Constants.num_rounds
 
 
-page_sequence = [Belief, Thanks]
-# page_sequence = [Welcome, Instructions, BeliefIntro, Belief, Feedback, Thanks]
+# page_sequence = [Welcome, Belief, Thanks]
+page_sequence = [Welcome, Instructions, BeliefIntro, Belief, Feedback, Thanks]

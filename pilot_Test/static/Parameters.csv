@@ -1,3 +1,8 @@
-﻿co2,num_x,price_GBP,price_ECU,image_title_1,image_title_2,km_car_equiv,project_id
-15,30,0.1275,12.75,matrix_30_1.png,matrix_30_2.png,90,1
-20,40,0.17,17,matrix_40_1.png,matrix_40_2.png,90,2
+﻿image_title_A,num_x_A,image_title_B,num_x_B
+matrix_330.png,330,matrix_70.png,70
+matrix_120.png,120,matrix_310.png,310
+matrix_80.png,80,matrix_110.png,110
+matrix_300.png,300,matrix_320.png,320
+matrix_90.png,90,matrix_280.png,280
+matrix_270.png,270,matrix_100.png,100
+matrix_130.png,130,matrix_290.png,290

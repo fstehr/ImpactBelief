@@ -8,7 +8,9 @@ from otree.api import (
     Currency as c,
     currency_range,
 )
-
+import random
+import csv
+from otree.db.models import ForeignKey
 
 doc = """
 This is a pilot snippet testing the matrix belief elicitation task. 
@@ -18,8 +20,14 @@ This is a pilot snippet testing the matrix belief elicitation task.
 class Constants(BaseConstants):
     name_in_url = 'study'
     players_per_group = None
-    num_rounds = 2
 
+    # Get experimental parameters from csv file
+    with open('pilot_Test/static/Parameters.csv', encoding='utf-8-sig') as parameters:
+        paras = list(csv.DictReader(parameters, dialect='excel'))
+
+    num_rounds = len(paras)
+
+    # timing parameters for display
     duration_min = 10
     sec_intro = 3
     sec_per_matrix = 3
@@ -28,7 +36,14 @@ class Constants(BaseConstants):
 
 
 class Subsession(BaseSubsession):
-    pass
+    def creating_session(self):
+        if self.round_number == 1:
+            for p in self.session.get_participants():
+                paras = Constants.paras.copy()
+                random.shuffle(paras)
+
+                p.vars['parameters'] = paras  # store shuffled list of parameters in participant vars, then access each element by round number
+                print(p.vars['parameters'])  # prints participant vars to double check randomization
 
 
 class Group(BaseGroup):
@@ -47,14 +62,12 @@ class Player(BasePlayer):
                                           label="To make sure you have read the instructions, we ask you to answer 'apple' in the field below.")
 
     # Characteristics of Project A
-    project_id_A = models.IntegerField()
     num_x_true_A = models.IntegerField()
     num_x_belief_A = models.IntegerField(blank=True, min=0, max=400, doc="records belief on number of Xs in matrix")
     num_x_belief_min_A = models.IntegerField(blank=True, min=0, max=400, doc="records min belief on number of Xs in matrix")
     num_x_belief_max_A = models.IntegerField(blank=True, min=0, max=400, doc="records max belief on number of Xs in matrix")
 
     # Characteristics of Project B
-    project_id_B = models.IntegerField()
     num_x_true_B = models.IntegerField()
     num_x_belief_B = models.IntegerField(blank=True, min=0, max=400, doc="records belief on number of Xs in matrix")
     num_x_belief_min_B = models.IntegerField(blank=True, min=0, max=400, doc="records belief on number of Xs in matrix")
