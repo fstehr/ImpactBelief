@@ -15,6 +15,9 @@
     <script src="{% static 'js/beliefs.js' %}"></script>
     <script>
         document.title = "Your estimates";
+        $("body").on("contextmenu",function(e){
+            return false;
+        });
     </script>
 {% endblock %}
 

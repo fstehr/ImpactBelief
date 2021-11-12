@@ -160,3 +160,5 @@ function resetFields() {
     page_loaded.value = localStorage.getItem('counter')
     localStorage.removeItem('counter')
 }
+
+

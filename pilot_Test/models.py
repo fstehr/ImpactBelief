@@ -32,7 +32,7 @@ class Constants(BaseConstants):
     sec_intro = 3
     sec_per_matrix = 7
     sec_to_answer = 20
-    accuracy_bonus = 1
+    accuracy_bonus = 10
 
 
 class Subsession(BaseSubsession):
