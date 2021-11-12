@@ -30,7 +30,7 @@ class Constants(BaseConstants):
     # timing parameters for display
     duration_min = 10
     sec_intro = 3
-    sec_per_matrix = 3
+    sec_per_matrix = 7
     sec_to_answer = 20
     accuracy_bonus = 1
 
