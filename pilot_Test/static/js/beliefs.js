@@ -24,7 +24,9 @@ let num_x_belief_min_B = document.getElementById("num_x_belief_min_B");
 let num_x_belief_max_B = document.getElementById("num_x_belief_max_B");
 
 let NextButton = document.getElementById("NextButton");
+let SubmitButton = document.getElementById("SubmitButton");
 
+// Function which starts timing on page load (for Panel A)
 function HideImageLoadForm() {
     console.log("page was loaded",localStorage.getItem('counter'), "times")
     /* define protocol in seconds */
@@ -41,6 +43,7 @@ function HideImageLoadForm() {
         num_x_belief_A.disabled = false;
         num_x_belief_min_A.disabled = false;
         num_x_belief_max_A.disabled = false;
+        NextButton.style.display="block";
 
         // display count down
         countdown.style.display="block";
@@ -65,45 +68,9 @@ function HideImageLoadForm() {
         num_x_belief_A.disabled = true;
         num_x_belief_min_A.disabled = true;
         num_x_belief_max_A.disabled = true;
-        matrix2_white.style.display="none";
         countdown.style.display="none";
-        matrix2.style.display="block";
         cardA.style.color = "#6c757d";
     }, Intro+Delay+AnswerTime);
-
-    setTimeout(function(){
-        matrix2_white.style.display="block";
-        matrix2.style.display="none";
-        cardB.style.color = "black";
-        num_x_belief_B.disabled = false;
-        num_x_belief_min_B.disabled = false;
-        num_x_belief_max_B.disabled = false;
-
-        // display count down
-        countdown.style.display="block";
-        // set counter for count down
-        var counter = AnswerTime/1000;
-        setInterval(function() {
-            counter--;
-            if (counter >= 0) {
-                span = document.getElementById("count");
-                span.innerHTML = counter;
-            }
-            if (counter === 0) {
-                clearInterval(counter);
-            }
-        }, 1000);
-
-        NextButton.style.display = "block";
-
-    }, Intro+Delay+AnswerTime+Delay);
-
-    setTimeout(function(){
-        cardB.style.color = "#6c757d";
-        num_x_belief_B.disabled = true;
-        num_x_belief_min_B.disabled = true;
-        num_x_belief_max_B.disabled = true;
-    }, Intro+Delay+AnswerTime+Delay+AnswerTime);
 }
 
 /* dynamically changing the minimum values for the form fields A */
@@ -122,6 +89,57 @@ num_x_belief_min_A.onchange = function () {
 num_x_belief_max_A.onchange = function () {
     num_x_belief_max_A.reportValidity();
 }
+
+NextButton.onclick = function () {
+    NextButton.style.display = "none";
+    num_x_belief_A.disabled = true;
+    num_x_belief_min_A.disabled = true;
+    num_x_belief_max_A.disabled = true;
+    matrix2_white.style.display="none";
+    countdown.style.display="none";
+    matrix2.style.display="block";
+    cardA.style.color = "#6c757d";
+
+    setTimeout(function(){
+        matrix2_white.style.display="block";
+        matrix2.style.display="none";
+        cardB.style.color = "black";
+        num_x_belief_B.disabled = false;
+        num_x_belief_min_B.disabled = false;
+        num_x_belief_max_B.disabled = false;
+
+        // display count down
+        countdown.style.display="block";
+        // set counter for count down
+        var counter2 = AnswerTime/1000;
+        setInterval(function() {
+            counter2--;
+            if (counter2 >= 0) {
+                span = document.getElementById("count");
+                span.innerHTML = counter2;
+            }
+            if (counter2 === 0) {
+                clearInterval(counter2);
+            }
+        }, 1000);
+
+        SubmitButton.style.display = "block";
+
+    }, Delay);
+
+    setTimeout(function(){
+        cardB.style.color = "#6c757d";
+        num_x_belief_B.disabled = true;
+        num_x_belief_min_B.disabled = true;
+        num_x_belief_max_B.disabled = true;
+    }, Delay+AnswerTime);
+
+
+
+}
+
+
+
 
 /* dynamically changing the minimum values for the form fields B */
 num_x_belief_B.onchange = function () {

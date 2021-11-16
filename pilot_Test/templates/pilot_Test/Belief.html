@@ -68,7 +68,7 @@
                       <tr>
                           <td>How many Xs were in the matrix?</td>
                           <td><input id="num_x_belief_A" disabled class="form-control" type="number"
-                                     name="num_x_belief_A" min="1" max="400" data-toggle="tooltip" data-placement="bottom">
+                                     name="num_x_belief_A" min="1" max="400">
                           </td>
                       </tr>
                   </table>
@@ -89,7 +89,7 @@
               <div class="card-body" id="cardB" style="color: #6c757d">
 
                   <img src = "{% static 'img/matrix_white.png' %}" id="matrix2_white" style="display:block;margin-left:auto; margin-right:auto; width:100%;"/>
-                  <img src = "{% static img_A %}" id="matrix2" style="display:none;margin-left:auto; margin-right:auto; width:100%;"/>
+                  <img src = "{% static img_B %}" id="matrix2" style="display:none;margin-left:auto; margin-right:auto; width:100%;"/>
 
 
                   <table style="width:100%;" id="beliefB">
@@ -115,7 +115,12 @@
     <br>
     <br>
 
+
     <div style="display:none; text-align: right" id="NextButton">
+        <button type="button" class="btn btn-warning btn-large">Next</button>
+    </div>
+
+    <div style="display:none; text-align: right" id="SubmitButton">
         <button class="btn btn-primary btn-large" onclick="resetFields();">Next</button>
     </div>
 

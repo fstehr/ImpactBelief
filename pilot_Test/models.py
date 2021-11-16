@@ -22,7 +22,7 @@ class Constants(BaseConstants):
     players_per_group = None
 
     # Get experimental parameters from csv file
-    with open('pilot_Test/static/Parameters.csv', encoding='utf-8-sig') as parameters:
+    with open('pilot_Test/static/Parameters2.csv', encoding='utf-8-sig') as parameters:
         paras = list(csv.DictReader(parameters, dialect='excel'))
 
     num_rounds = len(paras)
@@ -89,3 +89,6 @@ class Player(BasePlayer):
 
 # TO DO
 # - update matrices and load them through a data set
+# - fix multiple countdowns on page
+# - look at estimation data with correct matrix again
+# - think about a more continuous difference in font size

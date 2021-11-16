@@ -358,7 +358,7 @@ class Player(SliderPlayer):
     env_attitude = models.IntegerField(
         label="Here are two statements people sometimes make when discussing the environment"
               " and economic growth. Please use the slider to indicate which of them comes closer to your own point of view?",
-        doc=" environmental attitudes Q111 from 2017 wave of world value survey. " \
+        doc=" environmental attitudes Q111 from 2017 wave of world value survey. " 
             "0= Economic growth and creating jobs should be the top priority, even if the"
             "environment suffers to some extent. 10= Protecting the environment should"
             "be given priority, even if it causes slower economic growth and some"

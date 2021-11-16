@@ -81,5 +81,5 @@ class Thanks(Page):
         return self.round_number == Constants.num_rounds
 
 
-# page_sequence = [Welcome, Belief, Thanks]
-page_sequence = [Welcome, Instructions, BeliefIntro, Belief, Feedback, Thanks]
+page_sequence = [Instructions, Belief, Thanks]
+# page_sequence = [Welcome, Instructions, BeliefIntro, Belief, Feedback, Thanks]

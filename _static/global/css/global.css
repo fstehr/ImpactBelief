@@ -14,3 +14,7 @@ h5 {
 .otree-body {
     max-width: 1050px;
 }
+
+.otree-title {
+    padding-top: 0;
+}
