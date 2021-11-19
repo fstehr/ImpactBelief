@@ -89,7 +89,5 @@ class Player(BasePlayer):
 
 # TO DO
 # - update matrices and load them through a data set
-# - fix multiple countdowns on page
-# - use a more accurate java timer than setTimeout()
 # - look at estimation data with correct matrix again
 # - think about a more continuous difference in font size
