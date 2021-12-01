@@ -66,6 +66,7 @@ class Player(BasePlayer):
     num_x_belief_A = models.IntegerField(blank=True, min=0, max=400, doc="records belief on number of Xs in matrix")
     num_x_belief_min_A = models.IntegerField(blank=True, min=0, max=400, doc="records min belief on number of Xs in matrix")
     num_x_belief_max_A = models.IntegerField(blank=True, min=0, max=400, doc="records max belief on number of Xs in matrix")
+    confidence_belief_A = models.IntegerField(initial=20, min=0, max=20, doc="cognitive uncertainty measure adapted from Enke, Graeber (2021)")
 
     # Characteristics of Project B
     num_x_true_B = models.IntegerField()
@@ -91,3 +92,13 @@ class Player(BasePlayer):
 # - update matrices and load them through a data set
 # - look at estimation data with correct matrix again
 # - think about a more continuous difference in font size
+# - randomize order of project A & B (i.e. from csv file to html)
+# - include pictures in instructions -> donation impact
+# - emphasize that there is no (immediate) feedback on belief accuracy!
+# - code belief etc. data s.t. the data is called proj low and proj hi
+# --> randomization of order of display is done on html level
+
+# The form field page_loaded has errors, but its error message is not being displayed, possibly because you did not include the field in the page. There are 2 ways to fix this:
+#
+# Include the field with the formfield tag, e.g. {% formfield player.page_loaded %}
+# If you are not using formfield but are instead writing the raw HTML for the form input, remember to include {{ form.page_loaded.errors }} somewhere in your page's HTML.

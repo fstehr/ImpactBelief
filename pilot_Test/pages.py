@@ -24,6 +24,11 @@ class BeliefIntro(Page):
         return self.round_number == 1
 
 
+class Uncertainty(Page):
+    form_model = 'player'
+    form_fields = ['num_x_belief_A', 'confidence_belief_A']
+
+
 class Belief(Page):
     form_model = 'player'
     form_fields = ['num_x_belief_A', 'num_x_belief_min_A', 'num_x_belief_max_A',
@@ -81,5 +86,5 @@ class Thanks(Page):
         return self.round_number == Constants.num_rounds
 
 
-page_sequence = [Instructions, Belief, Thanks]
+page_sequence = [Uncertainty]
 # page_sequence = [Welcome, Instructions, BeliefIntro, Belief, Feedback, Thanks]

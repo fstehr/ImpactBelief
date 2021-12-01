@@ -1,0 +1,115 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block styles %}
+<style>
+    .slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 15px;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #007bff;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #007bff;
+  cursor: pointer;
+}
+</style>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    num_x_belief_A.onchange = function () {
+        num_x_belief_A.reportValidity();
+        document.getElementById("min_A").innerHTML = Number(num_x_belief_A.value) - 5;
+        document.getElementById("max_A").innerHTML = Number(num_x_belief_A.value) + 5;
+    }
+
+    function changeCI (val) {
+        belief = Number(num_x_belief_A.value)
+        console.log("value is ", val);
+        console.log("num x belief A before a is", belief)
+        let a = belief - 5 - (10 * (20 - val));
+        console.log("a is ", a);
+        console.log("num x belief A before b is", belief)
+        let b = belief + 5 + (10 * (20 - val));
+        console.log("b is", b);
+        if (a < 0) {
+            document.getElementById("min_A").innerHTML = 0;
+        } else {
+            document.getElementById("min_A").innerHTML = a;
+        }
+        if (b > 400) {
+            document.getElementById("max_A").innerHTML = 400;
+        } else {
+            document.getElementById("max_A").innerHTML = b;
+        }
+    }
+</script>
+{% endblock %}
+
+
+
+
+{% block title %}
+    Uncertainty
+{% endblock %}
+
+{% block content %}
+
+<div>
+    <input id="num_x_belief_A" class="form-control" type="number" name="num_x_belief_A" min="1" max="400">
+</div>
+
+<br><br><br>
+
+
+    <table class="table table-borderless" style="width:90%; margin-right: auto; margin-left: auto;">
+        <tr>
+            <td style="width:10%">completely uncertain</td>
+            <td style="width: 80%">
+                <div class="slidecontainer">
+                    <input type="range" min="1" max="20" value="20" class="slider" id="certainty_A " name="certainty_belief_A" oninput="changeCI(this.value)">
+                </div>
+            </td>
+            <td style="width:10%">completely certain</td>
+        </tr>
+    </table>
+
+
+
+<br>
+
+<div>
+    <p>
+        I am certain the value is between <span id="min_A">0</span> and <span id="max_A">400</span>.
+    </p>
+</div>
+
+<br><br><br>
+
+{% next_button %}
+
+
+{% endblock %}
+
+
+
