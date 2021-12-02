@@ -13,8 +13,7 @@ let cardA = document.getElementById("cardA");
 let matrix1_white = document.getElementById('matrix1_white');
 let matrix1 = document.getElementById('matrix1');
 let num_x_belief_A = document.getElementById("num_x_belief_A");
-let num_x_belief_min_A = document.getElementById("num_x_belief_min_A");
-let num_x_belief_max_A = document.getElementById("num_x_belief_max_A");
+let slider_A = document.getElementById("certainty_A")
 let count = document.getElementById("count");
 
 let cardB = document.getElementById("cardB");
@@ -46,8 +45,7 @@ function HideImageLoadForm() {
             matrix1_white.style.display = "block";
             cardA.style.color = "black";
             num_x_belief_A.disabled = false;
-            num_x_belief_min_A.disabled = false;
-            num_x_belief_max_A.disabled = false;
+            slider_A.disabled = false;
             NextButton.style.display = "block";
 
             // display count down
@@ -64,8 +62,6 @@ function HideImageLoadForm() {
                 if (counter === 0) {
                     // when countdown is run out disable fields
                     num_x_belief_A.disabled = true;
-                    num_x_belief_min_A.disabled = true;
-                    num_x_belief_max_A.disabled = true;
                     countdown.style.display = "none";
                     cardA.style.color = "#6c757d";
                 }
@@ -79,20 +75,9 @@ function HideImageLoadForm() {
 /* dynamically changing the minimum values for the form fields A */
 num_x_belief_A.onchange = function () {
     num_x_belief_A.reportValidity();
-    /* maximum of minA must be < belief */
-    num_x_belief_min_A.setAttribute("max", this.value);
-    /* minimum of maxA must be > belief */
-    num_x_belief_max_A.setAttribute("min", this.value);
+    document.getElementById("min_A").innerHTML = Number(num_x_belief_A.value) - 5;
+    document.getElementById("max_A").innerHTML = Number(num_x_belief_A.value) + 5;
 }
-
-/* dynamically show error messages */
-num_x_belief_min_A.onchange = function () {
-    num_x_belief_min_A.reportValidity();
-}
-num_x_belief_max_A.onchange = function () {
-    num_x_belief_max_A.reportValidity();
-}
-
 
 NextButton.onclick = function () {
 
@@ -102,8 +87,6 @@ NextButton.onclick = function () {
 
     NextButton.style.display = "none";
     num_x_belief_A.disabled = true;
-    num_x_belief_min_A.disabled = true;
-    num_x_belief_max_A.disabled = true;
     matrix2_white.style.display="none";
     countdown.style.display="none";
     matrix2.style.display="block";
@@ -166,6 +149,23 @@ window.addEventListener("unload", function(){
     localStorage.setItem('counter', ++count)
     console.log("page was unloaded",localStorage.getItem('counter'), "times")
 }, false);
+
+
+function changeCI (val) {
+    belief = Number(num_x_belief_A.value)
+    let a = belief - 5 - (10 * (20 - val));
+    let b = belief + 5 + (10 * (20 - val));
+    if (a < 0) {
+        document.getElementById("min_A").innerHTML = 0;
+    } else {
+        document.getElementById("min_A").innerHTML = a;
+    }
+    if (b > 400) {
+        document.getElementById("max_A").innerHTML = 400;
+    } else {
+        document.getElementById("max_A").innerHTML = b;
+    }
+}
 
 
 /* on form submission enable all fields again */

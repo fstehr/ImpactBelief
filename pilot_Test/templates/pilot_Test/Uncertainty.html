@@ -81,13 +81,14 @@
 
 <br><br><br>
 
+{{ form.confidence_belief_A.errors }}
 
     <table class="table table-borderless" style="width:90%; margin-right: auto; margin-left: auto;">
         <tr>
             <td style="width:10%">completely uncertain</td>
             <td style="width: 80%">
                 <div class="slidecontainer">
-                    <input type="range" min="1" max="20" value="20" class="slider" id="certainty_A " name="certainty_belief_A" oninput="changeCI(this.value)">
+                    <input type="range" min="1" max="20" value="20" class="slider" id="certainty_A " name="confidence_belief_A" oninput="changeCI(this.value)">
                 </div>
             </td>
             <td style="width:10%">completely certain</td>

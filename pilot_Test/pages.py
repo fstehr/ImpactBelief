@@ -31,7 +31,7 @@ class Uncertainty(Page):
 
 class Belief(Page):
     form_model = 'player'
-    form_fields = ['num_x_belief_A', 'num_x_belief_min_A', 'num_x_belief_max_A',
+    form_fields = ['num_x_belief_A', 'confidence_belief_A',
                    'num_x_belief_B', 'num_x_belief_min_B', 'num_x_belief_max_B', 'page_loaded']
 
     def js_vars(self):
@@ -86,5 +86,5 @@ class Thanks(Page):
         return self.round_number == Constants.num_rounds
 
 
-page_sequence = [Uncertainty]
+page_sequence = [Belief, Uncertainty]
 # page_sequence = [Welcome, Instructions, BeliefIntro, Belief, Feedback, Thanks]
