@@ -63,6 +63,7 @@ function HideImageLoadForm() {
                     // when countdown is run out disable fields
                     num_x_belief_A.disabled = true;
                     countdown.style.display = "none";
+                    slider_A.disabled = true;
                     cardA.style.color = "#6c757d";
                 }
             }, 1000);
@@ -134,13 +135,6 @@ num_x_belief_B.onchange = function () {
     num_x_belief_max_B.setAttribute("min", this.value);
 }
 
-/* dynamically show error messages */
-num_x_belief_min_B.onchange = function () {
-    num_x_belief_min_B.reportValidity();
-}
-num_x_belief_max_B.onchange = function () {
-    num_x_belief_max_B.reportValidity();
-}
 
 
 /* count the number of times page has been refreshed */
@@ -151,7 +145,7 @@ window.addEventListener("unload", function(){
 }, false);
 
 
-function changeCI (val) {
+function changeCIA(val) {
     belief = Number(num_x_belief_A.value)
     let a = belief - 5 - (10 * (20 - val));
     let b = belief + 5 + (10 * (20 - val));
@@ -167,6 +161,21 @@ function changeCI (val) {
     }
 }
 
+function changeCIB(val) {
+    belief = Number(num_x_belief_B.value)
+    let a = belief - 5 - (10 * (20 - val));
+    let b = belief + 5 + (10 * (20 - val));
+    if (a < 0) {
+        document.getElementById("min_B").innerHTML = 0;
+    } else {
+        document.getElementById("min_B").innerHTML = a;
+    }
+    if (b > 400) {
+        document.getElementById("max_B").innerHTML = 400;
+    } else {
+        document.getElementById("max_B").innerHTML = b;
+    }
+}
 
 /* on form submission enable all fields again */
 SubmitButton.onclick = function () {

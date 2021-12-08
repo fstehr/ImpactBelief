@@ -67,12 +67,25 @@ class Player(BasePlayer):
     num_x_belief_min_A = models.IntegerField(blank=True, min=0, max=400, doc="records min belief on number of Xs in matrix")
     num_x_belief_max_A = models.IntegerField(blank=True, min=0, max=400, doc="records max belief on number of Xs in matrix")
     confidence_belief_A = models.IntegerField(initial=20, min=0, max=20, doc="cognitive uncertainty measure adapted from Enke, Graeber (2021)")
+    donation_A = models.BooleanField(widget=widgets.RadioSelectHorizontal,
+                                     choices=[
+                                         [True, 'Yes'],
+                                         [False, 'No'],
+                                     ]
+                                     )
 
     # Characteristics of Project B
     num_x_true_B = models.IntegerField()
     num_x_belief_B = models.IntegerField(blank=True, min=0, max=400, doc="records belief on number of Xs in matrix")
     num_x_belief_min_B = models.IntegerField(blank=True, min=0, max=400, doc="records belief on number of Xs in matrix")
     num_x_belief_max_B = models.IntegerField(blank=True, min=0, max=400, doc="records belief on number of Xs in matrix")
+    confidence_belief_B = models.IntegerField(initial=20, min=0, max=20, doc="cognitive uncertainty measure adapted from Enke, Graeber (2021)")
+    donation_B = models.BooleanField(widget=widgets.RadioSelectHorizontal,
+                                     choices=[
+                                         [True, 'Yes'],
+                                         [False, 'No'],
+                                     ]
+                                     )
 
     # Other behavior during elicitation
     page_loaded = models.IntegerField()
