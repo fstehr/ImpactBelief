@@ -102,13 +102,13 @@ class Player(BasePlayer):
 
 
 # TO DO
+# - fix javascript protocol on decision screen
 # - update matrices and load them through a data set
 # - look at estimation data with correct matrix again
-# - think about a more continuous difference in font size
 # - randomize order of project A & B (i.e. from csv file to html)
 # - include pictures in instructions -> donation impact
 # - emphasize that there is no (immediate) feedback on belief accuracy!
-# - code belief etc. data s.t. the data is called proj low and proj hi
+# - code belief etc. data s.t. the data is called proj low and proj hi ?
 # --> randomization of order of display is done on html level
 
 # The form field page_loaded has errors, but its error message is not being displayed, possibly because you did not include the field in the page. There are 2 ways to fix this:
