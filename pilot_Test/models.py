@@ -110,6 +110,7 @@ class Player(BasePlayer):
 # - emphasize that there is no (immediate) feedback on belief accuracy!
 # - code belief etc. data s.t. the data is called proj low and proj hi ?
 # --> randomization of order of display is done on html level
+# - include warm glow survey item from Carpenter (2021) JEBO "Think about the last time you gave to charity before today. What was most important to you (i) the total amount given by everyone, (ii) the amount that you personally gave or (iii) some other aspect of giving?”
 
 # The form field page_loaded has errors, but its error message is not being displayed, possibly because you did not include the field in the page. There are 2 ways to fix this:
 #
