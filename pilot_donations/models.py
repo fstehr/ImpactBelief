@@ -10,10 +10,12 @@ from otree.api import (
 )
 import random
 import csv
+import itertools    # allows to balance treatments
 from otree.db.models import ForeignKey
 
 doc = """
-This is a pilot snippet testing the matrix belief elicitation task. 
+This is a pilot snippet testing the parameters of the donation task. Half the subjects get a lower endowment to see 
+how much this affects donation behavior. All currency veriables are in US Dollars. Pilot is with full impact information.
 """
 
 
@@ -22,28 +24,41 @@ class Constants(BaseConstants):
     players_per_group = None
 
     # Get experimental parameters from csv file
-    with open('pilot_Test/static/Parameters2.csv', encoding='utf-8-sig') as parameters:
+    with open('pilot_donations/static/Parameters.csv', encoding='utf-8-sig') as parameters:
         paras = list(csv.DictReader(parameters, dialect='excel'))
 
     num_rounds = len(paras)
 
     # timing parameters for display
     duration_min = 10
-    sec_intro = 3
-    sec_per_matrix = 7
-    sec_to_answer = 20
-    accuracy_bonus = 10
+    endowment_lo = 40
+    endowment_hi = 50
+
+    min_price = 12.75
+    max_price = 157.25
 
 
 class Subsession(BaseSubsession):
     def creating_session(self):
+        # randomize parameter order on subject level
         if self.round_number == 1:
             for p in self.session.get_participants():
                 paras = Constants.paras.copy()
                 random.shuffle(paras)
 
                 p.vars['parameters'] = paras  # store shuffled list of parameters in participant vars, then access each element by round number
-                print(p.vars['parameters'])  # prints participant vars to double check randomization
+                # print(p.vars['parameters'])  # prints participant vars to double check randomization
+
+                # assign one payment round
+                rounds = range(1, Constants.num_rounds + 1)
+                p.vars['payment_round'] = random.choice(rounds)
+                print("Payment round is", p.vars['payment_round'])
+
+        # assign hi and lo endowment to half the sample
+        endowments = itertools.cycle([Constants.endowment_lo, Constants.endowment_hi])
+
+        for p in self.get_players():
+            p.endowment = next(endowments)
 
 
 class Group(BaseGroup):
@@ -57,54 +72,62 @@ class Player(BasePlayer):
     is_mobile = models.BooleanField(doc="Automatic check through JS whether gadget is phone or not")
     window_width = models.IntegerField(blank=True, doc="Documents the respondent's browser window's width.")
     window_height = models.IntegerField(blank=True, doc="Documents the respondent's browser window's height.")
-
     attention_check = models.StringField(doc="Filter question for attention.",
                                           label="To make sure you have read the instructions, we ask you to answer 'apple' in the field below.")
 
+    endowment = models.IntegerField()
+
     # Characteristics of Project A
-    num_x_true_A = models.IntegerField()
-    num_x_belief_A = models.IntegerField(blank=True, min=0, max=400, doc="records belief on number of Xs in matrix")
-    num_x_belief_min_A = models.IntegerField(blank=True, min=0, max=400, doc="records min belief on number of Xs in matrix")
-    num_x_belief_max_A = models.IntegerField(blank=True, min=0, max=400, doc="records max belief on number of Xs in matrix")
-    confidence_belief_A = models.IntegerField(initial=20, min=0, max=20, doc="cognitive uncertainty measure adapted from Enke, Graeber (2021)")
+    num_doses_A = models.IntegerField()
+    price_A = models.IntegerField()
+    efficiency_A = models.FloatField()
     donation_A = models.BooleanField(widget=widgets.RadioSelectHorizontal,
                                      choices=[
                                          [True, 'Yes'],
                                          [False, 'No'],
                                      ]
                                      )
+    current_payoff = models.IntegerField()
 
-    # Characteristics of Project B
-    num_x_true_B = models.IntegerField()
-    num_x_belief_B = models.IntegerField(blank=True, min=0, max=400, doc="records belief on number of Xs in matrix")
-    num_x_belief_min_B = models.IntegerField(blank=True, min=0, max=400, doc="records belief on number of Xs in matrix")
-    num_x_belief_max_B = models.IntegerField(blank=True, min=0, max=400, doc="records belief on number of Xs in matrix")
-    confidence_belief_B = models.IntegerField(initial=20, min=0, max=20, doc="cognitive uncertainty measure adapted from Enke, Graeber (2021)")
-    donation_B = models.BooleanField(widget=widgets.RadioSelectHorizontal,
-                                     choices=[
-                                         [True, 'Yes'],
-                                         [False, 'No'],
-                                     ]
-                                     )
-
-    # Other behavior during elicitation
-    page_loaded = models.IntegerField()
-    time_out = models.BooleanField()
+    # # Characteristics of Project B
+    # num_doses_B = models.IntegerField()
+    # price_B = models.IntegerField()
+    # efficiency_B = models.IntegerField()
+    # donation_B = models.BooleanField(widget=widgets.RadioSelectHorizontal,
+    #                                  choices=[
+    #                                      [True, 'Yes'],
+    #                                      [False, 'No'],
+    #                                  ]
+    #                                  )
 
     # Feedback
-    fun = models.IntegerField(min=0, max=10, label="How much did you enjoy the estimation task?",
-                              widget=widgets.RadioSelectHorizontal, choices = range(0, 11))
-    difficult = models.IntegerField(min=0, max=10, label="How difficult did you find the estimation task?",
-                              widget=widgets.RadioSelectHorizontal, choices = range(0, 11))
-    speed = models.IntegerField(min=0, max=10, label="How appropriate did you find the time to fill in your estimates?",
-                                    widget=widgets.RadioSelectHorizontal, choices=range(0, 11))
-    comments = models.LongStringField(blank=True, label="Do you have any additional feedback for us?")
+    altruism = models.IntegerField(
+        choices=range(0, 11),
+        widget=widgets.RadioSelectHorizontal,
+        label='How do you assess your willingness to share with others without expecting anything in '
+              'return when it comes to charity? Please use a scale from 0 to 10, where 0 means you '
+              'are “completely unwilling to share” and a 10 means you are “very willing to share”. '
+              'You can also use the values in between to indicate where you fall on the scale.')
 
+    giving_type = models.IntegerField(
+        label="Think about the last time you gave to charity before today. What was most important to you when you decided to donate?",
+        widget=widgets.RadioSelect,
+        choices=[
+            [1, 'the cause the charity supported'],
+            [2, 'feeling good about myself for donating'],
+            [3, 'maximizing the societal impact of my donation'],
+            [4, 'being able to tell/show others that I donated'],
+            [5, 'some other aspect of giving']
+        ]
+        )
 
 # TO DO
-# - fix javascript protocol on decision screen
-# - update matrices and load them through a data set
-# - look at estimation data with correct matrix again
+# - check whether parameters make sense for a pilot
+# - write instructions
+# - make screen design for decision screen nicer (See sketch ppt)
+# - fix slider layout on altruism question (OBS use lars' change slider class snippet)
+
+
 # - randomize order of project A & B (i.e. from csv file to html)
 # - include pictures in instructions -> donation impact
 # - emphasize that there is no (immediate) feedback on belief accuracy!

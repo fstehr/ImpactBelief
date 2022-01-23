@@ -9,16 +9,10 @@ SESSION_CONFIGS = [
         app_sequence = ['impact_beliefs', 'carbon_footprint', 'payment_info'],
     ),
     dict(
-        name='pilot_test',
-        display_name='Test',
+        name='pilot_donation',
+        display_name='Pilot',
         num_demo_participants=2,
-        app_sequence=['pilot_Test'],
-    ),
-    dict(
-        name = 'eightyk_hours',
-        display_name = '80000 hours idea evaluation',
-        num_demo_participants = 2,
-        app_sequence = ['eightyk_hours'],
+        app_sequence=['pilot_donations'],
     ),
 ]
 
@@ -28,7 +22,7 @@ SESSION_CONFIGS = [
 # e.g. self.session.config['participation_fee']
 
 SESSION_CONFIG_DEFAULTS = dict(
-    real_world_currency_per_point=0.01, participation_fee=1.25, doc=""
+    real_world_currency_per_point=1, participation_fee=1.25, doc=""
 )
 
 # ISO-639 code
@@ -36,7 +30,7 @@ SESSION_CONFIG_DEFAULTS = dict(
 LANGUAGE_CODE = 'en'
 
 # e.g. EUR, GBP, CNY, JPY
-REAL_WORLD_CURRENCY_CODE = 'GBP'
+REAL_WORLD_CURRENCY_CODE = 'USD'
 USE_POINTS = True
 
 ROOMS = [

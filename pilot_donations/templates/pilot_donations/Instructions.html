@@ -1,0 +1,52 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block styles %}
+    <style>
+        li{
+            margin: 10px 0;
+        }
+    </style>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'global/js/browser_info.js' %}"></script>
+    <script src="{% static 'js/timer.js' %}"></script>
+
+{% endblock %}
+
+
+{% block title %}
+    Instructions
+{% endblock %}
+
+{% block content %}
+
+<div class="card">
+    <div class="card-body">
+        <p>
+           In this experiment, we ask you to whether you would like to donate to a charity.
+        </p>
+
+        {% formfield player.attention_check %}
+
+        <div class="alert alert-warning">
+            Before you click next, please make sure you have understood the instructions.
+        </div>
+
+        <!-- Hidden Tracking Fields -->
+        <input type="hidden" name="window_width" id="id_window_width" value="0"/>
+        <input type="hidden" name="window_height" id="id_window_height" value="0"/>
+
+
+        <div style="text-align: right">
+            {% next_button %}
+        </div>
+
+    </div>
+</div>
+
+
+{% endblock %}
+
+

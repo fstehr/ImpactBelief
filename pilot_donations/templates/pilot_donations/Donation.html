@@ -1,0 +1,62 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block scripts %}
+{% endblock %}
+
+
+{% block title %}
+    <table class="table">
+        <tr>
+            <td style="width:70%;border-color:transparent">The Donation Task</td>
+            <td style="width:30%;border-color:transparent;text-align: right;font-size: medium; font-weight: lighter">
+                Project {{ project_number }} of {{ num_projects }}
+            </td>
+        </tr>
+    </table>{% endblock %}
+
+{% block content %}
+
+<div>
+    <p>
+        Below we describe the details of the project.
+    </p>
+</div>
+
+
+        <table class="table table-hover" style="margin-left:auto; margin-right:auto; width:50%;">
+            <tbody>
+                    <tr>
+                        <td>Your endowment is:</td>
+                        <td>&#36;{{ endowment }}</td>
+                    </tr>
+
+                    <tr>
+                        <td>This project finances:</td>
+                        <td>{{ num_doses_a }} vitamin A doses</td>
+                    </tr>
+                    <tr>
+                        <td>Donating to this project will cost you:</td>
+                        <td>&#36;{{ price_a }}</td>
+                    </tr>
+              </tbody>
+            </table>
+    </body>
+
+    <div class="alert" style="margin-top: 16pt; text-align:center; margin-left:auto; margin-right:auto; width:90%;">
+        <p style="" >
+            Would you like to donate to this project?
+        </p>
+        <p>
+            {{ form.donation_A }}
+        </p>
+
+        {% next_button %}
+
+    </div>
+
+
+
+{% endblock %}
+
+
