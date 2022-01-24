@@ -71,3 +71,4 @@ class Thanks(Page):
 
 page_sequence = [Questionnaire]
 # page_sequence = [Welcome, Instructions, BeliefIntro, Belief, Feedback, Thanks]
+

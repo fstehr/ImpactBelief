@@ -2,6 +2,7 @@
 {% load otree %}
 
 {% block styles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/sliders.css' %}">
     <style>
         .form-check-input {
             margin-right: 0px;
@@ -11,6 +12,7 @@
 {% endblock %}
 
 {% block scripts %}
+    <script type="text/javascript" src="{% static 'js/sliders.js' %}"></script>
     <script>
         function saveTime() {
             var EndTime = new Date().getTime();
@@ -21,58 +23,58 @@
 
 
 {% block title %}
-    Thank you
+    Questionnaire
 {% endblock %}
 
 {% block content %}
 
+<div style="margin-top: 3em;margin-bottom: 2em">
+    Before the end of the study, we ask you to answer a few questions on your background.
+</div>
 
-    <!-- ALTRUISM QUESTION -->
 
     <div class="container">
         <table class="table table-striped" style="width:100%; margin-right: auto; margin-left: auto;">
-            <thead>
-                <tr>
-                    <th style="text-align: center">Before the end of the study, we ask you to answer a few questions on your background. </th>
-                </tr>
-            </thead>
-                <tbody>
-                    <div>
-                        <tr>
-                            <td>{{ form.altruism.label }} </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <table class="table table-borderless">
-                                    <tbody>
-                                        <tr style="background-color: white">
-                                            <td style="width:10%; padding: 0; text-align: right; vertical-align: middle"><em>"completely unwilling to share"</em></td>
-                                            <td style="vertical-align: middle">
-                                                <div class="slidecontainer" style="">
-                                                    <input type="range" name="altruism" min="0" max="10" value="0" step="1" id="altruism" class="slider">
-                                                </div>
-                                            </td>
-                                            <td style="width:10%; padding:0; text-align: left; vertical-align: middle"><em>"very willing to share"</em></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+            <tbody>
+                <!-- ALTRUISM QUESTION -->
+                <div>
+                    <tr>
+                        <td>{{ form.altruism.label }} </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <table class="table table-borderless">
+                                <tbody>
+                                    </tr>
+                                    <tr style="background-color: white">
+                                        <td style="width:10%; padding: 0; text-align: right; vertical-align: middle"><em>"completely unwilling to share"</em></td>
+                                        <td style="vertical-align: middle">
+                                            <div class="slidecontainer">
+                                                <input type="range" min="0" max="10" value="0" step="1" name="altruism"  id="altruism" class="slider" style="width: 95%;margin-left: auto;margin-right: auto">
+                                                <!--<span class="slider_label">500</span> -->
+                                            </div>
+                                         </td>
+                                        <td style="width:10%; padding:0; text-align: left; vertical-align: middle"><em>"very willing to share"</em></td>
+                                    </tr>
 
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>{{ form.giving_type.label }} </td>
-                        </tr>
-                        <tr>
-                            <td>{{ form.giving_type }} </td>
-                        </tr>
-                    </div>
-                </tbody>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>{{ form.giving_type.label }} </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            {{ form.giving_type }}
+                        </td>
+                    </tr>
+                </div>
+            </tbody>
         </table>
     </div>
 
 
-    <br>
-    <br>
 
     <button class="otree-btn-next btn btn-primary" onclick="saveTime();">
         Complete the study

@@ -105,9 +105,7 @@ class Player(BasePlayer):
         choices=range(0, 11),
         widget=widgets.RadioSelectHorizontal,
         label='How do you assess your willingness to share with others without expecting anything in '
-              'return when it comes to charity? Please use a scale from 0 to 10, where 0 means you '
-              'are “completely unwilling to share” and a 10 means you are “very willing to share”. '
-              'You can also use the values in between to indicate where you fall on the scale.')
+              'return when it comes to charity? Please use the slider to indicate where you fall on the scale.')
 
     giving_type = models.IntegerField(
         label="Think about the last time you gave to charity before today. What was most important to you when you decided to donate?",
@@ -125,7 +123,7 @@ class Player(BasePlayer):
 # - check whether parameters make sense for a pilot
 # - write instructions
 # - make screen design for decision screen nicer (See sketch ppt)
-# - fix slider layout on altruism question (OBS use lars' change slider class snippet)
+# - fix slider altruism question (OBS use lars' change slider class snippet to make slider mandatory without anchoring)
 
 
 # - randomize order of project A & B (i.e. from csv file to html)
