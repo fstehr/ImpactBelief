@@ -28,6 +28,10 @@
 
 {% block content %}
 
+<div class="alert alert-danger" id="alert" style="display:none;">
+    Please indicate your estimate for all items.
+</div>
+
 <div style="margin-top: 3em;margin-bottom: 2em">
     Before the end of the study, we ask you to answer a few questions on your background.
 </div>
@@ -50,7 +54,7 @@
                                         <td style="width:10%; padding: 0; text-align: right; vertical-align: middle"><em>"completely unwilling to share"</em></td>
                                         <td style="vertical-align: middle">
                                             <div class="slidecontainer">
-                                                <input type="range" min="0" max="10" value="0" step="1" name="altruism"  id="altruism" class="slider" style="width: 95%;margin-left: auto;margin-right: auto">
+                                                <input type="range" min="0" max="10" value="0" step="1" name="altruism"  id="altruism" class="slider2" style="width: 95%;margin-left: auto;margin-right: auto">
                                                 <!--<span class="slider_label">500</span> -->
                                             </div>
                                          </td>
@@ -76,7 +80,7 @@
 
 
 
-    <button class="otree-btn-next btn btn-primary" onclick="saveTime();">
+    <button class="otree-btn-next btn btn-primary" onclick="saveTime();checkTouched();">
         Complete the study
     </button>
 

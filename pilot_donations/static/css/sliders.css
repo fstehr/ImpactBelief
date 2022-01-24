@@ -44,9 +44,48 @@
     cursor: pointer; /* Cursor on hover */
 }
 
+.slider::-ms-thumb {
+    position: relative;
+    width: 10px;
+    height: 25px;
+    transform: none;
+    margin-top: -1px;
+    border-radius: 20%;
+    background: #007bff;
+    border-color: #007bff;
+    cursor: pointer;
+    z-index: 2;
+}
+
 .slider_table {
     width: 90%;
     border: 0px;
     margin-left: auto;
     margin-right: auto;
+}
+
+
+/*******    2nd slider class with hidden thumb   *******/
+.slider2 {
+    -webkit-appearance: none;
+    width: 85%; /* Width of slider within slidecontainer */
+    margin-top: 5px;
+    height: 10px; /* Specified height */
+    border-radius: 5px; /* Radius makes the edges round */
+    background: linear-gradient(to right, #007bff 0%, #007bff 0%, #d3d3d3 0%, #d3d3d3 100%);
+    outline: none;
+    opacity: 0.7; /* Set transparency as default (for mouse-over effects on hover) */
+    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+    transition: opacity .2s;
+    z-index: -1; /* make sure slider bar is below knobs */
+}
+
+.slider2::-webkit-slider-thumb {
+  visibility: hidden;
+}
+.slider2::-moz-range-thumb {
+  visibility: hidden;
+}
+.slider2::-ms-thumb {
+  visibility: hidden;
 }

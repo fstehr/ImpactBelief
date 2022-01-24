@@ -22,11 +22,39 @@
 
 {% block content %}
 
-<div class="card">
-    <div class="card-body">
-        <p>
-           In this experiment, we ask you to whether you would like to donate to a charity.
-        </p>
+
+    <div>
+        <div class="alert alert-warning">
+            In this experiment, you will face different projects to which you can donate. We will randomly select 1 out of 20 respondents.
+            If you are among them, we randomly select one of your decisions to be the decision-that-counts.
+            This decision will be implemented and you can <b>receive up to &#36;{{ player.endowment }}</b>.
+        </div>
+
+        <br>
+
+        <h4><img style="width: 5%;" src="{% static 'img/choice.svg' %}">What is your task in the experiment?</h4>
+        <ul>
+            <li>You will face {{ Constants.num_rounds }} different vitamin A supplement projects.</li>
+            <li>You can divide &#36;{{ player.endowment }} between yourself and the charity.</li>
+            <li>The projects differ in costs and number of vitamin A doses administered.</li>
+            <li>If you donate to a given project,
+                <ul>
+                    <li>you <b>keep the difference between the costs and &#36;{{ player.endowment }}, and</b></li>
+                    <li>we will <b>donate the number of vitamin A doses</b> that was specified in the project's description.</li>
+                </ul>
+            </li>
+            <li>If you decide not to donate, you will <b>keep all &#36;{{ player.endowment }}</b>.</li>
+        </ul>
+
+        <br>
+
+        <h4><img style="width: 5%;" src="{% static 'img/vitamins.svg' %}">Why vitamin A supplements?</h4>
+        <ul>
+            <li>Vitamin A deficiency leaves children vulnerable to infections and can lead to death. </li>
+            <li>Over 200,000 children's deaths can be attributed to vitamin A deficiency each year.</li>
+            <li>Providing vitamin A supplements has been scientifically evaluated as highly effective in saving children's lives.</li>
+            <li>In this experiment, you can donate to children in need through the Helen Keller International's vitamin A supplementation program.<a style="font-size: 10pt" href="#section1"><sup>[1]</sup></a></li>
+        </ul>
 
         {% formfield player.attention_check %}
 
@@ -38,13 +66,16 @@
         <input type="hidden" name="window_width" id="id_window_width" value="0"/>
         <input type="hidden" name="window_height" id="id_window_height" value="0"/>
 
-
-        <div style="text-align: right">
-            {% next_button %}
-        </div>
-
     </div>
-</div>
+
+    <div style="text-align: right">
+        {% next_button %}
+    </div>
+
+<p style="font-size: 10pt"><sup>[1]</sup> You can read more about the charity and its scientific evaluation <a href="https://www.givewell.org/charities/helen-keller-international" target="_blank" rel="noopener noreferrer">here</a>.</p>
+
+
+
 
 
 {% endblock %}

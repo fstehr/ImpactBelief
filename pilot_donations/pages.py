@@ -58,7 +58,7 @@ class Donation(Page):
 
 class Questionnaire(Page):
     form_model = 'player'
-    form_fields = [ 'altruism', 'giving_type', 'finishing_time']
+    form_fields = ['altruism', 'giving_type', 'finishing_time']
 
     def is_displayed(self):
         return self.round_number == Constants.num_rounds
@@ -69,6 +69,6 @@ class Thanks(Page):
         return self.round_number == Constants.num_rounds
 
 
-page_sequence = [Questionnaire]
+page_sequence = [Instructions]
 # page_sequence = [Welcome, Instructions, BeliefIntro, Belief, Feedback, Thanks]
 
