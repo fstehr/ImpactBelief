@@ -124,7 +124,7 @@ class Player(BasePlayer):
 # - write instructions
 # - make screen design for decision screen nicer (See sketch ppt)
 # - fix slider altruism question (OBS use lars' change slider class snippet to make slider mandatory without anchoring)
-
+# - fix layout of radio buttons on questionnaire site
 
 # - randomize order of project A & B (i.e. from csv file to html)
 # - include pictures in instructions -> donation impact
