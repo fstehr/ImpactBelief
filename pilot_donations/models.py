@@ -72,7 +72,7 @@ class Player(BasePlayer):
     is_mobile = models.BooleanField(doc="Automatic check through JS whether gadget is phone or not")
     window_width = models.IntegerField(blank=True, doc="Documents the respondent's browser window's width.")
     window_height = models.IntegerField(blank=True, doc="Documents the respondent's browser window's height.")
-    attention_check = models.StringField(doc="Filter question for attention.",
+    attention_check = models.StringField(blank=True, doc="Filter question for attention.",
                                           label="To make sure you have read the instructions, we ask you to answer 'apple' in the field below.")
 
     endowment = models.IntegerField()

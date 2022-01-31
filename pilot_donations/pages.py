@@ -19,6 +19,11 @@ class Instructions(Page):
         return self.round_number == 1
 
 
+class AttentionFail(Page):
+    def is_displayed(self):
+        return self.round_number == 1 and self.player.attention_check != "apple"
+
+
 class Donation(Page):
     form_model = 'player'
     form_fields = ['donation_A']
@@ -69,6 +74,6 @@ class Thanks(Page):
         return self.round_number == Constants.num_rounds
 
 
-page_sequence = [Instructions]
+page_sequence = [Instructions, AttentionFail, Donation]
 # page_sequence = [Welcome, Instructions, BeliefIntro, Belief, Feedback, Thanks]
 

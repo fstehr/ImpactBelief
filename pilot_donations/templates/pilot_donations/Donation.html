@@ -1,12 +1,26 @@
 {% extends "global/Page.html" %}
 {% load otree %}
 
+{% block styles %}
+<style>
+    td.fitwidth {
+        width: 1px;
+        white-space: nowrap;
+    }
+</style>
+
+{% endblock %}
+
+
 {% block scripts %}
+<script>
+    document.title = "The Donation Task";
+</script>
 {% endblock %}
 
 
 {% block title %}
-    <table class="table">
+    <table class="table" style="margin-left:auto; margin-right:auto; width:65%;">
         <tr>
             <td style="width:70%;border-color:transparent">The Donation Task</td>
             <td style="width:30%;border-color:transparent;text-align: right;font-size: medium; font-weight: lighter">
@@ -17,41 +31,30 @@
 
 {% block content %}
 
-<div>
-    <p>
-        Below we describe the details of the project.
-    </p>
-</div>
-
-
-        <table class="table table-hover" style="margin-left:auto; margin-right:auto; width:50%;">
+        <table class="table table-borderless table-hover" style="margin-left:auto; margin-right:auto; width:65%;">
             <tbody>
-                    <tr>
-                        <td>Your endowment is:</td>
-                        <td>&#36;{{ endowment }}</td>
-                    </tr>
+                <tr>
+                    <td class="fitwidth" style="vertical-align: middle;"><img style="width: 12%; margin-right: 4pt" src="{% static 'img/vitamins.svg' %}">In this decision, your donation finances:</td>
+                    <td class="fitwidth" style=" vertical-align: middle;"><span style="color: red; font-weight: bold;">{{ num_doses_a }}</span> vitamin A doses</td>
+                </tr>
+                <tr>
+                    <td style="vertical-align: middle;"><img style="width: 10%; margin-right: 12px" src="{% static 'img/coin.svg' %}">Donating to this project will cost you:</td>
+                    <td style=" vertical-align: middle;">&#36;  <span style="color: red; font-weight: bold;">{{ price_a }}</span></td>
+                </tr>
+            </tbody>
+        </table>
 
-                    <tr>
-                        <td>This project finances:</td>
-                        <td>{{ num_doses_a }} vitamin A doses</td>
-                    </tr>
-                    <tr>
-                        <td>Donating to this project will cost you:</td>
-                        <td>&#36;{{ price_a }}</td>
-                    </tr>
-              </tbody>
-            </table>
-    </body>
-
-    <div class="alert" style="margin-top: 16pt; text-align:center; margin-left:auto; margin-right:auto; width:90%;">
-        <p style="" >
-            Would you like to donate to this project?
+    <div class="alert" style="margin-top: 16pt; margin-left:auto; margin-right:auto; width:60%;">
+        <p><em>
+            Would you like to donate to this project out of your &#36;{{ endowment }} endowment? </em>
         </p>
-        <p>
+        <div style="margin-top: 16pt; text-align: center">
             {{ form.donation_A }}
-        </p>
+        </div>
 
-        {% next_button %}
+        <div style="margin-top: 16pt; text-align: right">
+            {% next_button %}
+        </div>
 
     </div>
 
