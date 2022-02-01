@@ -15,33 +15,32 @@
 
 
 {% block title %}
-    Instructions
+    Instructions - Donation Task
 {% endblock %}
 
 {% block content %}
 
 
-    <div>
-        <div class="alert alert-warning alert-bonus" role="alert">
-            You will face {{ Constants.num_rounds }} different projects to which you can donate.
-            We randomly select 1 out of 20 respondents.
-            If you are among them, we randomly select one of your decisions to be the decision-that-counts.
-            This decision will be implemented and you can <b>receive up to &#36;{{ player.endowment }}</b>.
-        </div>
-
-        <br>
+    <div style="width: 90%; margin-left: auto; margin-right: auto">
 
         <h4><img style="width: 5%;" src="{% static 'img/choice.svg' %}">What is your task in the experiment?</h4>
         <ul>
-            <li>You will face {{ Constants.num_rounds }} different charity projects which provide vitamin A supplements.</li>
-            <li>The projects differ in costs and number of vitamin A supplements administered.</li>
-            <li>If you donate to a given project,
+            <li>You can donate to {{ Constants.num_rounds }} different charity projects which provide vitamin A supplements.</li>
+            <li>The projects <b>differ in costs and number of vitamin A supplements</b> administered.</li>
+        </ul>
+
+        <br>
+
+        <h4><img style="width: 4%; margin-right: 12px" src="{% static 'img/coin.svg' %}">How do your choices affect your earnings?</h4>
+        <ul>
+            <li>We randomly select 1 out of 20 respondents. If you are among them, we randomly select one your {{ Constants.num_rounds }} decisions to be the decision-that-counts.</li>
+             <li>If you donated to a project in a decision-that-counts,
                 <ul>
-                    <li>you <b>receive &#36;{{ player.endowment }} minus the costs of the project</b>, and</li>
+                    <li>you <b>receive <u>&#36;{{ player.endowment }} minus the costs of the project</u></b>, and</li>
                     <li>we will <b>donate the number of vitamin A doses</b> that was specified in the project's description.</li>
                 </ul>
             </li>
-            <li>If you decide not to donate, you will <b>receive all &#36;{{ player.endowment }}</b>.</li>
+            <li>If you decided not to donate, you will <b>receive all &#36;{{ player.endowment }}</b>.</li>
         </ul>
 
         <br>

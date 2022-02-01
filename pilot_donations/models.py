@@ -105,7 +105,7 @@ class Player(BasePlayer):
         choices=range(0, 11),
         widget=widgets.RadioSelectHorizontal,
         label='How do you assess your willingness to share with others without expecting anything in '
-              'return when it comes to charity? Please use the slider to indicate where you fall on the scale.')
+              'return when it comes to charity? Please click on the slider to indicate where you fall on the scale.')
 
     giving_type = models.IntegerField(
         label="Think about the last time you gave to charity before today. What was most important to you when you decided to donate?",

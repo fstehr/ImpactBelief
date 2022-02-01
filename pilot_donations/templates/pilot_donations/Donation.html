@@ -15,6 +15,15 @@
 {% block scripts %}
 <script>
     document.title = "The Donation Task";
+
+    function HideImageLoadForm() {
+        setTimeout(function () {
+            document.getElementById("info1").style.visibility = "visible";
+            document.getElementById("info2").style.visibility = "visible";
+            /* document.getElementById("question").style.color = "black";
+            document.getElementById("button").className = "otree-btn-next btn btn-primary"; */
+        }, 200);
+    }
 </script>
 {% endblock %}
 
@@ -30,34 +39,45 @@
     </table>{% endblock %}
 
 {% block content %}
-
+<body onload="HideImageLoadForm()">
         <table class="table table-borderless table-hover" style="margin-left:auto; margin-right:auto; width:65%;">
             <tbody>
                 <tr>
-                    <td class="fitwidth" style="vertical-align: middle;"><img style="width: 12%; margin-right: 4pt" src="{% static 'img/vitamins.svg' %}">In this decision, your donation finances:</td>
-                    <td class="fitwidth" style=" vertical-align: middle;"><span style="color: red; font-weight: bold;">{{ num_doses_a }}</span> vitamin A doses</td>
+                    <td class="fitwidth" style="vertical-align: middle;"><img style="width: 12%; margin-right: 4pt" src="{% static 'img/vitamins.png' %}">In this decision, your donation finances:</td>
+                    <td class="fitwidth" style=" vertical-align: middle;">
+                        <div style="visibility: hidden" id="info1">
+                            <span style="color: red; font-weight: bold;">{{ num_doses_a }}</span> vitamin A doses
+                        </div>
+                    </td>
                 </tr>
                 <tr>
-                    <td style="vertical-align: middle;"><img style="width: 10%; margin-right: 12px" src="{% static 'img/coin.svg' %}">Donating to this project will cost you:</td>
-                    <td style=" vertical-align: middle;">&#36;  <span style="color: red; font-weight: bold;">{{ price_a }}</span></td>
+                    <td style="vertical-align: middle;"><img style="width: 10%; margin-right: 12px" src="{% static 'img/coin.png' %}">Donating to this project will cost you:</td>
+                    <td style=" vertical-align: middle;">
+                        <div style="visibility: hidden" id="info2">
+                            &#36; <span style="color: red; font-weight: bold;">{{ price_a }}</span>
+                        </div>
+                    </td>
                 </tr>
             </tbody>
         </table>
 
     <div class="alert" style="margin-top: 16pt; margin-left:auto; margin-right:auto; width:60%;">
-        <p><em>
-            Would you like to donate to this project out of your &#36;{{ endowment }} endowment? </em>
-        </p>
-        <div style="margin-top: 16pt; text-align: center">
-            {{ form.donation_A }}
+        <div id="question" style="color:black;">
+            <p><em>
+                Would you like to donate to this project out of your &#36;{{ endowment }} endowment? </em>
+            </p>
+            <div style="margin-top: 16pt; text-align: center">
+                {{ form.donation_A }}
+            </div>
         </div>
-
         <div style="margin-top: 16pt; text-align: right">
-            {% next_button %}
+            <button id="button" class="otree-btn-next btn btn-primary">
+                Next
+            </button>
         </div>
 
     </div>
-
+</body>
 
 
 {% endblock %}

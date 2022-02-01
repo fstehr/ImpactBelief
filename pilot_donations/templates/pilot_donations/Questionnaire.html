@@ -66,11 +66,12 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>{{ form.giving_type.label }} </td>
+                        <td>{{ form.giving_type.label }}</td>
                     </tr>
                     <tr>
                         <td>
                             {{ form.giving_type }}
+                            {% formfield player.giving_type %}
                         </td>
                     </tr>
                 </div>
@@ -79,10 +80,11 @@
     </div>
 
 
-
-    <button class="otree-btn-next btn btn-primary" onclick="saveTime();checkTouched();">
-        Complete the study
-    </button>
+    <div style="margin-top: 16pt; text-align: right">
+        <button class="otree-btn-next btn btn-primary" onclick="saveTime();checkTouched();">
+            Complete the study
+        </button>
+    </div>
 
     <input id="finishing_time" name="finishing_time" type="hidden" value=""/>
 
