@@ -8,6 +8,9 @@
             margin-right: 0px;
             margin-left: -40px;
         }
+        ul {
+            list-style-type: none; /* Remove bullets */
+        }
     </style>
 {% endblock %}
 
@@ -71,7 +74,6 @@
                     <tr>
                         <td>
                             {{ form.giving_type }}
-                            {% formfield player.giving_type %}
                         </td>
                     </tr>
                 </div>
