@@ -7,6 +7,10 @@
     </style>
 {% endblock %}
 
+{% block scripts %}
+    <script src="{% static 'global/js/browser_info.js' %}"></script>
+{% endblock %}
+
 {% block title %}
     Instructions - Donation Task
 {% endblock %}
@@ -28,7 +32,6 @@
 
         <h4><img style="width: 4%; margin-right: 12px" src="{% static 'img/coin.svg' %}">How do your choices affect your earnings?</h4>
         <ul>
-            <li>We randomly select 1 out of 20 respondents. If you are among them, we randomly select one your {{ Constants.num_rounds }} decisions to be the decision-that-counts.</li>
              <li>If you donated to a project in a decision-that-counts,
                 <ul>
                     <li>you <b>receive <u>&#36;{{ player.endowment }} minus the costs of the project</u></b>, and</li>
@@ -36,6 +39,10 @@
                 </ul>
             </li>
             <li>If you decided not to donate, you will <b>receive all &#36;{{ player.endowment }}</b>.</li>
+            <li>We randomly select 1 out of 20 respondents.
+                If you are among them, we randomly select one your {{ Constants.num_rounds }}
+                decisions to be the decision-that-counts for your bonus payment.
+            </li>
         </ul>
 
         <br>
