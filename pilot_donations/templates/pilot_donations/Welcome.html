@@ -1,10 +1,6 @@
 {% extends "global/Page.html" %}
 {% load otree static %}
 
-{% block styles %}
-    <link href="{% static 'global/css/global.css' %}" rel="stylesheet">
-{% endblock %}
-
 {% block scripts %}
     <script src="{% static 'global/js/basics.js' %}"></script>
     <script src="{% static 'global/js/navbuttons.js' %}"></script>
@@ -65,11 +61,11 @@
 </div>
 
 <body onload="show_hide_instructions();">
-    <div class="alert alert-danger" id="Phone">
+    <div class="alert alert-danger" id="Phone" style="display: none">
         This study cannot be completed on a mobile gadget, please copy the link to a computer browser.
-        Then you can continue with the experiment. <br>
-        If you wish to exit this study, please click the button below. <br>
-        <em>Note that you cannot return to the study once you pressed the exit button.</em> <br>
+        Then you can continue with the experiment. <br><br>
+        If you wish to exit this study, please click the button below.<br>
+        <em>Note that you cannot return to the study once you pressed the exit button.</em> <br><br>
         <button class="btn btn-primary btn-large" onclick="saveTime()">Exit the study</button>
     </div>
 
@@ -176,8 +172,8 @@
                             The data is anonymous, with the exception of your Prolific ID, which is required to administer payments.
                             The researcher does not have access to any other personal data and therefore cannot link
                             this ID with any other personal data. After the payment has been processed, we will
-                            separate the Prolific IDs from the dataset and thereby anonymise it. The Prolific IDs will
-                            be stored separately and safely on a Maastricht University server. After this anonymisation,
+                            separate the Prolific IDs from the dataset and thereby anonymize it. The Prolific IDs will
+                            be stored separately and safely on a Maastricht University server. After this anonymization,
                             it will not be possible to identify participants based on their responses.
                         </p>
                         <p>
@@ -207,7 +203,7 @@
                             out in the public interest or in the exercise of official authority vested in the controller.
                         </p>
                         <p>
-                            Your data will not be used for other purposes. Only fully anonymised data will be shared
+                            Your data will not be used for other purposes. Only fully anonymized data will be shared
                             for the sole purpose of replicating the analysis if requested by scientific journals.
                             You have the right to request access to your data and/or deletion of your Prolific ID from
                             our data by sending an email to f.stehr@maastrichtuniversity.nl.
@@ -276,18 +272,18 @@
                         <p>
                             I hereby give permission for my data to be used for scientific purposes.
                             I have had enough time to decide whether I want to participate in the experiment.
-                            I know that participation is voluntary and I know that I can decide to withdraw from
+                            I know that participation is voluntary, and I know that I can decide to withdraw from
                             the experiment at any time. I do not have to justify such a decision to withdraw.
                             If I withdraw I will forfeit any payments.
                         </p>
                         <p>
                             I understand that the data will be stored anonymously and thus can only be published anonymously.
-                            I give permission for the researcher to use my anonymised responses in subsequent experiments.
+                            I give permission for the researcher to use my anonymized responses in subsequent experiments.
                         </p>
-                        <p>
+                        <!--<p>
                             I understand that for people with photosensitivity, the characteristics of some of the
                             images in the experiment may cause dizziness or other symptoms.
-                        </p>
+                        </p> -->
                     </div>
 
                     <br>
@@ -319,8 +315,6 @@
             </div>
         </div>
     </div>
-
-
 </body>
 
 {% endblock %}

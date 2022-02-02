@@ -33,8 +33,8 @@ touched = 0
 
 function set_touched(event) {
     touched += 1;
+    console.log("touched counter is", touched);
     this.className = "slider";
-    // console.log("touched counter is", touched);
     this.removeEventListener('mouseup', set_touched);
     }
 

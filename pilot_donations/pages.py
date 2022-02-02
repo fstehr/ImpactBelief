@@ -11,6 +11,11 @@ class Welcome(Page):
         return self.round_number == 1
 
 
+class NoPhone(Page):
+    def is_displayed(self):
+        return self.round_number == 1 and self.player.is_mobile
+
+
 class Instructions(Page):
     form_model = 'player'
     form_fields = ['window_width', 'window_height', 'attention_check']
@@ -41,7 +46,6 @@ class Donation(Page):
         num_doses_a = int(project['num_doses_A'])
         # price_b = int(project['price_B'])
         # num_doses_b = int(project['num_doses_B'])
-
 
         player.num_doses_A = num_doses_a
         player.price_A = price_a
@@ -74,6 +78,6 @@ class Thanks(Page):
         return self.round_number == Constants.num_rounds
 
 
-page_sequence = [Questionnaire]
+page_sequence = [Welcome, NoPhone, Instructions, AttentionFail, Donation, Questionnaire, Thanks]
 # page_sequence = [Welcome, Instructions, BeliefIntro, Belief, Feedback, Thanks]
 
