@@ -120,14 +120,8 @@ class Player(BasePlayer):
         )
 
 # TO DO
-# - check whether parameters make sense for a pilot
-# - write instructions
-# - make screen design for decision screen nicer (See sketch ppt)
-# - fix slider altruism question (OBS use lars' change slider class snippet to make slider mandatory without anchoring)
-# - fix layout of radio buttons on questionnaire site
 
-# - randomize order of project A & B (i.e. from csv file to html)
-# - include pictures in instructions -> donation impact
+# - randomize order of project A & B (i.e. from csv file to html) --> include a dummy variable cheapleft for orders
 # - emphasize that there is no (immediate) feedback on belief accuracy!
 # - code belief etc. data s.t. the data is called proj low and proj hi ?
 # --> randomization of order of display is done on html level
