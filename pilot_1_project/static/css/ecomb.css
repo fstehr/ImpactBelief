@@ -1,0 +1,22 @@
+.text-orange {
+    color: var(--orange);
+}
+
+/* Bonus alert (inspired by https://dribbble.com/shots/1734184-Alerts) */
+
+.alert-bonus {
+  padding: 15px;
+  border-left-width: 50px;
+}
+
+.alert-bonus:before {
+    content: "";
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    margin-left: -48px;
+    margin-top: 4px;
+    background-image: url('dollar.png');
+    /*background-image: url('https://f.cl.ly/items/3P2N0A1l0Z2q1T2W1S0H/alert-icon-exclam-16x16.png');*/
+    background-size: cover;
+}

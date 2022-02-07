@@ -14,28 +14,24 @@ import itertools    # allows to balance treatments
 from otree.db.models import ForeignKey
 
 doc = """
-This is a pilot snippet testing the parameters of the donation task. Half the subjects get a lower endowment to see 
-how much this affects donation behavior. All currency veriables are in US Dollars. Pilot is with full impact information.
+This is a pilot snippet testing whether it makes a difference (for beliefs & donations) 
+whether two projects are on one screen or not.
+This is the code with <b>1 project per screen</b>. All currency variables are in US Dollars.
 """
-
 
 class Constants(BaseConstants):
     name_in_url = 'study'
     players_per_group = None
 
     # Get experimental parameters from csv file
-    with open('pilot_donations/static/Parameters.csv', encoding='utf-8-sig') as parameters:
+    with open('pilot_1_project/static/Parameters.csv', encoding='utf-8-sig') as parameters:
         paras = list(csv.DictReader(parameters, dialect='excel'))
 
     num_rounds = len(paras)
 
     # timing parameters for display
     duration_min = 10
-    endowment_lo = 40
-    endowment_hi = 50
-
-    min_price = 12.75
-    max_price = 157.25
+    endowment = 40
 
 
 class Subsession(BaseSubsession):
@@ -54,12 +50,6 @@ class Subsession(BaseSubsession):
                 p.vars['payment_round'] = random.choice(rounds)
                 print("Payment round is", p.vars['payment_round'])
 
-        # assign hi and lo endowment to half the sample
-        endowments = itertools.cycle([Constants.endowment_lo, Constants.endowment_hi])
-
-        for p in self.get_players():
-            p.endowment = next(endowments)
-
 
 class Group(BaseGroup):
     pass
@@ -74,8 +64,6 @@ class Player(BasePlayer):
     window_height = models.IntegerField(blank=True, doc="Documents the respondent's browser window's height.")
     attention_check = models.StringField(blank=True, doc="Filter question for attention.",
                                           label="To make sure you have read the instructions, we ask you to answer 'apple' in the field below.")
-
-    endowment = models.IntegerField()
 
     # Characteristics of Project A
     num_doses_A = models.IntegerField()
@@ -108,23 +96,21 @@ class Player(BasePlayer):
               'return when it comes to charity? Please click on the slider to indicate where you fall on the scale.')
 
     giving_type = models.IntegerField(
-        label="Think about the last time you gave to charity before today. What was most important to you when you decided to donate?",
+        label="Think about the last time you gave to charity before today. "
+              "What was most important to you when you decided to donate?",
+        doc="warm glow survey item from Carpenter (2021) JEBO",
         widget=widgets.RadioSelect,
         choices=[
-            [1, 'the cause the charity supported'],
-            [2, 'feeling good about myself for donating'],
-            [3, 'maximizing the societal impact of my donation'],
-            [4, 'being able to tell/show others that I donated'],
-            [5, 'some other aspect of giving']
+            [1, 'the total amount given by everyone'],
+            [2, 'the amount that you personally gave'],
+            [3, 'some other aspect of giving']
         ]
         )
 
 # TO DO
 
-# - randomize order of project A & B (i.e. from csv file to html) --> include a dummy variable cheapleft for orders
 # - emphasize that there is no (immediate) feedback on belief accuracy!
 # - code belief etc. data s.t. the data is called proj low and proj hi ?
-# --> randomization of order of display is done on html level
 
 # - include warm glow survey item from Carpenter (2021) JEBO "Think about the last time you gave to charity before today. What was most important to you (i) the total amount given by everyone, (ii) the amount that you personally gave or (iii) some other aspect of giving?”
 

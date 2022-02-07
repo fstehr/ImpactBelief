@@ -1,0 +1,84 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block styles %}
+    <style>
+        li{margin: 10px 0;}
+    </style>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'global/js/browser_info.js' %}"></script>
+{% endblock %}
+
+{% block title %}
+    Instructions - Donation Task
+{% endblock %}
+
+{% block content %}
+
+
+    <div style="width: 90%;margin-left: auto; margin-right: auto">
+
+        <br>
+
+        <h4><img style="width: 5%;" src="{% static 'img/choice.svg' %}">What is your task in the experiment?</h4>
+        <ul>
+            <li>You can donate to {{ Constants.num_rounds }} different charity projects which provide vitamin A supplements.</li>
+            <li>The projects <b>differ in costs and number of vitamin A supplements</b> administered.</li>
+        </ul>
+
+        <br>
+
+        <h4><img style="width: 4%; margin-right: 12px" src="{% static 'img/coin.svg' %}">How do your choices affect your earnings?</h4>
+        <ul>
+             <li>If you donated to a project in a decision-that-counts,
+                <ul>
+                    <li>you <b>receive <u>&#36;{{ player.endowment }} minus the costs of the project</u></b>, and</li>
+                    <li>we will <b>donate the number of vitamin A doses</b> that was specified in the project's description.</li>
+                </ul>
+            </li>
+            <li>If you decided not to donate, you will <b>receive all &#36;{{ player.endowment }}</b>.</li>
+            <li>We randomly select 1 out of 20 respondents.
+                If you are among them, we randomly select one your {{ Constants.num_rounds }}
+                decisions to be the decision-that-counts for your bonus payment.
+            </li>
+        </ul>
+
+        <br>
+
+        <h4><img style="width: 5%;" src="{% static 'img/vitamins.svg' %}">Why vitamin A supplements?</h4>
+        <ul>
+            <li>Vitamin A deficiency leaves children vulnerable to infections and can lead to death. </li>
+            <li>Over 200,000 children's deaths can be attributed to vitamin A deficiency each year.</li>
+            <li>Providing vitamin A supplements has been scientifically evaluated as effective in saving children's lives.</li>
+            <li>The World Health Organization recommends that all preschool-aged children in areas where vitamin A deficiency is a public health problem receive <b>vitamin A supplements two to three times per year</b>.</li>
+            <li>In this experiment, you can donate to children in need through the Helen Keller International's vitamin A supplementation program.<a style="font-size: 10pt" href="#footnote1"><sup>[1]</sup></a></li>
+        </ul>
+
+        {% formfield player.attention_check %}
+
+        <div class="alert alert-warning">
+            Before you click next, please make sure you have understood the instructions.
+        </div>
+
+        <!-- Hidden Tracking Fields -->
+        <input type="hidden" name="window_width" id="id_window_width" value="0"/>
+        <input type="hidden" name="window_height" id="id_window_height" value="0"/>
+
+    </div>
+
+    <div style="text-align: right">
+        {% next_button %}
+    </div>
+
+
+    <p style="font-size: 10pt; margin-top: 20pt" id="footnote1"><sup>[1]</sup> You can read more about the charity and its scientific evaluation <a href="https://www.givewell.org/charities/helen-keller-international" target="_blank" rel="noopener noreferrer">here</a>.</p>
+
+
+
+
+
+{% endblock %}
+
+
