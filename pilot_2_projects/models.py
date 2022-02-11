@@ -139,6 +139,8 @@ class Player(BasePlayer):
 
 # --> OBS slider layout does not work
 # and de-activating sliders on belief page does not work either
+# slider A cannot be deactivated
+# slider B is not active
 # also no second belief button
 
 # - randomize treatments with high & low incentives
