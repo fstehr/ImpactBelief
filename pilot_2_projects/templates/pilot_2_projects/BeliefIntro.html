@@ -1,0 +1,52 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block styles %}
+    <style>
+        li{
+            margin: 10px 0;
+        }
+    </style>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        localStorage.setItem('counter', '1');
+    </script>
+{% endblock %}
+
+
+{% block title %}
+{% if player.attention_check != 'apple' %} Thank you {% else %} The Estimation Task{% endif %}
+{% endblock %}
+
+{% block content %}
+
+
+        {% if player.attention_check != 'apple' %}
+            <div class="alert alert-secondary">
+                <p>
+                    Your participation in this experiment was terminated, because you did not correctly answer an attention check question.
+                </p>
+                <p>To leave the experiment, you can simply close the browser window.</p>
+            </div>
+        {% else %}
+            <div class="alert alert-warning">
+                <p>
+                    Stay alert, after clicking on the 'Next'-button the estimation task starts.
+                </p>
+            </div>
+
+            <br>
+            <br>
+
+            <div style="text-align: right">
+                {% next_button %}
+            </div>
+        {% endif %}
+
+
+
+{% endblock %}
+
+

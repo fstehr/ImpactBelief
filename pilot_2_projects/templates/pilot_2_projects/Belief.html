@@ -1,0 +1,169 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block styles %}
+    <link href="{% static 'global/css/global.css' %}" rel="stylesheet">
+    <style>
+        table {
+            border-collapse: separate;
+            border-spacing: 22px;
+        }
+    </style>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        document.title = "Your estimates";
+        $("body").on("contextmenu",function(e){
+            return false;
+        });
+    </script>
+    <script src="{% static 'js/beliefs.js' %}"></script>
+{% endblock %}
+
+
+{% block title %}
+    <table style="padding:0px; margin:0px;width:100%">
+        <tr>
+            <td style="width:60%;border-color:transparent">Your estimates</td>
+            <td style="width:40%;border-color:transparent;text-align: right;font-size: medium; font-weight: lighter">
+                <p id="countdown" style="display: none">
+                    Time left to enter your estimate (in secs):
+                    <span id="count">{{ Constants.sec_to_answer }}</span>
+                 </p>
+            </td>
+        </tr>
+    </table>
+{% endblock %}
+
+{% block content %}
+
+<body onload="HideImageLoadForm()" onkeydown="return (event.keyCode != 116 || event.keyCode != 13)">
+
+    <!-- Initial alert -->
+    <div style="z-index: 100; position: fixed;">
+        <div class="alert alert-danger" id="alert" style="margin-top: 200px;margin-left:auto;margin-right:auto; text-align: center; display:block; width:70%;">
+                <strong>
+                    Please stay alert, as each matrix is only displayed for {{ Constants.sec_per_matrix }} seconds.
+                </strong>
+                You have {{ Constants.sec_to_answer }} seconds to fill in your estimate after the matrix disappears.
+        </div>
+    </div>
+
+
+    <!-- Forms -->
+    <div class="card-deck">
+
+        <!-- Form A -->
+        <div class="card">
+            <div class="card-body" id="cardA" style="color: #6c757d">
+
+                <p style="text-align: center; font-size: large">Donation amount: &#36 {{ price_a }}</p>
+
+                <img src = "{% static 'global/img/matrices/matrix_white.png' %}"  id="matrix1_white" style="display:block;margin-left:auto; margin-right:auto; width:80%;"/>
+                <img src = "{% static img_A %}" id="matrix1" style="display:none;margin-left:auto; margin-right:auto; width:80%;"/>
+
+
+                <table style="width:100%;border-color: #0c5460" id="beliefA">
+                    <tr>
+                        <td colspan="2">How many pills were in the matrix?</td>
+                        <td><input id="num_x_belief_A" disabled class="form-control" type="number"
+                                     name="num_x_belief_A" min="1" max="400">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="3">
+                            How certain are you about your estimate?
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td style="width:5%">completely uncertain</td>
+                        <td style="width: 100%">
+                            <div class="slidecontainer">
+                                <input disabled type="range" min="1" max="20" value="20" class="slider" id="certainty_A" name="confidence_belief_A" oninput="changeCIA(this.value)" style="width: 90%;" >
+                            </div>
+                        </td>
+                        <td style="width:5%">completely certain</td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="3" style="padding: 0; text-align: center;">
+                            <em>I am certain the value is between <span id="min_A">0</span> and <span id="max_A">400</span>. </em>
+                        </td>
+                    </tr>
+
+                    <tr>
+                      <td colspan="2">Would you like to donate to this project?</td>
+                      <td>{{ form.donation_A }}</td>
+                  </tr>
+                </table>
+
+              </div>
+          </div>
+
+        <!-- Form B -->
+        <div class="card">
+              <div class="card-body" id="cardB" style="color: #6c757d">
+
+                  <p style="text-align: center; font-size: large">Donation amount: &#36 {{ price_b }}</p>
+
+                  <img src = "{% static 'global/img/matrices/matrix_white.png' %}" id="matrix2_white" style="display:block;margin-left:auto; margin-right:auto; width:80%;"/>
+                  <img src = "{% static img_B %}" id="matrix2" style="display:none;margin-left:auto; margin-right:auto; width:80%;"/>
+
+
+                  <table style="width:100%;" id="beliefB">
+                      <tr>
+                          <td colspan="2">How many pills were in the matrix?</td>
+                          <td><input id="num_x_belief_B" disabled class = "form-control" type="number" name="num_x_belief_B" min="1" max="400"></td>
+                      </tr>
+
+                      <tr>
+                        <td colspan="3">
+                            How certain are you about your estimate?
+                        </td>
+                      </tr>
+
+                      <tr>
+                          <td style="width:5%">completely uncertain</td>
+                          <td style="width: 90%">
+                              <div class="slidecontainer">
+                                  <input disabled type="range" min="1" max="20" value="20" class="slider" id="certainty_B" name="confidence_belief_B" oninput="changeCIB(this.value)" style="width: 90%;">
+                              </div>
+                          </td>
+                          <td style="width:5%">completely certain</td>
+                      </tr>
+
+                    <tr>
+                        <td colspan="3" style="padding: 0; text-align: center;">
+                            <em>I am certain the value is between <span id="min_B">0</span> and <span id="max_B">400</span>.</em>
+                        </td>
+                    </tr>
+                      <tr>
+                      <td colspan="2">Would you like to donate to this project?</td>
+                      <td>{{ form.donation_B }}</td>
+                  </tr>
+                  </table>
+
+              </div>
+          </div>
+    </div>
+
+    <br>
+
+
+    <div style="display:none; text-align: right" id="NextButton">
+        <button type="button" class="btn btn-warning btn-large">Next</button>
+    </div>
+
+    <div style="display:none; text-align: right" id="SubmitButton">
+        <button class="btn btn-primary btn-large">Next</button>
+    </div>
+
+    <input type="hidden" name="page_loaded" id="page_loaded">
+
+</body>
+
+{% endblock %}
+

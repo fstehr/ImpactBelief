@@ -3,14 +3,8 @@ from os import environ
 
 SESSION_CONFIGS = [
     dict(
-        name='impact_beliefs',
-        display_name='Impact Beliefs',
-        num_demo_participants=2,
-        app_sequence=['impact_beliefs', 'carbon_footprint', 'payment_info'],
-    ),
-    dict(
         name='pilot_donation',
-        display_name='Pilot',
+        display_name='Pilot Donation',
         num_demo_participants=2,
         app_sequence=['pilot_donations'],
     ),
@@ -18,13 +12,13 @@ SESSION_CONFIGS = [
         name='pilot_1_project',
         display_name='Pilot: 1 project per screen',
         num_demo_participants=2,
-        app_sequence=['pilot_donations'],
+        app_sequence=['pilot_1_project'],
     ),
     dict(
         name='pilot_2_projects',
         display_name='Pilot: 2 projects per screen',
         num_demo_participants=2,
-        app_sequence=['pilot_donations'],
+        app_sequence=['pilot_2_projects'],
     ),
 ]
 

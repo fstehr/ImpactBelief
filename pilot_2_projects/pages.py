@@ -1,6 +1,7 @@
 from ._builtin import Page, WaitPage
 from otree.api import Currency as c, currency_range
 from .models import Constants
+import random
 
 
 class Welcome(Page):
@@ -29,39 +30,85 @@ class AttentionFail(Page):
         return self.round_number == 1 and self.player.attention_check != "apple"
 
 
-class Donation(Page):
+class Belief(Page):
     form_model = 'player'
-    form_fields = ['donation_A', 'donation_B']
+    form_fields = ['num_x_belief_A', 'confidence_belief_A', 'donation_A',
+                   'num_x_belief_B', 'confidence_belief_B', 'donation_B', 'page_loaded']
+
+    def js_vars(self):
+        return dict(
+            sec_intro=Constants.sec_intro,
+            sec_per_matrix=Constants.sec_per_matrix,
+            sec_to_answer=Constants.sec_to_answer,
+
+        )
 
     def vars_for_template(self):
         player = self.player
-        num_projects = len(Constants.paras)
-        project_number = player.round_number
-        endowment = Constants.endowment
 
         # get current project from list of 'parameters'
         project = self.participant.vars['parameters'][self.round_number - 2]
+        endowment = Constants.endowment
+
+        # get characteristics of project A from parameters
         price_a = int(project['price_A'])
         num_doses_a = int(project['num_doses_A'])
+        player.num_x_A = int(project['num_X_A'])
+        image_a = "global/img/matrices/"
+        image_a += project['image_title_A']
+
+        # get characteristics of project B from parameters
         price_b = int(project['price_B'])
         num_doses_b = int(project['num_doses_B'])
+        player.num_x_B = int(project['num_X_B'])
+        image_b = "global/img/matrices/"
+        image_b += project['image_title_B']
 
+        # store parameters of project A in data set
         player.num_doses_A = num_doses_a
         player.price_A = price_a
         player.efficiency_A = float(project['efficiency_A'])
+
+        # store parameters of project B in data set
         player.num_doses_B = num_doses_b
         player.price_B = price_b
         player.efficiency_B = int(project['efficiency_B'])
 
-        return {'project_number': project_number, 'num_projects': num_projects,
-                'endowment': endowment, 'num_doses_a': num_doses_a, 'price_a': price_a,
-                'num_doses_b': num_doses_b, 'price_b': price_b}
+        return {'endowment': endowment, 'img_A': image_a, 'img_B': image_b,
+                'num_doses_a': num_doses_a, 'price_a': price_a, 'num_doses_b': num_doses_b, 'price_b': price_b}
 
     def before_next_page(self):
         player = self.player
-        player.current_payoff = player.endowment - (player.donation_A * player.price_A) - (player.donation_B * player.price_B)
+        # store all answers in a list
+        fields = [player.num_x_belief_A, player.num_x_belief_B]
+        fields_filled = []  # define a list with all boolean values indicating whether a field was filled or not
+        for field in fields:
+            fields_filled.append(bool(field))  # appends False if field value is None
+
+        # check that no field was empty
+        if sum(fields_filled) != len(fields_filled):
+            player.time_out = 1
+        else:
+            player.time_out = 0
+
+        if abs(player.num_x_belief_A - player.num_x_A) <= 10:
+            player.current_belief_A_payoff = player.belief_bonus
+        else:
+            player.current_belief_A_payoff = player.belief_bonus
+
+        if abs(player.num_x_belief_B - player.num_x_B) <= 10:
+            player.current_belief_B_payoff = player.belief_bonus
+        else:
+            player.current_belief_B_payoff = player.belief_bonus
+
+        player.current_donation_payoff = player.endowment - (player.donation_A * player.price_A) - \
+                                         (player.donation_B * player.price_B)
+
+        current_payoffs = [player.current_belief_A_payoff, player.current_belief_B_payoff,
+                           player.current_donation_payoff]
+
         if self.round_number == self.participant.vars['payment_round']:
-            player.payoff = player.current_payoff
+            player.payoff = random.choice(current_payoffs)
 
 
 class Questionnaire(Page):
@@ -77,6 +124,5 @@ class Thanks(Page):
         return self.round_number == Constants.num_rounds
 
 
-page_sequence = [Welcome, NoPhone, Instructions, AttentionFail, Donation, Questionnaire, Thanks]
+page_sequence = [Belief]
 # page_sequence = [Welcome, Instructions, BeliefIntro, Belief, Feedback, Thanks]
-

@@ -20,7 +20,7 @@ how much this affects donation behavior. All currency veriables are in US Dollar
 
 
 class Constants(BaseConstants):
-    name_in_url = 'study'
+    name_in_url = 'experiment'
     players_per_group = None
 
     # Get experimental parameters from csv file

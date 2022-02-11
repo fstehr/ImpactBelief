@@ -21,7 +21,7 @@ This is the code with <b>2 projects per screen</b>. All currency variables are i
 
 
 class Constants(BaseConstants):
-    name_in_url = 'study'
+    name_in_url = 'study2'
     players_per_group = None
 
     # Get experimental parameters from csv file
@@ -33,6 +33,10 @@ class Constants(BaseConstants):
     # timing parameters for display
     duration_min = 10
     endowment = 40
+    sec_intro = 3
+    sec_per_matrix = 7
+    sec_to_answer = 20
+    accuracy_bonus = 10
 
 
 class Subsession(BaseSubsession):
@@ -63,31 +67,46 @@ class Player(BasePlayer):
     is_mobile = models.BooleanField(doc="Automatic check through JS whether gadget is phone or not")
     window_width = models.IntegerField(blank=True, doc="Documents the respondent's browser window's width.")
     window_height = models.IntegerField(blank=True, doc="Documents the respondent's browser window's height.")
+
     attention_check = models.StringField(blank=True, doc="Filter question for attention.",
-                                          label="To make sure you have read the instructions, we ask you to answer 'apple' in the field below.")
+                                          label="To make sure you have read the instructions, we ask you to answer "
+                                                "'apple' in the field below.")
 
     # Characteristics of Project A
-    num_doses_A = models.IntegerField()
+    num_x_A = models.IntegerField()
     price_A = models.IntegerField()
-    efficiency_A = models.FloatField()
+    efficiency_A = models.IntegerField()
+
+    # Subject input of project A
+    num_x_belief_A = models.IntegerField(blank=True, min=0, max=400, doc="records belief on number of Xs in matrix")
+    confidence_belief_A = models.IntegerField(initial=20, min=0, max=20,
+                                              doc="cognitive uncertainty measure adapted from Enke, Graeber (2021)")
     donation_A = models.BooleanField(widget=widgets.RadioSelectHorizontal,
-                                     choices=[
-                                         [True, 'Yes'],
-                                         [False, 'No'],
-                                     ]
+                                     choices=[[True, 'Yes'], [False, 'No']]
                                      )
-    current_payoff = models.IntegerField()
 
     # Characteristics of Project B
-    num_doses_B = models.IntegerField()
+    num_x_B = models.IntegerField()
     price_B = models.IntegerField()
     efficiency_B = models.IntegerField()
+
+    # Subject input of project B
+    num_x_belief_B = models.IntegerField(blank=True, min=0, max=400, doc="records belief on number of Xs in matrix")
+    confidence_belief_B = models.IntegerField(initial=20, min=0, max=20, doc="cognitive uncertainty measure adapted from Enke, Graeber (2021)")
     donation_B = models.BooleanField(widget=widgets.RadioSelectHorizontal,
-                                     choices=[
-                                         [True, 'Yes'],
-                                         [False, 'No'],
-                                     ]
+                                     choices=[[True, 'Yes'], [False, 'No']]
                                      )
+
+    project_A_first = models.BooleanField(doc="Variable to record order of randomization on screen level;"
+                                              " = 1 if project A is shown first (on the left), 0 if it is project B")
+    belief_bonus = models.IntegerField()
+    current_donation_payoff = models.IntegerField()
+    current_belief_A_payoff = models.IntegerField()
+    current_belief_B_payoff = models.IntegerField()
+
+    # Other behavior during elicitation
+    page_loaded = models.IntegerField()
+    time_out = models.BooleanField()
 
     # Feedback
     altruism = models.IntegerField(
@@ -110,16 +129,15 @@ class Player(BasePlayer):
 
 # TO DO
 
-# --> update donation/belief  screens
 # - remove code duplicates - mainly move all images into a global folder and reference from there!
 
-
-# - randomize order of project A & B (i.e. from csv file to html) --> include a dummy variable cheapleft for orders
+# - systematically test belief & donation payoffs
+# - randomize order of project A & B (i.e. from csv file to html) --> include a dummy variable project_A_left for orders
 # - emphasize that there is no (immediate) feedback on belief accuracy!
 # - code belief etc. data s.t. the data is called proj low and proj hi ?
-# --> randomization of order of display is done on html level
+# --> randomization of order of display is done on html level --> use project_A_left variable!
 
-
+# - randomize treatments with high & low incentives
 
 # The form field page_loaded has errors, but its error message is not being displayed, possibly because you did not include the field in the page. There are 2 ways to fix this:
 #
