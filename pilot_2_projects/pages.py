@@ -65,14 +65,12 @@ class Belief(Page):
         image_b += project['image_title_B']
 
         # store parameters of project A in data set
-        player.num_doses_A = num_doses_a
         player.price_A = price_a
         player.efficiency_A = float(project['efficiency_A'])
 
         # store parameters of project B in data set
-        player.num_doses_B = num_doses_b
         player.price_B = price_b
-        player.efficiency_B = int(project['efficiency_B'])
+        player.efficiency_B = float(project['efficiency_B'])
 
         return {'endowment': endowment, 'img_A': image_a, 'img_B': image_b,
                 'num_doses_a': num_doses_a, 'price_a': price_a, 'num_doses_b': num_doses_b, 'price_b': price_b}
@@ -91,16 +89,19 @@ class Belief(Page):
         else:
             player.time_out = 0
 
+        # bonus payment for belief A
         if abs(player.num_x_belief_A - player.num_x_A) <= 10:
             player.current_belief_A_payoff = player.belief_bonus
         else:
             player.current_belief_A_payoff = player.belief_bonus
 
+        # bonus payment for belief B
         if abs(player.num_x_belief_B - player.num_x_B) <= 10:
             player.current_belief_B_payoff = player.belief_bonus
         else:
             player.current_belief_B_payoff = player.belief_bonus
 
+        # bonus payment for joint donation
         player.current_donation_payoff = player.endowment - (player.donation_A * player.price_A) - \
                                          (player.donation_B * player.price_B)
 

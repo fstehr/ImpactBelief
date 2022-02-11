@@ -75,7 +75,7 @@ class Player(BasePlayer):
     # Characteristics of Project A
     num_x_A = models.IntegerField()
     price_A = models.IntegerField()
-    efficiency_A = models.IntegerField()
+    efficiency_A = models.FloatField()
 
     # Subject input of project A
     num_x_belief_A = models.IntegerField(blank=True, min=0, max=400, doc="records belief on number of Xs in matrix")
@@ -88,7 +88,7 @@ class Player(BasePlayer):
     # Characteristics of Project B
     num_x_B = models.IntegerField()
     price_B = models.IntegerField()
-    efficiency_B = models.IntegerField()
+    efficiency_B = models.FloatField()
 
     # Subject input of project B
     num_x_belief_B = models.IntegerField(blank=True, min=0, max=400, doc="records belief on number of Xs in matrix")
@@ -136,6 +136,10 @@ class Player(BasePlayer):
 # - emphasize that there is no (immediate) feedback on belief accuracy!
 # - code belief etc. data s.t. the data is called proj low and proj hi ?
 # --> randomization of order of display is done on html level --> use project_A_left variable!
+
+# --> OBS slider layout does not work
+# and de-activating sliders on belief page does not work either
+# also no second belief button
 
 # - randomize treatments with high & low incentives
 
