@@ -41,6 +41,8 @@
 
 {% block content %}
 
+{{ form.page_loaded.errors }}
+
 <body onload="HideImageLoadForm()" onkeydown="return (event.keyCode != 116 || event.keyCode != 13)">
 
     <!-- Initial alert -->

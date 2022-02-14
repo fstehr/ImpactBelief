@@ -31,7 +31,8 @@ let NextButton1 = document.getElementById("NextButton1");
 let NextButton2 = document.getElementById("NextButton2");
 let SubmitButton = document.getElementById("SubmitButton");
 
-let countdown1;
+let page_loaded = document.getElementById("page_loaded");
+
 
 // Function that starts timing on page load (for Panel A)
 function HideImageLoadForm() {
@@ -205,14 +206,14 @@ function changeCIB(val) {
 
 /* on form submission enable all fields again */
 SubmitButton.onclick = function () {
+    console.log("page_loaded counter is", localStorage.getItem('counter'));
+    page_loaded.value = localStorage.getItem('counter');
+    localStorage.removeItem('counter');
     //Extract Each Element Value i.e. each form field
     for (let i = 0; i < form.elements.length; i++) {
         // enables each field
         form.elements[i].disabled = false;
     }
-    let page_loaded = document.getElementById("page_loaded")
-    page_loaded.value = localStorage.getItem('counter')
-    localStorage.removeItem('counter')
 }
 
 

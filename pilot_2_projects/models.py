@@ -142,17 +142,10 @@ class Player(BasePlayer):
 # - emphasize that there is no (immediate) feedback on belief accuracy!
 # --> randomization of order of display is done on html level --> use project_A_left variable!
 
-# --> OBS slider layout does not work
 # I saw once that the input field on the left was not de-activated --> de-bug!
-# display another yellow next button after the project B beliefs
-
-# display form submit button only if both donation choices have been filled.
-
 
 
 ###### For experiment
 # - randomize treatments with high & low incentives
 
-# The form field page_loaded has errors, but its error message is not being displayed, possibly because you did not include the field in the page. There are 2 ways to fix this:
-# Include the field with the formfield tag, e.g. {% formfield player.page_loaded %}
-# If you are not using formfield but are instead writing the raw HTML for the form input, remember to include {{ form.page_loaded.errors }} somewhere in your page's HTML.
+
