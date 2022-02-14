@@ -45,15 +45,21 @@ class Subsession(BaseSubsession):
         if self.round_number == 1:
             for p in self.session.get_participants():
                 paras = Constants.paras.copy()
-                random.shuffle(paras)
 
-                p.vars['parameters'] = paras  # store shuffled list of parameters in participant vars, then access each element by round number
-                # print(p.vars['parameters'])  # prints participant vars to double check randomization
+                # store shuffled list of parameters in participant vars, access each element by round number in pages.py
+                random.shuffle(paras)
+                p.vars['parameters'] = paras
+                print(p.vars['parameters'])  # prints participant vars to double check randomization
+
+                # randomize on participant level whether project A is displayed on the left or right for all rounds
+                is_left = [0, 1]
+                rounds = range(1, Constants.num_rounds + 1)
+                p.vars['project_A_first'] = [random.choice(is_left) for i in rounds]
+                print("project_A_first is", p.vars['project_A_first'])
 
                 # assign one payment round
-                rounds = range(1, Constants.num_rounds + 1)
                 p.vars['payment_round'] = random.choice(rounds)
-                print("Payment round is", p.vars['payment_round'])
+                # print("Payment round is", p.vars['payment_round'])
 
 
 class Group(BaseGroup):
@@ -134,18 +140,19 @@ class Player(BasePlayer):
 # - systematically test belief & donation payoffs
 # - randomize order of project A & B (i.e. from csv file to html) --> include a dummy variable project_A_left for orders
 # - emphasize that there is no (immediate) feedback on belief accuracy!
-# - code belief etc. data s.t. the data is called proj low and proj hi ?
 # --> randomization of order of display is done on html level --> use project_A_left variable!
 
 # --> OBS slider layout does not work
-# and de-activating sliders on belief page does not work either
-# slider A cannot be deactivated
-# slider B is not active
-# also no second belief button
+# I saw once that the input field on the left was not de-activated --> de-bug!
+# display another yellow next button after the project B beliefs
 
+# display form submit button only if both donation choices have been filled.
+
+
+
+###### For experiment
 # - randomize treatments with high & low incentives
 
 # The form field page_loaded has errors, but its error message is not being displayed, possibly because you did not include the field in the page. There are 2 ways to fix this:
-#
 # Include the field with the formfield tag, e.g. {% formfield player.page_loaded %}
 # If you are not using formfield but are instead writing the raw HTML for the form input, remember to include {{ form.page_loaded.errors }} somewhere in your page's HTML.

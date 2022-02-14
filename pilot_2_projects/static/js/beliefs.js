@@ -12,6 +12,7 @@ let countdown = document.getElementById("countdown");
 let cardA = document.getElementById("cardA");
 let matrix1_white = document.getElementById('matrix1_white');
 let matrix1 = document.getElementById('matrix1');
+let beliefA = document.getElementById("beliefA");
 let num_x_belief_A = document.getElementById("num_x_belief_A");
 let slider_A = document.getElementById("certainty_A")
 let count = document.getElementById("count");
@@ -19,9 +20,9 @@ let count = document.getElementById("count");
 let cardB = document.getElementById("cardB");
 let matrix2_white = document.getElementById('matrix2_white');
 let matrix2 = document.getElementById('matrix2');
+let beliefB = document.getElementById("beliefB");
 let num_x_belief_B = document.getElementById("num_x_belief_B");
-let num_x_belief_min_B = document.getElementById("num_x_belief_min_B");
-let num_x_belief_max_B = document.getElementById("num_x_belief_max_B");
+let slider_B = document.getElementById("certainty_B")
 
 let NextButton = document.getElementById("NextButton");
 let SubmitButton = document.getElementById("SubmitButton");
@@ -42,7 +43,8 @@ function HideImageLoadForm() {
         // after intro show hide matrix after 'Delay' seconds
         setTimeout(function () {
             matrix1.style.display = "none";
-            matrix1_white.style.display = "block";
+            //matrix1_white.style.display = "block";
+            beliefA.style.display = "block";
             cardA.style.color = "black";
             num_x_belief_A.disabled = false;
             slider_A.disabled = false;
@@ -88,18 +90,19 @@ NextButton.onclick = function () {
 
     NextButton.style.display = "none";
     num_x_belief_A.disabled = true;
+    slider_A.disabled = true;
     matrix2_white.style.display="none";
     countdown.style.display="none";
     matrix2.style.display="block";
     cardA.style.color = "#6c757d";
 
     setTimeout(function(){
-        matrix2_white.style.display="block";
         matrix2.style.display="none";
+        // matrix2_white.style.display="block";
+        beliefB.style.display = "block";
         cardB.style.color = "black";
         num_x_belief_B.disabled = false;
-        num_x_belief_min_B.disabled = false;
-        num_x_belief_max_B.disabled = false;
+        slider_B.disabled = false;
         SubmitButton.style.display = "block";
 
         // display count down
@@ -117,8 +120,7 @@ NextButton.onclick = function () {
                     console.log("disable")
                     // when countdown is run out disable fields
                     num_x_belief_B.disabled = true;
-                    num_x_belief_min_B.disabled = true;
-                    num_x_belief_max_B.disabled = true;
+                    slider_B.disabled = true;
                     countdown.style.display = "none";
                     cardB.style.color = "#6c757d";
                 }

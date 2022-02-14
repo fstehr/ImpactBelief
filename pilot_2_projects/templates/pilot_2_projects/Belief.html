@@ -13,7 +13,7 @@
 
 {% block scripts %}
     <script>
-        document.title = "Your estimates";
+        document.title = "The Donation Task";
         $("body").on("contextmenu",function(e){
             return false;
         });
@@ -25,10 +25,10 @@
 {% block title %}
     <table style="padding:0px; margin:0px;width:100%">
         <tr>
-            <td style="width:60%;border-color:transparent">Your estimates</td>
+            <td style="width:60%;border-color:transparent">The Donation Task</td>
             <td style="width:40%;border-color:transparent;text-align: right;font-size: medium; font-weight: lighter">
                 <p id="countdown" style="display: none">
-                    Time left to enter your estimate (in secs):
+                    Seconds left to enter your estimate:
                     <span id="count">{{ Constants.sec_to_answer }}</span>
                  </p>
             </td>
@@ -57,16 +57,21 @@
         <!-- Form A -->
         <div class="card">
             <div class="card-body" id="cardA" style="color: #6c757d">
-
-                <p style="text-align: center; font-size: large">Donation amount: &#36 {{ price_a }}</p>
+                <table style="width:100%;border-color: #0c5460; border-spacing: 22px 10px;" id="priceA">
+                    <tr>
+                        <td colspan="2">
+                            <img style="width: 10%; margin-right: 12px" src="{% static 'global/img/coin.png' %}">Donating to this project will cost you:
+                        </td>
+                        <td> &#36 <span style="color: red; font-weight: bold;">{{ price_a }}</span> </td>
+                    </tr>
+                </table>
 
                 <img src = "{% static 'global/img/matrices/matrix_white.png' %}"  id="matrix1_white" style="display:block;margin-left:auto; margin-right:auto; width:80%;"/>
-                <img src = "{% static img_A %}" id="matrix1" style="display:none;margin-left:auto; margin-right:auto; width:80%;"/>
+                <img src = "{% static img_a %}" id="matrix1" style="display:none;margin-left:auto; margin-right:auto; width:80%;"/>
 
-
-                <table style="width:100%;border-color: #0c5460" id="beliefA">
+                <table style="width:100%;border-color: #0c5460; border-spacing: 22px 10px; display: none" id="beliefA">
                     <tr>
-                        <td colspan="2">How many pills were in the matrix?</td>
+                        <td colspan="2"><img style="width: 12%; margin-right: 4px" src="{% static 'global/img/vitamins.png' %}"> How many pills were in the matrix?</td>
                         <td><input id="num_x_belief_A" disabled class="form-control" type="number"
                                      name="num_x_belief_A" min="1" max="400">
                         </td>
@@ -93,11 +98,6 @@
                             <em>I am certain the value is between <span id="min_A">0</span> and <span id="max_A">400</span>. </em>
                         </td>
                     </tr>
-
-                    <tr>
-                      <td colspan="2">Would you like to donate to this project?</td>
-                      <td>{{ form.donation_A }}</td>
-                  </tr>
                 </table>
 
               </div>
@@ -105,50 +105,80 @@
 
         <!-- Form B -->
         <div class="card">
-              <div class="card-body" id="cardB" style="color: #6c757d">
+            <div class="card-body" id="cardB" style="color: #6c757d">
 
-                  <p style="text-align: center; font-size: large">Donation amount: &#36 {{ price_b }}</p>
+                <table style="width:100%;border-color: #0c5460; border-spacing: 22px 10px;" id="priceB">
+                    <tr>
+                        <td colspan="2">
+                            <img style="width: 10%; margin-right: 12px" src="{% static 'global/img/coin.png' %}">Donating to this project will cost you:
+                        </td>
+                        <td> &#36 <span style="color: red; font-weight: bold;">{{ price_b }}</span> </td>
+                    </tr>
+                </table>
 
-                  <img src = "{% static 'global/img/matrices/matrix_white.png' %}" id="matrix2_white" style="display:block;margin-left:auto; margin-right:auto; width:80%;"/>
-                  <img src = "{% static img_B %}" id="matrix2" style="display:none;margin-left:auto; margin-right:auto; width:80%;"/>
+                <img src = "{% static 'global/img/matrices/matrix_white.png' %}" id="matrix2_white" style="display:block;margin-left:auto; margin-right:auto; width:80%;"/>
+                <img src = "{% static img_b %}" id="matrix2" style="display:none;margin-left:auto; margin-right:auto; width:80%;"/>
 
+                <table style="width:100%; border-spacing: 22px 10px; display: none" id="beliefB">
+                    <tr>
+                        <td colspan="2"><img style="width: 12%; margin-right: 12px" src="{% static 'global/img/vitamins.png' %}">How many pills were in the matrix?</td>
+                        <td><input id="num_x_belief_B" disabled class = "form-control" type="number" name="num_x_belief_B" min="1" max="400"></td>
+                    </tr>
 
-                  <table style="width:100%;" id="beliefB">
-                      <tr>
-                          <td colspan="2">How many pills were in the matrix?</td>
-                          <td><input id="num_x_belief_B" disabled class = "form-control" type="number" name="num_x_belief_B" min="1" max="400"></td>
-                      </tr>
-
-                      <tr>
+                    <tr>
                         <td colspan="3">
                             How certain are you about your estimate?
                         </td>
-                      </tr>
+                    </tr>
 
-                      <tr>
-                          <td style="width:5%">completely uncertain</td>
-                          <td style="width: 90%">
-                              <div class="slidecontainer">
-                                  <input disabled type="range" min="1" max="20" value="20" class="slider" id="certainty_B" name="confidence_belief_B" oninput="changeCIB(this.value)" style="width: 90%;">
-                              </div>
-                          </td>
-                          <td style="width:5%">completely certain</td>
-                      </tr>
+                    <tr>
+                        <td style="width:5%">completely uncertain</td>
+                        <td style="width: 90%">
+                            <div class="slidecontainer">
+                                <input disabled type="range" min="1" max="20" value="20" class="slider" id="certainty_B" name="confidence_belief_B" oninput="changeCIB(this.value)" style="width: 90%;">
+                            </div>
+                        </td>
+                        <td style="width:5%">completely certain</td>
+                    </tr>
 
                     <tr>
                         <td colspan="3" style="padding: 0; text-align: center;">
                             <em>I am certain the value is between <span id="min_B">0</span> and <span id="max_B">400</span>.</em>
                         </td>
                     </tr>
-                      <tr>
-                      <td colspan="2">Would you like to donate to this project?</td>
-                      <td>{{ form.donation_B }}</td>
-                  </tr>
                   </table>
-
-              </div>
-          </div>
+            </div>
+        </div>
     </div>
+
+<br>
+
+    <div class="card">
+        <div class="card-body" id="cardC" style="color: #6c757d">
+            <table style="width:100%;border-spacing: 22px 10px;" id="donation">
+                <tr>
+                    <td colspan="2" style="padding: 0; text-align: center;">
+                        Would you like to donate to any of these projects out of your &#36;{{ endowment }} endowment? </em>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;">
+                        {{ form.donation_A }}
+                    </td>
+                    <td style="text-align: center;">
+                        {{ form.donation_B }}
+                    </td>
+                </tr>
+                <tr style="font-weight: lighter">
+                    <td colspan="3" style="text-align: center;">
+                        Reminder: 10 pills in a matrix represent 1 vitamin A dosis
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+
 
     <br>
 

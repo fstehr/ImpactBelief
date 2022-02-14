@@ -47,8 +47,11 @@ class Belief(Page):
         player = self.player
 
         # get current project from list of 'parameters'
-        project = self.participant.vars['parameters'][self.round_number - 2]
         endowment = Constants.endowment
+        project = self.participant.vars['parameters'][self.round_number - 1]
+        # print("project is", project)
+        project_A_first = self.participant.vars['project_A_first'][self.round_number - 1]
+        # print("project_A_first is", project_A_first)
 
         # get characteristics of project A from parameters
         price_a = int(project['price_A'])
@@ -72,8 +75,8 @@ class Belief(Page):
         player.price_B = price_b
         player.efficiency_B = float(project['efficiency_B'])
 
-        return {'endowment': endowment, 'img_A': image_a, 'img_B': image_b,
-                'num_doses_a': num_doses_a, 'price_a': price_a, 'num_doses_b': num_doses_b, 'price_b': price_b}
+        return {'endowment': endowment, 'img_a': image_a, 'img_b': image_b,
+                'price_a': price_a, 'price_b': price_b}
 
     def before_next_page(self):
         player = self.player
