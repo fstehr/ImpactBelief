@@ -36,13 +36,13 @@ let page_loaded = document.getElementById("page_loaded");
 
 // Function that starts timing on page load (for Panel A)
 function HideImageLoadForm() {
+    console.log("page was loaded", localStorage.getItem('counter'), "times")
 
+    /* on load disable donation fields */
     var i;
     for (i = 0; i < donations.length; i++) {
         donations[i].disabled = true;
     }
-
-    console.log("page was loaded", localStorage.getItem('counter'), "times")
 
     /* define protocol in seconds */
     // Intro time delay to display matrix A
@@ -206,9 +206,16 @@ function changeCIB(val) {
 
 /* on form submission enable all fields again */
 SubmitButton.onclick = function () {
-    console.log("page_loaded counter is", localStorage.getItem('counter'));
-    page_loaded.value = localStorage.getItem('counter');
+    let loadcount = parseInt(localStorage.getItem('counter') || 0);
+    console.log("page_loaded counter is", loadcount);
+
+    if (loadcount > 0) {
+        page_loaded.value = loadcount
+    } else if (loadcount === null) {
+        page_loaded.value = 0
+    };
     localStorage.removeItem('counter');
+
     //Extract Each Element Value i.e. each form field
     for (let i = 0; i < form.elements.length; i++) {
         // enables each field

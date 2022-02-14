@@ -91,27 +91,27 @@ class Belief(Page):
         else:
             player.time_out = 0
 
-        # bonus payment for belief A
-        if abs(player.num_x_belief_A - player.num_x_A) <= 10:
-            player.current_belief_A_payoff = player.belief_bonus
-        else:
-            player.current_belief_A_payoff = player.belief_bonus
+            # bonus payment for belief A
+            if abs(player.num_x_belief_A - player.num_x_A) <= 5:
+                player.current_belief_A_payoff = player.belief_bonus
+            else:
+                player.current_belief_A_payoff = player.belief_bonus
 
-        # bonus payment for belief B
-        if abs(player.num_x_belief_B - player.num_x_B) <= 10:
-            player.current_belief_B_payoff = player.belief_bonus
-        else:
-            player.current_belief_B_payoff = player.belief_bonus
+            # bonus payment for belief B
+            if abs(player.num_x_belief_B - player.num_x_B) <= 10:
+                player.current_belief_B_payoff = player.belief_bonus
+            else:
+                player.current_belief_B_payoff = player.belief_bonus
 
-        # bonus payment for joint donation
-        player.current_donation_payoff = player.endowment - (player.donation_A * player.price_A) - \
-                                         (player.donation_B * player.price_B)
+            # bonus payment for joint donation
+            player.current_donation_payoff = Constants.endowment - (player.donation_A * player.price_A) - \
+                                             (player.donation_B * player.price_B)
 
-        current_payoffs = [player.current_belief_A_payoff, player.current_belief_B_payoff,
-                           player.current_donation_payoff]
+            current_payoffs = [player.current_belief_A_payoff, player.current_belief_B_payoff,
+                               player.current_donation_payoff]
 
-        if self.round_number == self.participant.vars['payment_round']:
-            player.payoff = random.choice(current_payoffs)
+            if self.round_number == self.participant.vars['payment_round']:
+                player.payoff = random.choice(current_payoffs)
 
 
 class Questionnaire(Page):

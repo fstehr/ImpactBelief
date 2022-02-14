@@ -41,8 +41,6 @@
 
 {% block content %}
 
-{{ form.page_loaded.errors }}
-
 <body onload="HideImageLoadForm()" onkeydown="return (event.keyCode != 116 || event.keyCode != 13)">
 
     <!-- Initial alert -->
@@ -201,7 +199,7 @@
         <button class="btn btn-primary btn-large">Next</button>
     </div>
 
-    <input type="hidden" name="page_loaded" id="page_loaded">
+    <input type="hidden" name="page_loaded" id="page_loaded" value="0">
 
 </body>
 
