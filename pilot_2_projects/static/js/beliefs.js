@@ -43,7 +43,6 @@ function HideImageLoadForm() {
         // after intro show hide matrix after 'Delay' seconds
         setTimeout(function () {
             matrix1.style.display = "none";
-            //matrix1_white.style.display = "block";
             beliefA.style.display = "block";
             cardA.style.color = "black";
             num_x_belief_A.disabled = false;
@@ -56,7 +55,7 @@ function HideImageLoadForm() {
             var counter = AnswerTime / 1000;
             setTimeout(function run() {
                 counter--;
-                console.log("countdown 1:", counter)
+                // console.log("countdown 1:", counter)
                 if (counter >= 0) {
                     count.innerHTML = counter;
                     countdown1 = setTimeout(run, 1000);

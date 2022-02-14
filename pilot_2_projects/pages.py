@@ -40,7 +40,6 @@ class Belief(Page):
             sec_intro=Constants.sec_intro,
             sec_per_matrix=Constants.sec_per_matrix,
             sec_to_answer=Constants.sec_to_answer,
-
         )
 
     def vars_for_template(self):
