@@ -49,30 +49,44 @@ class Belief(Page):
         endowment = Constants.endowment
         project = self.participant.vars['parameters'][self.round_number - 1]
         # print("project is", project)
-        project_A_first = self.participant.vars['project_A_first'][self.round_number - 1]
-        # print("project_A_first is", project_A_first)
+        cheap_project_first = self.participant.vars['cheap_project_first'][self.round_number - 1]
+        # print("low_cost_project_first is", cheap_project_first)
+        path = "global/img/matrices/"
 
-        # get characteristics of project A from parameters
-        price_a = int(project['price_A'])
-        num_doses_a = int(project['num_doses_A'])
-        player.num_x_A = int(project['num_X_A'])
-        image_a = "global/img/matrices/"
-        image_a += project['image_title_A']
+        # use cheap_project_first variable to determine which project is displayed on the left
+        if cheap_project_first == 1:
+            # get characteristics of project A from parameters
+            price_a = int(project['price_1'])
+            player.num_x_A = int(project['num_X_1'])
+            image_a = path + project['image_title_1']
 
-        # get characteristics of project B from parameters
-        price_b = int(project['price_B'])
-        num_doses_b = int(project['num_doses_B'])
-        player.num_x_B = int(project['num_X_B'])
-        image_b = "global/img/matrices/"
-        image_b += project['image_title_B']
+            # get characteristics of project B from parameters
+            price_b = int(project['price_2'])
+            player.num_x_B = int(project['num_X_2'])
+            image_b = path + project['image_title_2']
 
-        # store parameters of project A in data set
-        player.price_A = price_a
-        player.efficiency_A = float(project['efficiency_A'])
+            # store parameters of project A in data set
+            player.price_A = price_a
+            player.efficiency_A = float(project['efficiency_1'])
 
-        # store parameters of project B in data set
-        player.price_B = price_b
-        player.efficiency_B = float(project['efficiency_B'])
+            # store parameters of project B in data set
+            player.price_B = price_b
+            player.efficiency_B = float(project['efficiency_2'])
+
+        else:
+            # get characteristics of project A from parameters
+            price_a = int(project['price_2'])
+            image_a = path + project['image_title_2']
+            player.price_A = price_a
+            player.num_x_A = int(project['num_X_2'])
+            player.efficiency_A = float(project['efficiency_2'])
+
+            # get characteristics of project B from parameters
+            price_b = int(project['price_1'])
+            image_b = path + project['image_title_1']
+            player.price_B = price_b
+            player.num_x_B = int(project['num_X_1'])
+            player.efficiency_B = float(project['efficiency_1'])
 
         return {'endowment': endowment, 'img_a': image_a, 'img_b': image_b,
                 'price_a': price_a, 'price_b': price_b}
@@ -86,9 +100,7 @@ class Belief(Page):
             fields_filled.append(bool(field))  # appends False if field value is None
 
         # check that no field was empty
-        if sum(fields_filled) != len(fields_filled):
-            player.time_out = 1
-        else:
+        if sum(fields_filled) == len(fields_filled):
             player.time_out = 0
 
             # bonus payment for belief A
@@ -107,11 +119,13 @@ class Belief(Page):
             player.current_donation_payoff = Constants.endowment - (player.donation_A * player.price_A) - \
                                              (player.donation_B * player.price_B)
 
+            # randomly assign one of the three vars as final payoff in the payment round
             current_payoffs = [player.current_belief_A_payoff, player.current_belief_B_payoff,
                                player.current_donation_payoff]
-
             if self.round_number == self.participant.vars['payment_round']:
                 player.payoff = random.choice(current_payoffs)
+        else:            # if not all fields are filled, set time_out var to 1
+            player.time_out = 1
 
 
 class Questionnaire(Page):

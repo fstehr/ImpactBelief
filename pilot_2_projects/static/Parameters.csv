@@ -1,4 +1,4 @@
-﻿efficiency_A,num_doses_A,price_A,num_X_A,image_title_A,efficiency_B,num_doses_B,price_B,num_X_B,image_title_B
+﻿efficiency_1,num_doses_1,price_1,num_X_1,image_title_1,efficiency_2,num_doses_2,price_2,num_X_2,image_title_2
 1.5,6,4,60,matrix_60.png,2.125,34,16,340,matrix_340.png
 2,8,4,80,matrix_80.png,2,32,16,320,matrix_320.png
 2.5,10,4,100,matrix_100.png,1.875,30,16,300,matrix_300.png

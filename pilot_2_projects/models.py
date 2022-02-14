@@ -54,8 +54,8 @@ class Subsession(BaseSubsession):
                 # randomize on participant level whether project A is displayed on the left or right for all rounds
                 is_left = [0, 1]
                 rounds = range(1, Constants.num_rounds + 1)
-                p.vars['project_A_first'] = [random.choice(is_left) for i in rounds]
-                print("project_A_first is", p.vars['project_A_first'])
+                p.vars['cheap_project_first'] = [random.choice(is_left) for i in rounds]
+                print("cheap_project_first is", p.vars['cheap_project_first'])
 
                 # assign one payment round
                 p.vars['payment_round'] = random.choice(rounds)
@@ -103,9 +103,8 @@ class Player(BasePlayer):
                                      choices=[[True, 'Yes'], [False, 'No']]
                                      )
 
-    project_A_first = models.BooleanField(doc="Variable to record order of randomization on screen level;"
-                                              " = 1 if project A is shown first (on the left), 0 if it is project B")
-    belief_bonus = models.IntegerField()
+    # Payoff variables
+    belief_bonus = models.IntegerField(initial=2)
     current_donation_payoff = models.IntegerField()
     current_belief_A_payoff = models.IntegerField()
     current_belief_B_payoff = models.IntegerField()
@@ -138,9 +137,13 @@ class Player(BasePlayer):
 # - remove code duplicates - mainly move all images into a global folder and reference from there!
 
 # - systematically test belief & donation payoffs
-# - randomize order of project A & B (i.e. from csv file to html) --> include a dummy variable project_A_left for orders
+# - test randomization of pictures!!! using console log with the picture names!
+# --> include a var for the different comparison pairs?
+
 # - emphasize that there is no (immediate) feedback on belief accuracy!
-# --> randomization of order of display is done on html level --> use project_A_left variable!
+
+# think about what to do with time-out variable
+
 
 # I saw once that the input field on the left was not de-activated --> de-bug!
 
