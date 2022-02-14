@@ -3,6 +3,8 @@
 
 {% block styles %}
     <link href="{% static 'global/css/global.css' %}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/sliders.css' %}">
+
     <style>
         table {
             border-collapse: separate;
@@ -12,13 +14,14 @@
 {% endblock %}
 
 {% block scripts %}
+    <script type="text/javascript" src="{% static 'global/js/beliefs_2.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/sliders.js' %}"></script>
     <script>
         document.title = "The Donation Task";
         $("body").on("contextmenu",function(e){
             return false;
         });
     </script>
-    <script src="{% static 'js/beliefs.js' %}"></script>
 {% endblock %}
 
 
@@ -87,7 +90,7 @@
                         <td style="width:5%">completely uncertain</td>
                         <td style="width: 100%">
                             <div class="slidecontainer">
-                                <input disabled type="range" min="1" max="20" value="20" class="slider" id="certainty_A" name="confidence_belief_A" oninput="changeCIA(this.value)" style="width: 90%;" >
+                                <input disabled type="range" min="1" max="20" value="20" class="slider2" id="certainty_A" name="confidence_belief_A" oninput="changeCIA(this.value)" style="width: 90%;" >
                             </div>
                         </td>
                         <td style="width:5%">completely certain</td>
@@ -135,7 +138,7 @@
                         <td style="width:5%">completely uncertain</td>
                         <td style="width: 90%">
                             <div class="slidecontainer">
-                                <input disabled type="range" min="1" max="20" value="20" class="slider" id="certainty_B" name="confidence_belief_B" oninput="changeCIB(this.value)" style="width: 90%;">
+                                <input disabled type="range" min="1" max="20" value="20" class="slider2" id="certainty_B" name="confidence_belief_B" oninput="changeCIB(this.value)" style="width: 90%;">
                             </div>
                         </td>
                         <td style="width:5%">completely certain</td>
@@ -155,10 +158,10 @@
 
     <div class="card">
         <div class="card-body" id="cardC" style="color: #6c757d">
-            <table style="width:100%;border-spacing: 22px 10px;" id="donation">
+            <table style="width:100%;border-spacing: 22px 10px;" disabled id="donation">
                 <tr>
                     <td colspan="2" style="padding: 0; text-align: center;">
-                        Would you like to donate to any of these projects out of your &#36;{{ endowment }} endowment? </em>
+                        Would you like to donate to any of these projects out of your &#36;{{ endowment }} endowment?
                     </td>
                 </tr>
                 <tr>
@@ -170,8 +173,8 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="3" style="text-align: center;color: darkgray">
-                        <img style="width: 3%;" src="{% static 'global/img/i_grey.png' %}">
+                    <td colspan="3" style="text-align: center;font-weight: lighter">
+                        <img style="width: 3%;" src="{% static 'global/img/i_black.png' %}">
                         <em>10 pills in a matrix represent 1 vitamin A dosis</em>
                     </td>
                 </tr>
@@ -184,8 +187,12 @@
     <br>
 
 
-    <div style="display:none; text-align: right" id="NextButton">
-        <button type="button" class="btn btn-warning btn-large">Next</button>
+    <div style="display:none; text-align: right" id="NextButton1">
+        <button type="button" class="btn btn-primary btn-large">Next</button>
+    </div>
+
+    <div style="display:none; text-align: right" id="NextButton2">
+        <button type="button" class="btn btn-primary btn-large">Next</button>
     </div>
 
     <div style="display:none; text-align: right" id="SubmitButton">

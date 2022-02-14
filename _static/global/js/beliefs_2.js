@@ -24,13 +24,23 @@ let beliefB = document.getElementById("beliefB");
 let num_x_belief_B = document.getElementById("num_x_belief_B");
 let slider_B = document.getElementById("certainty_B")
 
-let NextButton = document.getElementById("NextButton");
+let cardC = document.getElementById("cardC");
+let donations = document.querySelectorAll("input[type=radio]");
+
+let NextButton1 = document.getElementById("NextButton1");
+let NextButton2 = document.getElementById("NextButton2");
 let SubmitButton = document.getElementById("SubmitButton");
 
 let countdown1;
 
 // Function that starts timing on page load (for Panel A)
 function HideImageLoadForm() {
+
+    var i;
+    for (i = 0; i < donations.length; i++) {
+        donations[i].disabled = true;
+    }
+
     console.log("page was loaded", localStorage.getItem('counter'), "times")
 
     /* define protocol in seconds */
@@ -47,7 +57,7 @@ function HideImageLoadForm() {
             cardA.style.color = "black";
             num_x_belief_A.disabled = false;
             slider_A.disabled = false;
-            NextButton.style.display = "block";
+            NextButton1.style.display = "block";
 
             // display count down
             countdown.style.display = "block";
@@ -73,21 +83,20 @@ function HideImageLoadForm() {
 }
 
 
-
 /* dynamically changing the minimum values for the form fields A */
 num_x_belief_A.onchange = function () {
     num_x_belief_A.reportValidity();
-    document.getElementById("min_A").innerHTML = Number(num_x_belief_A.value) - 5;
-    document.getElementById("max_A").innerHTML = Number(num_x_belief_A.value) + 5;
-}
+ }
 
-NextButton.onclick = function () {
+
+/* script for the right hand side - fields B */
+NextButton1.onclick = function () {
 
     // reset count down
     clearTimeout(countdown1);
     count.innerHTML = AnswerTime / 1000;
 
-    NextButton.style.display = "none";
+    NextButton1.style.display = "none";
     num_x_belief_A.disabled = true;
     slider_A.disabled = true;
     matrix2_white.style.display="none";
@@ -102,7 +111,7 @@ NextButton.onclick = function () {
         cardB.style.color = "black";
         num_x_belief_B.disabled = false;
         slider_B.disabled = false;
-        SubmitButton.style.display = "block";
+        NextButton2.style.display = "block";
 
         // display count down
         countdown.style.display="block";
@@ -112,7 +121,7 @@ NextButton.onclick = function () {
                 counter--;
                 if (counter >= 0) {
                     count.innerHTML = counter;
-                    console.log("countdown 2:", counter)
+                    // console.log("countdown 2:", counter)
                     setTimeout(run, 1000);
                 }
                 if (counter === 0) {
@@ -130,11 +139,25 @@ NextButton.onclick = function () {
 /* dynamically changing the minimum values for the form fields B */
 num_x_belief_B.onchange = function () {
     num_x_belief_B.reportValidity();
-    /* maximum of minA must be < belief */
-    num_x_belief_min_B.setAttribute("max", this.value);
-    /* minimum of maxA must be > belief */
-    num_x_belief_max_B.setAttribute("min", this.value);
 }
+
+
+
+NextButton2.onclick = function () {
+    num_x_belief_B.disabled = true;
+    slider_B.disabled = true;
+    countdown.style.display = "none";
+    cardB.style.color = "#6c757d";
+
+    cardC.style.color = "black";
+    var i;
+    for (i = 0; i < donations.length; i++) {
+        donations[i].disabled = false;
+    }
+    NextButton2.style.display = "none";
+    SubmitButton.style.display = "block";
+}
+
 
 
 
@@ -146,6 +169,7 @@ window.addEventListener("unload", function(){
 }, false);
 
 
+/* dynamically determine confidence intervals to be displayed around belief A and belief B */
 function changeCIA(val) {
     belief = Number(num_x_belief_A.value)
     let a = belief - 5 - (10 * (20 - val));
@@ -177,6 +201,7 @@ function changeCIB(val) {
         document.getElementById("max_B").innerHTML = b;
     }
 }
+
 
 /* on form submission enable all fields again */
 SubmitButton.onclick = function () {
