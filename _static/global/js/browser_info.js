@@ -2,6 +2,7 @@ console.log("engines running: client information");
 
 // browser window size https://www.w3schools.com/jsref/prop_win_innerheight.asp
 var width  = window.innerWidth  || document.documentElement.clientWidth  || document.body.clientWidth;
+console.log("width", width)
 var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
 
 /*

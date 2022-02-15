@@ -61,7 +61,7 @@ function HideImageLoadForm() {
             NextButton1.style.display = "block";
 
             // display count down
-            countdown.style.display = "block";
+            countdown.style.visibility = "visible";
             // set counter for count down equal to answer time secs
             var counter = AnswerTime / 1000;
             setTimeout(function run() {
@@ -74,7 +74,7 @@ function HideImageLoadForm() {
                 if (counter === 0) {
                     // when countdown is run out disable fields
                     num_x_belief_A.disabled = true;
-                    countdown.style.display = "none";
+                    countdown.style.visibility = "hidden";
                     slider_A.disabled = true;
                     cardA.style.color = "#6c757d";
                 }
@@ -101,7 +101,7 @@ NextButton1.onclick = function () {
     num_x_belief_A.disabled = true;
     slider_A.disabled = true;
     matrix2_white.style.display="none";
-    countdown.style.display="none";
+    countdown.style.visibility="hidden";
     matrix2.style.display="block";
     cardA.style.color = "#6c757d";
 
@@ -115,7 +115,7 @@ NextButton1.onclick = function () {
         NextButton2.style.display = "block";
 
         // display count down
-        countdown.style.display="block";
+        countdown.style.visibility="visible";
         // set counter for count down equal to answer time secs
         var counter = AnswerTime / 1000;
              setTimeout(function run() {
@@ -130,7 +130,7 @@ NextButton1.onclick = function () {
                     // when countdown is run out disable fields
                     num_x_belief_B.disabled = true;
                     slider_B.disabled = true;
-                    countdown.style.display = "none";
+                    countdown.style.visibility = "hidden";
                     cardB.style.color = "#6c757d";
                 }
             }, 1000);
@@ -147,7 +147,7 @@ num_x_belief_B.onchange = function () {
 NextButton2.onclick = function () {
     num_x_belief_B.disabled = true;
     slider_B.disabled = true;
-    countdown.style.display = "none";
+    countdown.style.visibility = "hidden";
     cardB.style.color = "#6c757d";
 
     cardC.style.color = "black";

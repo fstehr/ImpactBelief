@@ -36,7 +36,6 @@ class Constants(BaseConstants):
     sec_intro = 3
     sec_per_matrix = 7
     sec_to_answer = 20
-    accuracy_bonus = 10
 
 
 class Subsession(BaseSubsession):
@@ -74,9 +73,34 @@ class Player(BasePlayer):
     window_width = models.IntegerField(blank=True, doc="Documents the respondent's browser window's width.")
     window_height = models.IntegerField(blank=True, doc="Documents the respondent's browser window's height.")
 
-    attention_check = models.StringField(blank=True, doc="Filter question for attention.",
-                                          label="To make sure you have read the instructions, we ask you to answer "
+    cq_1 = models.BooleanField(label="If you are randomly selected for a bonus payment, your bonus payment depends "
+                                     "on your answers in the experiment",
+                                    choices=[[True, 'True'], [False, 'False']])
+    cq_2 = models.IntegerField(label="How many vitamin A doses are administered when you donate depends on...",
+                               widget=widgets.RadioSelect,
+                               choices=[[1, 'your estimate of the number of pills in an image.'],
+                                        [2, 'the true number of pills in an image.'],
+                                        [3, 'whether my estimate is correct.']]
+                               )
+    cq_3 = models.IntegerField(label="How many pills can there be in a given image?",
+                               widget=widgets.RadioSelect,
+                               choices=[
+                                   [1, "at least 50 pills"],
+                                   [2, "Between 0 and 400 pills"],  # Correct Answer
+                                   [3, "at most 260 pills"],
+                                   [4, "This cannot be known"]])
+    attention_check = models.StringField(blank=True, doc="Filter question for attention",
+                                         label="To make sure you have read the instructions, we ask you to answer "
                                                 "'apple' in the field below.")
+
+    trial_belief_A = models.IntegerField(blank=True, min=0, max=400, doc="records belief on number of pills in matrix")
+    trial_confidence_A = models.IntegerField(initial=-99, min=0, max=20)
+    trial_donation_A = models.BooleanField(widget=widgets.RadioSelectHorizontal, choices=[[True, 'Yes'], [False, 'No']])
+    trial_belief_B = models.IntegerField(blank=True, min=0, max=400, doc="records belief on number of pills in matrix")
+    trial_confidence_B = models.IntegerField(initial=-99, min=0, max=20)
+    trial_donation_B = models.BooleanField(widget=widgets.RadioSelectHorizontal, choices=[[True, 'Yes'], [False, 'No']])
+
+    comparison_type = models.StringField()
 
     # Characteristics of Project A
     num_x_A = models.IntegerField()
@@ -85,11 +109,10 @@ class Player(BasePlayer):
 
     # Subject input of project A
     num_x_belief_A = models.IntegerField(blank=True, min=0, max=400, doc="records belief on number of Xs in matrix")
-    confidence_belief_A = models.IntegerField(initial=20, min=0, max=20,
+    confidence_belief_A = models.IntegerField(initial=-99, min=0, max=20,
                                               doc="cognitive uncertainty measure adapted from Enke, Graeber (2021)")
     donation_A = models.BooleanField(widget=widgets.RadioSelectHorizontal,
-                                     choices=[[True, 'Yes'], [False, 'No']]
-                                     )
+                                     choices=[[True, 'Yes'], [False, 'No']])
 
     # Characteristics of Project B
     num_x_B = models.IntegerField()
@@ -98,7 +121,7 @@ class Player(BasePlayer):
 
     # Subject input of project B
     num_x_belief_B = models.IntegerField(blank=True, min=0, max=400, doc="records belief on number of Xs in matrix")
-    confidence_belief_B = models.IntegerField(initial=20, min=0, max=20, doc="cognitive uncertainty measure adapted from Enke, Graeber (2021)")
+    confidence_belief_B = models.IntegerField(initial=-99, min=0, max=20, doc="cognitive uncertainty measure adapted from Enke, Graeber (2021)")
     donation_B = models.BooleanField(widget=widgets.RadioSelectHorizontal,
                                      choices=[[True, 'Yes'], [False, 'No']]
                                      )
@@ -132,13 +155,17 @@ class Player(BasePlayer):
         ]
         )
 
+    feedback = models.LongStringField(
+        label="We are interested in your feedback. What did you think of the experiment? The most valuable feedback will be"
+              " rewarded with a bonus payment of &#36 5.",
+    )
+
 # TO DO
 
 # - remove code duplicates - mainly move all images into a global folder and reference from there!
 
 # - systematically test belief & donation payoffs
 # - test randomization of pictures!!! using console log with the picture names!
-# --> include a var for the different comparison pairs?
 
 # - emphasize that there is no (immediate) feedback on belief accuracy!
 
@@ -146,6 +173,7 @@ class Player(BasePlayer):
 
 
 # I saw once that the input field on the left was not de-activated --> de-bug!
+
 
 
 ###### For experiment

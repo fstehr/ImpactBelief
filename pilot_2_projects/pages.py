@@ -19,7 +19,7 @@ class NoPhone(Page):
 
 class Instructions(Page):
     form_model = 'player'
-    form_fields = ['window_width', 'window_height', 'attention_check']
+    form_fields = ['window_width', 'window_height', 'cq_1', 'cq_2', 'cq_3', 'attention_check']
 
     def is_displayed(self):
         return self.round_number == 1
@@ -30,7 +30,23 @@ class AttentionFail(Page):
         return self.round_number == 1 and self.player.attention_check != "apple"
 
 
-class Belief(Page):
+class TrialPage(Page):
+    form_model = 'player'
+    form_fields = ['trial_belief_A', 'trial_confidence_A', 'trial_donation_A',
+                   'trial_belief_B', 'trial_confidence_B', 'trial_donation_B']
+
+    def is_displayed(self):
+        return self.round_number == 1
+
+    def js_vars(self):
+        return dict(
+            sec_intro=Constants.sec_intro + 15,
+            sec_per_matrix=Constants.sec_per_matrix,
+            sec_to_answer=Constants.sec_to_answer,
+        )
+
+
+class Donation(Page):
     form_model = 'player'
     form_fields = ['num_x_belief_A', 'confidence_belief_A', 'donation_A',
                    'num_x_belief_B', 'confidence_belief_B', 'donation_B', 'page_loaded']
@@ -48,9 +64,8 @@ class Belief(Page):
         # get current project from list of 'parameters'
         endowment = Constants.endowment
         project = self.participant.vars['parameters'][self.round_number - 1]
-        # print("project is", project)
+        player.comparison_type = project['comparison']
         cheap_project_first = self.participant.vars['cheap_project_first'][self.round_number - 1]
-        # print("low_cost_project_first is", cheap_project_first)
         path = "global/img/matrices/"
 
         # use cheap_project_first variable to determine which project is displayed on the left
@@ -104,7 +119,7 @@ class Belief(Page):
             player.time_out = 0
 
             # bonus payment for belief A
-            if abs(player.num_x_belief_A - player.num_x_A) <= 5:
+            if abs(player.num_x_belief_A - player.num_x_A) <= 10:
                 player.current_belief_A_payoff = player.belief_bonus
             else:
                 player.current_belief_A_payoff = player.belief_bonus
@@ -141,5 +156,5 @@ class Thanks(Page):
         return self.round_number == Constants.num_rounds
 
 
-page_sequence = [Belief]
-# page_sequence = [Welcome, Instructions, BeliefIntro, Belief, Feedback, Thanks]
+page_sequence = [TrialPage]
+# page_sequence = [Welcome, Instructions, Donation, Feedback, Thanks]
