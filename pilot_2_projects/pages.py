@@ -40,7 +40,7 @@ class TrialPage(Page):
 
     def js_vars(self):
         return dict(
-            sec_intro=Constants.sec_intro + 15,
+            sec_intro=Constants.sec_intro,
             sec_per_matrix=Constants.sec_per_matrix,
             sec_to_answer=Constants.sec_to_answer,
         )
@@ -151,10 +151,18 @@ class Questionnaire(Page):
         return self.round_number == Constants.num_rounds
 
 
+class Feedback(Page):
+    form_model = 'player'
+    form_fields = ['feedback']
+
+    def is_displayed(self):
+        return self.round_number == Constants.num_rounds
+
+
 class Thanks(Page):
     def is_displayed(self):
         return self.round_number == Constants.num_rounds
 
 
-page_sequence = [TrialPage]
+page_sequence = [Welcome, NoPhone, Instructions, AttentionFail, TrialPage, Donation, Questionnaire, Feedback, Thanks]
 # page_sequence = [Welcome, Instructions, Donation, Feedback, Thanks]

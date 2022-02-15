@@ -55,8 +55,12 @@
         <h4><img style="width: 4%;margin-right: 6px" src="{% static 'global/img/donation.png' %}">Why vitamin A supplements?</h4>
         <ul>
             <li>Over 200,000 children's deaths can be attributed to vitamin A deficiency each year.</li>
-            <li>The World Health Organization recommends that all preschool-aged children in areas where vitamin A deficiency is a public health problem receive <b>vitamin A supplements two to three times per year</b>.</li>
-            <li>In this experiment, you can donate to children in need through the Helen Keller International's vitamin A supplementation program.<a style="font-size: 10pt" href="#footnote1"><sup>[1]</sup></a></li>
+            <li>The World Health Organization recommends that all preschool-aged children in areas where vitamin A
+                deficiency is a public health problem receive <b>vitamin A supplements two to three times per year</b>.</li>
+            <li>In this experiment, you can donate to children in need through Helen Keller International's Vitamin A
+                Supplementation Program.<a style="font-size: 10pt" href="#footnote1"><sup>[1]</sup></a></li>
+            <li>Specifically, for each vitamin A dose that you donate, we will provide the equivalent funding
+                to Helen Keller International for buying and administering vitamin A doses.</li>
         </ul>
 
 
@@ -74,21 +78,21 @@
 
         <h4><img style="width: 5%;" src="{% static 'global/img/vitamins.png' %}">How do you estimate the number of vitamin A doses?</h4>
         <ul>
-            <li>For each project, you will see a pictures like the one below: <br>
+            <li>For each project, you will see a picture like the one below: <br>
                 <img class="center_img" src="{% static 'global/img/matrices/matrix_200.png' %}">
             </li>
             <li>The number of pills <img style="width: 3%;" src="{% static 'global/img/pill.png' %}"> in the image indicates the number of vitamin A doses: <br>
-                <b>10 pills reflect 1 dosis vitamin A</b> administered if you decide to donate to this project.</li>
+                <b>10 pills mean 1 dose vitamin A</b> administered if you decide to donate to this project.</li>
             <li>You will see each image for <b>{{ Constants.sec_per_matrix }} seconds</b>.</li>
-            <li>Then, we ask for <b>your best guess</b> for the number of pills and how confident you are in your estimate.</li>
-            <li>There can be <b>between 0 and 400 pills</b> in an image. <br></li>
+            <li>Then, we ask for <b>your best estimate</b> for the number of pills and how certain you are about your estimate.</li>
+            <li>There are <b>between 0 and 400 pills</b> in an image. <br></li>
         </ul>
 
         <div class="alert alert-warning alert-bonus" role="alert">
             <li>If one of your estimates is selected as a decision-that-counts,
                 <ul>
-                    <li>you <b>receive <u>&#36;{{ player.belief_bonus }}</u></b> if your estimate is <b>less than 10 away from the true number</b> of pills.</li>
-                    <li>you receive <b>no bonus</b> if your estimate is <b>more than 10 away</b> from the true number.</li>
+                    <li>you <b>receive <u>&#36;{{ player.belief_bonus }}</u></b> if your estimate is <b>at most 10 pills away from the true number</b> of pills.</li>
+                    <li>you receive <b>no bonus</b> if your estimate is <b>more than 10 pills away</b> from the true number.</li>
                 </ul>
             </li>
         </div>
@@ -108,24 +112,24 @@
 
         <ul>
             <li>On each screen, you will see two projects. </li>
-            <li>After indicating your estimates about their number of vitamin A doses,
+            <li>After estimating the number of vitamin A doses for each of these projects,
                 you <b>decide whether to donate to either of them</b>.</li>
             <li>You can donate to one, both, or none of the projects.</li>
-            <li>How many vitamin A doses are administered when you donate, <b>depends only on the number of pills</b> in an image,
+            <li>How many vitamin A doses are administered when you donate <b>depends only on the true number of pills</b> in an image
                 and <b>not on your estimate</b>.
             </li>
         </ul>
 
         <div class="alert alert-warning alert-bonus" role="alert">
-            If a donation decision is selected as a decision-that-counts,
+            If a donation decision is selected as a decision-that-counts:
             <ul>
-                <li>If you donated to at least one of the projects in a decision-that-counts,
+                <li>If you donated to at least one of the two projects in a decision-that-counts,
                     <ul>
-                        <li>you <b>receive <u>&#36;{{ Constants.endowment }} minus the costs of the project(s) you donated to</u></b>, and</li>
-                        <li>we will <b>donate the total number of vitamin A doses</b> of the project(s) you donated to.</li>
+                        <li>you <b>receive <u>&#36;{{ Constants.endowment }} minus the costs of the project(s) to which you donated</u></b>, and</li>
+                        <li>we will <b>donate the true number of vitamin A doses</b> for each of the project(s) to which you donated.</li>
                     </ul>
                 </li>
-                <li>If you decided not to donate, you will <b>receive all &#36;{{ Constants.endowment }}</b>.</li>
+                <li>If you decided not to donate, you will <b>receive &#36;{{ Constants.endowment }}</b>.</li>
             </ul>
         </div>
 

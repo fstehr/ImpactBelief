@@ -1,0 +1,34 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block styles %}
+    <link href="{% static 'global/css/ecomb.css' %}" rel="stylesheet">
+    <style>
+        textarea {
+            width: 700px;
+            height: 100px;
+        }
+    </style>
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}
+
+
+{% block title %}
+    Feedback
+{% endblock %}
+
+{% block content %}
+
+<div class="alert alert-warning alert-bonus" role="alert">
+    Your feedback is very valuable at this point. We will send the most useful comment a <b>bonus of &#36;5</b>.
+</div>
+
+{% formfield player.feedback %}
+
+{% next_button %}
+
+{% endblock %}
+
+

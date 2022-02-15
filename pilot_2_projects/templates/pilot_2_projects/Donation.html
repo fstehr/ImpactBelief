@@ -47,15 +47,12 @@
 <body onload="HideImageLoadForm()" onkeydown="return (event.keyCode != 116 || event.keyCode != 13)">
 
     <!-- Initial alert -->
-    <div style="z-index: 100; position: fixed; width: 100%">
-        <div class="alert alert-danger" id="alert" style="margin-top: 200px; margin-left:auto; margin-right:auto; display:block; width: 80%; text-align: center">
-                <strong>
-                    Please stay alert, as each matrix is only displayed for {{ Constants.sec_per_matrix }} seconds.
-                </strong>
-                You have {{ Constants.sec_to_answer }} seconds to fill in your estimate after the matrix disappears.
-        </div>
+    <div class="alert alert-danger centerbox" id="alert">
+        <strong>
+            Please stay alert, as each image is only displayed for {{ Constants.sec_per_matrix }} seconds.<br>
+        </strong>
+        You have {{ Constants.sec_to_answer }} seconds to fill in your estimate after the image disappears.
     </div>
-
 
     <!-- Forms -->
     <div class="card-deck">
@@ -75,9 +72,9 @@
                 <img src = "{% static 'global/img/matrices/matrix_white.png' %}"  id="matrix1_white" style="display:block;margin-left:auto; margin-right:auto; width:80%;"/>
                 <img src = "{% static img_a %}" id="matrix1" style="display:none;margin-left:auto; margin-right:auto; width:80%;"/>
 
-                <table style="width:100%;border-color: #0c5460; border-spacing: 22px 10px; display: none" id="beliefA">
+                <table style="width:100%;border-color: #0c5460; border-spacing: 22px 20px; display: none" id="beliefA">
                     <tr>
-                        <td colspan="2"><img style="width: 12%; margin-right: 4px" src="{% static 'global/img/vitamins.png' %}"> How many pills were in the matrix?</td>
+                        <td colspan="2"><img style="width: 12%; margin-right: 4px" src="{% static 'global/img/vitamins.png' %}"> How many pills were in the image?</td>
                         <td><input id="num_x_belief_A" disabled class="form-control" type="number"
                                      name="num_x_belief_A" min="1" max="400">
                         </td>
@@ -100,7 +97,7 @@
                     </tr>
 
                     <tr>
-                        <td colspan="3" style="padding: 0; text-align: center;">
+                        <td colspan="3" id="CIA" style="visibility:hidden; padding: 0; text-align: center;">
                             <em>I am certain the value is between <span id="min_A">0</span> and <span id="max_A">400</span>. </em>
                         </td>
                     </tr>
@@ -125,9 +122,9 @@
                 <img src = "{% static 'global/img/matrices/matrix_white.png' %}" id="matrix2_white" style="display:block;margin-left:auto; margin-right:auto; width:80%;"/>
                 <img src = "{% static img_b %}" id="matrix2" style="display:none;margin-left:auto; margin-right:auto; width:80%;"/>
 
-                <table style="width:100%; border-spacing: 22px 10px; display: none" id="beliefB">
+                <table style="width:100%; border-spacing: 22px 20px; display: none" id="beliefB">
                     <tr>
-                        <td colspan="2"><img style="width: 12%; margin-right: 12px" src="{% static 'global/img/vitamins.png' %}">How many pills were in the matrix?</td>
+                        <td colspan="2"><img style="width: 12%; margin-right: 12px" src="{% static 'global/img/vitamins.png' %}">How many pills were in the image ?</td>
                         <td><input id="num_x_belief_B" disabled class = "form-control" type="number" name="num_x_belief_B" min="1" max="400"></td>
                     </tr>
 
@@ -148,7 +145,7 @@
                     </tr>
 
                     <tr>
-                        <td colspan="3" style="padding: 0; text-align: center;">
+                        <td colspan="3" id="CIB" style="visibility:hidden; padding: 0; text-align: center;">
                             <em>I am certain the value is between <span id="min_B">0</span> and <span id="max_B">400</span>.</em>
                         </td>
                     </tr>
@@ -178,7 +175,7 @@
                 <tr>
                     <td colspan="3" style="text-align: center;font-weight: lighter">
                         <img style="width: 3%;" src="{% static 'global/img/i_black.png' %}">
-                        <em>10 pills in a matrix represent 1 vitamin A dosis</em>
+                        <em>10 pills mean 1 vitamin A dose in each image</em>
                     </td>
                 </tr>
             </table>

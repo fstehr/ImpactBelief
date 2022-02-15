@@ -14,7 +14,8 @@ let matrix1_white = document.getElementById('matrix1_white');
 let matrix1 = document.getElementById('matrix1');
 let beliefA = document.getElementById("beliefA");
 let num_x_belief_A = document.getElementById("num_x_belief_A");
-let slider_A = document.getElementById("certainty_A")
+let slider_A = document.getElementById("certainty_A");
+let CIA = document.getElementById("CIA");
 let count = document.getElementById("count");
 
 let cardB = document.getElementById("cardB");
@@ -22,7 +23,8 @@ let matrix2_white = document.getElementById('matrix2_white');
 let matrix2 = document.getElementById('matrix2');
 let beliefB = document.getElementById("beliefB");
 let num_x_belief_B = document.getElementById("num_x_belief_B");
-let slider_B = document.getElementById("certainty_B")
+let slider_B = document.getElementById("certainty_B");
+let CIB = document.getElementById("CIB");
 
 let cardC = document.getElementById("cardC");
 let donations = document.querySelectorAll("input[type=radio]");
@@ -37,7 +39,7 @@ let page_loaded = document.getElementById("page_loaded");
 // Function that starts timing on page load (for Panel A)
 function HideImageLoadForm() {
     console.log("page was loaded", localStorage.getItem('counter'), "times")
-
+    alert.style.display = "block";
     /* on load disable donation fields */
     var i;
     for (i = 0; i < donations.length; i++) {
@@ -172,7 +174,8 @@ window.addEventListener("unload", function(){
 
 /* dynamically determine confidence intervals to be displayed around belief A and belief B */
 function changeCIA(val) {
-    belief = Number(num_x_belief_A.value)
+    CIA.style.visibility = "visible";
+    belief = Number(num_x_belief_A.value);
     let a = belief - 5 - (10 * (20 - val));
     let b = belief + 5 + (10 * (20 - val));
     if (a < 0) {
@@ -188,7 +191,8 @@ function changeCIA(val) {
 }
 
 function changeCIB(val) {
-    belief = Number(num_x_belief_B.value)
+    CIB.style.visibility = "visible";
+    belief = Number(num_x_belief_B.value);
     let a = belief - 5 - (10 * (20 - val));
     let b = belief + 5 + (10 * (20 - val));
     if (a < 0) {

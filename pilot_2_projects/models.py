@@ -80,9 +80,9 @@ class Player(BasePlayer):
                                widget=widgets.RadioSelect,
                                choices=[[1, 'your estimate of the number of pills in an image.'],
                                         [2, 'the true number of pills in an image.'],
-                                        [3, 'whether my estimate is correct.']]
+                                        [3, 'whether your estimate is correct.']]
                                )
-    cq_3 = models.IntegerField(label="How many pills can there be in a given image?",
+    cq_3 = models.IntegerField(label="How many pills are there in a given image?",
                                widget=widgets.RadioSelect,
                                choices=[
                                    [1, "at least 50 pills"],
@@ -156,11 +156,14 @@ class Player(BasePlayer):
         )
 
     feedback = models.LongStringField(
-        label="We are interested in your feedback. What did you think of the experiment? The most valuable feedback will be"
-              " rewarded with a bonus payment of &#36 5.",
+        blank=True,
+        label="Thank you for participating. Do you have any comments on the design of the study?",
     )
 
 # TO DO
+
+# test that trial and donation screens are exactly the same
+
 
 # - remove code duplicates - mainly move all images into a global folder and reference from there!
 

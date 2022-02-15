@@ -17,6 +17,9 @@
         $("body").on("contextmenu",function(e){
             return false;
         });
+        function HideButton(){
+            document.getElementById("instructions").style.display = "none";
+        }
     </script>
 {% endblock %}
 
@@ -40,26 +43,47 @@
 
 {% block content %}
 
-<body onload="HideImageLoadForm()" onkeydown="return (event.keyCode != 116 || event.keyCode != 13)">
+<body onkeydown="return (event.keyCode != 116 || event.keyCode != 13)">
+
+    <!-- Trial Page instructions -->
+        <div class="alert alert-primary centerbox" id="instructions">
+            <p>
+                This is a <b>trial round to familiarize yourself</b> with the decision environment.<br>
+                Your answers on this page do <b>not affect your bonus payment</b>.
+            </p>
+            <p>You will go through the page in the following order:</p>
+                <ol>
+                    <li>You will <b>see an image</b> which indicates the number of vitamin A doses
+                        for the project on the left <b>for {{ Constants.sec_per_matrix }} seconds</b>.</li>
+                    <li><b>When the image disappears, you have {{ Constants.sec_to_answer }} seconds</b> to fill in
+                        <ul>
+                            <li>your estimate</li>
+                            <li>how certain you are about your estimate</li>
+                        </ul>
+                    </li>
+                    <li>Click the 'Next' button, when you are ready for the <b>next image</b>.</li>
+                    <li>You see the image indicating the number of vitamin A doses of the project <b>on the right</b> for {{ Constants.sec_per_matrix }} seconds.</li>
+                    <li>When the image disappears, you have again <b>{{ Constants.sec_to_answer }} seconds</b> to fill in your estimate and certainty.</li>
+                    <li>Click the 'Next' button to <b>move on to the donation decision</b> at the bottom of the screen.</li>
+                    <li>After you decided on your donations, the 'Next' button will take you to a <b>new donation page</b> with different projects.</li>
+                </ol>
+            <br>
+            <div style="text-align: right" id="StartButton">
+                <button type="button" class="btn btn-primary btn-large" onclick="HideButton();HideImageLoadForm()">Ready to start</button>
+            </div>
+
+        </div>
+
+
+    <!-- Page as on donation screen -->
 
     <!-- Initial alert -->
-    <div style="z-index: 100; position: fixed; width: 90%">
-        <div class="alert alert-danger" id="alert" style="margin-top: 200px; margin-left:auto; margin-right:auto; display:block; width: 70%; text-align: center">
-            <p>
-                <b>This is a trial round to familiarize yourself with the decision environment.</b> <br>
-                Your answers on this screen do not affect your bonus payment.
-            </p>
-            <p>
-                <strong>
-                    Please stay alert, as each matrix is only displayed for {{ Constants.sec_per_matrix }} seconds.
-                </strong>
-            </p>
-            <p>
-                You have {{ Constants.sec_to_answer }} seconds to fill in your estimate after the matrix disappears.
-            </p>
-        </div>
+    <div class="alert alert-danger centerbox" style="display: none" id="alert">
+        <strong>
+            Please stay alert, as each image is only displayed for {{ Constants.sec_per_matrix }} seconds.<br>
+        </strong>
+        You have {{ Constants.sec_to_answer }} seconds to fill in your estimate after the image disappears.
     </div>
-
 
     <!-- Forms -->
     <div class="card-deck">
@@ -79,9 +103,9 @@
                 <img src = "{% static 'global/img/matrices/matrix_white.png' %}"  id="matrix1_white" style="display:block;margin-left:auto; margin-right:auto; width:80%;"/>
                 <img src = "{% static 'global/img/matrices/matrix_200.png' %}" id="matrix1" style="display:none;margin-left:auto; margin-right:auto; width:80%;"/>
 
-                <table style="width:100%;border-color: #0c5460; border-spacing: 22px 10px; display: none" id="beliefA">
+                <table style="width:100%;border-color: #0c5460; border-spacing: 22px 20px; display: none" id="beliefA">
                     <tr>
-                        <td colspan="2"><img style="width: 12%; margin-right: 4px" src="{% static 'global/img/vitamins.png' %}"> How many pills were in the matrix?</td>
+                        <td colspan="2"><img style="width: 12%; margin-right: 4px" src="{% static 'global/img/vitamins.png' %}"> How many pills were in the image?</td>
                         <td><input id="num_x_belief_A" disabled class="form-control" type="number"
                                      name="trial_belief_A" min="1" max="400">
                         </td>
@@ -104,7 +128,7 @@
                     </tr>
 
                     <tr>
-                        <td colspan="3" style="padding: 0; text-align: center;">
+                        <td colspan="3" id="CIA" style="visibility:hidden; padding: 0; text-align: center;">
                             <em>I am certain the value is between <span id="min_A">0</span> and <span id="max_A">400</span>. </em>
                         </td>
                     </tr>
@@ -130,9 +154,9 @@
                 <img src = "{% static 'global/img/matrices/matrix_white.png' %}" id="matrix2_white" style="display:block;margin-left:auto; margin-right:auto; width:80%;"/>
                 <img src = "{% static 'global/img/matrices/matrix_200.png' %}" id="matrix2" style="display:none;margin-left:auto; margin-right:auto; width:80%;"/>
 
-                <table style="width:100%; border-spacing: 22px 10px; display: none" id="beliefB">
+                <table style="width:100%; border-spacing: 22px 20px; display: none" id="beliefB">
                     <tr>
-                        <td colspan="2"><img style="width: 12%; margin-right: 12px" src="{% static 'global/img/vitamins.png' %}">How many pills were in the matrix?</td>
+                        <td colspan="2"><img style="width: 12%; margin-right: 12px" src="{% static 'global/img/vitamins.png' %}">How many pills were in the image?</td>
                         <td><input id="num_x_belief_B" disabled class = "form-control" type="number" name="trial_belief_B" min="1" max="400"></td>
                     </tr>
 
@@ -153,7 +177,7 @@
                     </tr>
 
                     <tr>
-                        <td colspan="3" style="padding: 0; text-align: center;">
+                        <td colspan="3" id="CIB" style="visibility:hidden; padding: 0; text-align: center;">
                             <em>I am certain the value is between <span id="min_B">0</span> and <span id="max_B">400</span>.</em>
                         </td>
                     </tr>
@@ -185,7 +209,7 @@
                 <tr>
                     <td colspan="3" style="text-align: center;font-weight: lighter">
                         <img style="width: 3%;" src="{% static 'global/img/i_black.png' %}">
-                        <em>10 pills in a matrix represent 1 vitamin A dosis</em>
+                        <em>10 pills mean 1 vitamin A dose in each image</em>
                     </td>
                 </tr>
             </table>
@@ -195,7 +219,6 @@
 
 
     <br>
-
 
     <div style="display:none; text-align: right" id="NextButton1">
         <button type="button" class="btn btn-primary btn-large">Next</button>
