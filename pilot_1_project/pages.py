@@ -125,4 +125,4 @@ class Thanks(Page):
 
 
 # page_sequence = [Welcome, NoPhone, Instructions, AttentionFail, TrialPage, Donation, Questionnaire, Feedback, Thanks]
-page_sequence = [TrialPage, Donation]
+page_sequence = [Instructions]

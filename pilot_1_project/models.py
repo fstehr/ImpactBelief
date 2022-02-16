@@ -153,7 +153,7 @@ class Player(BasePlayer):
 
     feedback = models.LongStringField(
         blank=True,
-        label="Thank you for participating. Do you have any comments on the design of the study?",
+        label="Thank you for participating. Do you have any comments on the study? Was something unclear to you?",
     )
 
 # TO DO
