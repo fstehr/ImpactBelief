@@ -53,8 +53,8 @@
             </p>
             <p>You will go through the page in the following order:</p>
                 <ol>
-                    <li>You will <b>see an image</b> which indicates the number of vitamin A doses
-                        for the project on the left <b>for {{ Constants.sec_per_matrix }} seconds</b>.</li>
+                    <li>You will <b>see an image on the left</b> which indicates how many vitamin A doses
+                        a donation to this project finances <b>for {{ Constants.sec_per_matrix }} seconds</b>.</li>
                     <li><b>When the image disappears, you have {{ Constants.sec_to_answer }} seconds</b> to fill in
                         <ul>
                             <li>your estimate</li>
@@ -62,7 +62,7 @@
                         </ul>
                     </li>
                     <li>Click the 'Next' button, when you are ready for the <b>next image</b>.</li>
-                    <li>You see the image indicating the number of vitamin A doses of the project <b>on the right</b> for {{ Constants.sec_per_matrix }} seconds.</li>
+                    <li>You see an image indicating how many vitamin A doses the project <b>on the right</b> finances for {{ Constants.sec_per_matrix }} seconds.</li>
                     <li>When the image disappears, you have again <b>{{ Constants.sec_to_answer }} seconds</b> to fill in your estimate and certainty.</li>
                     <li>Click the 'Next' button to <b>move on to the donation decision</b> at the bottom of the screen.</li>
                     <li>After you decided on your donations, the 'Next' button will take you to a <b>new donation page</b> with different projects.</li>
@@ -94,7 +94,8 @@
                 <table style="width:100%;border-color: #0c5460; border-spacing: 22px 10px;" id="priceA">
                     <tr>
                         <td colspan="2">
-                            <img style="width: 10%; margin-right: 12px" src="{% static 'global/img/coin.png' %}">Donating to this project will cost you:
+                            <img style="width: 10%; margin-right: 12px" src="{% static 'global/img/coin.png' %}">
+                            Donating to this project will cost you:
                         </td>
                         <td> &#36 <span style="color: red; font-weight: bold;">4</span> </td>
                     </tr>
@@ -128,7 +129,7 @@
                     </tr>
 
                     <tr>
-                        <td colspan="3" id="CIA" style="visibility:hidden; padding: 0; text-align: center;">
+                        <td colspan="3" id="CIA" style="visibility:hidden; padding: 0; text-align: center; font-weight: lighter">
                             <em>I am certain the value is between <span id="min_A">0</span> and <span id="max_A">400</span>. </em>
                         </td>
                     </tr>
@@ -177,7 +178,7 @@
                     </tr>
 
                     <tr>
-                        <td colspan="3" id="CIB" style="visibility:hidden; padding: 0; text-align: center;">
+                        <td colspan="3" id="CIB" style="visibility:hidden; padding: 0; text-align: center; font-weight: lighter">
                             <em>I am certain the value is between <span id="min_B">0</span> and <span id="max_B">400</span>.</em>
                         </td>
                     </tr>
@@ -209,7 +210,7 @@
                 <tr>
                     <td colspan="3" style="text-align: center;font-weight: lighter">
                         <img style="width: 3%;" src="{% static 'global/img/i_black.png' %}">
-                        <em>10 pills mean 1 vitamin A dose in each image</em>
+                        <em>10 pills mean your donation finances 1 dose of vitamin A</em>
                     </td>
                 </tr>
             </table>
@@ -220,6 +221,7 @@
 
     <br>
 
+
     <div style="display:none; text-align: right" id="NextButton1">
         <button type="button" class="btn btn-primary btn-large">Next</button>
     </div>
@@ -229,7 +231,7 @@
     </div>
 
     <div style="display:none; text-align: right" id="SubmitButton">
-        <button class="btn btn-primary btn-large">Next</button>
+        <button class="btn btn-primary btn-large">Start the experiment</button>
     </div>
 
     <input type="hidden" name="page_loaded" id="page_loaded" value="0">

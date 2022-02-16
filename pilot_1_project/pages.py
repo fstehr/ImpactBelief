@@ -1,6 +1,7 @@
 from ._builtin import Page, WaitPage
 from otree.api import Currency as c, currency_range
 from .models import Constants
+import random
 
 
 class Welcome(Page):
@@ -18,7 +19,7 @@ class NoPhone(Page):
 
 class Instructions(Page):
     form_model = 'player'
-    form_fields = ['window_width', 'window_height', 'attention_check']
+    form_fields = ['window_width', 'window_height', 'cq_1', 'cq_2', 'cq_3', 'attention_check']
 
     def is_displayed(self):
         return self.round_number == 1
@@ -29,40 +30,77 @@ class AttentionFail(Page):
         return self.round_number == 1 and self.player.attention_check != "apple"
 
 
+class TrialPage(Page):
+    form_model = 'player'
+    form_fields = ['trial_belief_A', 'trial_confidence_A', 'trial_donation_A',]
+
+    def is_displayed(self):
+        return self.round_number == 1
+
+    def js_vars(self):
+        return dict(
+            sec_intro=Constants.sec_intro,
+            sec_per_matrix=Constants.sec_per_matrix,
+            sec_to_answer=Constants.sec_to_answer,
+        )
+
+
 class Donation(Page):
     form_model = 'player'
-    form_fields = ['donation_A']
-    # form_fields = ['donation_A', 'donation_B']
+    form_fields = ['num_x_belief_A', 'confidence_belief_A', 'donation_A', 'page_loaded']
+
+    def js_vars(self):
+        return dict(
+            sec_intro=Constants.sec_intro,
+            sec_per_matrix=Constants.sec_per_matrix,
+            sec_to_answer=Constants.sec_to_answer,
+        )
 
     def vars_for_template(self):
         player = self.player
-        num_projects = len(Constants.paras)
-        project_number = player.round_number
-        endowment = Constants.endowment
 
         # get current project from list of 'parameters'
-        project = self.participant.vars['parameters'][self.round_number - 2]
-        price_a = int(project['price_A'])
-        num_doses_a = int(project['num_doses_A'])
-        # price_b = int(project['price_B'])
-        # num_doses_b = int(project['num_doses_B'])
+        endowment = Constants.endowment
+        project = self.participant.vars['parameters'][self.round_number - 1]
+        path = "global/img/matrices/"
 
-        player.num_doses_A = num_doses_a
+        price_a = int(project['price_1'])
+        player.num_x_A = int(project['num_X_1'])
+        image_a = path + project['image_title_1']
+
+        # store parameters of project A in data set
         player.price_A = price_a
-        player.efficiency_A = float(project['efficiency_A'])
-        # player.num_doses_B = num_doses_b
-        # player.price_B = price_b
-        # player.efficiency_B = int(project['efficiency_B'])
+        player.efficiency_A = float(project['efficiency_1'])
 
-        return {'project_number': project_number, 'num_projects': num_projects,
-                'endowment': endowment, 'num_doses_a': num_doses_a, 'price_a': price_a}
-        # return {'price_a': price_a, 'price_b': price_b}
+        return {'endowment': endowment, 'img_a': image_a, 'price_a': price_a,}
 
     def before_next_page(self):
         player = self.player
-        player.current_payoff = player.endowment - (player.donation_A * player.price_A)
-        if self.round_number == self.participant.vars['payment_round']:
-            player.payoff = player.current_payoff
+        # store all answers in a list
+        fields = [player.num_x_belief_A]
+        fields_filled = []  # define a list with all boolean values indicating whether a field was filled or not
+        for field in fields:
+            fields_filled.append(bool(field))  # appends False if field value is None
+
+        # check that no field was empty
+        if sum(fields_filled) == len(fields_filled):
+            player.time_out = 0
+
+            # bonus payment for belief A
+            if abs(player.num_x_belief_A - player.num_x_A) <= 10:
+                player.current_belief_A_payoff = player.belief_bonus
+            else:
+                player.current_belief_A_payoff = player.belief_bonus
+
+            # bonus payment for joint donation
+            player.current_donation_payoff = Constants.endowment - (player.donation_A * player.price_A)
+
+            # randomly assign one of the three vars as final payoff in the payment round
+            current_payoffs = [player.current_belief_A_payoff, player.current_donation_payoff]
+            if self.round_number == self.participant.vars['payment_round']:
+                player.payoff = random.choice(current_payoffs)
+        else:            # if not all fields are filled, set time_out var to 1
+            player.time_out = 1
 
 
 class Questionnaire(Page):
@@ -73,11 +111,18 @@ class Questionnaire(Page):
         return self.round_number == Constants.num_rounds
 
 
+class Feedback(Page):
+    form_model = 'player'
+    form_fields = ['feedback']
+
+    def is_displayed(self):
+        return self.round_number == Constants.num_rounds
+
+
 class Thanks(Page):
     def is_displayed(self):
         return self.round_number == Constants.num_rounds
 
 
-page_sequence = [Welcome, NoPhone, Instructions, AttentionFail, Donation, Questionnaire, Thanks]
-# page_sequence = [Welcome, Instructions, BeliefIntro, Belief, Feedback, Thanks]
-
+# page_sequence = [Welcome, NoPhone, Instructions, AttentionFail, TrialPage, Donation, Questionnaire, Feedback, Thanks]
+page_sequence = [TrialPage, Donation]

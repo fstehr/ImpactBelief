@@ -1,10 +1,13 @@
 {% extends "global/Page.html" %}
 {% load otree static %}
 
+{% block styles %}
+    <link href="{% static 'global/css/ecomb.css' %}" rel="stylesheet">
+{% endblock %}
+
 {% block scripts %}
     <script src="{% static 'global/js/basics.js' %}"></script>
     <script src="{% static 'global/js/navbuttons.js' %}"></script>
-
     <script>
         function saveTime() {
             let startTime = new Date().getTime();
@@ -127,6 +130,11 @@
                             The experiment was ethically approved by the Ethical Review Committee of Inner-City
                             Faculties of Maastricht University.
                         </p>
+                    </div>
+
+                    <div class="alert alert-warning alert-bonus" role="alert">
+                        At the end of the experiment you will be able to <b>provide feedback</b>.
+                        We will send the most useful comment a <b>bonus of &#36;{{ Constants.feedback_bonus }}</b>.
                     </div>
 
 
@@ -268,6 +276,7 @@
                     <p class="h4">Your consent to participate</p>
                 </div>
                 <div class="card-body">
+
                     <div style="margin-left: 10pt; font-style: italic">
                         <p>
                             I hereby give permission for my data to be used for scientific purposes.
@@ -280,13 +289,13 @@
                             I understand that the data will be stored anonymously and thus can only be published anonymously.
                             I give permission for the researcher to use my anonymized responses in subsequent experiments.
                         </p>
-                        <!--<p>
+                        <p>
                             I understand that for people with photosensitivity, the characteristics of some of the
                             images in the experiment may cause dizziness or other symptoms.
-                        </p> -->
+                        </p>
                     </div>
 
-                    <br>
+
                     <p>
                         Before you begin, please turn off your phone/e-mails/music so that you can concentrate on this experiment. Thank you!
                     </p>

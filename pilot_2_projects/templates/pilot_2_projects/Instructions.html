@@ -40,14 +40,14 @@
         <h4><img style="width: 5%;" src="{% static 'global/img/choice.png' %}">What is your task in the experiment?</h4>
         <ul>
             <li>You can <b>donate to different charity projects</b> which provide vitamin A supplements.</li>
-            <li>The projects <b>differ in costs and number of vitamin A supplements</b> administered.</li>
-            <li>However, you do not perfectly know how many vitamin A doses a project administers.</li>
+            <li>The projects <b><u>differ in costs and number of vitamin A supplements</u></b> financed.</li>
+            <li>However, you do not perfectly know how many vitamin A doses your donation finances.</li>
             <li>Instead, you have to <b>estimate this number</b>.</li>
         </ul>
 
         <div class="alert alert-warning alert-bonus" role="alert">
             We randomly select 1 out of 20 respondents. If you are among them, we <b>randomly select one of your decisions
-            to be the decision-that-counts for your bonus payment</b>.
+            to be the decision-that-counts for your bonus payment</b>. <br>
             We use yellow boxes to explain how your decisions affect your bonus payment.
         </div>
 
@@ -68,7 +68,7 @@
             <button type="button" class="btn btn-primary btn-tab next" data-offset="1">Next</button>
         </p>
 
-        <p style="font-size: 10pt; margin-top: 20pt" id="footnote1"><sup>[1]</sup> You can read more about the charity and its scientific evaluation <a href="https://www.givewell.org/charities/helen-keller-international" target="_blank" rel="noopener noreferrer">here</a>.</p>
+        <p style="font-size: 10pt; margin-top: 120px" id="footnote1"><sup>[1]</sup> You can read more about the charity and its scientific evaluation <a href="https://www.givewell.org/charities/helen-keller-international" target="_blank" rel="noopener noreferrer">here</a>.</p>
 
     </div>
 
@@ -82,7 +82,8 @@
                 <img class="center_img" src="{% static 'global/img/matrices/matrix_200.png' %}">
             </li>
             <li>The number of pills <img style="width: 3%;" src="{% static 'global/img/pill.png' %}"> in the image indicates the number of vitamin A doses: <br>
-                <b>10 pills mean 1 dose vitamin A</b> administered if you decide to donate to this project.</li>
+                <b>for each 10 pills</b> in an image your donation finances <b>1 dose vitamin A</b>.</li>
+            <li>For example, if an image contains 200 pills, your donation to this project would finance 20 doses of vitamin A.</li>
             <li>You will see each image for <b>{{ Constants.sec_per_matrix }} seconds</b>.</li>
             <li>Then, we ask for <b>your best estimate</b> for the number of pills and how certain you are about your estimate.</li>
             <li>There are <b>between 0 and 400 pills</b> in an image. <br></li>
@@ -111,11 +112,17 @@
         <h4><img style="width: 4%; margin-right: 12px" src="{% static 'img/coin.svg' %}">How can you donate?</h4>
 
         <ul>
-            <li>On each screen, you will see two projects. </li>
+            <li>On each screen, you will see two projects.</li>
+            <li>Each project is described by:
+                <ul>
+                    <li>an image depicting the <b>number of vitamin A doses</b> this project finances (as described before), and</li>
+                    <li><b>how much it costs</b> you to donate to this project</li>
+                </ul>
+            </li>
             <li>After estimating the number of vitamin A doses for each of these projects,
                 you <b>decide whether to donate to either of them</b>.</li>
             <li>You can donate to one, both, or none of the projects.</li>
-            <li>How many vitamin A doses are administered when you donate <b>depends only on the true number of pills</b> in an image
+            <li>How many vitamin A doses your donation finances <b>depends only on the true number of pills</b> in an image
                 and <b>not on your estimate</b>.
             </li>
         </ul>

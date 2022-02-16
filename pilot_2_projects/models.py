@@ -31,7 +31,8 @@ class Constants(BaseConstants):
     num_rounds = len(paras)
 
     # timing parameters for display
-    duration_min = 10
+    duration_min = 15
+    feedback_bonus = 5
     endowment = 40
     sec_intro = 3
     sec_per_matrix = 7
@@ -76,7 +77,7 @@ class Player(BasePlayer):
     cq_1 = models.BooleanField(label="If you are randomly selected for a bonus payment, your bonus payment depends "
                                      "on your answers in the experiment",
                                     choices=[[True, 'True'], [False, 'False']])
-    cq_2 = models.IntegerField(label="How many vitamin A doses are administered when you donate depends on...",
+    cq_2 = models.IntegerField(label="How many vitamin A doses your donation finances depends on...",
                                widget=widgets.RadioSelect,
                                choices=[[1, 'your estimate of the number of pills in an image.'],
                                         [2, 'the true number of pills in an image.'],
