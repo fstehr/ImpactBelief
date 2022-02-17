@@ -124,5 +124,5 @@ class Thanks(Page):
         return self.round_number == Constants.num_rounds
 
 
-# page_sequence = [Welcome, NoPhone, Instructions, AttentionFail, TrialPage, Donation, Questionnaire, Feedback, Thanks]
-page_sequence = [Instructions]
+page_sequence = [Welcome, NoPhone, Instructions, AttentionFail, TrialPage, Donation, Questionnaire, Feedback, Thanks]
+# page_sequence = [Instructions]

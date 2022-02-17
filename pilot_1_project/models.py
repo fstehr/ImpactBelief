@@ -25,7 +25,7 @@ class Constants(BaseConstants):
     players_per_group = None
 
     # Get experimental parameters from csv file
-    with open('pilot_2_projects/static/Parameters.csv', encoding='utf-8-sig') as parameters:
+    with open('pilot_1_project/static/Parameters.csv', encoding='utf-8-sig') as parameters:
         paras = list(csv.DictReader(parameters, dialect='excel'))
 
     num_rounds = len(paras)
