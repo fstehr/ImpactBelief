@@ -163,10 +163,12 @@ class Player(BasePlayer):
 
 # TO DO
 
-# test that trial and donation screens are exactly the same
+# obs curren belief payoff does not seem to work!!!
+# still have to donate 6 doses from pilot!!!
 
-
-# - remove code duplicates - mainly move all images into a global folder and reference from there!
+# - include comparison identifier variable to make it easier to sort projects later
+# - Include a money left item on donation screen
+# - ask donation question with 4 options: (donate to neither, donate to A, donate to B, donate to both)q
 
 # - systematically test belief & donation payoffs
 # - test randomization of pictures!!! using console log with the picture names!
