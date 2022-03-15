@@ -1,11 +1,7 @@
-﻿efficiency_1,num_doses_1,price_1,num_X_1,image_title_1,efficiency_2,num_doses_2,price_2,num_X_2,image_title_2,comparison
-2,8,4,80,matrix_80.png,2,32,16,320,matrix_320.png,same efficiency
-1.5,6,4,60,matrix_60.png,1.75,28,16,280,matrix_280.png,comparable efficiency
-2,8,4,80,matrix_80.png,1.875,30,16,300,matrix_300.png,comparable efficiency
-2.5,10,4,100,matrix_100.png,2,32,16,320,matrix_320.png,comparable efficiency
-3,12,4,120,matrix_120.png,2.125,34,16,340,matrix_340.png,comparable efficiency
-2.5,10,4,100,matrix_100.png,0.625,10,16,100,matrix_100.png,pure cost effect
-5,20,4,200,matrix_200.png,1.25,20,16,200,matrix_200.png,pure cost effect
-7.5,30,4,300,matrix_300.png,1.875,30,16,300,matrix_300.png,pure cost effect
-4,16,4,160,matrix_160.png,2,8,4,80,matrix_80.png,sanity check
-1,16,16,160,matrix_160.png,2,32,16,320,matrix_320.png,sanity check
+﻿efficiency_1,num_doses_1,price_1,num_X_1,efficiency_2,num_doses_2,price_2,num_X_2,id,comparison
+2,8,4,80,2,32,16,320,1,cost-impact trade-off
+2,8,4,80,2,32,16,320,2,cost-impact trade-off
+2,8,4,80,0.5,8,16,80,3,cost trade-off
+8,32,4,320,2,32,16,320,4,cost trade-off
+2,8,4,80,8,32,4,320,5,cost level
+0.5,8,16,80,2,32,16,320,6,cost level
