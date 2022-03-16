@@ -60,7 +60,7 @@ function HideImageLoadForm() {
             cardA.style.color = "black";
             num_x_belief_A.disabled = false;
             slider_A.disabled = false;
-            NextButton1.style.display = "block";
+            NextButton1.style.visibility = "visible";
 
             // display count down
             countdown.style.visibility = "visible";
@@ -99,7 +99,7 @@ NextButton1.onclick = function () {
     clearTimeout(countdown1);
     count.innerHTML = AnswerTime / 1000;
 
-    NextButton1.style.display = "none";
+    NextButton1.style.visibility = "hidden";
     num_x_belief_A.disabled = true;
     slider_A.disabled = true;
     matrix2_white.style.display="none";
@@ -114,7 +114,7 @@ NextButton1.onclick = function () {
         cardB.style.color = "black";
         num_x_belief_B.disabled = false;
         slider_B.disabled = false;
-        NextButton2.style.display = "block";
+        NextButton2.style.visibility = "visible";
 
         // display count down
         countdown.style.visibility="visible";
@@ -157,8 +157,10 @@ NextButton2.onclick = function () {
     for (i = 0; i < donations.length; i++) {
         donations[i].disabled = false;
     }
-    NextButton2.style.display = "none";
-    SubmitButton.style.display = "block";
+    NextButton2.style.visibility = "hidden";
+    SubmitButton.class = "btn btn-primary btn-large";
+    SubmitButton.disabled = false;
+
 }
 
 
@@ -226,5 +228,3 @@ SubmitButton.onclick = function () {
         form.elements[i].disabled = false;
     }
 }
-
-

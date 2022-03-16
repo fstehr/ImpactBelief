@@ -6,7 +6,12 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/sliders.css' %}">
     <style>
         table {border-collapse: separate; border-spacing: 22px;}
+        button:disabled {
+          cursor: not-allowed;
+          pointer-events: all !important;
+        }
     </style>
+
 {% endblock %}
 
 {% block scripts %}
@@ -98,6 +103,14 @@
                             <em>I am certain the value is between <span id="min_A">0</span> and <span id="max_A">400</span>. </em>
                         </td>
                     </tr>
+
+                    <tr>
+                        <td colspan="3">
+                            <div style="padding: 0; text-align: right">
+                                <button id="NextButton1" style="visibility:hidden;" type="button" class="btn btn-outline-primary btn-large">&#8680;</button>
+                            </div>
+                        </td>
+                    </tr>
                 </table>
 
               </div>
@@ -147,6 +160,14 @@
                             <em>I am certain the value is between <span id="min_B">0</span> and <span id="max_B">400</span>.</em>
                         </td>
                     </tr>
+
+                    <tr>
+                        <td colspan="3">
+                            <div style="padding: 0; text-align: right">
+                                <button id="NextButton2" style="visibility:hidden;" type="button" class="btn btn-outline-primary btn-large">&#8680;</button>
+                            </div>
+                        </td>
+                    </tr>
                   </table>
             </div>
         </div>
@@ -172,12 +193,6 @@
                         {{ form.donation_B }}
                     </td>
                 </tr>
-                <tr>
-                    <td colspan="3" style="text-align: center;font-weight: lighter">
-                        <img style="width: 3%;" src="{% static 'global/img/coin.png' %}">
-                        <em>Money left to you: <span id="moneyleft"></span></em>
-                    </td>
-                </tr>
             </table>
         </div>
     </div>
@@ -186,20 +201,13 @@
 
     <br>
 
-
-    <div style="display:none; text-align: right" id="NextButton1">
-        <button type="button" class="btn btn-primary btn-large">Next</button>
-    </div>
-
-    <div style="display:none; text-align: right" id="NextButton2">
-        <button type="button" class="btn btn-primary btn-large">Next</button>
-    </div>
-
-    <div style="display:none; text-align: right" id="SubmitButton">
-        <button class="btn btn-primary btn-large">Next</button>
+    <div style="text-align: right">
+       <button id="SubmitButton" class="btn btn-primary btn-large" disabled>Next</button>
     </div>
 
     <input type="hidden" name="page_loaded" id="page_loaded" value="0">
+    <input type="hidden" name="honey_pot" id="honey_pot">
+
 
 </body>
 
