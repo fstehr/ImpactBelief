@@ -233,8 +233,8 @@ class Player(BasePlayer):
 
 # think about how to deal with with time-out variable
 
-# include honey pot
-
+# include honey pot properly on donation page!
+# update trial page buttons in the same way as donation
 
 ###### For experiment
 # - randomize treatments with high & low incentives
