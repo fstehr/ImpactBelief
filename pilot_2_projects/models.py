@@ -190,6 +190,7 @@ class Player(BasePlayer):
     current_donation_payoff = models.IntegerField()
     current_belief_A_payoff = models.IntegerField()
     current_belief_B_payoff = models.IntegerField()
+    payoff_decision = models.StringField()
 
     # Other behavior during elicitation
     page_loaded = models.IntegerField()
@@ -214,21 +215,16 @@ class Player(BasePlayer):
         ]
         )
 
-    feedback = models.LongStringField(
-        blank=True,
-        label="Thank you for participating. Do you have any comments on the design of the study?",
-    )
+
 
 # TO DO
 
-# obs curren belief payoff does not seem to work!!!
 # still have to donate 6 doses from pilot!!!
 
-# - include comparison identifier variable to make it easier to sort projects later
 # - Include a money left item on donation screen
-# - ask donation question with 4 options: (donate to neither, donate to A, donate to B, donate to both)q
 
 # - systematically test belief & donation payoffs
+# obs current belief payoff does not seem to work!!!
 # - test randomization of pictures!!! using console log with the picture names!
 
 # - emphasize that there is no (immediate) feedback on belief accuracy!
@@ -239,9 +235,6 @@ class Player(BasePlayer):
 
 # include honey pot
 
-# I saw once that the input field on the left was not de-activated --> de-bug!
-
-#  (as elicited by their donation in a dictator game with other participants at the end of the experiment) show a stronger inclination for motivated beliefs.
 
 ###### For experiment
 # - randomize treatments with high & low incentives

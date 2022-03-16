@@ -64,7 +64,7 @@ class Donation(Page):
         # get current project from list of 'parameters'
         endowment = Constants.endowment
         project = self.participant.vars['parameters'][self.round_number - 1]
-        player.comparison_id = project['id']
+        player.comparison_id = int(project['id'])
         player.comparison_type = project['comparison']
         cheap_project_first = self.participant.vars['cheap_project_first'][self.round_number - 1]
         path = "global/img/matrices/matrix_"
@@ -139,23 +139,28 @@ class Donation(Page):
             if abs(player.num_x_belief_A - player.num_x_A) <= 10:
                 player.current_belief_A_payoff = player.belief_bonus
             else:
-                player.current_belief_A_payoff = player.belief_bonus
+                player.current_belief_A_payoff = 0
 
             # bonus payment for belief B
             if abs(player.num_x_belief_B - player.num_x_B) <= 10:
                 player.current_belief_B_payoff = player.belief_bonus
             else:
-                player.current_belief_B_payoff = player.belief_bonus
+                player.current_belief_B_payoff = 0
 
             # bonus payment for joint donation
             player.current_donation_payoff = Constants.endowment - (player.donation_A * player.price_A) - \
                                              (player.donation_B * player.price_B)
 
             # randomly assign one of the three vars as final payoff in the payment round
+            urn = [0, 1, 2]
+            payoff_decision = ["belief_A", "belief_B", "donation"]
             current_payoffs = [player.current_belief_A_payoff, player.current_belief_B_payoff,
                                player.current_donation_payoff]
             if self.round_number == self.participant.vars['payment_round']:
-                player.payoff = random.choice(current_payoffs)
+                payout = random.choice(urn)
+                player.payoff = current_payoffs[payout]
+                player.payoff_decision = payoff_decision[payout]
+
         else:            # if not all fields are filled, set time_out var to 1
             player.time_out = 1
 
@@ -181,5 +186,5 @@ class Thanks(Page):
         return self.round_number == Constants.num_rounds
 
 
-page_sequence = [Welcome, NoPhone, Instructions, AttentionFail, TrialPage, Donation, Questionnaire, Feedback, Thanks]
-# page_sequence = [Welcome, Instructions, Donation, Feedback, Thanks]
+# page_sequence = [Welcome, NoPhone, Instructions, AttentionFail, TrialPage, Donation, Questionnaire, Feedback, Thanks]
+page_sequence = [Donation]
