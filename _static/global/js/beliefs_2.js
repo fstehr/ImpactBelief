@@ -1,14 +1,18 @@
 let form = document.getElementById("form");
+let treatment = js_vars.treatment;
+let page_loaded = document.getElementById("page_loaded");
 
-/* call time variables from python */
+
+// call time variables from python
 let Intro = js_vars.sec_intro * 1000;
 let Delay = js_vars.sec_per_matrix * 1000;
 let AnswerTime = js_vars.sec_to_answer * 1000;
 
-/* call all elements */
+// call all elements on the page
 let alert = document.getElementById('alert');
 let countdown = document.getElementById("countdown");
 
+// card A
 let cardA = document.getElementById("cardA");
 let matrix1_white = document.getElementById('matrix1_white');
 let matrix1 = document.getElementById('matrix1');
@@ -18,6 +22,7 @@ let slider_A = document.getElementById("certainty_A");
 let CIA = document.getElementById("CIA");
 let count = document.getElementById("count");
 
+// card B
 let cardB = document.getElementById("cardB");
 let matrix2_white = document.getElementById('matrix2_white');
 let matrix2 = document.getElementById('matrix2');
@@ -26,14 +31,16 @@ let num_x_belief_B = document.getElementById("num_x_belief_B");
 let slider_B = document.getElementById("certainty_B");
 let CIB = document.getElementById("CIB");
 
+// card C
 let cardC = document.getElementById("cardC");
 let donations = document.querySelectorAll("input[type=radio]");
 
+// buttons
 let NextButton1 = document.getElementById("NextButton1");
 let NextButton2 = document.getElementById("NextButton2");
+let NextButton3 = document.getElementById("NextButton3");
 let SubmitButton = document.getElementById("SubmitButton");
 
-let page_loaded = document.getElementById("page_loaded");
 
 
 // Function that starts timing on page load (for Panel A)
@@ -45,8 +52,17 @@ function HideImageLoadForm() {
     for (i = 0; i < donations.length; i++) {
         donations[i].disabled = true;
     }
+    if (treatment === "ExAnte") {
+        start_with_A_exA();
+    }
+    else if (treatment === "ExPost") {
+        start_with_A_exP();
+    }
 
-    /* define protocol in seconds */
+}
+
+function start_with_A_exA() {
+/* define protocol in seconds */
     // Intro time delay to display matrix A
     setTimeout(function () {
         alert.style.display = "none";
@@ -101,7 +117,6 @@ function HideImageLoadForm() {
 
 /* script for the right hand side - fields B */
 function continue_with_B() {
-
     // reset count down
     clearTimeout(countdown1);
     count.innerHTML = AnswerTime / 1000;
@@ -134,11 +149,11 @@ function continue_with_B() {
                     // console.log("countdown 2:", counter)
                     setTimeout(run, 1000);
                     NextButton2.onclick = function () {
-                        if(num_x_belief_B.value == "") {
+                        if(num_x_belief_B.value === "") {
                             window.alert("Please enter your guess for the number  of pills");
                             return false;
                         }
-                        else if(slider_B.className == "slider2"){
+                        else if(slider_B.className === "slider2"){
                             window.alert("Please enter how certain you are about your guess");
                             return false;
                         }
@@ -159,8 +174,6 @@ function continue_with_B() {
     }, Delay);
 }
 
-
-
 function continue_with_donation () {
     num_x_belief_B.disabled = true;
     slider_B.disabled = true;
@@ -177,6 +190,113 @@ function continue_with_donation () {
     SubmitButton.disabled = false;
 
 }
+
+
+function start_with_A_exP() {
+/* define protocol in seconds */
+    // Intro time delay to display matrix A
+    setTimeout(function () {
+        alert.style.display = "none";
+        matrix1_white.style.display = "none";
+        matrix1.style.display = "block";
+
+        // after intro show hide matrix after 'Delay' seconds
+        setTimeout(function () {
+            matrix1.style.display = "none";
+            matrix1_white.style.display = "block";
+            NextButton1.style.visibility = "visible";
+            NextButton1.onclick = continue_with_B_ExP;
+        }, Delay);
+    }, Intro);
+}
+
+
+/* script for the right hand side - fields B */
+function continue_with_B_ExP() {
+
+    NextButton1.style.visibility = "hidden";
+    matrix2_white.style.display="none";
+    matrix2.style.display="block";
+    cardA.style.color = "#6c757d";
+
+    setTimeout(function(){
+        matrix2.style.display = "none";
+        matrix2_white.style.display = "block";
+        NextButton2.style.visibility = "visible";
+        NextButton2.onclick = continue_with_donation_ExP;
+    }, Delay);
+}
+
+function continue_with_donation_ExP () {
+    cardC.style.color = "black";
+    var i;
+    for (i = 0; i < donations.length; i++) {
+        donations[i].disabled = false;
+    }
+    NextButton2.style.visibility = "hidden";
+    NextButton3.style.visibility = "visible";
+    NextButton3.onclick = function () {
+        var fields_clicked = 0;
+        for(i = 0; i < donations.length; i++) {
+            if(donations[i].checked){
+                    ++fields_clicked
+            }
+        }
+        //console.log("fields filled", fields_clicked)
+        if (fields_clicked < 2) {
+             window.alert("Please enter your donation decision for both projects");
+             return false;
+        }
+        else if (fields_clicked === 2) {
+            continue_with_belief_A();
+        }
+    }
+}
+
+function continue_with_belief_A () {
+    matrix1.style.display = "none";
+    matrix1_white.style.display = "none";
+    beliefA.style.display = "block";
+    cardA.style.color = "black";
+    num_x_belief_A.disabled = false;
+    slider_A.disabled = false;
+    NextButton1.style.visibility = "visible";
+
+    // display count down
+    countdown.style.visibility = "visible";
+
+    // set counter for count down equal to answer time secs
+    var counter = AnswerTime / 1000;
+    setTimeout(function run() {
+        counter--;
+        // console.log("countdown 1:", counter)
+        if (counter >= 0) {
+            count.innerHTML = counter;
+            countdown1 = setTimeout(run, 1000);
+            NextButton1.onclick = function () {
+                if(num_x_belief_A.value == "") {
+                    window.alert("Please enter your guess for the number  of pills");
+                    return false;
+                }
+                else if(slider_A.className == "slider2"){
+                    window.alert("Please enter how certain you are about your guess");
+                    return false;
+                }
+                else
+                    continue_with_B();
+            }
+        }
+        if (counter === 0) {
+            // when countdown is run out disable fields
+            num_x_belief_A.disabled = true;
+            countdown.style.visibility = "hidden";
+            slider_A.disabled = true;
+            cardA.style.color = "#6c757d";
+            NextButton1.onclick = continue_with_B;
+        }
+    }, 1000);
+}
+
 
 
 

@@ -93,7 +93,8 @@ class Subsession(BaseSubsession):
                     p.part = 2
 
                 # Assign between subject treatment with pr(ExAnte) = 1/3, pr(ExPost) = 2/3
-                treatments = ["ExAnte", "ExPost", "ExPost"]
+                # treatments = ["ExAnte", "ExPost", "ExPost"]
+                treatments = ["ExPost"]
                 p.treatment = random.choice(treatments)
 
                 # Assign incentive strength to players in all rounds using treatment order assigned in first round
@@ -236,7 +237,7 @@ class Player(BasePlayer):
 
 ###### For experiment
 # - randomize treatments with high & low incentives
-# - implement ex ante and ex post treatment
+# - implement ex ante and ex post treatment ### OBS! Changed assignment of treatment, now all are ExPost
 
 # The experiment is programmed such that subjects:
 # -	who do not enter their belief estimate on time two times (within 20 seconds),
