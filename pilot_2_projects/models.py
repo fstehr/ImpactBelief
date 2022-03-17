@@ -221,8 +221,6 @@ class Player(BasePlayer):
 
 # still have to donate 6 doses from pilot!!!
 
-# - Include a money left item on donation screen
-
 # - systematically test belief & donation payoffs
 # obs current belief payoff does not seem to work!!!
 # - test randomization of pictures!!! using console log with the picture names!
@@ -238,6 +236,7 @@ class Player(BasePlayer):
 
 ###### For experiment
 # - randomize treatments with high & low incentives
+# - implement ex ante and ex post treatment
 
 # The experiment is programmed such that subjects:
 # -	who do not enter their belief estimate on time two times (within 20 seconds),

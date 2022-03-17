@@ -72,6 +72,18 @@ function HideImageLoadForm() {
                 if (counter >= 0) {
                     count.innerHTML = counter;
                     countdown1 = setTimeout(run, 1000);
+                    NextButton1.onclick = function () {
+                        if(num_x_belief_A.value == "") {
+                            window.alert("Please enter your estimate for the number  of pills");
+                            return false;
+                        }
+                        else if(slider_A.className == "slider2"){
+                            window.alert("Please enter how certain you are about your estimate");
+                            return false;
+                        }
+                        else
+                            continue_with_B();
+                    }
                 }
                 if (counter === 0) {
                     // when countdown is run out disable fields
@@ -79,6 +91,7 @@ function HideImageLoadForm() {
                     countdown.style.visibility = "hidden";
                     slider_A.disabled = true;
                     cardA.style.color = "#6c757d";
+                    NextButton1.onclick = continue_with_B;
                 }
             }, 1000);
         }, Delay);
@@ -86,14 +99,8 @@ function HideImageLoadForm() {
 }
 
 
-/* dynamically changing the minimum values for the form fields A */
-num_x_belief_A.onchange = function () {
-    num_x_belief_A.reportValidity();
- }
-
-
 /* script for the right hand side - fields B */
-NextButton1.onclick = function () {
+function continue_with_B() {
 
     // reset count down
     clearTimeout(countdown1);
@@ -126,6 +133,18 @@ NextButton1.onclick = function () {
                     count.innerHTML = counter;
                     // console.log("countdown 2:", counter)
                     setTimeout(run, 1000);
+                    NextButton2.onclick = function () {
+                        if(num_x_belief_B.value == "") {
+                            window.alert("Please enter your estimate for the number  of pills");
+                            return false;
+                        }
+                        else if(slider_B.className == "slider2"){
+                            window.alert("Please enter how certain you are about your estimate");
+                            return false;
+                        }
+                        else
+                            continue_with_donation();
+                    }
                 }
                 if (counter === 0) {
                     console.log("disable")
@@ -134,19 +153,15 @@ NextButton1.onclick = function () {
                     slider_B.disabled = true;
                     countdown.style.visibility = "hidden";
                     cardB.style.color = "#6c757d";
+                    NextButton2.onclick = continue_with_donation;
                 }
             }, 1000);
     }, Delay);
 }
 
-/* dynamically changing the minimum values for the form fields B */
-num_x_belief_B.onchange = function () {
-    num_x_belief_B.reportValidity();
-}
 
 
-
-NextButton2.onclick = function () {
+function continue_with_donation () {
     num_x_belief_B.disabled = true;
     slider_B.disabled = true;
     countdown.style.visibility = "hidden";
