@@ -53,15 +53,15 @@ function HideImageLoadForm() {
         donations[i].disabled = true;
     }
     if (treatment === "ExAnte") {
-        start_with_A_exA();
+        start_with_A_ExA();
     }
     else if (treatment === "ExPost") {
-        start_with_A_exP();
+        start_with_A_ExP();
     }
 
 }
 
-function start_with_A_exA() {
+function start_with_A_ExA() {
 /* define protocol in seconds */
     // Intro time delay to display matrix A
     setTimeout(function () {
@@ -89,11 +89,11 @@ function start_with_A_exA() {
                     count.innerHTML = counter;
                     countdown1 = setTimeout(run, 1000);
                     NextButton1.onclick = function () {
-                        if(num_x_belief_A.value == "") {
+                        if(num_x_belief_A.value === "") {
                             window.alert("Please enter your guess for the number  of pills");
                             return false;
                         }
-                        else if(slider_A.className == "slider2"){
+                        else if(slider_A.className === "slider2"){
                             window.alert("Please enter how certain you are about your guess");
                             return false;
                         }
@@ -186,13 +186,12 @@ function continue_with_donation () {
         donations[i].disabled = false;
     }
     NextButton2.style.visibility = "hidden";
-    SubmitButton.class = "btn btn-primary btn-large";
-    SubmitButton.disabled = false;
-
+    SubmitButton.style.visibility = "visible";
+    SubmitButton.onlick = submission_check;
 }
 
 
-function start_with_A_exP() {
+function start_with_A_ExP() {
 /* define protocol in seconds */
     // Intro time delay to display matrix A
     setTimeout(function () {
@@ -248,12 +247,19 @@ function continue_with_donation_ExP () {
              return false;
         }
         else if (fields_clicked === 2) {
-            continue_with_belief_A();
+            continue_with_belief_A_ExP();
         }
     }
 }
 
-function continue_with_belief_A () {
+function continue_with_belief_A_ExP () {
+    cardC.style.color = "#6c757d";
+    var i;
+    for (i = 0; i < donations.length; i++) {
+        donations[i].disabled = true;
+    }
+    NextButton3.style.visibility = "hidden";
+
     matrix1.style.display = "none";
     matrix1_white.style.display = "none";
     beliefA.style.display = "block";
@@ -274,16 +280,16 @@ function continue_with_belief_A () {
             count.innerHTML = counter;
             countdown1 = setTimeout(run, 1000);
             NextButton1.onclick = function () {
-                if(num_x_belief_A.value == "") {
+                if(num_x_belief_A.value === "") {
                     window.alert("Please enter your guess for the number  of pills");
                     return false;
                 }
-                else if(slider_A.className == "slider2"){
+                else if(slider_A.className === "slider2"){
                     window.alert("Please enter how certain you are about your guess");
                     return false;
                 }
                 else
-                    continue_with_B();
+                    continue_with_belief_B_ExP();
             }
         }
         if (counter === 0) {
@@ -292,10 +298,71 @@ function continue_with_belief_A () {
             countdown.style.visibility = "hidden";
             slider_A.disabled = true;
             cardA.style.color = "#6c757d";
-            NextButton1.onclick = continue_with_B;
+            NextButton1.onclick = continue_with_belief_B_ExP;
         }
     }, 1000);
 }
+
+
+function continue_with_belief_B_ExP() {
+    // reset count down
+    clearTimeout(countdown1);
+    count.innerHTML = AnswerTime / 1000;
+
+    NextButton1.style.visibility = "hidden";
+    num_x_belief_A.disabled = true;
+    slider_A.disabled = true;
+    cardA.style.color = "#6c757d";
+
+    matrix2_white.style.display="none";
+    beliefB.style.display = "block";
+    cardB.style.color = "black";
+    num_x_belief_B.disabled = false;
+    slider_B.disabled = false;
+    SubmitButton.style.visibility = "visible";
+
+    // display count down
+    countdown.style.visibility="visible";
+    // set counter for count down equal to answer time secs
+    var counter = AnswerTime / 1000;
+         setTimeout(function run() {
+            counter--;
+            if (counter >= 0) {
+                count.innerHTML = counter;
+                // console.log("countdown 2:", counter)
+                setTimeout(run, 1000);
+                SubmitButton.onclick = function () {
+                    if(num_x_belief_B.value === "") {
+                        window.alert("Please enter your guess for the number  of pills");
+                        return false;
+                    }
+                    else if(slider_B.className === "slider2"){
+                        window.alert("Please enter how certain you are about your guess");
+                        return false;
+                    }
+                    else
+                        submission_check();
+                }
+            }
+            if (counter === 0) {
+                console.log("disable")
+                // when countdown is run out disable fields
+                num_x_belief_B.disabled = true;
+                slider_B.disabled = true;
+                countdown.style.visibility = "hidden";
+                cardB.style.color = "#6c757d";
+                SubmitButton.onclick = submission_check;
+            }
+        }, 1000);
+}
+
+
+
+
+
+
+
+
 
 
 
@@ -346,15 +413,15 @@ function changeCIB(val) {
 
 
 /* on form submission enable all fields again */
-SubmitButton.onclick = function () {
+function submission_check () {
     let loadcount = parseInt(localStorage.getItem('counter') || 0);
     console.log("page_loaded counter is", loadcount);
 
     if (loadcount > 0) {
-        page_loaded.value = loadcount
+        page_loaded.value = loadcount;
     } else if (loadcount === null) {
-        page_loaded.value = 0
-    };
+        page_loaded.value = 0;
+    }
     localStorage.removeItem('counter');
 
     //Extract Each Element Value i.e. each form field

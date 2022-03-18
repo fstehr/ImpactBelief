@@ -84,32 +84,31 @@ class Subsession(BaseSubsession):
                 orders = ["NeutralMotivated", "MotivatedNeutral"]
                 p.vars['order'] = random.choice(orders)
 
-            # store some of the participant vars in the data set
-            for p in self.get_players():
-                # Define "part" variable in the beginning of the experiment
-                if self.round_number <= len(Constants.paras):
-                    p.part = 1
-                elif self.round_number <= Constants.num_rounds:
-                    p.part = 2
+        # store some of the participant vars in the data set
+        for p in self.get_players():
+            # Define "part" variable in the beginning of the experiment
+            if self.round_number <= len(Constants.paras):
+                p.part = 1
+            elif self.round_number <= Constants.num_rounds:
+                p.part = 2
 
-                # Assign between subject treatment with pr(ExAnte) = 1/3, pr(ExPost) = 2/3
-                # treatments = ["ExAnte", "ExPost", "ExPost"]
-                treatments = ["ExPost"]
-                p.treatment = random.choice(treatments)
+            # Assign between subject treatment with pr(ExAnte) = 1/3, pr(ExPost) = 2/3
+            treatments = ["ExAnte", "ExPost", "ExPost"]
+            p.treatment = random.choice(treatments)
 
-                # Assign incentive strength to players in all rounds using treatment order assigned in first round
-                if p.participant.vars['order'] == "NeutralMotivated":
-                    p.order = "NeutralMotivated"
-                    if p.part == 1:
-                        p.accuracy_bonus = Constants.accuracy_bonus_high
-                    else:
-                        p.accuracy_bonus = Constants.accuracy_bonus_low
-                elif p.participant.vars['order'] == "MotivatedNeutral":
-                    p.order = "MotivatedNeutral"
-                    if p.part == 1:
-                        p.accuracy_bonus = Constants.accuracy_bonus_low
-                    else:
-                        p.accuracy_bonus = Constants.accuracy_bonus_high
+            # Assign incentive strength to players in all rounds using treatment order assigned in first round
+            if p.participant.vars['order'] == "NeutralMotivated":
+                p.order = "NeutralMotivated"
+                if p.part == 1:
+                    p.accuracy_bonus = Constants.accuracy_bonus_high
+                else:
+                    p.accuracy_bonus = Constants.accuracy_bonus_low
+            elif p.participant.vars['order'] == "MotivatedNeutral":
+                p.order = "MotivatedNeutral"
+                if p.part == 1:
+                    p.accuracy_bonus = Constants.accuracy_bonus_low
+                else:
+                    p.accuracy_bonus = Constants.accuracy_bonus_high
 
 
 class Group(BaseGroup):
