@@ -294,14 +294,15 @@ class Player(BasePlayer):
 
 # - emphasize that there is no (immediate) feedback on belief accuracy!
 # - maybe not call it estimation but best guess or belief or so in the instructions!
+
 # - as elicited by their donation in a ***dictator game with other participants at the end of the experiment
 
 # update trial page buttons in the same way as donation
 
+
 # update instructions to include treatments & split them on multiple screens with questions in between
 
 # think about how to deal with with time-out variable
-
 # The experiment is programmed such that subjects:
 # -	who do not enter their belief estimate on time two times (within 20 seconds),
 # -	who do not manage to answer an attention check correctly,

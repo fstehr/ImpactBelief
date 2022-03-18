@@ -52,6 +52,8 @@
                 Your answers on this page do <b>not affect your bonus payment</b>.
             </p>
             <p>You will go through the page in the following order:</p>
+
+            {% if player.treatment == "ExAnte" %}
                 <ol>
                     <li>You will <b>see an image on the left</b> which indicates how many vitamin A doses
                         a donation to this project finances <b>for {{ Constants.sec_per_matrix }} seconds</b>.</li>
@@ -67,9 +69,15 @@
                     <li>Click the 'Next' button to <b>move on to the donation decision</b> at the bottom of the screen.</li>
                     <li>After you decided on your donations, the 'Next' button will take you to a <b>new donation page</b> with different projects.</li>
                 </ol>
+            {% elif player.treatment == "ExPost" %}
+                <p>
+                    HI this is info on expost
+                </p>
+            {% endif %}
+
             <br>
             <div style="text-align: right" id="StartButton">
-                <button type="button" class="btn btn-primary btn-large" onclick="HideButton();HideImageLoadForm()">Ready to start</button>
+                <button type="button" class="btn btn-primary btn-large" onclick="HideButton(); HideImageLoadForm();">Ready to start</button>
             </div>
 
         </div>
@@ -135,6 +143,10 @@
                     </tr>
                 </table>
 
+                <div style="padding: 0; text-align: right">
+                    <button id="NextButton1" style="visibility: hidden" type="button" class="btn btn-primary btn-large">&#8680;</button>
+                </div>
+
               </div>
           </div>
 
@@ -182,7 +194,11 @@
                             <em>I am certain the value is between <span id="min_B">0</span> and <span id="max_B">400</span>.</em>
                         </td>
                     </tr>
-                  </table>
+                </table>
+
+                <div style="padding: 0; text-align: right">
+                    <button id="NextButton2" style="visibility: hidden" type="button" class="btn btn-primary btn-large">&#8680;</button>
+                </div>
             </div>
         </div>
     </div>
@@ -207,34 +223,24 @@
                         {{ form.trial_donation_B }}
                     </td>
                 </tr>
-                <tr>
-                    <td colspan="3" style="text-align: center;font-weight: lighter">
-                        <img style="width: 3%;" src="{% static 'global/img/i_black.png' %}">
-                        <em>10 pills mean your donation finances 1 dose of vitamin A</em>
-                    </td>
-                </tr>
             </table>
+            <div style="padding: 0; text-align: right">
+                <button id="NextButton3" style="visibility: hidden" type="button" class="btn btn-primary btn-large">&#8680;</button>
+            </div>
         </div>
     </div>
 
+    <input type="hidden" name="page_loaded" id="page_loaded" value="0">
+    <input type="hidden" name="honey_pot" id="honey_pot">
 
 
     <br>
 
-
-    <div style="display:none; text-align: right" id="NextButton1">
-        <button type="button" class="btn btn-primary btn-large">Next</button>
+    <div style="text-align: right">
+       <button id="SubmitButton" class="btn btn-primary btn-large" style="visibility: hidden">Next</button>
     </div>
 
-    <div style="display:none; text-align: right" id="NextButton2">
-        <button type="button" class="btn btn-primary btn-large">Next</button>
-    </div>
 
-    <div style="display:none; text-align: right" id="SubmitButton">
-        <button class="btn btn-primary btn-large">Start the experiment</button>
-    </div>
-
-    <input type="hidden" name="page_loaded" id="page_loaded" value="0">
 
 </body>
 

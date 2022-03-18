@@ -43,6 +43,7 @@ class TrialPage(Page):
             sec_intro=Constants.sec_intro,
             sec_per_matrix=Constants.sec_per_matrix,
             sec_to_answer=Constants.sec_to_answer,
+            treatment=self.player.treatment,
         )
 
 
@@ -181,4 +182,4 @@ class Thanks(Page):
 
 
 # page_sequence = [Welcome, NoPhone, Instructions, AttentionFail, TrialPage, Donation, Questionnaire, Feedback, Thanks]
-page_sequence = [Questionnaire]
+page_sequence = [TrialPage]
