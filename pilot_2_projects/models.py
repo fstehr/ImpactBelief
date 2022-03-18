@@ -195,9 +195,76 @@ class Player(BasePlayer):
     # Other behavior during elicitation
     page_loaded = models.IntegerField()
     time_out = models.BooleanField()
-    honeypot = models.StringField()
+    honeypot = models.IntegerField(blank=True,
+                                   doc="hidden field which will only be filled by bots")
 
-    # Feedback
+    # additional variables
+    age = models.IntegerField(label="What is your age?",
+                              choices=[
+                                  [1, "17 or younger"],
+                                  [2, "18 - 19"],
+                                  [3, "20 - 29"],
+                                  [4, "30 - 39"],
+                                  [5, "40 - 49"],
+                                  [6, "50 - 59"],
+                                  [7, "60 or older"],
+
+                              ])
+
+    gender = models.IntegerField(
+        label="What is your gender?",
+        choices=[
+            [1, "Female"],
+            [2, "Male"],
+            [3, "Non-binary"],
+            [4, "Prefer Not to Specify"],
+        ],
+        widget=widgets.RadioSelectHorizontal,
+    )
+
+    levelOfEducation = models.IntegerField(
+        label="What is the highest degree or level of education you have completed?",
+        choices=[
+            [0, 'Less than High School diploma'],
+            [1, 'High School or equivalent'],
+            [2, 'Bachelor degree (e.g. BA, BSc)'],
+            [3, 'Master degree (e.g. MA, MSc, MEd)'],
+            [4, 'Doctorate (e.g. PhD, EdD, DBA)'],
+            [5, 'other'],
+        ],
+    )
+
+    income = models.IntegerField(
+        label="What is your household income per year? In your answer, please consider only people with whom you share finances as part of your household. "
+              "This would, for example, most likely exclude other members from your student dorm.",
+        choices=[
+            [0, 'Less than $10,000'],
+            [1, '$10,000 - $19,999'],
+            [2, '$20,000 - $29,999'],
+            [3, '$30,000 - $39,999'],
+            [4, '$40,000 - $49,999'],
+            [5, '$50,000 - $59,999'],
+            [6, '$60,000 - $69,999'],
+            [7, '$70,000 - $79,999'],
+            [8, '$80,000 - $89,999'],
+            [9, '$90,000 - $99,999'],
+            [10, '$100,000 - $149,999'],
+            [11, '$150,000 or more'],
+        ],
+    )
+
+    # https://medium.com/pew-research-center-decoded/small-changes-in-survey-scales-can-matter-when-measuring-political-ideology-in-europe-4a10d9a015c5
+    politics_right = models.IntegerField(
+        label="In political matters people talk of 'the left' and 'the right'. Please pick the category that you identify most with.",
+        choices=[[1, "left"],
+                 [2, "leaning left"],
+                 [3, "centre"],
+                 [4, "leaning right"],
+                 [5, "right"]
+                 ],
+        widget=widgets.RadioSelectHorizontal,
+    )
+
     altruism = models.IntegerField(
         choices=range(0, 11),
         widget=widgets.RadioSelectHorizontal,
