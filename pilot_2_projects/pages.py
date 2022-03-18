@@ -49,7 +49,7 @@ class TrialPage(Page):
 class Donation(Page):
     form_model = 'player'
     form_fields = ['num_x_belief_A', 'confidence_belief_A', 'donation_A',
-                   'num_x_belief_B', 'confidence_belief_B', 'donation_B', 'page_loaded']
+                   'num_x_belief_B', 'confidence_belief_B', 'donation_B', 'page_loaded', 'honeypot']
 
     def js_vars(self):
         return dict(

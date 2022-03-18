@@ -195,6 +195,7 @@ class Player(BasePlayer):
     # Other behavior during elicitation
     page_loaded = models.IntegerField()
     time_out = models.BooleanField()
+    honeypot = models.StringField()
 
     # Feedback
     altruism = models.IntegerField(
@@ -222,31 +223,23 @@ class Player(BasePlayer):
 # still have to donate 6 doses from pilot!!!
 
 # - systematically test belief & donation payoffs
-# obs current belief payoff does not seem to work!!!
 # - test randomization of pictures!!! using console log with the picture names!
 
 # - emphasize that there is no (immediate) feedback on belief accuracy!
 # - maybe not call it estimation but best guess or belief or so in the instructions!
-# - as elicited by their donation in a dictator game with other participants at the end of the experiment
+# - as elicited by their donation in a ***dictator game with other participants at the end of the experiment
 
-# think about how to deal with with time-out variable
-
-# include honey pot properly on donation page!
 # update trial page buttons in the same way as donation
 
-###### For experiment
-# - randomize treatments with high & low incentives
-# - implement ex ante and ex post treatment ### OBS! Changed assignment of treatment, now all are ExPost
+# update instructions to include treatments & split them on multiple screens with questions in between
+
+# think about how to deal with with time-out variable
 
 # The experiment is programmed such that subjects:
 # -	who do not enter their belief estimate on time two times (within 20 seconds),
 # -	who do not manage to answer an attention check correctly,
 # -	who fail to answer the control questions testing their understanding of the instructions correctly within two attempts
 # are excluded from the experiment.
-
-
-# think about how to assign treatment most elegantly/practically
-# https://github.com/chkgk/otree_adaptive_treatment_assignment/blob/master/adaptive_assignment_demo/models.py
 
 
 
