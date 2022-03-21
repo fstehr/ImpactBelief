@@ -33,7 +33,7 @@ class AttentionFail(Page):
 class TrialPage(Page):
     form_model = 'player'
     form_fields = ['trial_belief_A', 'trial_confidence_A', 'trial_donation_A',
-                   'trial_belief_B', 'trial_confidence_B', 'trial_donation_B']
+                   'trial_belief_B', 'trial_confidence_B', 'trial_donation_B', 'page_loaded']
 
     def is_displayed(self):
         return self.round_number == 1
@@ -182,4 +182,4 @@ class Thanks(Page):
 
 
 # page_sequence = [Welcome, NoPhone, Instructions, AttentionFail, TrialPage, Donation, Questionnaire, Feedback, Thanks]
-page_sequence = [TrialPage]
+page_sequence = [TrialPage, Donation]

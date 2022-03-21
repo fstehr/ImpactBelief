@@ -39,7 +39,8 @@ let donations = document.querySelectorAll("input[type=radio]");
 let NextButton1 = document.getElementById("NextButton1");
 let NextButton2 = document.getElementById("NextButton2");
 let NextButton3 = document.getElementById("NextButton3");
-let SubmitButton = document.getElementById("SubmitButton");
+let SubmitButtonExA = document.getElementById("SubmitButtonExA");
+let SubmitButtonExP = document.getElementById("SubmitButtonExP");
 
 
 
@@ -186,8 +187,8 @@ function continue_with_donation () {
         donations[i].disabled = false;
     }
     NextButton2.style.visibility = "hidden";
-    SubmitButton.style.visibility = "visible";
-    SubmitButton.onlick = submission_check;
+    SubmitButtonExA.style.visibility = "visible";
+    SubmitButtonExA.onclick = submission_check;
 }
 
 
@@ -319,7 +320,8 @@ function continue_with_belief_B_ExP() {
     cardB.style.color = "black";
     num_x_belief_B.disabled = false;
     slider_B.disabled = false;
-    SubmitButton.style.visibility = "visible";
+    NextButton2.style.display = "none";
+    SubmitButtonExP.style.display = "inline";
 
     // display count down
     countdown.style.visibility="visible";
@@ -331,7 +333,7 @@ function continue_with_belief_B_ExP() {
                 count.innerHTML = counter;
                 // console.log("countdown 2:", counter)
                 setTimeout(run, 1000);
-                SubmitButton.onclick = function () {
+                SubmitButtonExP.onclick = function () {
                     if(num_x_belief_B.value === "") {
                         window.alert("Please enter your guess for the number  of pills");
                         return false;
@@ -351,20 +353,10 @@ function continue_with_belief_B_ExP() {
                 slider_B.disabled = true;
                 countdown.style.visibility = "hidden";
                 cardB.style.color = "#6c757d";
-                SubmitButton.onclick = submission_check;
+                SubmitButtonExP.onclick = submission_check;
             }
         }, 1000);
 }
-
-
-
-
-
-
-
-
-
-
 
 
 

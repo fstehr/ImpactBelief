@@ -47,7 +47,9 @@
         <strong>
             Please stay alert, as each image is only displayed for {{ Constants.sec_per_matrix }} seconds.<br>
         </strong>
-        You have {{ Constants.sec_to_answer }} seconds to fill in your estimate after the image disappears.
+        {% if player.treatment == "ExAnte" %}
+            You have {{ Constants.sec_to_answer }} seconds to fill in your estimate after the image disappears.
+        {% endif %}
     </div>
 
     <!-- Forms -->
@@ -156,6 +158,11 @@
                 <div style="padding: 0; text-align: right">
                     <button id="NextButton2" style="visibility: hidden" type="button" class="btn btn-primary btn-large">&#8680;</button>
                 </div>
+                {% if player.treatment == "ExPost" %}
+                    <div style="padding: 0; text-align: right">
+                       <button id="SubmitButtonExP" class="btn btn-primary btn-large" style="display: none">Next</button>
+                    </div>
+                {% endif %}
             </div>
         </div>
     </div>
@@ -184,20 +191,16 @@
             <div style="padding: 0; text-align: right">
                 <button id="NextButton3" style="visibility: hidden" type="button" class="btn btn-primary btn-large">&#8680;</button>
             </div>
+            {% if player.treatment == "ExAnte" %}
+                <div style="text-align: right">
+                   <button id="SubmitButtonExA" class="btn btn-primary btn-large" style="visibility: hidden">Next</button>
+                </div>
+            {% endif %}
         </div>
     </div>
 
     <input type="hidden" name="page_loaded" id="page_loaded" value="0">
     <input type="hidden" name="honey_pot" id="honey_pot">
-
-
-    <br>
-
-    <div style="text-align: right">
-       <button id="SubmitButton" class="btn btn-primary btn-large" style="visibility: hidden">Next</button>
-    </div>
-
-
 
 </body>
 

@@ -55,24 +55,38 @@
 
             {% if player.treatment == "ExAnte" %}
                 <ol>
-                    <li>You will <b>see an image on the left</b> which indicates how many vitamin A doses
-                        a donation to this project finances <b>for {{ Constants.sec_per_matrix }} seconds</b>.</li>
+                    <li>You will <b>see an image on the left for {{ Constants.sec_per_matrix }} seconds</b>
+                        indicating how many vitamin A doses donating to this project finances.</li>
                     <li><b>When the image disappears, you have {{ Constants.sec_to_answer }} seconds</b> to fill in
                         <ul>
                             <li>your estimate</li>
                             <li>how certain you are about your estimate</li>
                         </ul>
                     </li>
-                    <li>Click the 'Next' button, when you are ready for the <b>next image</b>.</li>
-                    <li>You see an image indicating how many vitamin A doses the project <b>on the right</b> finances for {{ Constants.sec_per_matrix }} seconds.</li>
+                    <li>Click the '&#8680;' button, when you are ready for the <b>next image</b>.</li>
+                    <li>For {{ Constants.sec_per_matrix }} seconds, you see an image indicating how many vitamin A doses the project <b>on the right</b> finances.</li>
                     <li>When the image disappears, you have again <b>{{ Constants.sec_to_answer }} seconds</b> to fill in your estimate and certainty.</li>
-                    <li>Click the 'Next' button to <b>move on to the donation decision</b> at the bottom of the screen.</li>
+                    <li>Click the '&#8680;' button to <b>move on to the donation decision</b> at the bottom of the screen.</li>
                     <li>After you decided on your donations, the 'Next' button will take you to a <b>new donation page</b> with different projects.</li>
                 </ol>
             {% elif player.treatment == "ExPost" %}
-                <p>
-                    HI this is info on expost
-                </p>
+                <ol>
+                    <li>You will <b>see an image on the left for {{ Constants.sec_per_matrix }} seconds</b>
+                        indicating how many vitamin A doses donating to this project finances.</li>
+                    <li>Click the '&#8680;' button, when you are ready for the <b>next image</b>.</li>
+                    <li>For {{ Constants.sec_per_matrix }} seconds, you see an image indicating how many vitamin A doses the project <b>on the right</b>
+                        finances.</li>
+                    <li>Click the '&#8680;' button to <b>move on to the donation decision</b> at the bottom of the screen.</li>
+                    <li><b>After clicking the '&#8680;' button, you have {{ Constants.sec_to_answer }} seconds</b> to fill in
+                        <ul>
+                            <li>your estimate for the project <b>on the left</b></li>
+                            <li>how certain you are about your estimate</li>
+                        </ul>
+                    </li>
+                    <li>After clicking the '&#8680;' button, you have again <b>{{ Constants.sec_to_answer }} seconds</b>
+                        to fill in your estimate and certainty for the <b>project on the right</b>.</li>
+                    <li>The 'Next' button will take you to a <b>new donation page</b> with different projects.</li>
+                </ol>
             {% endif %}
 
             <br>
@@ -90,7 +104,9 @@
         <strong>
             Please stay alert, as each image is only displayed for {{ Constants.sec_per_matrix }} seconds.<br>
         </strong>
-        You have {{ Constants.sec_to_answer }} seconds to fill in your estimate after the image disappears.
+        {% if player.treatment == "ExAnte" %}
+            You have {{ Constants.sec_to_answer }} seconds to fill in your estimate after the image disappears.
+        {% endif %}
     </div>
 
     <!-- Forms -->
@@ -199,6 +215,11 @@
                 <div style="padding: 0; text-align: right">
                     <button id="NextButton2" style="visibility: hidden" type="button" class="btn btn-primary btn-large">&#8680;</button>
                 </div>
+                {% if player.treatment == "ExPost" %}
+                    <div style="padding: 0; text-align: right">
+                       <button id="SubmitButtonExP" class="btn btn-primary btn-large" style="display: none">Next</button>
+                    </div>
+                {% endif %}
             </div>
         </div>
     </div>
@@ -227,19 +248,15 @@
             <div style="padding: 0; text-align: right">
                 <button id="NextButton3" style="visibility: hidden" type="button" class="btn btn-primary btn-large">&#8680;</button>
             </div>
+            {% if player.treatment == "ExAnte" %}
+                <div style="text-align: right">
+                   <button id="SubmitButtonExA" class="btn btn-primary btn-large" style="visibility: hidden">Next</button>
+                </div>
+            {% endif %}
         </div>
     </div>
 
     <input type="hidden" name="page_loaded" id="page_loaded" value="0">
-    <input type="hidden" name="honey_pot" id="honey_pot">
-
-
-    <br>
-
-    <div style="text-align: right">
-       <button id="SubmitButton" class="btn btn-primary btn-large" style="visibility: hidden">Next</button>
-    </div>
-
 
 
 </body>
