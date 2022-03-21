@@ -8,18 +8,25 @@ class Terminated(Page):
     form_fields = ['finishing_time']
 
     def is_displayed(self):
-        return self.participant.vars['trial_timeout_counter'] == 3 or self.participant.vars['timeout_counter'] == 2 \
+        return self.participant.vars['too_many_wrong'] == True \
+                or self.participant.vars['timeout_counter'] == 2 \
                or self.participant.vars['attention_check_failed'] == True
 
     def vars_for_template(self):
         participant = self.participant
-        if participant.vars['trial_timeout_counter'] == 3 or participant.vars['timeout_counter'] == 2:
-            timeout = True
+        if participant.vars['too_many_wrong'] == True:
+            too_many_wrong = True
             attention_fail = False
-        elif participant.vars['attention_check_failed'] == True:
             timeout = False
+        elif participant.vars['attention_check_failed'] == True:
+            too_many_wrong = False
             attention_fail = True
-        return {'timeout': timeout, 'attention_check_failed': attention_fail}
+            timeout = False
+        elif participant.vars['timeout_counter'] == 2:
+            too_many_wrong = False
+            attention_fail = False
+            timeout = True
+        return {'too_many_wrong': too_many_wrong, 'timeout': timeout, 'attention_check_failed': attention_fail}
         # dict(redemption_code=participant.label or participant.code)
 
 

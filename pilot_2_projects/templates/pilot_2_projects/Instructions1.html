@@ -1,0 +1,93 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block styles %}
+    <link href="{% static 'global/css/ecomb.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <style>
+        /* Alignment of buttons */
+        .next {float: right; margin-top: 40px;}
+        .back {float: left; margin-top: 40px;}
+        li{margin: 10px 0;}
+        .controls ul li{margin: 0;}
+        .tab{margin: 10px;}
+        .center_img {width: 40%; display: block; margin-left: auto; margin-right: auto;}
+    </style>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'global/js/browser_info.js' %}"></script>
+    <script src="{% static 'global/js/backbutton.js' %}"></script>
+{% endblock %}
+
+
+{% block title %}
+    Instructions
+{% endblock %}
+
+
+
+{% block content %}
+
+    <!-- Hidden Tracking Fields -->
+    <input type="hidden" name="window_width" id="id_window_width" value="0"/>
+    <input type="hidden" name="window_height" id="id_window_height" value="0"/>
+
+
+<div class="card">
+    <div class="card-body">
+
+    <!-- Page 1 -->
+    <div class="tab">
+
+        <h4><i class="bi bi-map" style="font-size: 1.5em; color: Grey; margin-right: 0.5em"></i> The structure of the experiment</h4>
+        <ul>
+            <li>This experiment is composed of two parts.</li>
+            <li>Each part consists of multiple rounds of the same task.</li>
+            <li>Your choices in these tasks <b>may affect your final earnings</b>.</li>
+            <li>We randomly select 1 out of 20 participants, at the end of the experiment.</li>
+            <li>If you are among them, we <b>randomly select one of your decisions</b>
+            in the experiment to be the <b>decision-that-counts for your bonus payment</b>.</li>
+        </ul>
+
+        <div class="alert alert-warning alert-bonus" role="alert">
+            Throughout the rest of the instructions, we use yellow boxes to <b>explain how your decisions affect your bonus payment</b>.
+        </div>
+
+
+        <ul>
+            <li>On the next pages, we describe the task in this experiment.</li>
+            <li>Pay close attention to these instructions, we will ask comprehension questions at the end of each section.</li>
+            <li>You will <b>not be admitted to the experiment and forfeit any payments</b>, if you <b>answer wrongly more than two times</b>.</li>
+        </ul>
+
+
+
+        <p>
+            <button type="button" class="btn btn-primary btn-tab next" data-offset="1">Next</button>
+        </p>
+
+    </div>
+
+    <!-- Page 2 -->
+    <div class="tab">
+        <div class="alert alert-primary">
+            Before we start, we need to ensure that you understand the instructions.
+            <br>
+            You may view the instructions again by going back to the previous page (click 'back' below).
+        </div>
+
+            {% formfield player.cq_1 %}
+
+            {% formfield player.cq_2 %}
+
+        <p>
+            <button type="button" class="btn btn-primary btn-tab back" data-offset="-1">Back</button>
+            <button class="btn btn-primary next">Next</button>
+        </p>
+
+    </div>
+    </div>
+</div>
+
+{% endblock %}

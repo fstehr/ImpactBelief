@@ -18,7 +18,7 @@ SESSION_CONFIGS = [
         name='pilot_2_projects',
         display_name='Pilot: 2 projects per screen',
         num_demo_participants=2,
-        app_sequence=['pilot_2_projects'],
+        app_sequence=['pilot_2_projects', 'payment_info'],
     ),
 ]
 

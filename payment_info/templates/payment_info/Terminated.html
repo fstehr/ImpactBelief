@@ -17,13 +17,18 @@
 
 {% block content %}
 
-    {% if timeout %}
+    {% if too_many_wrong %}
         <p>
-            Your participation in this experiment was terminated, because you did not answer in time too often.
+            Your participation in this experiment was terminated, because you had too many wrong
+            answers in the comprehension questions of the instructions.
         </p>
     {% elif attention_check_failed %}
         <p>
             Your participation in this experiment was terminated, because you did not correctly answer an attention check question.
+        </p>
+    {% elif timeout %}
+        <p>
+            Your participation in this experiment was terminated, because you did not answer in time too often.
         </p>
     {% endif %}
 

@@ -84,6 +84,11 @@ class Subsession(BaseSubsession):
                 orders = ["NeutralMotivated", "MotivatedNeutral"]
                 p.vars['order'] = random.choice(orders)
 
+                # initialize some participant vars:
+                p.vars['too_many_wrong'] = False
+                p.vars['attention_check_failed'] = False
+                p.vars['timeout_counter'] = 0
+
         # store some of the participant vars in the data set
         for p in self.get_players():
             # Define "part" variable in the beginning of the experiment
@@ -123,16 +128,39 @@ class Player(BasePlayer):
     window_width = models.IntegerField(blank=True, doc="Documents the respondent's browser window's width.")
     window_height = models.IntegerField(blank=True, doc="Documents the respondent's browser window's height.")
 
+    forced_timeout = models.BooleanField(doc="True if subject was excluded during experiment because of attention check fail or"
+                                             "too many wrong answers in control questions (>2). ")
+    wrong_answer_count = models.IntegerField(initial=0,
+                                             doc="variable which counts the number of attempts for a control questions.")
+
     cq_1 = models.BooleanField(label="If you are randomly selected for a bonus payment, your bonus payment depends "
                                      "on your answers in the experiment",
-                                    choices=[[True, 'True'], [False, 'False']])
-    cq_2 = models.IntegerField(label="How many vitamin A doses your donation finances depends on...",
+                               choices=[[True, 'True'], [False, 'False']])
+
+    def cq_1_error_message(self, value):
+        print('value 1 is', value)
+        if not value:
+            self.wrong_answer_count += 1
+            return "Wrong answer."
+
+    cq_2 = models.IntegerField(label="At most how many times are you allowed to answer wrongly to be admitted "
+                                     "to the experiment?",
+                               min=0, max=100)
+
+    def cq_2_error_message(self, value):
+        print('value 2 is', value)
+        if value != 2:
+            self.wrong_answer_count += 1
+            return "Wrong answer."
+
+
+    cq_3 = models.IntegerField(label="How many vitamin A doses your donation finances depends on...",
                                widget=widgets.RadioSelect,
                                choices=[[1, 'your estimate of the number of pills in an image.'],
                                         [2, 'the true number of pills in an image.'],
                                         [3, 'whether your estimate is correct.']]
                                )
-    cq_3 = models.IntegerField(label="How many pills are there in a given image?",
+    cq_4 = models.IntegerField(label="How many pills are there in a given image?",
                                widget=widgets.RadioSelect,
                                choices=[
                                    [1, "at least 50 pills"],
@@ -293,11 +321,10 @@ class Player(BasePlayer):
 # - test randomization of pictures!!! using console log with the picture names!
 
 # - emphasize that there is no (immediate) feedback on belief accuracy!
-# - maybe not call it estimation but best guess or belief or so in the instructions!
 
 # - as elicited by their donation in a ***dictator game with other participants at the end of the experiment
 
-# update trial page buttons in the same way as donation
+# update all the icons using <i></i> font!!
 
 
 # update instructions to include treatments & split them on multiple screens with questions in between
@@ -306,7 +333,8 @@ class Player(BasePlayer):
 # The experiment is programmed such that subjects:
 # -	who do not enter their belief estimate on time two times (within 20 seconds),
 # -	who do not manage to answer an attention check correctly,
-# -	who fail to answer the control questions testing their understanding of the instructions correctly within two attempts
+# -	who more than two mistakes when answering the control questions testing their understanding of the instructions
+# --> implement with app_after_this_page = payment info
 # are excluded from the experiment.
 
 
