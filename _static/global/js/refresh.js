@@ -12,6 +12,7 @@ $( document ).ready(function() {
     }
 });
 
+/*
 var startTime = new Date().getTime();
 console.log("Time printed is", startTime)
 
@@ -28,8 +29,9 @@ function resetTabs(){
         early_click.value = "True";
         sessionStorage.setItem("early_click", "True");
     }
-}
 
+}
+*/
 
 
 

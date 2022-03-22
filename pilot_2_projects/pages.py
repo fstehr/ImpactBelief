@@ -33,7 +33,7 @@ class Instructions1(Page):
 
 class Instructions2(Page):
     form_model = 'player'
-    form_fields = ['cq_3', 'attention_check']
+    form_fields = ['cq_3', 'cq_4']
 
     def is_displayed(self):
         return self.round_number == 1
@@ -41,7 +41,21 @@ class Instructions2(Page):
     def app_after_this_page(self, upcoming_apps):
         if self.player.wrong_answer_count > 2:
             self.player.forced_timeout = True
-            self.participant.vars['forced_timeout'] = True
+            self.participant.vars['too_many_wrong'] = True
+            return "payment_info"
+
+
+class Instructions3(Page):
+    form_model = 'player'
+    form_fields = ['cq_5', 'cq_6', 'attention_check']
+
+    def is_displayed(self):
+        return self.round_number == 1
+
+    def app_after_this_page(self, upcoming_apps):
+        if self.player.wrong_answer_count > 2:
+            self.player.forced_timeout = True
+            self.participant.vars['too_many_wrong'] = True
             return "payment_info"
         elif self.player.attention_check != "apple":
             self.participant.vars['attention_check_failed'] = True
@@ -200,4 +214,4 @@ class Thanks(Page):
 
 
 # page_sequence = [Welcome, NoPhone, Instructions, AttentionFail, TrialPage, Donation, Questionnaire, Feedback, Thanks]
-page_sequence = [Instructions1, Instructions2]
+page_sequence = [Instructions1, Instructions2, Instructions3]

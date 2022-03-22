@@ -40,26 +40,37 @@
     <!-- Page 1 -->
     <div class="tab">
 
-        <h4><i class="bi bi-signpost-split" style="font-size: 1.5em; color: Grey; margin-right: 0.5em"></i>What is your task in the experiment?</h4>
-        <ul>
-            <li>You can <b>donate to different charity projects</b> which provide vitamin A supplements.</li>
-            <li>The projects <b><u>differ in costs and number of vitamin A supplements</u></b> financed.</li>
-            <li>However, you do not perfectly know how many vitamin A doses your donation finances.</li>
-            <li>Instead, you have to <b>estimate this number</b>.</li>
-        </ul>
+        <h4><img style="width: 5%;" src="{% static 'global/img/choice.png' %}">What is your task in the experiment?</h4>
+        <div class="alert">
+            <ul>
+                <li>You can <b>donate to different charity projects</b> which provide vitamin A supplements.</li>
+                <li>The projects <b><u>differ in price and number of vitamin A supplements</u></b> financed.</li>
+                <li>However, you do not perfectly know how many vitamin A doses your donation finances.</li>
+                <li>Instead, you have to <b>estimate this number</b>.</li>
+            </ul>
+        </div>
 
-        <br><br>
+
+        <div class="alert">
+                <h5><i style="color: #B22222" class="bi bi-exclamation-triangle"></i> Your donation has real consequences! </h5>
+                <p>
+                    For each vitamin A dose you donate, we will provide the equivalent funding to a real
+                    charity for buying and administering vitamin A doses.
+                </p>
+        </div>
+
+
 
         <h4><img style="width: 4%;margin-right: 0.5em" src="{% static 'global/img/donation.png' %}">Why vitamin A supplements?</h4>
-        <ul>
-            <li>Over 200,000 children's deaths can be attributed to vitamin A deficiency each year.</li>
-            <li>The World Health Organization recommends that all preschool-aged children in areas where vitamin A
-                deficiency is a public health problem receive <b>vitamin A supplements two to three times per year</b>.</li>
-            <li>In this experiment, you can donate to children in need through Helen Keller International's Vitamin A
-                Supplementation Program.<a style="font-size: 10pt" href="#footnote1"><sup>[1]</sup></a></li>
-            <li>Specifically, for each vitamin A dose that you donate, we will provide the equivalent funding
-                to Helen Keller International for buying and administering vitamin A doses.</li>
-        </ul>
+        <div class="alert">
+            <ul>
+                <li>Over 200,000 children's deaths can be attributed to vitamin A deficiency each year.</li>
+                <li>The <b>World Health Organization recommends</b> that all preschool-aged children in areas where vitamin A
+                    deficiency is a public health problem receive vitamin A supplements two to three times per year.</li>
+                <li>In this experiment, you can donate to children in need through Helen Keller International's Vitamin A
+                    Supplementation Program.<a style="font-size: 10pt" href="#footnote1"><sup>[1]</sup></a></li>
+            </ul>
+        </div>
 
 
         <p>
@@ -73,70 +84,60 @@
     <!-- Page 2 -->
     <div class="tab">
 
-
-        <h4><img style="width: 5%;" src="{% static 'global/img/vitamins.png' %}">How do you estimate the number of vitamin A doses?</h4>
-        <ul>
-            <li>For each project, you will see a picture like the one below: <br>
-                <img class="center_img" src="{% static 'global/img/matrices/matrix_200.png' %}">
-            </li>
-            <li>The number of pills <img style="width: 3%;" src="{% static 'global/img/pill.png' %}"> in the image indicates the number of vitamin A doses: <br>
-                <b>for each 10 pills</b> in an image your donation finances <b>1 dose vitamin A</b>.</li>
-            <li>For example, if an image contains 200 pills, your donation to this project would finance 20 doses of vitamin A.</li>
-            <li>You will see each image for <b>{{ Constants.sec_per_matrix }} seconds</b>.</li>
-            <li>Then, we ask for <b>your estimate</b> for the number of pills and how certain you are about your estimate.</li>
-            <li>There are <b>between 0 and 400 pills</b> in an image. <br></li>
-        </ul>
-
-        <div class="alert alert-warning alert-bonus" role="alert">
-            <li>If one of your estimates is selected as a decision-that-counts,
-                <ul>
-                    <li>you <b>receive <u>&#36;{{ player.belief_bonus }}</u></b> if your estimate is <b>at most 10 pills away from the true number</b> of pills.</li>
-                    <li>you receive <b>no bonus</b> if your estimate is <b>more than 10 pills away</b> from the true number.</li>
-                </ul>
-            </li>
-        </div>
-
-        <p>
-            <button type="button" class="btn btn-primary btn-tab back" data-offset="-1">Back</button>
-            <button type="button" class="btn btn-primary btn-tab next" data-offset="1">Next</button>
-        </p>
-
-    </div>
-
-
-    <!-- Page 3 -->
-    <div class="tab">
-
         <h4><img style="width: 4%; margin-right: 12px" src="{% static 'img/coin.svg' %}">How can you donate?</h4>
-
-        <ul>
-            <li>On each screen, you will see two projects.</li>
-            <li>Each project is described by:
-                <ul>
-                    <li>an image depicting the <b>number of vitamin A doses</b> this project finances (as described before), and</li>
-                    <li><b>how much it costs</b> you to donate to this project</li>
-                </ul>
-            </li>
-            <li>After estimating the number of vitamin A doses for each of these projects,
-                you <b>decide whether to donate to either of them</b>.</li>
-            <li>You can donate to one, both, or none of the projects.</li>
-            <li>How many vitamin A doses your donation finances <b>depends only on the true number of pills</b> in an image
-                and <b>not on your estimate</b>.
-            </li>
-        </ul>
-
-        <div class="alert alert-warning alert-bonus" role="alert">
-            If a donation decision is selected as a decision-that-counts:
+        <div class="alert">
+            In each round,
             <ul>
-                <li>If you donated to at least one of the two projects in a decision-that-counts,
-                    <ul>
-                        <li>you <b>receive <u>&#36;{{ Constants.endowment }} minus the costs of the project(s) to which you donated</u></b>, and</li>
-                        <li>we will <b>donate the true number of vitamin A doses</b> for each of the project(s) to which you donated.</li>
-                    </ul>
-                </li>
-                <li>If you decided not to donate, you will <b>receive &#36;{{ Constants.endowment }}</b>.</li>
+                <li>you receive an endowment of &#36;{{ Constants.endowment }}, which you can spend on donations.</li>
+                <li>you will see two projects.</li>
+                <li>you can <b>donate to one, both, or none</b> of the projects.</li>
+                <li>your bonus payment may be determined by your donation(s).</li>
             </ul>
         </div>
+
+
+        <div class="alert alert-warning alert-bonus" role="alert">
+            If your donation decision <u>in a given round</u> is selected as a decision-that-counts, your bonus payment will determined as follows:
+            <ul>
+                <li>If you donated to at least one of the two projects,
+                    <ul>
+                        <li>you <b>receive <u>&#36;{{ Constants.endowment }} minus the sum of prices of the projects to which you donated</u></b>, and</li>
+                        <li>we will <b>donate the true number of vitamin A doses</b> for each of the projects to which you donated.</li>
+                    </ul>
+                </li>
+                <li>If you decided not to donate, you will keep the entire <b>&#36;{{ Constants.endowment }}</b> endowment.</li>
+            </ul>
+        </div>
+
+        <br><br>
+
+        <h4><i style="font-weight: 100; font-size: 24pt; margin-right: 0.5em" class="bi bi-bag-heart"></i>How do donation projects differ?</h4>
+        <div class="alert">
+            <ul>
+                <li>Each project is described by:
+                    <ul>
+                        <li>an image depicting the <b>number of vitamin A doses</b> this project finances (which you have to estimate),</li>
+                        <li><b>the price</b> of donating to this project</li>
+                    </ul>
+                </li>
+                <li>The price can be <b>either &#36; 4 or &#36; 16</b>.</li>
+            </ul>
+        </div>
+
+        <div class="alert">
+            <table>
+                <tr>
+                    <td>
+                        <h3><i style="color: #B22222;margin-right: 1em" class="bi bi-exclamation-triangle"></i></h3>
+                    </td>
+                    <td>
+                        How many vitamin A doses your donation finances <b>depends only on the true number of pills</b> in an image
+                        and <b>not on your estimate</b>!
+                    </td>
+                </tr>
+            </table>
+        </div>
+
 
 
         <p>
@@ -151,14 +152,16 @@
     <div class="tab">
 
         <div class="alert alert-primary">
-            Before we start, we need to ensure that you understand the instructions. We ask you to answer 4 simple questions.
+            Before we start, we need to ensure that you understand the instructions.
             <br>
+            Remember, if you answer <b>more than two questions wrongly</b>, you will be excluded from the experiment.
             You may view the instructions again by going back to the previous page (click 'back' below).
+            <br>
         </div>
 
 
             {% formfield player.cq_3 %}
-            {% formfield player.attention_check %}
+            {% formfield player.cq_4 %}
 
 
         <p>

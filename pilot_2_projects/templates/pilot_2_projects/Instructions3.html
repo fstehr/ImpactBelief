@@ -22,7 +22,7 @@
 
 
 {% block title %}
-    Instructions
+    Instructions - The Donation Task
 {% endblock %}
 
 
@@ -39,30 +39,32 @@
 
         <!-- Page 1 -->
         <div class="tab">
-
-            <h4><i class="bi bi-map" style="font-weight: 100; font-size: 1.5em; color: Grey; margin-right: 0.5em"></i> The structure of the experiment</h4>
+            <h4><img style="width: 5%;" src="{% static 'global/img/vitamins.png' %}">How do you estimate the number of vitamin A doses?</h4>
             <div class="alert">
                 <ul>
-                    <li>This experiment is composed of two parts.</li>
-                    <li>Each part consists of multiple rounds of the same task.</li>
-                    <li>Your choices in these tasks <b>may affect your final earnings</b>.</li>
-                    <li>We randomly select 1 out of 20 participants, at the end of the experiment.</li>
-                    <li>If you are among them, we <b>randomly select one of your decisions</b>
-                    in the experiment to be the <b>decision-that-counts for your bonus payment</b>.</li>
+                    <li>For each project, you will see an image like the one below.</li>
+                    <li>You will see each image for <b>{{ Constants.sec_per_matrix }} seconds</b>.</li>
+                    <li>Then, we ask for <b>your estimate</b> for the number of pills and how certain you are about your estimate.</li>
+                    <li>There are <b>between 0 and 400 pills</b> in an image. <br></li>
+                    <li>The number of pills <img style="width: 3%;" src="{% static 'global/img/pill.png' %}">indicates the number of vitamin A doses: <br>
+                        <b>for each 10 pills</b> depicted on an image, your donation finances <b>1 dose vitamin A</b>.</li>
                 </ul>
             </div>
 
             <div class="alert alert-warning alert-bonus" role="alert">
-                Throughout the rest of the instructions, we use yellow boxes to <b>explain how your decisions affect your bonus payment</b>.
+                If one of your estimates is selected as a decision-that-counts,
+                    <ul>
+                        <li>you receive <b><u>&#36;{{ player.belief_bonus }}</u></b> if your estimate is <b>at most 10 pills away from the true number</b> of pills.</li>
+                        <li>you receive <b>no bonus</b> if your estimate is <b>more than 10 pills away</b> from the true number.</li>
+                    </ul>
             </div>
 
             <div class="alert">
-                <ul>
-                    <li>On the next pages, we describe the task in this experiment.</li>
-                    <li>Pay close attention to these instructions, we will ask <b>comprehension questions</b> at the end of each section.</li>
-                    <li>You will <b>not be admitted to the experiment and forfeit any payments</b>,
-                        if you <b>do not answer correctly more than two times</b>.</li>
-                </ul>
+                <p>
+                    Below you see an example of an image which contains 200 <img style="width: 3%;" src="{% static 'global/img/pill.png' %}">.
+                    In this project, your donation would then finance 20 vitamin A doses.
+                </p>
+                <img style="width: 90%; margin-left:auto; margin-right:auto; display: block;" src="{% static 'global/img/example.png' %}">
             </div>
 
             <p>
@@ -71,24 +73,29 @@
 
         </div>
 
+
+
         <!-- Page 2 -->
         <div class="tab">
             <div class="alert alert-primary">
-                Before we start, we need to ensure that you understand the instructions.
+                Before we start, we need to ensure that you understand the instructions. We ask you to answer 4 simple questions.
                 <br>
                 You may view the instructions again by going back to the previous page (click 'back' below).
             </div>
 
-                {% formfield player.cq_1 %}
 
-                {% formfield player.cq_2 %}
+                {% formfield player.cq_5 %}
+                {% formfield player.attention_check %}
+                {% formfield player.cq_6 %}
+
+
 
             <p>
                 <button type="button" class="btn btn-primary btn-tab back" data-offset="-1">Back</button>
                 <button class="btn btn-primary next">Next</button>
             </p>
-
         </div>
+
     </div>
 </div>
 

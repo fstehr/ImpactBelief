@@ -88,6 +88,7 @@ class Subsession(BaseSubsession):
                 p.vars['too_many_wrong'] = False
                 p.vars['attention_check_failed'] = False
                 p.vars['timeout_counter'] = 0
+                p.vars['timeout_in_payment_decision'] = False
 
         # store some of the participant vars in the data set
         for p in self.get_players():
@@ -138,7 +139,7 @@ class Player(BasePlayer):
                                choices=[[True, 'True'], [False, 'False']])
 
     def cq_1_error_message(self, value):
-        print('value 1 is', value)
+        # print('value 1 is', value)
         if not value:
             self.wrong_answer_count += 1
             return "Wrong answer."
@@ -148,25 +149,58 @@ class Player(BasePlayer):
                                min=0, max=100)
 
     def cq_2_error_message(self, value):
-        print('value 2 is', value)
+        # print('value 2 is', value)
         if value != 2:
             self.wrong_answer_count += 1
             return "Wrong answer."
-
 
     cq_3 = models.IntegerField(label="How many vitamin A doses your donation finances depends on...",
                                widget=widgets.RadioSelect,
                                choices=[[1, 'your estimate of the number of pills in an image.'],
                                         [2, 'the true number of pills in an image.'],
-                                        [3, 'whether your estimate is correct.']]
-                               )
-    cq_4 = models.IntegerField(label="How many pills are there in a given image?",
+                                        [3, 'whether your estimate is correct.']])
+
+    def cq_3_error_message(self, value):
+        # print('value 3 is', value)
+        if value != 2:
+            self.wrong_answer_count += 1
+            return "Wrong answer."
+
+    cq_4 = models.IntegerField(label="If your donation decision is selected as decision-that-counts, it has"
+                                     " real consequences. In which of the following ways?",
+                               widget=widgets.RadioSelect,
+                               choices=[[1, 'The money you donate will go to a charity of your choice.'],
+                                        [2, 'My choice has no real-world consequences.'],
+                                        [3, 'The money you donate will go to another participant in this study.'],
+                                        [4, 'If you donated, you fund real vitamin A doses to be administered by Helen Keller International.']])
+
+    def cq_4_error_message(self, value):
+        # print('value 3 is', value)
+        if value != 4:
+            self.wrong_answer_count += 1
+            return "Wrong answer."
+
+    cq_5 = models.IntegerField(label="How many pills are there in a given image?",
                                widget=widgets.RadioSelect,
                                choices=[
                                    [1, "at least 50 pills"],
                                    [2, "Between 0 and 400 pills"],  # Correct Answer
                                    [3, "at most 260 pills"],
                                    [4, "This cannot be known"]])
+
+    def cq_5_error_message(self, value):
+        if value != 2:
+            self.wrong_answer_count += 1
+            return "Wrong answer."
+
+    cq_6 = models.IntegerField(label="Suppose your estimate is 6 pills away from the true number of pills. What will be your "
+                                     "bonus payment if this estimate is selected as decision-that-counts?")
+
+    def cq_6_error_message(self, value):
+        if value != self.belief_bonus:
+            self.wrong_answer_count += 1
+            return "Wrong answer."
+
     attention_check = models.StringField(blank=True, doc="Filter question for attention",
                                          label="To make sure you have read the instructions, we ask you to answer "
                                                 "'apple' in the field below.")
@@ -324,15 +358,12 @@ class Player(BasePlayer):
 
 # - as elicited by their donation in a ***dictator game with other participants at the end of the experiment
 
-# update all the icons using <i></i> font!!
-
 
 # update instructions to include treatments & split them on multiple screens with questions in between
 
 # think about how to deal with with time-out variable
 # The experiment is programmed such that subjects:
 # -	who do not enter their belief estimate on time two times (within 20 seconds),
-# -	who do not manage to answer an attention check correctly,
 # -	who more than two mistakes when answering the control questions testing their understanding of the instructions
 # --> implement with app_after_this_page = payment info
 # are excluded from the experiment.
