@@ -11,7 +11,6 @@
         li{margin: 10px 0;}
         .controls ul li{margin: 0;}
         .tab{margin: 10px;}
-        .center_img {width: 40%; display: block; margin-left: auto; margin-right: auto;}
     </style>
 {% endblock %}
 
@@ -111,7 +110,7 @@
                 <div class="alert alert-warning alert-bonus" role="alert">
                     If one of your estimates is selected as a decision-that-counts,
                         <ul>
-                            <li>you now receive <span style="color:darkred"><b><u>&#36;{{ player.belief_bonus }}</u></b></span> if your estimate is <b>at most 10 pills away from the true number</b> of pills.</li>
+                            <li>you now receive <span style="color:darkred"><b><u>&#36;{{ player.accuracy_bonus }}</u></b></span> if your estimate is <b>at most 10 pills away from the true number</b> of pills.</li>
                             <li>you receive <b>no bonus</b> if your estimate is <b>more than 10 pills away</b> from the true number.</li>
                         </ul>
                 </div>

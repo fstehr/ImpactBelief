@@ -197,7 +197,7 @@ class Player(BasePlayer):
                                      "bonus payment if this estimate is selected as decision-that-counts?")
 
     def cq_6_error_message(self, value):
-        if value != self.belief_bonus:
+        if value != self.accuracy_bonus:
             if self.round_number == 1:
                 self.wrong_answer_count += 1
             return "Wrong answer."
@@ -249,7 +249,6 @@ class Player(BasePlayer):
                                      )
 
     # Payoff variables
-    belief_bonus = models.IntegerField(initial=2)
     current_donation_payoff = models.IntegerField()
     current_belief_A_payoff = models.IntegerField()
     current_belief_B_payoff = models.IntegerField()
@@ -355,13 +354,8 @@ class Player(BasePlayer):
 # - systematically test belief & donation payoffs
 # - test randomization of pictures!!! using console log with the picture names!
 
-# - emphasize that there is no (immediate) feedback on belief accuracy!!!!!
-# - obs trouble shoot and unify accuracy_bonus and belief_bonus!!!
 
 # - as elicited by their donation in a ***dictator game with other participants at the end of the experiment
-
-
-# update instructions to include treatments & split them on multiple screens with questions in between
 
 # think about how to deal with with time-out variable
 # The experiment is programmed such that subjects:

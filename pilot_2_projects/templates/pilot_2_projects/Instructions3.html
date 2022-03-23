@@ -11,7 +11,6 @@
         li{margin: 10px 0;}
         .controls ul li{margin: 0;}
         .tab{margin: 10px;}
-        .center_img {width: 40%; display: block; margin-left: auto; margin-right: auto;}
     </style>
 {% endblock %}
 
@@ -49,7 +48,8 @@
                     <li>You will see each image for <b>{{ Constants.sec_per_matrix }} seconds</b>.</li>
                     <li>Then, we ask for <b>your estimate</b> for the number of pills and how certain you are about your estimate.</li>
                     <li>There are <b>between 0 and 400 pills</b> in an image. <br></li>
-                    <li>The number of pills <img style="width: 3%;" src="{% static 'global/img/pill.png' %}">indicates the number of vitamin A doses: <br>
+                    <li>The number of pills <img style="width: 3%;" src="{% static 'global/img/pill.png' %}">indicates
+                        the number of vitamin A doses: <br>
                         <b>for each 10 pills</b> depicted on an image, your donation finances <b>1 dose vitamin A</b>.</li>
                 </ul>
             </div>
@@ -57,9 +57,25 @@
             <div class="alert alert-warning alert-bonus" role="alert">
                 If one of your estimates is selected as a decision-that-counts,
                     <ul>
-                        <li>you receive <b><u>&#36;{{ player.belief_bonus }}</u></b> if your estimate is <b>at most 10 pills away from the true number</b> of pills.</li>
-                        <li>you receive <b>no bonus</b> if your estimate is <b>more than 10 pills away</b> from the true number.</li>
+                        <li>
+                            you receive <span style="color:darkred"><b><u>&#36;{{ player.accuracy_bonus }}</u></b></span>
+                            if your estimate is <b>at most 10 pills away from the true number</b> of pills.
+                        </li>
+                        <li>
+                            you receive <b>no bonus</b> if your estimate is <b>more than 10 pills away</b> from the true number.
+                        </li>
                     </ul>
+
+                <table>
+                    <tr>
+                        <td>
+                            <h3><i style="color: #B22222;margin-right: 1em" class="bi bi-exclamation-triangle"></i></h3>
+                        </td>
+                        <td>
+                            We will never give feedback on how close your guess was to the true number of pills.
+                        </td>
+                    </tr>
+                </table>
             </div>
 
             <div class="alert">
@@ -80,6 +96,7 @@
 
         <!-- Page 2 -->
         <div class="tab">
+
             <div class="alert alert-primary">
                 Before we start, we need to ensure that you understand the instructions.
                 <br>

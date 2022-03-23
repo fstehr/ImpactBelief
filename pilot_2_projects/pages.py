@@ -176,13 +176,13 @@ class Donation(Page):
 
             # bonus payment for belief A
             if abs(player.num_x_belief_A - player.num_x_A) <= 10:
-                player.current_belief_A_payoff = player.belief_bonus
+                player.current_belief_A_payoff = player.accuracy_bonus
             else:
                 player.current_belief_A_payoff = 0
 
             # bonus payment for belief B
             if abs(player.num_x_belief_B - player.num_x_B) <= 10:
-                player.current_belief_B_payoff = player.belief_bonus
+                player.current_belief_B_payoff = player.accuracy_bonus
             else:
                 player.current_belief_B_payoff = 0
 
