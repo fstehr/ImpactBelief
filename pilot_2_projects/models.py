@@ -198,7 +198,8 @@ class Player(BasePlayer):
 
     def cq_6_error_message(self, value):
         if value != self.belief_bonus:
-            self.wrong_answer_count += 1
+            if self.round_number == 1:
+                self.wrong_answer_count += 1
             return "Wrong answer."
 
     attention_check = models.StringField(blank=True, doc="Filter question for attention",
@@ -354,7 +355,8 @@ class Player(BasePlayer):
 # - systematically test belief & donation payoffs
 # - test randomization of pictures!!! using console log with the picture names!
 
-# - emphasize that there is no (immediate) feedback on belief accuracy!
+# - emphasize that there is no (immediate) feedback on belief accuracy!!!!!
+# - obs trouble shoot and unify accuracy_bonus and belief_bonus!!!
 
 # - as elicited by their donation in a ***dictator game with other participants at the end of the experiment
 

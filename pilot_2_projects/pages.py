@@ -19,10 +19,15 @@ class NoPhone(Page):
 
 class Instructions1(Page):
     form_model = 'player'
-    form_fields = ['window_width', 'window_height', 'cq_1', 'cq_2']
 
-    def is_displayed(self):
-        return self.round_number == 1
+    def get_form_fields(player):
+        if player.round_number == 1:
+            return ['window_width', 'window_height', 'cq_1', 'cq_2']
+        elif player.round_number == len(Constants.paras) + 1:
+            return ['cq_6']
+
+    def is_displayed(self):     # display always in the first round of a new part.
+        return self.round_number == len(Constants.paras) * (self.player.part - 1) + 1
 
     def app_after_this_page(self, upcoming_apps):
         if self.player.wrong_answer_count > 2:
