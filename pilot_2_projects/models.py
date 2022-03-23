@@ -355,6 +355,8 @@ class Player(BasePlayer):
 # - test randomization of pictures!!! using console log with the picture names!
 
 
+# figure out why a
+
 # - as elicited by their donation in a ***dictator game with other participants at the end of the experiment
 
 # think about how to deal with with time-out variable
