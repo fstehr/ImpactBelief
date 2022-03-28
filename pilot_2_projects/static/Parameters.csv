@@ -1,5 +1,4 @@
 ﻿efficiency_1,num_doses_1,price_1,num_X_1,efficiency_2,num_doses_2,price_2,num_X_2,id,comparison
-2,8,4,80,2,32,16,320,1,cost-impact trade-off
 2,8,4,80,2,32,16,320,2,cost-impact trade-off
 2,8,4,80,0.5,8,16,80,3,cost trade-off
 8,32,4,320,2,32,16,320,4,cost trade-off

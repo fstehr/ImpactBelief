@@ -357,14 +357,17 @@ class Player(BasePlayer):
 
 # figure out why a
 
-# - as elicited by their donation in a ***dictator game with other participants at the end of the experiment
+# - calculate and update optimal payment rule (e.g. 1 in 20?)
+
+# - as elicited by their donation wtp for 32 vitamin A doses in a mpl at the end of the experiment
 
 # think about how to deal with with time-out variable
 # The experiment is programmed such that subjects:
-# -	who do not enter their belief estimate on time two times (within 20 seconds),
 # -	who more than two mistakes when answering the control questions testing their understanding of the instructions
 # --> implement with app_after_this_page = payment info
 # are excluded from the experiment.
+
+# took out repeated parameter combo of interest --> have it only once (no argument for it in terms of measurement error etc)
 
 
 
