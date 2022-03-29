@@ -359,12 +359,15 @@ class Player(BasePlayer):
 # - systematically test belief & donation payoffs
 # - test randomization of pictures!!! using console log with the picture names!
 
-
-# figure out why a
-
 # - calculate and update optimal payment rule (e.g. 1 in 20?)
 
 # - as elicited by their donation wtp for 32 vitamin A doses in a mpl at the end of the experiment
+# implement MPL with this snippet
+# https://s3.amazonaws.com/otreehub/browsable_source/1e38462b-46c7-4ca1-bca5-536462f90131/radio_switching_point/__init__.py
+# https://groups.google.com/g/otree/c/q6lxruNRzwI/m/kaPCd_ZnBwAJ
+
+
+
 
 # think about how to deal with with time-out variable
 # The experiment is programmed such that subjects:
