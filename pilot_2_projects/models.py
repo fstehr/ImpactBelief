@@ -166,13 +166,13 @@ class Player(BasePlayer):
             self.wrong_answer_count += 1
             return "Wrong answer."
 
-    cq_4 = models.IntegerField(label="If your donation decision is selected as decision-that-counts, it has"
-                                     " real consequences. In which of the following ways?",
+    cq_4 = models.IntegerField(label="In what way does your donation decision have real consequences (if it is selected "
+                                     "as a decision-that-counts)?",
                                widget=widgets.RadioSelect,
                                choices=[[1, 'The money you donate will go to a charity of your choice.'],
-                                        [2, 'My choice has no real-world consequences.'],
+                                        [2, 'Your choice has no real-world consequences.'],
                                         [3, 'The money you donate will go to another participant in this study.'],
-                                        [4, 'If you donated, you fund real vitamin A doses to be administered by Helen Keller International.']])
+                                        [4, 'If you donate, you fund real vitamin A doses to be administered by Helen Keller International.']])
 
     def cq_4_error_message(self, value):
         # print('value 3 is', value)
@@ -183,9 +183,9 @@ class Player(BasePlayer):
     cq_5 = models.IntegerField(label="How many pills are there in a given image?",
                                widget=widgets.RadioSelect,
                                choices=[
-                                   [1, "at least 50 pills"],
+                                   [1, "at least 10 pills"],
                                    [2, "Between 0 and 400 pills"],  # Correct Answer
-                                   [3, "at most 260 pills"],
+                                   [3, "at most 200 pills"],
                                    [4, "This cannot be known"]])
 
     def cq_5_error_message(self, value):
@@ -194,7 +194,7 @@ class Player(BasePlayer):
             return "Wrong answer."
 
     cq_6 = models.IntegerField(label="Suppose your estimate is 6 pills away from the true number of pills. What will be your "
-                                     "bonus payment if this estimate is selected as decision-that-counts?")
+                                     "bonus payment (in $) if this estimate is selected as decision-that-counts?")
 
     def cq_6_error_message(self, value):
         if value != self.accuracy_bonus:

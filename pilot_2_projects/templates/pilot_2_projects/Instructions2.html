@@ -17,6 +17,23 @@
 {% block scripts %}
     <script src="{% static 'global/js/browser_info.js' %}"></script>
     <script src="{% static 'global/js/backbutton.js' %}"></script>
+    <script> // display last tab when error message is shown
+        $( document ).ready(function() {
+            classCheck = $('div').hasClass("otree-form-errors alert alert-danger");
+            console.log("classCheck", classCheck);
+
+            let tabIndex = 0;
+
+            if ($('div').hasClass("otree-form-errors alert alert-danger")) {
+                activeTab = 2;   // show last tab
+
+            for (let tab of document.getElementsByClassName('tab')) {
+                tab.style.display = tabIndex === activeTab ? 'block' : 'none';
+                tabIndex++;
+            }
+            }
+        });
+    </script>
 {% endblock %}
 
 
@@ -46,7 +63,7 @@
         <h4><img style="width: 5%;" src="{% static 'global/img/choice.png' %}">What is your task in the experiment?</h4>
         <div class="alert">
             <ul>
-                <li>You can <b>donate to different charity projects</b> which provide vitamin A supplements.</li>
+                <li>You can <b>donate to different charity projects</b> which provide vitamin A supplements to children in need.</li>
                 <li>The projects <b><u>differ in price and number of vitamin A supplements</u></b> financed.</li>
                 <li>However, you do not perfectly know how many vitamin A doses your donation finances.</li>
                 <li>Instead, you have to <b>estimate this number</b>.</li>
@@ -91,24 +108,24 @@
         <div class="alert">
             In each round,
             <ul>
-                <li>you receive an endowment of &#36;{{ Constants.endowment }}, which you can spend on donations.</li>
+                <li>you receive &#36;{{ Constants.endowment }}, which you can spend on donations.</li>
                 <li>you will see two projects.</li>
-                <li>you can <b>donate to one, both, or none</b> of the projects.</li>
+                <li>you can <b>donate to one, both, or neither</b> of the projects.</li>
                 <li>your bonus payment may be determined by your donation(s).</li>
             </ul>
         </div>
 
 
         <div class="alert alert-warning alert-bonus" role="alert">
-            If your donation decision <u>in a given round</u> is selected as a decision-that-counts, your bonus payment will determined as follows:
+            If your donation decision <u>in a given round</u> is selected as the decision-that-counts, your bonus payment will determined as follows:
             <ul>
                 <li>If you donated to at least one of the two projects,
                     <ul>
                         <li>you <b>receive <u>&#36;{{ Constants.endowment }} minus the sum of prices of the projects to which you donated</u></b>, and</li>
-                        <li>we will <b>donate the true number of vitamin A doses</b> for each of the projects to which you donated.</li>
+                        <li>we will <b>donate vitamin A doses</b> to each of the projects to which you donated.</li>
                     </ul>
                 </li>
-                <li>If you decided not to donate, you will keep the entire <b>&#36;{{ Constants.endowment }}</b> endowment.</li>
+                <li>If you decided not to donate, you will keep the entire <b>&#36;{{ Constants.endowment }}</b>.</li>
             </ul>
         </div>
 
@@ -134,8 +151,8 @@
                         <h3><i style="color: #B22222;margin-right: 1em" class="bi bi-exclamation-triangle"></i></h3>
                     </td>
                     <td>
-                        How many vitamin A doses your donation finances <b>depends only on the true number of pills</b> in an image
-                        and <b>not on your estimate</b>!
+                        How many vitamin A doses your donation finances <b>depends only on the true number of pills</b>
+                        in the image and <b>not on your estimate</b>!
                     </td>
                 </tr>
             </table>
@@ -151,7 +168,7 @@
 
 
 
-    <!-- Page 4 -->
+    <!-- Page 3 -->
     <div class="tab">
 
         <div class="alert alert-primary">

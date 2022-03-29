@@ -26,6 +26,11 @@ class Instructions1(Page):
         elif player.round_number == len(Constants.paras) + 1:
             return ['cq_6']
 
+    def js_vars(self):
+        return dict(
+            part=self.player.part,
+        )
+
     def is_displayed(self):     # display always in the first round of a new part.
         return self.round_number == len(Constants.paras) * (self.player.part - 1) + 1
 
@@ -232,4 +237,4 @@ class Thanks(Page):
 
 
 # page_sequence = [Welcome, NoPhone, Instructions, AttentionFail, TrialPage, Donation, Questionnaire, Feedback, Thanks]
-page_sequence = [InstructionsMPL, MPL]
+page_sequence = [Instructions1, Instructions2, Instructions3, MPL]

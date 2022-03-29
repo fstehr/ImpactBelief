@@ -2,6 +2,7 @@ let activeTab = 0;
 
 function showCurrentTabOnly() {
     let tabIndex = 0;
+
     for (let tab of document.getElementsByClassName('tab')) {
         tab.style.display = tabIndex === activeTab ? 'block' : 'none';
         tabIndex++;

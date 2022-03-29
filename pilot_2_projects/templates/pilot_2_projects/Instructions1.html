@@ -17,6 +17,25 @@
 {% block scripts %}
     <script src="{% static 'global/js/browser_info.js' %}"></script>
     <script src="{% static 'global/js/backbutton.js' %}"></script>
+    <script> // display last tab when error message is shown
+        $( document ).ready(function() {
+            classCheck = $('div').hasClass("otree-form-errors alert alert-danger");
+            console.log("classCheck", classCheck);
+
+            let tabIndex = 0;
+
+            if ($('div').hasClass("otree-form-errors alert alert-danger")) {
+                if (js_vars.part === 1) {
+                    activeTab = 1;
+                }
+
+            for (let tab of document.getElementsByClassName('tab')) {
+                tab.style.display = tabIndex === activeTab ? 'block' : 'none';
+                tabIndex++;
+            }
+            }
+        });
+    </script>
 {% endblock %}
 
 
@@ -48,8 +67,9 @@
             <h4><i class="bi bi-map" style="font-weight: 100; font-size: 1.5em; color: Grey; margin-right: 0.5em"></i> The structure of the experiment</h4>
             <div class="alert">
                 <ul>
-                    <li>This experiment is composed of two parts.</li>
-                    <li>Each part consists of multiple rounds of the same task.</li>
+                    <li>In this experiment, you can donate vitamin A supplements to children in need.</li>
+                    <li>The experiment is composed of two parts.</li>
+                    <li>Each part consists of multiple rounds of a task that is almost the same between the two parts.</li>
                     <li>Your choices in these tasks <b>may affect your final earnings</b>.</li>
                     <li>We randomly select 1 in 20 participants, at the end of the experiment.</li>
                     <li>If you are among them, we <b>randomly select one of your decisions</b>
@@ -63,10 +83,10 @@
 
             <div class="alert">
                 <ul>
-                    <li>On the next pages, we describe the task in this experiment.</li>
+                    <li>On the next pages, we describe the task.</li>
                     <li>Pay close attention to these instructions, we will ask <b>comprehension questions</b> at the end of each section.</li>
                     <li>You will <b>not be admitted to the experiment and forfeit any payments</b>,
-                        if you <b>do not answer correctly more than two times</b>.</li>
+                        if you <b>answer incorrectly more than two times</b>.</li>
                 </ul>
             </div>
 
