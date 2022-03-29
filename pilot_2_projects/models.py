@@ -260,6 +260,11 @@ class Player(BasePlayer):
     honeypot = models.IntegerField(blank=True,
                                    doc="hidden field which will only be filled by bots")
 
+    # WTP for various vitamin A doses
+    wtp_80 = models.IntegerField()
+    wtp_200 = models.IntegerField()
+    wtp_320 = models.IntegerField()
+
     # additional variables
     age = models.IntegerField(label="What is your age?",
                               choices=[

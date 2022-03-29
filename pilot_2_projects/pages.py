@@ -204,6 +204,19 @@ class Donation(Page):
             player.time_out = 1
 
 
+class InstructionsMPL(Page):
+    def is_displayed(self):
+        return self.round_number == Constants.num_rounds
+
+
+class MPL(Page):
+    form_model = 'player'
+    form_fields = ['wtp_{}'.format(i) for i in [80, 200, 320]]
+
+    def is_displayed(self):
+        return self.round_number == Constants.num_rounds
+
+
 class Questionnaire(Page):
     form_model = 'player'
     form_fields = ['age', 'gender', 'levelOfEducation', 'politics_right', 'income', 'altruism',
@@ -219,4 +232,4 @@ class Thanks(Page):
 
 
 # page_sequence = [Welcome, NoPhone, Instructions, AttentionFail, TrialPage, Donation, Questionnaire, Feedback, Thanks]
-page_sequence = [Instructions1, Instructions2, Instructions3]
+page_sequence = [InstructionsMPL]
