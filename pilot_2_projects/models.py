@@ -10,13 +10,11 @@ from otree.api import (
 )
 import random
 import csv
-import itertools    # allows to balance treatments
 from otree.db.models import ForeignKey
 
 doc = """
-This is a pilot snippet testing whether it makes a difference (for beliefs & donations) 
-whether two projects are on one screen or not.
-This is the code with <b>2 projects per screen</b>. All currency variables are in US Dollars.
+This is an experiment on impact beliefs of donations, with 2 projects per screen. 
+All currency variables are in US Dollars.
 Design is 2x2 (player.accuracy_bonus (within subj) x player.treatment (btw subj.))
 """
 
@@ -81,9 +79,13 @@ class Subsession(BaseSubsession):
                 p.vars['payment_round'] = random.choice(rounds)
                 # print("Payment round is", p.vars['payment_round'])
 
-                # randomly assign treatment order to participants
+                # randomly assign incentive order to participants between subjects
                 orders = ["NeutralMotivated", "MotivatedNeutral"]
                 p.vars['order'] = random.choice(orders)
+
+                # Assign between subject treatment with pr(ExAnte) = 1/3, pr(ExPost) = 2/3
+                treatments = ["ExAnte", "ExPost", "ExPost"]
+                p.vars['treatment'] = random.choice(treatments)
 
                 # initialize some participant vars:
                 p.vars['too_many_wrong'] = False
@@ -107,9 +109,8 @@ class Subsession(BaseSubsession):
                 elif self.round_number == Constants.num_rounds:
                     p.left_side_num_doses = 32
 
-            # Assign between subject treatment with pr(ExAnte) = 1/3, pr(ExPost) = 2/3
-            treatments = ["ExAnte", "ExPost", "ExPost"]
-            p.treatment = random.choice(treatments)
+            # store treatment assignment in data set
+            p.treatment = p.participant.vars['treatment']
 
             # Assign incentive strength to players in all rounds using treatment order assigned in first round
             if p.participant.vars['order'] == "NeutralMotivated":
