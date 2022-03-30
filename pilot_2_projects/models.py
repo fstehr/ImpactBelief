@@ -90,8 +90,7 @@ class Subsession(BaseSubsession):
                 # initialize some participant vars:
                 p.vars['too_many_wrong'] = False
                 p.vars['attention_check_failed'] = False
-                p.vars['timeout_counter'] = 0
-                p.vars['timeout_in_payment_decision'] = False
+
 
         # store some of the participant vars in the data set
         for p in self.get_players():
@@ -372,11 +371,6 @@ class Player(BasePlayer):
 # - test randomization of pictures!!! using console log with the picture names!
 
 # - calculate and update optimal payment rule (e.g. 1 in 20?)
-
-# implement MPLs over rounds --> use part 3
-# code payment mechanism for MPLs payoff can be switching_point
-# include in instructions the three amounts of donations that will be tested in MPL
-
 
 # think about how to deal with with time-out variable --> is this still there?
 

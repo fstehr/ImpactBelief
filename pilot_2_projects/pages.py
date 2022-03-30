@@ -250,10 +250,5 @@ class Questionnaire(Page):
         return self.round_number == Constants.num_rounds
 
 
-class Thanks(Page):
-    def is_displayed(self):
-        return self.round_number == Constants.num_rounds
-
-
 # page_sequence = [Welcome, NoPhone, Instructions, AttentionFail, TrialPage, Donation, Questionnaire, Feedback, Thanks]
-page_sequence = [Instructions, MPL]
+page_sequence = [Instructions, Instructions2, Instructions3]
