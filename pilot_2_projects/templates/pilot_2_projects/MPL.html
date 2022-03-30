@@ -2,6 +2,7 @@
 {% load otree %}
 
 {% block scripts %}
+    <script src="{% static 'global/js/mpl.js' %}"></script>
 {% endblock %}
 
 
@@ -11,9 +12,37 @@
 
 {% block content %}
 
-Here comes the code for the MPLs
+<input type="hidden" name="switching_point" id="id_switching_point">
+{{ form.switching_point.errors }}
 
+<table class="table table-striped" style="margin-top: 15pt; width: 70%; margin-right: auto; margin-left: auto">
+    <colgroup>
+        <col width="45%">
+        <col width="10%">
+        <col width="45%">
+    </colgroup>
+    <tr>
+        <td align="right"><img style="width: 10%;" src="{% static 'global/img/vitamins.png' %}"><b>Option A</b></td>
+        <td></td>
+        <td align="left"><b>Option B</b> <img style="width: 10%; margin-right: 8px" src="{% static 'img/coin.svg' %}"></td>
+    </tr>
+    {% for amount in right_side_amounts %}
+        <tr>
+            <td align="right">
+                I donate <b>{{ player.left_side_amount }}</b> vitamin A doses
+            <td align="middle">
+                <input type="radio" value="left" name="{{ amount }}" required>&nbsp;&nbsp;
+                <input type="radio" value="right" name="{{ amount }}" data-amount="{{ amount }}" required>
+            </td>
+            <td align="left">
+                I choose &#36;<b>{{ amount }}</b> for myself
+        </tr>
+    {% endfor %}
+</table>
 
+<div style="margin-top: 16pt; text-align: right;">
+    <button type="button" class="btn btn-primary" onclick="submitForm()">Next</button>
+</div>
 
 {% endblock %}
 

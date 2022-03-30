@@ -216,7 +216,11 @@ class InstructionsMPL(Page):
 
 class MPL(Page):
     form_model = 'player'
-    form_fields = ['wtp_{}'.format(i) for i in [80, 200, 320]]
+    form_fields = ['switching_point']
+    #form_fields = ['wtp_{}'.format(i) for i in [80, 200, 320]]
+
+    def vars_for_template(player):
+        return dict(right_side_amounts=range(0, 41, 2))
 
     def is_displayed(self):
         return self.round_number == Constants.num_rounds
@@ -237,4 +241,4 @@ class Thanks(Page):
 
 
 # page_sequence = [Welcome, NoPhone, Instructions, AttentionFail, TrialPage, Donation, Questionnaire, Feedback, Thanks]
-page_sequence = [Instructions1, Instructions2, Instructions3, MPL]
+page_sequence = [MPL]

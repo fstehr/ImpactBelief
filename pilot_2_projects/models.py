@@ -261,6 +261,9 @@ class Player(BasePlayer):
                                    doc="hidden field which will only be filled by bots")
 
     # WTP for various vitamin A doses
+    left_side_amount = models.IntegerField(initial=8)
+    switching_point = models.IntegerField()
+
     wtp_80 = models.IntegerField()
     wtp_200 = models.IntegerField()
     wtp_320 = models.IntegerField()
@@ -361,22 +364,18 @@ class Player(BasePlayer):
 
 # - calculate and update optimal payment rule (e.g. 1 in 20?)
 
-# - as elicited by their donation wtp for 32 vitamin A doses in a mpl at the end of the experiment
-# implement MPL with this snippet
-# https://s3.amazonaws.com/otreehub/browsable_source/1e38462b-46c7-4ca1-bca5-536462f90131/radio_switching_point/__init__.py
-# https://groups.google.com/g/otree/c/q6lxruNRzwI/m/kaPCd_ZnBwAJ
+# implement MPLs over rounds --> use part 3
+# code payment mechanism for MPLs payoff can be switching_point
+# include in instructions the three amounts of donations that will be tested in MPL
 
 
+# think about how to deal with with time-out variable --> is this still there?
 
 
-# think about how to deal with with time-out variable
 # The experiment is programmed such that subjects:
 # -	who more than two mistakes when answering the control questions testing their understanding of the instructions
 # --> implement with app_after_this_page = payment info
 # are excluded from the experiment.
-
-# took out repeated parameter combo of interest --> have it only once (no argument for it in terms of measurement error etc)
-
 
 
 
