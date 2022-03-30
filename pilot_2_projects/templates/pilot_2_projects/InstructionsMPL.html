@@ -1,34 +1,8 @@
-{% extends "global/Page.html" %}
 {% load otree %}
 
-{% block styles %}
-    <link href="{% static 'global/css/ecomb.css' %}" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-    <style>
-        /* Alignment of buttons */
-        .next {float: right; margin-top: 40px;}
-        .back {float: left; margin-top: 40px;}
-        li{margin: 10px 0;}
-        .controls ul li{margin: 0;}
-        .tab{margin: 10px;}
-    </style>
-{% endblock %}
+<body>
 
-{% block scripts %}
-    <script src="{% static 'global/js/browser_info.js' %}"></script>
-    <script src="{% static 'global/js/backbutton.js' %}"></script>
-{% endblock %}
-
-
-{% block title %}
-    Instructions - Decision Scenarios
-{% endblock %}
-
-
-
-{% block content %}
-
- <div class="card">
+    <div class="card">
     <div class="card-body">
 
         <!-- Page 1 -->
@@ -91,7 +65,7 @@
                         </li>
                         <li>
                             Therefore, the decision scenarios look as follows:
-                            <img style="width: 90%; margin-left:auto; margin-right:auto; display: block;" src="{% static 'global/img/example.png' %}">
+                            <img style="width: 90%; margin-left:auto; margin-right:auto; display: block;" src="{% static 'global/img/example_mpl.png' %}">
                         </li>
                     </ul>
 
@@ -135,4 +109,4 @@
     </div>
 </div>
 
-{% endblock %}
+</body>

@@ -17,7 +17,7 @@ class NoPhone(Page):
         return self.round_number == 1 and self.player.is_mobile
 
 
-class Instructions1(Page):
+class Instructions(Page):
     form_model = 'player'
 
     def get_form_fields(player):
@@ -25,6 +25,8 @@ class Instructions1(Page):
             return ['window_width', 'window_height', 'cq_1', 'cq_2']
         elif player.round_number == len(Constants.paras) + 1:
             return ['cq_6']
+        else:
+            return []
 
     def js_vars(self):
         return dict(
@@ -209,21 +211,34 @@ class Donation(Page):
             player.time_out = 1
 
 
-class InstructionsMPL(Page):
-    def is_displayed(self):
-        return self.round_number == Constants.num_rounds
-
-
 class MPL(Page):
     form_model = 'player'
     form_fields = ['switching_point']
-    #form_fields = ['wtp_{}'.format(i) for i in [80, 200, 320]]
 
     def vars_for_template(player):
         return dict(right_side_amounts=range(0, 41, 2))
 
     def is_displayed(self):
-        return self.round_number == Constants.num_rounds
+        return self.player.part == 3
+
+    # calculate MPL payoff
+    def before_next_page(self):
+        player = self.player
+        right_side_amounts = range(0, 41, 2)
+        # randomly draw payment scenario
+        mpl_row = random.choice(right_side_amounts)
+        player.random_draw = mpl_row
+
+        if player.switching_point >= mpl_row:
+            player.current_mpl_payoff = 0
+            player.donation_mpl = True
+        else:
+            player.current_mpl_payoff = mpl_row
+            player.donation_mpl = False
+
+        if self.round_number == self.participant.vars['payment_round']:
+            player.payoff = player.current_mpl_payoff
+            player.payoff_decision = "mpl_" + str(player.left_side_num_doses)
 
 
 class Questionnaire(Page):
@@ -241,4 +256,4 @@ class Thanks(Page):
 
 
 # page_sequence = [Welcome, NoPhone, Instructions, AttentionFail, TrialPage, Donation, Questionnaire, Feedback, Thanks]
-page_sequence = [MPL]
+page_sequence = [Instructions, MPL]

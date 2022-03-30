@@ -1,0 +1,60 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block styles %}
+    <link href="{% static 'global/css/ecomb.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <style>
+        /* Alignment of buttons */
+        .next {float: right; margin-top: 40px;}
+        .back {float: left; margin-top: 40px;}
+        li{margin: 10px 0;}
+        .controls ul li{margin: 0;}
+        .tab{margin: 10px;}
+    </style>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'global/js/browser_info.js' %}"></script>
+    <script src="{% static 'global/js/backbutton.js' %}"></script>
+    <script> // display last tab when error message is shown
+        $( document ).ready(function() {
+            classCheck = $('div').hasClass("otree-form-errors alert alert-danger");
+            console.log("classCheck", classCheck);
+
+            let tabIndex = 0;
+
+            if ($('div').hasClass("otree-form-errors alert alert-danger")) {
+                if (js_vars.part === 1) {
+                    activeTab = 1;
+                }
+
+            for (let tab of document.getElementsByClassName('tab')) {
+                tab.style.display = tabIndex === activeTab ? 'block' : 'none';
+                tabIndex++;
+            }
+            }
+        });
+    </script>
+{% endblock %}
+
+
+{% block title %}
+    Instructions
+{% endblock %}
+
+
+
+{% block content %}
+
+
+    {% if player.part == 1 %}
+        {% include 'pilot_2_projects/GeneralInstructions.html' %}
+    {% elif player.part == 2 %}
+        {% include 'pilot_2_projects/InstructionsPart2.html' %}
+    {% elif player.part == 3 %}
+        {% include 'pilot_2_projects/InstructionsMPL.html' %}
+    {% endif %}
+
+
+{% endblock %}

@@ -12,6 +12,13 @@
 
 {% block content %}
 
+<div class="alert alert-primary">
+    On the <b>next three pages</b>, we ask for your choices between option A and option B. <br>
+    The amounts in <b>option B will remain the same</b> on all these pages.
+    But <b>option A will change</b>: We start with option A being a donation of <b>8</b> vitamin A doses,
+    then go on to <b>20</b> doses, and finally <b>32</b> doses.
+</div>
+
 <input type="hidden" name="switching_point" id="id_switching_point">
 {{ form.switching_point.errors }}
 
@@ -29,7 +36,7 @@
     {% for amount in right_side_amounts %}
         <tr>
             <td align="right">
-                I donate <b>{{ player.left_side_amount }}</b> vitamin A doses
+                I donate <b>{{ player.left_side_num_doses }}</b> vitamin A doses
             <td align="middle">
                 <input type="radio" value="left" name="{{ amount }}" required>&nbsp;&nbsp;
                 <input type="radio" value="right" name="{{ amount }}" data-amount="{{ amount }}" required>

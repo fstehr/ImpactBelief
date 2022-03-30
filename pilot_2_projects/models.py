@@ -30,8 +30,9 @@ class Constants(BaseConstants):
         paras = list(csv.DictReader(parameters, dialect='excel'))
 
     # structure of experiment
-    num_parts = 2
-    num_rounds = len(paras) * num_parts
+    num_parts = 3
+    num_wtp_items = 3
+    num_rounds = len(paras) * (num_parts - 1) + num_wtp_items
 
     # timing parameters for display
     duration_min = 15
@@ -66,15 +67,15 @@ class Subsession(BaseSubsession):
                     p.vars['img_a'] += a
                     p.vars['img_b'] += b
                     p.vars['parameters'] += c
-                print('img_a is', p.vars['img_a'])
-                print('img_b is', p.vars['img_b'])
-                print(p.vars['parameters'])  # prints participant vars to double check randomization
+                # print('img_a is', p.vars['img_a'])
+                # print('img_b is', p.vars['img_b'])
+                # print(p.vars['parameters'])  # prints participant vars to double check randomization
 
                 # randomize on participant level whether project A is displayed on the left or right for all rounds
                 is_left = [0, 1]
                 rounds = range(1, Constants.num_rounds + 1)
                 p.vars['cheap_project_first'] = [random.choice(is_left) for i in rounds]
-                print("cheap_project_first is", p.vars['cheap_project_first'])
+                # print("cheap_project_first is", p.vars['cheap_project_first'])
 
                 # assign one payment round
                 p.vars['payment_round'] = random.choice(rounds)
@@ -95,8 +96,16 @@ class Subsession(BaseSubsession):
             # Define "part" variable in the beginning of the experiment
             if self.round_number <= len(Constants.paras):
                 p.part = 1
-            elif self.round_number <= Constants.num_rounds:
+            elif self.round_number <= len(Constants.paras) * 2:
                 p.part = 2
+            elif self.round_number <= Constants.num_rounds:
+                p.part = 3
+                if self.round_number == Constants.num_rounds - 2:
+                    p.left_side_num_doses = 8
+                elif self.round_number == Constants.num_rounds - 1:
+                    p.left_side_num_doses = 20
+                elif self.round_number == Constants.num_rounds:
+                    p.left_side_num_doses = 32
 
             # Assign between subject treatment with pr(ExAnte) = 1/3, pr(ExPost) = 2/3
             treatments = ["ExAnte", "ExPost", "ExPost"]
@@ -255,18 +264,17 @@ class Player(BasePlayer):
     payoff_decision = models.StringField()
 
     # Other behavior during elicitation
-    page_loaded = models.IntegerField()
-    time_out = models.BooleanField()
+    page_loaded = models.IntegerField()   # counts how many times Donation.html was refreshed
+    time_out = models.BooleanField()    # field which gets value 1 if subject did not enter belief on time.
     honeypot = models.IntegerField(blank=True,
                                    doc="hidden field which will only be filled by bots")
 
     # WTP for various vitamin A doses
-    left_side_amount = models.IntegerField(initial=8)
+    left_side_num_doses = models.IntegerField()
     switching_point = models.IntegerField()
-
-    wtp_80 = models.IntegerField()
-    wtp_200 = models.IntegerField()
-    wtp_320 = models.IntegerField()
+    random_draw = models.IntegerField()   # remove again!
+    current_mpl_payoff = models.IntegerField()
+    donation_mpl = models.BooleanField()   # true if switching point in mpl is above randomly drawn scenario
 
     # additional variables
     age = models.IntegerField(label="What is your age?",
