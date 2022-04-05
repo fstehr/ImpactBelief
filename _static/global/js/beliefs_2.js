@@ -91,11 +91,11 @@ function start_with_A_ExA() {
                     countdown1 = setTimeout(run, 1000);
                     NextButton1.onclick = function () {
                         if(num_x_belief_A.value === "") {
-                            window.alert("Please enter your guess for the number  of pills");
+                            window.alert("Please enter your estimate for the number  of pills");
                             return false;
                         }
                         else if(slider_A.className === "slider2"){
-                            window.alert("Please enter how certain you are about your guess");
+                            window.alert("Please enter how certain you are about your estimate");
                             return false;
                         }
                         else
@@ -151,11 +151,11 @@ function continue_with_B() {
                     setTimeout(run, 1000);
                     NextButton2.onclick = function () {
                         if(num_x_belief_B.value === "") {
-                            window.alert("Please enter your guess for the number  of pills");
+                            window.alert("Please enter your estimate for the number  of pills");
                             return false;
                         }
                         else if(slider_B.className === "slider2"){
-                            window.alert("Please enter how certain you are about your guess");
+                            window.alert("Please enter how certain you are about your estimate");
                             return false;
                         }
                         else
@@ -282,11 +282,11 @@ function continue_with_belief_A_ExP () {
             countdown1 = setTimeout(run, 1000);
             NextButton1.onclick = function () {
                 if(num_x_belief_A.value === "") {
-                    window.alert("Please enter your guess for the number  of pills");
+                    window.alert("Please enter your estimate for the number  of pills");
                     return false;
                 }
                 else if(slider_A.className === "slider2"){
-                    window.alert("Please enter how certain you are about your guess");
+                    window.alert("Please enter how certain you are about your estimate");
                     return false;
                 }
                 else
@@ -335,11 +335,11 @@ function continue_with_belief_B_ExP() {
                 setTimeout(run, 1000);
                 SubmitButtonExP.onclick = function () {
                     if(num_x_belief_B.value === "") {
-                        window.alert("Please enter your guess for the number  of pills");
+                        window.alert("Please enter your estimate for the number  of pills");
                         return false;
                     }
                     else if(slider_B.className === "slider2"){
-                        window.alert("Please enter how certain you are about your guess");
+                        window.alert("Please enter how certain you are about your estimate");
                         return false;
                     }
                     else

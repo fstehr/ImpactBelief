@@ -10,7 +10,7 @@ print(columns, dimension)
 
 # Create lists of Xs (different numbers)
 # number_Xs_low = [70, 80, 90, 100, 110, 120, 130]
-number_Xs_low = [80, 80, 80, 80, 80, 80]
+number_Xs_low = [200]
 number_Xs_high = [dimension - i for i in number_Xs_low]
 number_Xs = number_Xs_low + number_Xs_high
 print('number Xs is', number_Xs)

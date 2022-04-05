@@ -96,6 +96,9 @@ class Donation(Page):
     form_fields = ['num_x_belief_A', 'confidence_belief_A', 'donation_A',
                    'num_x_belief_B', 'confidence_belief_B', 'donation_B', 'page_loaded', 'honeypot']
 
+    def is_displayed(self):
+        return self.player.part < 3
+
     def js_vars(self):
         return dict(
             sec_intro=Constants.sec_intro,
@@ -108,6 +111,11 @@ class Donation(Page):
         player = self.player
 
         # get current project from list of 'parameters'
+        num_projects = len(Constants.paras)
+        if player.part == 1:
+            current_proj_number = player.round_number
+        elif player.part == 2:
+            current_proj_number = player.round_number - num_projects
         endowment = Constants.endowment
         project = self.participant.vars['parameters'][self.round_number - 1]
         player.comparison_id = int(project['id'])
@@ -166,7 +174,8 @@ class Donation(Page):
             player.efficiency_B = float(project['efficiency_1'])
             player.img_B = img_b_number
 
-        return {'endowment': endowment, 'img_a': image_a, 'img_b': image_b,
+        return {'num_projects': num_projects, 'current_proj_number': current_proj_number,
+                'endowment': endowment, 'img_a': image_a, 'img_b': image_b,
                 'price_a': price_a, 'price_b': price_b}
 
     def before_next_page(self):
@@ -243,7 +252,7 @@ class MPL(Page):
 
 class Questionnaire(Page):
     form_model = 'player'
-    form_fields = ['age', 'gender', 'levelOfEducation', 'politics_right', 'income', 'altruism',
+    form_fields = ['age', 'gender', 'levelOfEducation', 'income', 'altruism',
                    'giving_type', 'finishing_time']
 
     def is_displayed(self):
@@ -251,4 +260,4 @@ class Questionnaire(Page):
 
 
 # page_sequence = [Welcome, NoPhone, Instructions, AttentionFail, TrialPage, Donation, Questionnaire, Feedback, Thanks]
-page_sequence = [Instructions, Instructions2, Instructions3]
+page_sequence = [Welcome, NoPhone, Instructions, Instructions2, Instructions3, TrialPage, Donation, MPL, Questionnaire]

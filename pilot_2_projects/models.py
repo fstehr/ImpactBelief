@@ -33,7 +33,7 @@ class Constants(BaseConstants):
     num_rounds = len(paras) * (num_parts - 1) + num_wtp_items
 
     # timing parameters for display
-    duration_min = 15
+    duration_min = 25
     sec_intro = 3
     sec_per_matrix = 7
     sec_to_answer = 20
@@ -329,18 +329,6 @@ class Player(BasePlayer):
             [10, '$100,000 - $149,999'],
             [11, '$150,000 or more'],
         ],
-    )
-
-    # https://medium.com/pew-research-center-decoded/small-changes-in-survey-scales-can-matter-when-measuring-political-ideology-in-europe-4a10d9a015c5
-    politics_right = models.IntegerField(
-        label="In political matters people talk of 'the left' and 'the right'. Please pick the category that you identify most with.",
-        choices=[[1, "left"],
-                 [2, "leaning left"],
-                 [3, "centre"],
-                 [4, "leaning right"],
-                 [5, "right"]
-                 ],
-        widget=widgets.RadioSelectHorizontal,
     )
 
     altruism = models.IntegerField(

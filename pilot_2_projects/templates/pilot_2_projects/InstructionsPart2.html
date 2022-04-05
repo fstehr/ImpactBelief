@@ -5,16 +5,17 @@
 <div class="card">
     <div class="card-body">
         <div class="tab">
-            <p>
-                You have now reached the end of the first part of the experiment.
-            </p>
-            <p>
-                Your task in the second part is the same as before. You can decide whether to donate to different projects,
-                which finance different quantities of vitamin A doses.
-            </p>
-            <p>
-                In this part, however, the bonus payments for the estimation of the number of pills are different.
-            </p>
+
+            <h4><img style="width: 5%;" src="{% static 'global/img/choice.png' %}">The donation task - part 2</h4>
+            <div class="alert">
+                <ul>
+                    <li>You have now reached the end of the first part of the experiment.</li>
+                    <li>Your task in the second part is the same as before.</li>
+                    <li>You decide whether to donate to different projects, which finance different numbers of vitamin A doses.</li>
+                    <li>In this part, however, <b>the bonus payments for the estimation of the number of pills are different</b>.</li>
+                </ul>
+            </div>
+
             <div class="alert alert-warning alert-bonus" role="alert">
                 If one of your estimates is selected as a decision-that-counts,
                     <ul>
@@ -23,9 +24,22 @@
                         </li>
                         <li>you receive <b>no bonus</b> if your estimate is <b>more than 10 pills away</b> from the true number.</li>
                     </ul>
+
+                <table>
+                    <tr>
+                        <td>
+                            <h3><i style="color: #B22222;margin-right: 1em" class="bi bi-exclamation-triangle"></i></h3>
+                        </td>
+                        <td>
+                            We will never give feedback on how close your estimate was to the true number of pills.
+                        </td>
+                    </tr>
+                </table>
             </div>
 
-            {% formfield player.cq_6 %}
+            <div class="alert">
+                {% formfield player.cq_6 %}
+            </div>
 
             <button class="btn btn-primary next">Check my answer and continue</button>
         </div>
