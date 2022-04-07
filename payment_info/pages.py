@@ -23,14 +23,7 @@ class Terminated(Page):
 
 
 class PaymentInfo(Page):
-    form_model = 'player'
-    form_fields = ['finishing_time']
-
-    def vars_for_template(self):
-        link = 'https://app.prolific.co/submissions/complete?cc=43031A93'
-
-        return {'link': link}
-        # dict(redemption_code=participant.label or participant.code)
+    pass
 
 
 page_sequence = [Terminated, PaymentInfo]
