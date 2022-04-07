@@ -23,7 +23,7 @@ h5 {
     z-index: 100;
     position: fixed;
     width: 600px;
-    top: 20%;
+    top: 30%;
     left: 50%;
     margin-left: -300px; /* Negative half of width. */
     display:block;
