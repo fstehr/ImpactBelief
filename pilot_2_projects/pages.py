@@ -235,15 +235,14 @@ class MPL(Page):
         player = self.player
         right_side_amounts = range(0, 41, 2)
         # randomly draw payment scenario
-        mpl_row = random.choice(right_side_amounts)
-        player.random_draw = mpl_row
+        player.mpl_row = random.choice(right_side_amounts)
 
-        if player.switching_point >= mpl_row:
+        if player.switching_point <= player.mpl_row:
+            player.current_mpl_payoff = player.mpl_row
+            player.donation_mpl = False
+        else:
             player.current_mpl_payoff = 0
             player.donation_mpl = True
-        else:
-            player.current_mpl_payoff = mpl_row
-            player.donation_mpl = False
 
         if self.round_number == self.participant.vars['payment_round']:
             player.payoff = player.current_mpl_payoff

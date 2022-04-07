@@ -109,6 +109,7 @@ class Subsession(BaseSubsession):
                     p.left_side_num_doses = 32
 
             # store treatment assignment in data set
+            p.payment_round = p.participant.vars['payment_round']
             p.treatment = p.participant.vars['treatment']
 
             # Assign incentive strength to players in all rounds using treatment order assigned in first round
@@ -134,7 +135,8 @@ class Player(BasePlayer):
     # background vars
     starting_time = models.LongStringField(doc="Time at which Informed Consent is given and experiment starts")
     finishing_time = models.LongStringField(doc="Time at which last page is reached")
-    is_mobile = models.BooleanField(doc="Automatic check through JS whether gadget is phone or not")
+    payment_round = models.IntegerField(doc="round that is selected for final payment")
+    is_mobile = models.BooleanField(doc="Automatic check through .js whether gadget is phone or not")
     window_width = models.IntegerField(blank=True, doc="Documents the respondent's browser window's width.")
     window_height = models.IntegerField(blank=True, doc="Documents the respondent's browser window's height.")
 
@@ -272,7 +274,7 @@ class Player(BasePlayer):
     # WTP for various vitamin A doses
     left_side_num_doses = models.IntegerField()
     switching_point = models.IntegerField()
-    random_draw = models.IntegerField()   # remove again!
+    mpl_row = models.IntegerField(doc="stores the randomly selected row of an mpl")
     current_mpl_payoff = models.IntegerField()
     donation_mpl = models.BooleanField()   # true if switching point in mpl is above randomly drawn scenario
 
