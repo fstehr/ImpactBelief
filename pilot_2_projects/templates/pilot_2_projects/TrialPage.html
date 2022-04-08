@@ -100,7 +100,7 @@
     <!-- Page as on donation screen -->
 
     <!-- Initial alert -->
-    <div class="alert alert-danger centerbox" style="display: none" id="alert">
+    <div class="alert alert-danger centerbox-alert" style="display: none" id="alert">
         <strong>
             Please stay alert, as each image is only displayed for {{ Constants.sec_per_matrix }} seconds.<br>
         </strong>
@@ -217,7 +217,7 @@
                 </div>
                 {% if player.treatment == "ExPost" %}
                     <div style="padding: 0; text-align: right">
-                       <button id="SubmitButtonExP" class="btn btn-primary btn-large" style="display: none">Next</button>
+                       <button id="SubmitButtonExP" class="btn btn-primary btn-large" style="display: none">Start the experiment</button>
                     </div>
                 {% endif %}
             </div>
@@ -250,7 +250,7 @@
             </div>
             {% if player.treatment == "ExAnte" %}
                 <div style="text-align: right">
-                   <button id="SubmitButtonExA" class="btn btn-primary btn-large" style="visibility: hidden">Next</button>
+                   <button id="SubmitButtonExA" class="btn btn-primary btn-large" style="visibility: hidden">Start the experiment</button>
                 </div>
             {% endif %}
         </div>

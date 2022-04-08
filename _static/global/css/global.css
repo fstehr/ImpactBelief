@@ -19,11 +19,21 @@ h5 {
     padding-top: 0;
 }
 
-.centerbox {
+.centerbox-alert {
     z-index: 100;
     position: fixed;
     width: 600px;
     top: 30%;
+    left: 50%;
+    margin-left: -300px; /* Negative half of width. */
+    display:block;
+}
+
+.centerbox {
+    z-index: 100;
+    position: absolute;
+    width: 600px;
+    top: 20%;
     left: 50%;
     margin-left: -300px; /* Negative half of width. */
     display:block;
