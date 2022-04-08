@@ -33,7 +33,7 @@ class Constants(BaseConstants):
     num_rounds = len(paras) * (num_parts - 1) + num_wtp_items
 
     # timing parameters for display
-    duration_min = 25
+    duration_min = 22
     sec_intro = 3
     sec_per_matrix = 7
     sec_to_answer = 20
