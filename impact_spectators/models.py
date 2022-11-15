@@ -15,7 +15,7 @@ from otree.db.models import ForeignKey
 doc = """
 This is an experiment on impact beliefs of donations, with 2 projects per screen. 
 All currency variables are in US Dollars.
-The present code only contains a spectator treatment, using two levels of accuracy incentives (within subj).
+The present code only contains a 'Spectator' treatment, using two levels of accuracy incentives (within subj).
 The timing of belief elicitation is as in the ExAnte treatment of the main experiment
 """
 
@@ -85,8 +85,7 @@ class Subsession(BaseSubsession):
                 p.vars['order'] = random.choice(orders)
 
                 # Assign between subject treatment with pr(ExAnte) = 1
-                treatments = ["ExAnte", "ExAnte"]
-                p.vars['treatment'] = random.choice(treatments)
+                p.vars['treatment'] = "Spectator"
 
                 # initialize some participant vars:
                 p.vars['too_many_wrong'] = False

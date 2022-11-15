@@ -33,7 +33,7 @@ let CIB = document.getElementById("CIB");
 
 // buttons
 let NextButton1 = document.getElementById("NextButton1");
-let SubmitButtonExA = document.getElementById("SubmitButtonExA");
+let SubmitButton = document.getElementById("SubmitButton");
 
 
 
@@ -42,7 +42,7 @@ function HideImageLoadForm() {
     console.log("page was loaded", localStorage.getItem('counter'), "times")
     attention.style.display = "block";
 
-    if (treatment === "ExAnte") {
+    if (treatment === "Spectator") {
         start_with_A_ExA();
     }
     else {
@@ -126,7 +126,7 @@ function continue_with_B() {
         cardB.style.color = "black";
         num_x_belief_B.disabled = false;
         slider_B.disabled = false;
-        SubmitButtonExA.style.visibility = "visible";
+        SubmitButton.style.visibility = "visible";
 
         // display count down
         countdown.style.visibility="visible";
@@ -138,7 +138,7 @@ function continue_with_B() {
                     count.innerHTML = counter;
                     // console.log("countdown 2:", counter)
                     setTimeout(run, 1000);
-                    SubmitButtonExA.onclick = function () {
+                    SubmitButton.onclick = function () {
                         if(num_x_belief_B.value === "") {
                             window.alert("Please enter your estimate for the number  of pills");
                             return false;
@@ -158,7 +158,7 @@ function continue_with_B() {
                     slider_B.disabled = true;
                     countdown.style.visibility = "hidden";
                     cardB.style.color = "#6c757d";
-                    SubmitButtonExA.onclick = submission_check;
+                    SubmitButton.onclick = submission_check;
                 }
             }, 1000);
     }, Delay);

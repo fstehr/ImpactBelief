@@ -15,9 +15,17 @@
     <script type="text/javascript" src="{% static 'js/sliders.js' %}"></script>
     <script>
         document.title = "The Estimation Task";
+        /* deactivate right click */
         $("body").on("contextmenu",function(e){
             return false;
         });
+        /* de-activate 'Enter' keyboard button on page */
+        document.onkeypress = function(event) {
+            if (event.which == 13) {
+                event.preventDefault();
+                console.log("pressed enter");
+            }
+        }
     </script>
 {% endblock %}
 
@@ -48,9 +56,7 @@
         <strong>
             Please stay alert, as each image is only displayed for {{ Constants.sec_per_matrix }} seconds.<br>
         </strong>
-        {% if player.treatment == "ExAnte" %}
             You have {{ Constants.sec_to_answer }} seconds to fill in your estimate after the image disappears.
-        {% endif %}
     </div>
 
     <!-- Forms -->
@@ -158,7 +164,7 @@
                 </table>
 
                 <div style="padding: 0; text-align: right">
-                    <button id="SubmitButtonExA" class="btn btn-primary btn-large" style="visibility: hidden">Next</button>
+                    <button id="SubmitButton" class="btn btn-primary btn-large" style="visibility: hidden">Next</button>
                 </div>
             </div>
         </div>
