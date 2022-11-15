@@ -165,7 +165,7 @@ class Player(BasePlayer):
             self.wrong_answer_count += 1
             return "Wrong answer."
 
-    cq_3 = models.IntegerField(label="How many vitamin A doses your donation finances depends on...",
+    cq_3 = models.IntegerField(label="How many vitamin A doses a donation finances depends on...",
                                widget=widgets.RadioSelect,
                                choices=[[1, 'your estimate of the number of pills in an image.'],
                                         [2, 'the true number of pills in an image.'],
@@ -177,19 +177,7 @@ class Player(BasePlayer):
             self.wrong_answer_count += 1
             return "Wrong answer."
 
-    cq_4 = models.IntegerField(label="In what way does your donation decision have real consequences (if it is selected "
-                                     "as a decision-that-counts)?",
-                               widget=widgets.RadioSelect,
-                               choices=[[1, 'The money you donate will go to a charity of your choice.'],
-                                        [2, 'Your choice has no real-world consequences.'],
-                                        [3, 'The money you donate will go to another participant in this study.'],
-                                        [4, 'If you donate, you fund real vitamin A doses to be administered by Helen Keller International.']])
 
-    def cq_4_error_message(self, value):
-        # print('value 3 is', value)
-        if value != 4:
-            self.wrong_answer_count += 1
-            return "Wrong answer."
 
     cq_5 = models.IntegerField(label="How many pills are there in a given image?",
                                widget=widgets.RadioSelect,

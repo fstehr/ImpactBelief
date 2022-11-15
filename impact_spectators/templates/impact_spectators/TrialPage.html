@@ -24,7 +24,7 @@
         });
 
         /* de-activate 'Enter' keyboard button on page */
-        document.onkeypress = function(event) {
+        document.onkeydown = function(event) {
             if (event.which == 13) {
                 event.preventDefault();
                 console.log("pressed enter");
@@ -105,7 +105,7 @@
                     <tr>
                         <td colspan="2">
                             <img style="width: 10%; margin-right: 12px" src="{% static 'global/img/coin.png' %}">
-                            Donating to this project costs:
+                            The price of donating to this project is:
                         </td>
                         <td style="font-size: larger"> &#36 <span style="color: red; font-weight: bold;">4</span> </td>
                     </tr>
@@ -160,7 +160,8 @@
                 <table style="width:100%;border-color: #0c5460; border-spacing: 22px 10px;" id="priceB">
                     <tr>
                         <td colspan="2">
-                            <img style="width: 10%; margin-right: 12px" src="{% static 'global/img/coin.png' %}">Donating to this project costs:
+                            <img style="width: 10%; margin-right: 12px" src="{% static 'global/img/coin.png' %}">
+                            The price of donating to this project is:
                         </td>
                         <td style="font-size: larger"> &#36 <span style="color: red; font-weight: bold;">16</span> </td>
                     </tr>

@@ -45,7 +45,7 @@ class Instructions(Page):
 
 class Instructions2(Page):
     form_model = 'player'
-    form_fields = ['cq_3', 'cq_4']
+    form_fields = ['cq_3']
 
     def is_displayed(self):
         return self.round_number == 1
@@ -254,5 +254,5 @@ class Questionnaire(Page):
         return self.round_number == Constants.num_rounds
 
 
-page_sequence = [TrialPage, Donation]
+page_sequence = [Instructions, Instructions2, Instructions3, TrialPage, Donation]
 # page_sequence = [Welcome, NoPhone, Instructions, Instructions2, Instructions3, TrialPage, Donation, MPL, Questionnaire]

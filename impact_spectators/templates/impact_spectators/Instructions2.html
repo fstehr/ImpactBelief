@@ -38,7 +38,7 @@
 
 
 {% block title %}
-    Instructions - The Donation Task
+    Instructions - The Estimation Task
 {% endblock %}
 
 
@@ -63,20 +63,11 @@
         <h4><img style="width: 5%;" src="{% static 'global/img/choice.png' %}">What is your task in the experiment?</h4>
         <div class="alert">
             <ul>
-                <li>You can <b>donate to different charity projects</b> which provide vitamin A supplements to children in need.</li>
+                <li>You will see <b>different charity projects</b> which provide vitamin A supplements to children in need.</li>
                 <li>The projects <b><u>differ in price and number of vitamin A supplements</u></b> financed.</li>
-                <li>However, you do not perfectly know how many vitamin A doses your donation finances.</li>
+                <li>However, you do not perfectly know how many vitamin A doses a donation to such a project finances.</li>
                 <li>Instead, you have to <b>estimate this number</b>.</li>
             </ul>
-        </div>
-
-
-        <div class="alert">
-                <h5><i style="color: #B22222" class="bi bi-exclamation-triangle"></i> Your donation has real consequences! </h5>
-                <p>
-                    For each vitamin A dose you donate, we will provide the equivalent funding to a real
-                    charity for buying and administering vitamin A doses.
-                </p>
         </div>
 
 
@@ -104,33 +95,6 @@
     <!-- Page 2 -->
     <div class="tab">
 
-        <h4><img style="width: 4%; margin-right: 12px" src="{% static 'img/coin.svg' %}">How can you donate?</h4>
-        <div class="alert">
-            In each round,
-            <ul>
-                <li>you receive &#36;{{ Constants.endowment }}, which you can spend on donations.</li>
-                <li>you will see two projects.</li>
-                <li>you can <b>donate to one, both, or neither</b> of the projects.</li>
-                <li>your bonus payment may be determined by your donation(s).</li>
-            </ul>
-        </div>
-
-
-        <div class="alert alert-warning alert-bonus" role="alert">
-            If your donation decision <u>in a given round</u> is selected as the decision-that-counts, your bonus payment will determined as follows:
-            <ul>
-                <li>If you donated to at least one of the two projects,
-                    <ul>
-                        <li>you <b>receive <u>&#36;{{ Constants.endowment }} minus the sum of prices of the projects to which you donated</u></b>, and</li>
-                        <li>we will <b>donate vitamin A doses</b> to each of the projects to which you donated.</li>
-                    </ul>
-                </li>
-                <li>If you decided not to donate, you will keep the entire <b>&#36;{{ Constants.endowment }}</b>.</li>
-            </ul>
-        </div>
-
-        <br><br>
-
         <h4><i style="font-weight: 100; font-size: 24pt; margin-right: 0.5em" class="bi bi-bag-heart"></i>How do donation projects differ?</h4>
         <div class="alert">
             <ul>
@@ -151,7 +115,7 @@
                         <h3><i style="color: #B22222;margin-right: 1em" class="bi bi-exclamation-triangle"></i></h3>
                     </td>
                     <td>
-                        How many vitamin A doses your donation finances <b>depends only on the true number of pills</b>
+                        How many vitamin A doses a donation finances <b>depends only on the true number of pills</b>
                         in the image and <b>not on your estimate</b>!
                     </td>
                 </tr>
@@ -181,7 +145,6 @@
 
 
             {% formfield player.cq_3 %}
-            {% formfield player.cq_4 %}
 
 
         <p>

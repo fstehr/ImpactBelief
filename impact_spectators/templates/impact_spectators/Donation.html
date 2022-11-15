@@ -20,7 +20,7 @@
             return false;
         });
         /* de-activate 'Enter' keyboard button on page */
-        document.onkeypress = function(event) {
+        document.onkeydown = function(event) {
             if (event.which == 13) {
                 event.preventDefault();
                 console.log("pressed enter");
