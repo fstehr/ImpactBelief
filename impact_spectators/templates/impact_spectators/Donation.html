@@ -1,0 +1,175 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block styles %}
+    <link href="{% static 'global/css/global.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/sliders.css' %}">
+    <style>
+        table {border-collapse: separate; border-spacing: 22px;}
+    </style>
+{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript" src="{% static 'js/beliefs_2.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/sliders.js' %}"></script>
+    <script>
+        document.title = "The Estimation Task";
+        $("body").on("contextmenu",function(e){
+            return false;
+        });
+    </script>
+{% endblock %}
+
+
+{% block title %}
+    <table style="padding:0px; margin:0px;width:100%">
+        <tr>
+            <td style="width:60%;border-color:transparent">The Estimation Task</td>
+            <td style="width:40%;border-color:transparent;text-align: right;font-size: medium; font-weight: lighter">
+                <div>
+                    Round {{ current_proj_number }} / {{ num_projects }}<br>
+                    <span id="countdown" style="visibility: hidden">
+                        Seconds left to enter your estimate:
+                        <span id="count">{{ Constants.sec_to_answer }}</span>
+                     </span>
+                </div>
+            </td>
+        </tr>
+    </table>
+{% endblock %}
+
+{% block content %}
+
+<body onload="HideImageLoadForm()" onkeydown="return (event.keyCode != 116 || event.keyCode != 13)">
+
+    <!-- Initial alert -->
+    <div class="alert alert-danger centerbox-alert" id="alert">
+        <strong>
+            Please stay alert, as each image is only displayed for {{ Constants.sec_per_matrix }} seconds.<br>
+        </strong>
+        {% if player.treatment == "ExAnte" %}
+            You have {{ Constants.sec_to_answer }} seconds to fill in your estimate after the image disappears.
+        {% endif %}
+    </div>
+
+    <!-- Forms -->
+    <div class="card-deck">
+
+        <!-- Form A -->
+        <div class="card">
+            <div class="card-body" id="cardA" style="color: #6c757d">
+                <table style="width:100%;border-color: #0c5460; border-spacing: 22px 10px;" id="priceA">
+                    <tr>
+                        <td colspan="2">
+                            <img style="width: 10%; margin-right: 12px" src="{% static 'global/img/coin.png' %}">
+                            The price of donating to this project is:
+                        </td>
+                        <td style="font-size: larger"> &#36 <span style="color: red; font-weight: bold;">{{ price_a }}</span> </td>
+                    </tr>
+                </table>
+
+                <img src = "{% static 'global/img/matrices/matrix_white.png' %}"  id="matrix1_white" style="display:block;margin-left:auto; margin-right:auto; width:80%;"/>
+                <img src = "{% static img_a %}" id="matrix1" style="display:none;margin-left:auto; margin-right:auto; width:80%;"/>
+
+                <table style="width:100%;border-color: #0c5460; border-spacing: 22px 20px; display: none" id="beliefA">
+                    <tr>
+                        <td colspan="2"><img style="width: 12%; margin-right: 4px" src="{% static 'global/img/vitamins.png' %}"> How many pills were in the image?</td>
+                        <td><input id="num_x_belief_A" disabled class="form-control" type="number"
+                                     name="num_x_belief_A" min="1" max="400">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="3">
+                            How certain are you about your estimate?
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td style="width:5%">completely uncertain</td>
+                        <td style="width: 100%">
+                            <div class="slidecontainer">
+                                <input disabled type="range" min="1" max="20" value="20" class="slider2" id="certainty_A" name="confidence_belief_A" oninput="changeCIA(this.value)" style="width: 90%;" >
+                            </div>
+                        </td>
+                        <td style="width:5%">completely certain</td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="3" id="CIA" style="visibility:hidden; padding: 0; text-align: center; font-weight: lighter">
+                            <em>I am certain the value is between <span id="min_A">0</span> and <span id="max_A">400</span>. </em>
+                        </td>
+                    </tr>
+                </table>
+
+                <div style="padding: 0; text-align: right">
+                    <button id="NextButton1" style="visibility: hidden" type="button" class="btn btn-primary btn-large">&#8680;</button>
+                </div>
+
+              </div>
+          </div>
+
+
+        <!-- Form B -->
+        <div class="card">
+            <div class="card-body" id="cardB" style="color: #6c757d">
+
+                <table style="width:100%;border-color: #0c5460; border-spacing: 22px 10px;" id="priceB">
+                    <tr>
+                        <td colspan="2">
+                            <img style="width: 10%; margin-right: 12px" src="{% static 'global/img/coin.png' %}">
+                            The price of donating to this project is:
+                        </td>
+                        <td style="font-size: larger"> &#36 <span style="color: red; font-weight: bold;">{{ price_b }}</span> </td>
+                    </tr>
+                </table>
+
+                <img src = "{% static 'global/img/matrices/matrix_white.png' %}" id="matrix2_white" style="display:block;margin-left:auto; margin-right:auto; width:80%;"/>
+                <img src = "{% static img_b %}" id="matrix2" style="display:none;margin-left:auto; margin-right:auto; width:80%;"/>
+
+                <table style="width:100%; border-spacing: 22px 20px; display: none" id="beliefB">
+                    <tr>
+                        <td colspan="2"><img style="width: 12%; margin-right: 12px" src="{% static 'global/img/vitamins.png' %}">How many pills were in the image?</td>
+                        <td><input id="num_x_belief_B" disabled class = "form-control" type="number" name="num_x_belief_B" min="1" max="400"></td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="3">
+                            How certain are you about your estimate?
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td style="width:5%">completely uncertain</td>
+                        <td style="width: 90%">
+                            <div class="slidecontainer">
+                                <input disabled type="range" min="1" max="20" value="20" class="slider2" id="certainty_B" name="confidence_belief_B" oninput="changeCIB(this.value)" style="width: 90%;">
+                            </div>
+                        </td>
+                        <td style="width:5%">completely certain</td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="3" id="CIB" style="visibility:hidden; padding: 0; text-align: center; font-weight: lighter">
+                            <em>I am certain the value is between <span id="min_B">0</span> and <span id="max_B">400</span>.</em>
+                        </td>
+                    </tr>
+                </table>
+
+                <div style="padding: 0; text-align: right">
+                    <button id="SubmitButtonExA" class="btn btn-primary btn-large" style="visibility: hidden">Next</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <input type="hidden" name="page_loaded" id="page_loaded" value="0">
+    <input type="hidden" name="honey_pot" id="honey_pot">
+
+</body>
+
+{% endblock %}
+

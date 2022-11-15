@@ -76,8 +76,8 @@ class Instructions3(Page):
 
 class TrialPage(Page):
     form_model = 'player'
-    form_fields = ['trial_belief_A', 'trial_confidence_A', 'trial_donation_A',
-                   'trial_belief_B', 'trial_confidence_B', 'trial_donation_B', 'page_loaded']
+    form_fields = ['trial_belief_A', 'trial_confidence_A',
+                   'trial_belief_B', 'trial_confidence_B', 'page_loaded']
 
     def is_displayed(self):
         return self.round_number == 1
@@ -93,8 +93,8 @@ class TrialPage(Page):
 
 class Donation(Page):
     form_model = 'player'
-    form_fields = ['num_x_belief_A', 'confidence_belief_A', 'donation_A',
-                   'num_x_belief_B', 'confidence_belief_B', 'donation_B', 'page_loaded', 'honeypot']
+    form_fields = ['num_x_belief_A', 'confidence_belief_A',
+                   'num_x_belief_B', 'confidence_belief_B', 'page_loaded', 'honeypot']
 
     def is_displayed(self):
         return self.player.part < 3
@@ -258,5 +258,5 @@ class Questionnaire(Page):
         return self.round_number == Constants.num_rounds
 
 
-page_sequence = [Donation]
+page_sequence = [TrialPage]
 # page_sequence = [Welcome, NoPhone, Instructions, Instructions2, Instructions3, TrialPage, Donation, MPL, Questionnaire]
