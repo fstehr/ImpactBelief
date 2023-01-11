@@ -53,7 +53,7 @@ function HideImageLoadForm() {
     for (i = 0; i < donations.length; i++) {
         donations[i].disabled = true;
     }
-    if (treatment === "ExAnte") {
+    if (treatment === "ExAnte" || treatment === "Spectator") {
         start_with_A_ExA();
     }
     else if (treatment === "ExPost") {

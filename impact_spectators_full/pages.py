@@ -45,7 +45,7 @@ class Instructions(Page):
 
 class Instructions2(Page):
     form_model = 'player'
-    form_fields = ['cq_3']
+    form_fields = ['cq_3', 'cq_4']
 
     def is_displayed(self):
         return self.round_number == 1
@@ -76,8 +76,8 @@ class Instructions3(Page):
 
 class TrialPage(Page):
     form_model = 'player'
-    form_fields = ['trial_belief_A', 'trial_confidence_A',
-                   'trial_belief_B', 'trial_confidence_B', 'page_loaded']
+    form_fields = ['trial_belief_A', 'trial_confidence_A', 'trial_donation_A',
+                   'trial_belief_B', 'trial_confidence_B', 'trial_donation_B', 'page_loaded']
 
     def is_displayed(self):
         return self.round_number == 1
@@ -93,8 +93,8 @@ class TrialPage(Page):
 
 class Donation(Page):
     form_model = 'player'
-    form_fields = ['num_x_belief_A', 'confidence_belief_A',
-                   'num_x_belief_B', 'confidence_belief_B', 'page_loaded', 'honeypot']
+    form_fields = ['num_x_belief_A', 'confidence_belief_A', 'donation_A',
+                   'num_x_belief_B', 'confidence_belief_B', 'donation_B', 'page_loaded', 'honeypot']
 
     def is_displayed(self):
         return self.player.part < 3
@@ -202,11 +202,15 @@ class Donation(Page):
             else:
                 player.current_belief_B_payoff = 0
 
+            # bonus payment for joint donation
+            player.current_donation_payoff = Constants.endowment - (player.donation_A * player.price_A) - \
+                                             (player.donation_B * player.price_B)
 
             # randomly assign one of the three vars as final payoff in the payment round
-            urn = [0, 1]
-            payoff_decision = ["belief_A", "belief_B"]
-            current_payoffs = [player.current_belief_A_payoff, player.current_belief_B_payoff]
+            urn = [0, 1, 2]
+            payoff_decision = ["belief_A", "belief_B", "donation"]
+            current_payoffs = [player.current_belief_A_payoff, player.current_belief_B_payoff,
+                               player.current_donation_payoff]
             if self.round_number == self.participant.vars['payment_round']:
                 payout = random.choice(urn)
                 player.payoff = current_payoffs[payout]
@@ -254,5 +258,5 @@ class Questionnaire(Page):
         return self.round_number == Constants.num_rounds
 
 
-page_sequence = [Instructions, Instructions2, Instructions3, TrialPage, Donation]
+page_sequence = [Donation]
 # page_sequence = [Welcome, NoPhone, Instructions, Instructions2, Instructions3, TrialPage, Donation, MPL, Questionnaire]

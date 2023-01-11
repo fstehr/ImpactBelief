@@ -38,7 +38,7 @@
 
 
 {% block title %}
-    Instructions - The Estimation Task
+    Instructions
 {% endblock %}
 
 
@@ -60,7 +60,7 @@
     <!-- Page 1 -->
     <div class="tab">
 
-        <h4><img style="width: 5%;" src="{% static 'global/img/choice.png' %}">What is your task in the experiment?</h4>
+        <h4><img style="width: 5%;" src="{% static 'global/img/choice.png' %}">The Estimation Task - Part 1</h4>
         <div class="alert">
             <ul>
                 <li>You will see <b>different charity projects</b> which provide vitamin A supplements to children in need.</li>
@@ -70,7 +70,12 @@
             </ul>
         </div>
 
-
+        <div class="alert">
+                <h5><i style="color: #B22222" class="bi bi-exclamation-triangle"></i> These are real charity projects </h5>
+                <p>The charity projects you will see are projects to which <b>other participants</b> in this study could donate.<br>
+                    <b>You will not be asked to donate to these projects</b>, we only ask you to estimate the number of vitamin A doses financed by a project.
+                </p>
+        </div>
 
         <h4><img style="width: 4%;margin-right: 0.5em" src="{% static 'global/img/donation.png' %}">Why vitamin A supplements?</h4>
         <div class="alert">
@@ -78,7 +83,7 @@
                 <li>Over 200,000 children's deaths can be attributed to vitamin A deficiency each year.</li>
                 <li>The <b>World Health Organization recommends</b> that all preschool-aged children in areas where vitamin A
                     deficiency is a public health problem receive vitamin A supplements two to three times per year.</li>
-                <li>In this experiment, you can donate to children in need through Helen Keller International's Vitamin A
+                <li>In another part of this experiment, other participants could donate to children in need through Helen Keller International's Vitamin A
                     Supplementation Program.<a style="font-size: 10pt" href="#footnote1"><sup>[1]</sup></a></li>
             </ul>
         </div>

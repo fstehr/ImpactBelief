@@ -15,13 +15,12 @@ from otree.db.models import ForeignKey
 doc = """
 This is an experiment on impact beliefs of donations, with 2 projects per screen. 
 All currency variables are in US Dollars.
-The present code only contains a 'Spectator' treatment, using two levels of accuracy incentives (within subj).
-The timing of belief elicitation is as in the ExAnte treatment of the main experiment
+Design is 2x2 (player.accuracy_bonus (within subj) x player.treatment (btw subj.))
 """
 
 
 class Constants(BaseConstants):
-    name_in_url = 'study3'
+    name_in_url = 'study4'
     players_per_group = None
 
     # Get experimental parameters from csv file
@@ -84,8 +83,9 @@ class Subsession(BaseSubsession):
                 orders = ["NeutralMotivated", "MotivatedNeutral"]
                 p.vars['order'] = random.choice(orders)
 
-                # Assign between subject treatment with pr(ExAnte) = 1
-                p.vars['treatment'] = "Spectator"
+                # Assign between subject treatment pr(Spectator)=1
+                treatments = ["Spectator"]
+                p.vars['treatment'] = random.choice(treatments)
 
                 # initialize some participant vars:
                 p.vars['too_many_wrong'] = False
@@ -165,7 +165,7 @@ class Player(BasePlayer):
             self.wrong_answer_count += 1
             return "Wrong answer."
 
-    cq_3 = models.IntegerField(label="How many vitamin A doses a donation finances depends on...",
+    cq_3 = models.IntegerField(label="How many vitamin A doses your donation finances depends on...",
                                widget=widgets.RadioSelect,
                                choices=[[1, 'your estimate of the number of pills in an image.'],
                                         [2, 'the true number of pills in an image.'],
@@ -177,7 +177,19 @@ class Player(BasePlayer):
             self.wrong_answer_count += 1
             return "Wrong answer."
 
+    cq_4 = models.IntegerField(label="In what way does your donation decision have real consequences (if it is selected "
+                                     "as a decision-that-counts)?",
+                               widget=widgets.RadioSelect,
+                               choices=[[1, 'The money you donate will go to a charity of your choice.'],
+                                        [2, 'Your choice has no real-world consequences.'],
+                                        [3, 'The money you donate will go to another participant in this study.'],
+                                        [4, 'If you donate, you fund real vitamin A doses to be administered by Helen Keller International.']])
 
+    def cq_4_error_message(self, value):
+        # print('value 3 is', value)
+        if value != 4:
+            self.wrong_answer_count += 1
+            return "Wrong answer."
 
     cq_5 = models.IntegerField(label="How many pills are there in a given image?",
                                widget=widgets.RadioSelect,
@@ -216,7 +228,7 @@ class Player(BasePlayer):
     order = models.StringField()
     part = models.IntegerField()
     accuracy_bonus = models.IntegerField()  # options are lo and hi, as defined in Constants
-    treatment = models.StringField()   # options as ExAnte and ExPost
+    treatment = models.StringField()   # options as ExAnte and ExPost, here only Spectators
 
     comparison_id = models.IntegerField()
     comparison_type = models.StringField()
@@ -343,6 +355,7 @@ class Player(BasePlayer):
 
 # TO DO
 
+# still have to donate 6 doses from pilot!!!
 
 # - systematically test belief & donation payoffs
 # - test randomization of pictures!!! using console log with the picture names!

@@ -1,0 +1,113 @@
+{% load otree %}
+
+<body>
+
+    <div class="card">
+    <div class="card-body">
+
+        <!-- Page 1 -->
+        <div class="tab">
+            <h4><img style="width: 5%;" src="{% static 'global/img/choice.png' %}">The Valuation Task - Part 3</h4>
+
+            <div class="alert">
+                <p>
+                    You have the possibility to choose in 21 decision scenarios between two options:
+                    <b>option A</b> and <b>option B</b>. Both options are as follows:
+                </p>
+
+
+                <div class="card-deck" style="width:90%;margin-left: auto;margin-right: auto">
+
+                    <div class="card">
+                        <div class="card-body" id="optionA">
+                            <div style="text-align: center">
+                                <img style="width: 10%;" src="{% static 'global/img/vitamins.png' %}">
+                                <b>Option A</b> <br>
+                                <span style="font-weight: lighter;font-style: italic;">"I donate Vitamin A doses"</span>
+                            </div>
+                            <div  style="margin-top: 20pt">
+                                By choosing option A, you <b>trigger a donation</b> of a specific <b>number of
+                                vitamin A doses</b> to the Helen Keller Foundation, just as before.
+                                You will <b>not receive an additional payment</b>.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-body" id="optionB">
+                            <div style="text-align: center">
+                                <img style="width: 10%; margin-right: 8px" src="{% static 'img/coin.svg' %}"> <b>Option B</b> <br>
+                                <span style="font-weight: lighter;font-style: italic;">
+                                    "I choose  &#36;<em>X</em> as payment for myself"
+                                </span>
+                            </div>
+                            <div  style="margin-top: 20pt">
+                                By choosing option B, you may <b>receive an additional payment</b> at the end of the experiment.
+                                <b>No donation</b> will be triggered.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <br>
+
+            <h4><img style="width: 4%; margin-right: 12px" src="{% static 'img/coin.svg' %}">How does the additional payment work?</h4>
+
+                <div class="alert">
+                    <ul>
+                        <li>
+                            The additional payment that you receive from choosing option B varies in each of the
+                            21 decision scenarios.
+                        </li>
+                        <li>
+                            In the first scenario, the payment is <b>&#36;0</b> and then
+                            <b>increases incrementally in each scenario</b> thereafter by &#36;2 <b>up to a payment of &#36;40</b>.
+                        </li>
+                        <li>
+                            Therefore, the decision scenarios look as follows:
+                            <img style="width: 90%; margin-left:auto; margin-right:auto; display: block;" src="{% static 'global/img/example_mpl.png' %}">
+                        </li>
+                    </ul>
+
+                    <div class="alert alert-warning alert-bonus" role="alert">
+                        If this decision is randomly selected as the decision-that-counts:
+                        <ul>
+                            <li><b>One of the 21 decision scenarios</b> will be randomly selected for real implementation.</li>
+                            <li>The <b>consequences of your decision</b> in this scenario will be <b>implemented as stated</b>.</li>
+                            <li>Each of the 21 scenarios has the same probability of being selected.</li>
+                            <li>Therefore, it is in your interest to decide in every scenario as if that decision is
+                                being implemented for real.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+
+            <h4><i style="font-weight: 100; font-size: 24pt; margin-right: 0.5em" class="bi bi-magic"></i> Automatic Completion Help</h4>
+
+            <div class="alert">
+                <ul>
+                    <li>
+                        So that you do not need to click as much, we have activated an automatic completion
+                        help that automatically fills out the fields for you.
+                    </li>
+                    <li> As soon as you choose an amount from option B, we assume that you would choose all
+                        respectively higher payments from option B.
+                    </li>
+                    <li>
+                        Likewise, when you choose option A in a row, we assume that you would choose
+                        option A over all respectively lower payments from option B.
+                    </li>
+                </ul>
+            </div>
+
+            <p>
+                <button class="btn btn-primary next">Start the decisions</button>
+            </p>
+        </div>
+
+    </div>
+</div>
+
+</body>

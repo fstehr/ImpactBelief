@@ -21,11 +21,11 @@ SESSION_CONFIGS = [
         app_sequence=['pilot_2_projects', 'payment_info'],
     ),
     dict(
-        name='spectators',
-        display_name='Impact beliefs - spectator treatment',
+        name='spectator_beliefs',
+        display_name='Impact beliefs - spectator beliefs',
         num_demo_participants=2,
-        app_sequence=['impact_spectators', 'payment_info'],
-    ),
+        app_sequence=['impact_spectators_beliefs', 'payment_info'],
+    )
 ]
 
 # if you set a property in SESSION_CONFIG_DEFAULTS, it will be inherited by all configs
