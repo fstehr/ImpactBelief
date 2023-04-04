@@ -3,29 +3,19 @@ from os import environ
 
 SESSION_CONFIGS = [
     dict(
-        name='pilot_donation',
-        display_name='Pilot Donation',
-        num_demo_participants=2,
-        app_sequence=['pilot_donations'],
+        name='compensation_beliefs',
+        display_name='Compensation DiffResp Beliefs - Experiment',
+        num_demo_participants=9,
+        app_sequence=['compensation_beliefs'],
+        mode="follow-up",
+        treatments_played="134",
+        num_groups=1,
+        doc="""
+            Edit the 'treatments_played' parameter to change which treatments are played.
+            Possible values are 1234 (Ind, Harm, Resp, Risk), 123, 124, ... and all other combinations of 
+            3 treatments
+            """
     ),
-    dict(
-        name='pilot_1_project',
-        display_name='Pilot: 1 project per screen',
-        num_demo_participants=2,
-        app_sequence=['pilot_1_project'],
-    ),
-    dict(
-        name='pilot_2_projects',
-        display_name='Pilot: 2 projects per screen',
-        num_demo_participants=2,
-        app_sequence=['pilot_2_projects', 'payment_info'],
-    ),
-    dict(
-        name='spectator_beliefs',
-        display_name='Impact beliefs - spectator beliefs',
-        num_demo_participants=2,
-        app_sequence=['impact_spectators_beliefs', 'payment_info'],
-    )
 ]
 
 # if you set a property in SESSION_CONFIG_DEFAULTS, it will be inherited by all configs
@@ -34,7 +24,7 @@ SESSION_CONFIGS = [
 # e.g. self.session.config['participation_fee']
 
 SESSION_CONFIG_DEFAULTS = dict(
-    real_world_currency_per_point=1, participation_fee=3.50, doc=""
+    real_world_currency_per_point=1, participation_fee=0, doc=""
 )
 
 # ISO-639 code
@@ -42,7 +32,7 @@ SESSION_CONFIG_DEFAULTS = dict(
 LANGUAGE_CODE = 'en'
 
 # e.g. EUR, GBP, CNY, JPY
-REAL_WORLD_CURRENCY_CODE = 'USD'
+REAL_WORLD_CURRENCY_CODE = 'EUR'
 USE_POINTS = True
 
 ROOMS = [

@@ -1,0 +1,31 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    {% if subsession.round_number == 1 %} Welcome! {% else %} Introduction - {% if subsession.round_number == first_treatment_round %} Part 2 {% else %} Part 3 {% endif %}{% endif %}
+{% endblock %}
+
+{% block content %}
+
+    {% if subsession.round_number == 1 %}
+    <p>
+        Welcome to this experiment! Please stay seated and wait quietly while the other participants are taking their seats.
+    </p>
+    {% endif %}
+
+    <p>
+        {% if subsession.round_number == 1 %}
+            Once all participants have arrived, we will start with the experiment by distributing the instructions
+            for the first part of the experiment. Please read them carefully.
+        {% else %}
+            We will now distribute the instructions for part {% if subsession.round_number == first_treatment_round  %}
+            2{% else  %}3{% endif %} of the experiment. Please read them carefully.
+        {% endif %}
+        If you have understood the instructions, please click on the 'Next' button below.
+    </p>
+
+    <br />
+    <br />
+    {% next_button %}
+
+{% endblock %}

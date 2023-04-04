@@ -1,0 +1,40 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    <table class="table">
+        <tr>
+            <td style="width:80%;border-color:transparent">Your decision - stage 2</td>
+            <td style="width:20%;border-color:transparent;text-align: right;font-size: 60%;color: #78797a"> Part 3 - Round {{ displayed_round_number }}</td>
+        </tr>
+    </table>
+{% endblock %}
+
+
+
+{% block content %}
+
+    {% include 'CompensationBase/InstructionsBase.html' %}
+
+     <p></p>
+     <div class="alert alert-info">Your role is <b>{{ player.role }}</b> in this game. </div>
+
+
+     <p>
+         The price of the product in this round is <b>{{ player.price }}</b>. You have chosen to buy the product.
+     </p>
+
+     <p>
+         For each point you use in this stage, {% if player.treatment == 'Harm' %}each {% endif %}Person B has to solve <b> {% if player.treatment == 'Harm' %} {{ sliders_per_point_harm }}
+         {% else %}{{ Constants.SlidersPerPoint }} {% endif %} fewer sliders </b> at the end of the experiment.
+     </p>
+
+
+     How many points (between 0 points and {{ max_compensation | c }}) would you like to use to reduce the number of sliders for {% if player.treatment == 'Harm' %}each {% endif %}Person B?
+     {% formfield group.compensation_decision label="" %}
+
+
+    {% next_button %}
+
+{% endblock %}
+

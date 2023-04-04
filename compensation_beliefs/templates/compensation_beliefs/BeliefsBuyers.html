@@ -1,0 +1,101 @@
+{% extends "global/Page.html" %}
+{% load otree  %}
+
+{% block styles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/sliders.css' %}">
+    <style>
+        table {border-collapse: separate; border-spacing: 22px;}
+    </style>
+{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript" src="{% static 'js/sliders.js' %}"></script>
+    <script>
+
+
+    </script>
+{% endblock %}
+
+{% block title %}
+    <table class="table">
+        <tr>
+            <td style="width:80%;border-color:transparent">Your estimate</td>
+            <td style="width:20%;border-color:transparent;text-align: right;font-size: 60%;color: #78797a"> Part{% if subsession.round_number < first_round_part3 %} 2 {% else %} 3 {% endif %}- Round {{ displayed_round_number }}</td>
+        </tr>
+    </table>
+{% endblock %}
+
+{% block content %}
+
+    <div class="alert alert-danger" id="alert" style="display:none;">
+        Please fill in your estimate for all items correctly.
+    </div>
+
+
+    {% include 'compensation_beliefs/InstructionsBase.html' %}
+
+    <p></p>
+    <div class="alert alert-info">Your role is <b>Person A</b> in this part. </div>
+
+
+    <p>
+        The price of the product in this round is <b>{{ player.price }}</b>.
+    </p>
+
+    <table>
+        <tr>
+            <td colspan="3">
+                What is the probability that the other Person A you are matched with will buy?
+            </td>
+        </tr>
+        <tr>
+            <td style="width:10%; text-align: right">0% <br>certainly not buy</td>
+            <td style="width: 40%">
+                <div class="slidecontainer">
+                    {% if player.role == "Person A" %}
+                        <input type="range" min="0" max="100" value="100" class="slider2" id="buy_belief" name="buy_belief" oninput="displaycurrent()" style="width: 90%;" >
+                    {% else %}
+                        <input type="range" min="0" max="100" value="100" class="slider2" id="buy_belief_buyer2" name="buy_belief_buyer2" oninput="displaycurrent2()" style="width: 90%;" >
+                    {% endif %}
+                </div>
+            </td>
+            <td style="width:10%">100% <br>certainly buy</td>
+        </tr>
+        <tr>
+            <td colspan="3" id="belief" style="visibility:hidden; padding: 0; text-align: center; font-weight: lighter">
+                <em>I think the probability that the other Person A buys the good is <span id="current_belief"></span>%. </em>
+            </td>
+        </tr>
+    </table>
+
+    {% if subsession.round_number >= first_round_part3 %}
+    <table style="margin-top: 25px">
+        <tr>
+            <td colspan="3">
+                Assume now that the Person A you are matched with in this round has bought the good.
+                Each point spent by a Person A in Stage 2 reduces the number of sliders Person B has to
+                solve at the end of the experiment by <b>{{ Constants.SlidersPerPoint }} sliders</b>.<br>
+                <span style="margin-top: 15px;   display: flex;">
+                    How many points (between 0 points and {{ max_compensation | c }}) will the other Person A
+                    use to reduce the number of sliders for Person B?
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                {% if player.role == "Person A" %}
+                    <input type="number" name="compensation_belief" min="0" max="30" id="compensation_belief" class="form-control">
+                {% else %}
+                    <input type="number" name="compensation_belief_buyer2" min="0" max="30" id="compensation_belief_buyer2" class="form-control">
+                {% endif %}
+            </td>
+        </tr>
+
+    </table>
+    {% endif %}
+
+	<div style="margin-top:12pt; text-align: right">
+       <button name="slider_task_check" id="test" class="btn btn-primary btn-large" onclick="checkTouched();">Next</button>
+    </div>
+
+{% endblock %}

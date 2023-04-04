@@ -1,0 +1,141 @@
+slider task instructions
+
+<p style="font-size: 1.5em;">The work task</p>
+
+        <p>
+            The work task you have to solve is called slider task. In the slider task, a set of sliders are presented on your screen. You can adjust the slider to any number
+            between 0 and 100 by clicking on the slider with your mouse and dragging it to the desired position.
+            Your task is to drag the slider to the target position. The target position for each slider is the number 50.
+            The red number on the right hand side of the slider tells you the current position of your slider.
+            A slider is correctly adjusted when the current position is equal to 50.
+        </p>
+
+        <p>
+            <img src="{% static "CompensationBase/sliders.png" %}" style="width:100%;height:100%;" >
+        </p>
+
+        <p>
+            For example, in the upper slider, the current position of the slider is 27. The slider is therefore not
+            correctly placed yet. In the second example, you can see that the slider is correctly placed, as the position of
+            the slider is directly at the target position. All sliders you have to solve will be displayed on one screen.
+        </p>
+        <p>
+            In the first part of the experiment, we ask you to solve {{ Constants.trialsliders }} sliders on the screen
+            to proceed to the next part of the experiment. You receive {{ Constants.wage_trialsliders }} for working on the task.
+        </p>
+
+
+
+
+
+{% if player.role == 'Person A' %}
+             <table>
+                   <tr>
+                       <td>    The price of the product in this round was: </td>  <td> {{ player.price }}.</td>
+                   </tr>
+                   <tr>
+                       <td>    You decided{% if group.buy_decision == 0 %} not{% endif %} to buy the product. </td>  <td> </td>
+                   </tr>
+                   <tr>
+                       <td>    The price of the product in this round was: </td>  <td> {{ player.price }}.</td>
+                   </tr>
+                   <tr>
+                       <td>    The price of the product in this round was: </td>  <td> {{ player.price }}.</td>
+                   </tr>
+             </table>
+                <p>
+                    You decided{% if group.buy_decision == 0 %} not{% endif %} to buy the product{% if subsession.round_number >= first_round_part3 and group.buy_decision == 1 %}
+                        and to spend {{ group.compensation_decision }} points to reduce the number of sliders for Person B
+                    {% endif %}.
+                </p>
+
+
+
+
+
+
+
+
+        <p>
+            The price of the product in this round was: {{ player.price }}.
+        </p>
+
+        {% if player.role == 'Person A' %}
+
+                <p>
+                    You decided{% if group.buy_decision == 0 %} not{% endif %} to buy the product{% if subsession.round_number >= first_round_part3 and group.buy_decision == 1 %}
+                        and to spend {{ group.compensation_decision }} points to reduce the number of sliders for Person B
+                    {% endif %}.
+                </p>
+                <p>
+                    Your payoff in this round is {{ player.current_payoff }}
+                        {% if group.buy_decision == 1 %}
+                            =  {{ Constants.endowment }} (endowment) +  {{ Constants.value }} (value of the product) - {{ player.price }} (price)
+                                {% if subsession.round_number >= first_round_part3 %}
+                                    - {{ group.compensation_decision | c }} (to reduce the number of sliders for Person B)
+                                {% endif %}
+                        {% endif %}.
+                </p>
+
+
+        {% elif player.role == 'Person B' %}
+
+                <p>
+                    {% if player.treatment == 'Responsibility' %}
+                        {% if group.buy_decision == 0 and group.buy_decision_buyer2 == 0 %}
+                            The product was not bought in this round.
+                        {% else %}
+                            At least one of the buyers decided to buy the product in this round.
+                        {% endif %}
+
+                    {% else %}
+                        The Person A you were matched with in this round decided
+                        {% if group.buy_decision == 0 %} not {% endif %} to buy the product.
+                    {% endif %}
+                </p>
+                <p>
+                    {% if subsession.round_number >= first_round_part3 %}
+                        {% if player.treatment == 'Responsibility' %}
+                            {% if group.buy_decision == 1 or group.buy_decision_buyer2 == 1 %}
+                                In total {{ total_compensation }} points were spent to reduce the number of sliders you have to solve.
+                                Each point spent reduces the number of sliders by {{ Constants.SlidersPerPoint }}.
+                            {% endif %}
+                        {% elif group.buy_decision == 1 %}
+                            Person A spent {{ group.compensation_decision }} points to reduce the number of sliders for you.
+                            Each point spent reduces the number of sliders by
+                                {% if player.treatment == 'Harm' %}
+                                    {{ sliders_per_point_harm }}.
+                                {% else %}
+                                    {{ Constants.SlidersPerPoint }}.
+                                {% endif %}
+                        {% endif %}
+
+                    {% endif %}
+                </p>
+                <p>
+                    If this round is selected for implementation, you will have to solve {{ player.num_sliders }} sliders.
+                </p>
+                <p>
+                    Your payoff in this round is {{ player.current_payoff }}.
+                </p>
+
+
+        {% elif player.role == 'Person A2' %}
+
+                <p>
+                    You decided{% if group.buy_decision_buyer2 == 0 %} not{% endif %} to buy the product
+                    {% if subsession.round_number >= first_round_part3 and group.buy_decision_buyer2 == 1 %}
+                        and to spend {{ group.compensation_decision_buyer2 }} points to reduce the number of sliders for Player B
+                    {% endif %}.
+                </p>
+                <p>
+                    Your payoff in this round is {{ player.current_payoff }}
+                        {% if group.buy_decision_buyer2 == 1 %}
+                            =  {{ Constants.endowment }} +  {{ Constants.value }}  - {{ player.price }}
+                                {% if subsession.round_number >= first_round_part3 %}
+                                    - {{ group.compensation_decision_buyer2 | c }}
+                                {% endif %}
+                        {% endif %}
+                </p>
+
+        {% endif %}

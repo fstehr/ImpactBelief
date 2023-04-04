@@ -1,0 +1,140 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Your Payment
+{% endblock %}
+
+{% block content %}
+
+
+    <div class="alert alert-info" >
+            Round {{ displayed_paying_round }} of Part {% if paying_round <= Constants.num_rounds_BDM %} 1 {% elif paying_round < first_round_part3  %} 2 {% else %} 3 {% endif %} was selected for payment.
+    </div>
+
+    {% if paying_round <= Constants.num_rounds_BDM %}
+
+            <div class="alert alert-info" >
+                In the selected round, you stated that you would be willing to pay <b>{{ sliders_WTP | c }}</b>
+                to avoid solving {{ BDM_sliders }} sliders at the end of the experiment.
+            </div>
+
+            <div class="alert alert-secondary" >
+                In this round, you were asked to state the maximum number of points you were willing to pay to avoid
+                {{ BDM_sliders }} more sliders that you have to solve at the end of the experiment.
+                <ul>
+                    <li>
+                        If the number of points you stated is greater than or equal to this randomly drawn number X,
+                        then you will pay X points. In this case, you will not have to solve the number of extra sliders stated
+                        in this round at the end of the experiment. Your payoff for the round will then be:
+                        <p style="text-align: center">
+                            {{ Constants.wage_trialsliders }} – X points
+                        </p>
+                    </li>
+                    <li>
+                        If the number of points you stated is smaller than this randomly drawn number X, then you will keep
+                        the full {{ Constants.wage_trialsliders }} from the working task. However, you will then have
+                        to solve the number of extra sliders stated in this round at the end of the
+                        experiment. Your payoff for the task will then be:
+                        <p style="text-align: center">
+                            {{ Constants.wage_trialsliders }}
+                        </p>
+                    </li>
+                </ul>
+            </div>
+
+
+
+    {% else %}
+
+         <div class="alert alert-info" >
+            {% if player.role == 'Person A' %}
+
+                In the selected round, you decided <b>{% if buying_decision == 0 %}not{% endif %} to buy</b> the product{% if paying_round >= first_round_part3  and buying_decision == 1 %}
+                and to  <b>spend {{ compensation | c }}</b> to reduce the number of sliders for {% if player.treatment == 'Harm' %}each{% endif %} Person B{% endif %}.
+
+            {% elif player.role == 'Person A2' %}
+
+                In the selected round, you decided <b>{% if buying_decision_buyer2 == 0 %} not{% endif %} to buy</b> the product{% if paying_round >= first_round_part3  and buying_decision_buyer2 == 1 %}
+                    and to <b>spend {{ compensation_buyer2 | c }}</b> to reduce the number of sliders for Person B{% endif %}.
+
+            {% elif player.role == 'Person B' or player.role == 'Person B2' %}
+
+                {% if player.treatment == 'Responsibility' %}
+                    {% if buying_decision == 0 and buying_decision_buyer2 == 0 %}
+                        The product was <b>not bought</b> in the selected round.
+                    {% else %}
+                        At least one of the Person As you were matched with in this round decided to <b>buy</b> the product.
+                    {% endif %}
+
+                {% else %}
+                    The Person A you were matched with in this round decided <b>
+                    {% if buying_decision == 0 %} not {% endif %} to buy</b> the product.
+                {% endif %}
+
+                {% if paying_round >= first_round_part3 %}
+                    {% if player.treatment == 'Responsibility' %}
+                        {% if buying_decision == 1 or buying_decision_buyer2 == 1 %}
+                            In total <b>{{ total_compensation | c }} were spent</b> to reduce the number of sliders you have to solve.
+                        {% endif %}
+                    {% elif buying_decision == 1 %}
+                        Person A <b>spent {{ compensation | c }}</b> to reduce the number of sliders for you.
+                    {% endif %}
+
+                {% endif %}
+
+            {% endif %}
+
+
+        </div>
+
+
+        <div class="alert alert-secondary">
+            In the selected round, you could be a Person A or a Person B.
+            Person A was a buyer who could buy a product which is worth {{ Constants.value }} to her
+            for the price that is relevant in the respective round. Person B did not make a decision, but
+            will be affected by Person A's decision. If {% if player.treatment == 'Responsibility' %} at least one {% endif %} Person A decided to buy the product,
+            {% if player.treatment == 'Harm' %}each{% endif %} Person B will have to work on the slider task before getting her payment.
+         </div>
+
+
+
+    {% endif %}
+
+
+        <table class="table" style="width:70%;">
+            {% if paying_round <= Constants.num_rounds_BDM %}
+            <tr>
+                <td>    The random number X that was drawn was: </td>  <td style="text-align:right"> {{ BDM_price }}</td>
+            </tr>
+            {% else %}
+             <tr>
+                <td>    The price of the product in the selected round was: </td>  <td style="text-align:right"> {{ buying_price }}</td>
+            </tr>
+            {% endif %}
+            <tr>
+                <td>   Your payoff in this round was:</td>  <td style="text-align:right">{{ final_payoff }} </td>
+            </tr>
+            <tr>
+                <td>   Each point is worth: </td>  <td style="text-align:right"> € {{ exchange_rate }}</td>
+            </tr>
+            <tr>
+                <td>   <b> Your final payment is therefore: </b></td>  <td style="text-align:right"> <b> € {{ rounded_euro_payoff }}</b></td>
+            </tr>
+            <tr>
+                <td>   <b>The number of sliders you have to solve to get your payment is: </b></td>  <td style="text-align:right"> <b>{{ final_sliders }} sliders </b></td>
+            </tr>
+        </table>
+
+
+    <div>
+        Before you click <i>Next</i>, please write down this Euro amount on the receipt that you find on your desk.
+    </div>
+
+    <br />
+
+    {% next_button %}
+
+{% endblock %}
+
+

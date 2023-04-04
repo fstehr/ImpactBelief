@@ -1,0 +1,58 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+    Questionnaire
+{% endblock %}
+
+{% block content %}
+
+    Please answer the questions below to proceed to the payments.
+
+    <br></br>
+
+        {% formfield player.gender label='What is your gender?' %}
+
+        {% formfield player.age label='How old are you?' %}
+
+        {% formfield player.economics_student label='What is your field of study?' %}
+
+        <p>
+            <td>{{ form.risk_preference.label }}</td>
+            <table>
+                {% for choice in form.risk_preference %}
+                    <td style="width:50px; text-align: center">{{ choice }}</td>
+                {% endfor %}
+             </table>
+        </p>
+
+
+        <p>
+            <td>{{ form.altruism.label }}</td>
+            <table>
+                {% for choice in form.altruism %}
+                    <td style="width:50px; text-align: center">{{ choice }}</td>
+                {% endfor %}
+            </table>
+        </p>
+
+        {% formfield player.responsible_consumption label='How often do you buy socially responsible products (e.g. fair trade, sweatshop-free, environmentally friendly) when such products are available?' %}
+
+        {% formfield player.responsible_purchase label='Suppose that you want to buy a jacket. One jacket costs EUR 100 and it is produced in a sweatshop (i.e., a factory where manual workers are employed at low wages for long hours and under poor and often unsafe conditions). How much would you pay for the exact same jacket but sweatshop-free?' %}
+
+        {% formfield player.offsetting_behavior label='Carbon offsets offer a possibility to compensate for the carbon emissions that you produce by reducing carbon emissions elsewhere. How often have you bought carbon offsets for flight journeys or other carbon emissions in the past?' %}
+
+        {% formfield player.donation_behavior label='Approximately, how much money do you donate per year to charitable causes (in EUR)?' %}
+
+        <p>
+            <td>{{ form.political_orientation.label }}</td>
+            <table>
+                {% for choice in form.political_orientation %}
+                    <td style="width:50px; text-align: center">{{ choice }}</td>
+                {% endfor %}
+            </table>
+        </p>
+
+    {% next_button %}
+
+{% endblock %}

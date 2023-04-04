@@ -1,0 +1,25 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+   <table class="table">
+        <tr>
+            <td style="width:80%;border-color:transparent">Your decision</td>
+            <td style="width:20%;border-color:transparent;text-align: right;font-size: 60%;color: #78797a"> Part 1 - Round {{ subsession.round_number }}</td>
+        </tr>
+
+   </table>
+{% endblock %}
+
+{% block content %}
+
+    <p>
+        Please now state the maximum number of points you are willing to pay to avoid <b>{{ player.BDM_slider_number }} extra sliders </b> that you have to solve
+        after the experiment (between {% if subsession.round_number == 1 %}0 points {% else %} {{ WTP_sliders_previous_BDM | c }} {% endif %} and {{ Constants.maxWTP | c }}):
+    </p>
+
+    {% formfield player.sliders_WTP label='' %}
+
+    {% next_button %}
+
+{% endblock %}

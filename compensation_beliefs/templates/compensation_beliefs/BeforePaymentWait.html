@@ -1,0 +1,21 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+    Thank you
+{% endblock %}
+
+{% block content %}
+
+
+    <p>
+        The experiment is almost finished. Please stay seated and wait for further instructions.
+    </p>
+
+
+
+    {%  formfield player.password label='Please type in the password that we announce.' %}
+
+    {% next_button %}
+
+{% endblock %}

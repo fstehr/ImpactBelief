@@ -1,0 +1,58 @@
+{% extends "global/Page.html" %}
+{% load otree  static %}
+
+{% block title %}
+    <table class="table">
+        <tr>
+            <td style="width:80%;border-color:transparent">Your purchasing decision</td>
+            <td style="width:20%;border-color:transparent;text-align: right;font-size: 60%;color: #78797a"> Part{% if subsession.round_number < first_round_part3 %} 2 {% else %} 3 {% endif %}- Round {{ displayed_round_number }}</td>
+        </tr>
+   </table>
+{% endblock %}
+
+{% block content %}
+
+     {% include 'CompensationBase/InstructionsBase.html' %}
+
+     <p></p>
+     <div class="alert alert-info">Your role is <b>Person A</b> in this part. </div>
+
+    <table>
+        <tr>
+            <td style="width: 75%; vertical-align:top; height:5cm">
+                <p>
+                    The price of the product in this round is <b>{{ player.price }}</b>.
+                </p>
+                     {% formfield group.buy_decision_buyer2 %}
+            </td>
+
+            <td style="width: 25%; vertical-align:top">
+                <div class="card">
+
+                           <div class="card-body">
+                               If you decide to buy the product and this round is selected for payment, <b>Person B will have to solve {{ harmed_sliders }} sliders</b>.
+                           </div>
+
+                   </div>
+            </td>
+       </tr>
+    </table>
+
+
+     {% next_button %}
+
+{% endblock %}
+
+
+{% block scripts %}
+    <script>
+        function set_clicked(event) {
+            var information_taken = document.getElementById("id_information_taken");
+            information_taken.value = "True";
+            collapsible.removeEventListener('click', set_clicked)
+        }
+
+        var collapsible = document.getElementsByClassName("btn btn-light collapsed");
+        collapsible[0].addEventListener('click', set_clicked);
+    </script>
+{% endblock %}

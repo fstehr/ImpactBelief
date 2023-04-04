@@ -1,0 +1,34 @@
+{% extends "global/Page.html" %}
+{% load otree  %}
+
+{% block title %}
+    <table class="table">
+        <tr>
+            <td style="width:80%;border-color:transparent">Your guess</td>
+            <td style="width:20%;border-color:transparent;text-align: right;font-size: 60%;color: #78797a"> Part{% if subsession.round_number < first_round_part3 %} 2 {% else %} 3 {% endif %}- Round {{ displayed_round_number }}</td>
+        </tr>
+    </table>
+{% endblock %}
+
+{% block content %}
+
+    {% include 'CompensationBase/InstructionsBase.html' %}
+
+    <p></p>
+    <div class="alert alert-info">Your role is <b>Person B</b> in this part. </div>
+
+
+    <p>
+        The price of the product in this round is <b>{{ player.price }}</b>.
+    </p>
+
+
+    {% formfield group.buy_belief_harmed2 %}
+
+    <br/>
+    <br/>
+    <br/>
+
+    {% next_button %}
+
+{% endblock %}

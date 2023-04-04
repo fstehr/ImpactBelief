@@ -1,0 +1,48 @@
+{% load otree %}
+
+{% if subsession.round_number <=  Constants.num_rounds_BDM_part_1 %}
+
+<div class="card bg-light instructions">
+    <div class="card-body">
+
+        <h4>Instructions</h4>
+
+        <p>
+            In the second part of this experiment, you can be a <b>Person A</b> or a <b>Person B</b>.
+        </p>
+        <p>
+            Person A is a buyer who can buy a product which is worth {{ Constants.value }} to her
+            for the price that is relevant in the respective round. Person B does not make a decision, but
+            will be affected by Person A's decision.
+        </p>
+        <p>
+            In each round, {%  if player.treatment == "Responsibility" %} two Person As are {% else %} one Person A is {% endif %}
+            randomly matched with {%  if player.treatment == "Harm" %} two Person Bs {% else %}one Person B{% endif %}.
+        </p>
+    </div>
+</div>
+
+{% else %}
+
+<div class="card bg-light instructions">
+    <div class="card-body">
+
+        <h4>Instructions</h4>
+
+        <p>
+            This is part 3 of this experiment.
+            In this part, you will have the same role (Person A or Person B) as in part 2 of the experiment.
+        </p>
+        <p>
+            Person A is a buyer who can buy a product which is worth {{ Constants.value }} to her
+            for the price that is relevant in the respective round. Person B does not make a decision, but
+            will be affected by Person A's decision.
+        </p>
+        <p>
+            In each round, {%  if player.treatment == "Responsibility" %} two Person A are {% else %} one Person A is {% endif %}
+            randomly matched with {%  if player.treatment == "Harm" %} two Person Bs {% else %}one Person B{% endif %}.
+        </p>
+    </div>
+</div>
+
+{% endif %}

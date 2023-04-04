@@ -1,0 +1,22 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+    Introduction -{% if subsession.round_number == 1 %} Part 1 {% elif subsession.round_number == first_treatment_round %} Part 2 {% else %} Part 3 {% endif %}
+{% endblock %}
+
+{% block content %}
+
+
+
+    <p>
+       We will now distribute the instructions for the decision task of part 1. Please read them carefully.
+       If you have understood the instructions, please click on the 'Next' button below.
+    </p>
+
+
+
+
+    {% next_button %}
+
+{% endblock %}

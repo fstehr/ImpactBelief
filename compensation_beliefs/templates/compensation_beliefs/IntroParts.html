@@ -1,0 +1,25 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+    Introduction -{% if subsession.round_number == 1 %} Part 1 {% elif subsession.round_number == first_treatment_round %} Part 2 {% else %} Part 3 {% endif %}
+{% endblock %}
+
+{% block content %}
+
+
+
+    <p>
+        Once everyone has read the instructions, we will tell you a password which you need to continue to the next page.
+        {% if subsession.round_number > Constants.num_rounds_BDM %}
+            On the next page, we will ask you a couple of questions to make sure that you understood the instructions.
+        {% endif %}
+    </p>
+
+
+
+    {%  formfield player.password label='Please type in the password that we announce.' %}
+
+    {% next_button %}
+
+{% endblock %}

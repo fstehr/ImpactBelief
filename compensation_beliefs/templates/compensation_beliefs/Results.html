@@ -1,0 +1,151 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    <table class="table" style="width:100%">
+        <tr>
+            <td style="width:70%;border-color:transparent">Results</td>
+            <td style="width:30%;border-color:transparent;text-align: right;font-size: 60%;color: #78797a"> Part{% if subsession.round_number < first_round_part3 %} 2 {% else %} 3 {% endif %}- Round {{ displayed_round_number }}</td>
+        </tr>
+    </table>
+{% endblock %}
+
+{% block content %}
+
+    {% if player.role == 'Person A' %}
+
+        <div class="alert alert-secondary" style="width:70%;margin:1em auto;">
+            You decided{% if group.buy_decision == 0 %} not{% endif %} to buy the product{% if subsession.round_number >= first_round_part3 and group.buy_decision == 1 %}
+                    and to spend {{ group.compensation_decision | c }} to reduce the number of sliders for {% if player.treatment == 'Harm' %}each {% endif %}Person B{% endif %}.
+        </div>
+
+        <table class="table" style="width:70%;margin:1em auto;">
+
+            <tr>
+                <td>    <b> Your payoff in this round is: </b></td>  <td style="text-align:right"> <b>{{ player.current_payoff }} </b></td>
+            </tr>
+            <tr>
+                <td>    The price of the product in this round was: </td>  <td style="text-align:right"> {{ player.price }}</td>
+            </tr>
+            <tr>
+                <td>    Your endowment was: </td>  <td style="text-align:right"> {{ Constants.endowment }}</td>
+            </tr>
+            <tr>
+                <td>    The value of the good was: </td>  <td style="text-align:right"> {{ Constants.value }}</td>
+            </tr>
+            {% if subsession.round_number >= first_round_part3  %}
+                <tr>
+                    <td>    Each point you spent reduces the number of sliders for Person B by: </td>  <td style="text-align:right">
+                                {% if player.treatment == 'Harm' %}
+                                    {{ sliders_per_point_harm }} sliders
+                                {% else %}
+                                    {{ Constants.SlidersPerPoint }} sliders
+                                {% endif %} </td>
+                </tr>
+            {% endif %}
+        </table>
+
+
+
+    {% elif player.role == 'Person B' or player.role == 'Person B2' %}
+
+        <div class="alert alert-secondary" style="width:70%;margin:1em auto;">
+            {% if player.treatment == 'Responsibility' %}
+                    {% if group.buy_decision == 0 and group.buy_decision_buyer2 == 0 %}
+                        The product was not bought in this round.
+                    {% else %}
+                        At least one of the Person As you were matched with in this round decided to buy the product.
+                    {% endif %}
+
+                {% else %}
+                    The Person A you were matched with in this round decided
+                    {% if group.buy_decision == 0 %} not {% endif %} to buy the product.
+                {% endif %}
+
+                {% if subsession.round_number >= first_round_part3 %}
+                    {% if player.treatment == 'Responsibility' %}
+                        {% if group.buy_decision == 1 or group.buy_decision_buyer2 == 1 %}
+                            In total {{ total_compensation | c }} were spent to reduce the number of sliders you have to solve.
+                        {% endif %}
+                    {% elif group.buy_decision == 1 %}
+                        Person A spent {{ group.compensation_decision | c }} to reduce the number of sliders for you.
+                    {% endif %}
+
+                {% endif %}
+        </div>
+
+
+        <table class="table" style="width:70%;margin:1em auto;">
+            <tr>
+                <td>    <b> Your payoff in this round is: </b></td>  <td style="text-align:right"> <b>{{ player.current_payoff }} </b></td>
+            </tr>
+            <tr>
+                <td> <b> If this round is selected for implementation, you will have to solve:  </b></td>  <td style="text-align:right"> <b> {{ player.num_sliders_ex_post }} sliders</b></td>
+            </tr>
+            <tr>
+                <td>    The price of the product in this round was: </td>  <td style="text-align:right"> {{ player.price }}</td>
+            </tr>
+            <tr>
+                <td>    Your endowment was: </td>  <td style="text-align:right"> {{ Constants.endowment }}</td>
+            </tr>
+            <tr>
+                <td>    The value of the good was: </td>  <td style="text-align:right"> {{ Constants.value }}</td>
+            </tr>
+            {% if subsession.round_number >= first_round_part3  %}
+                <tr>
+                    <td>    Each point {% if player.treatment == 'Responsibility' %} a {% endif %}Person A spent reduces the number of sliders for you by: </td>  <td style="text-align:right">
+                                {% if player.treatment == 'Harm' %}
+                                    {{ sliders_per_point_harm }} sliders
+                                {% else %}
+                                    {{ Constants.SlidersPerPoint }} sliders
+                                {% endif %} </td>
+                </tr>
+            {% endif %}
+
+        </table>
+
+
+
+    {% elif player.role == 'Person A2' %}
+
+        <div class="alert alert-secondary" style="width:70%; margin:1em auto;">
+            You decided{% if group.buy_decision_buyer2 == 0 %} not{% endif %} to buy the product{% if subsession.round_number >= first_round_part3 and group.buy_decision_buyer2 == 1 %}
+                    and to spend {{ group.compensation_decision_buyer2 | c }} to reduce the number of sliders for Person B{% endif %}.
+        </div>
+
+        <table class="table" style="width:70%; margin:1em auto;">
+
+            <tr>
+                <td>    <b> Your payoff in this round is: </b></td>  <td style="text-align:right"> <b>{{ player.current_payoff }} </b></td>
+            </tr>
+            <tr>
+                <td>    The price of the product in this round was: </td>  <td style="text-align:right"> {{ player.price }}</td>
+            </tr>
+            <tr>
+                <td>    Your endowment was: </td>  <td style="text-align:right"> {{ Constants.endowment }}</td>
+            </tr>
+            <tr>
+                <td>    The value of the good was: </td>  <td style="text-align:right"> {{ Constants.value }}</td>
+            </tr>
+            {% if subsession.round_number >= first_round_part3  %}
+                <tr>
+                    <td>    Each point you spent reduces the number of sliders for Person B by: </td>  <td style="text-align:right">
+                                {% if player.treatment == 'Harm' %}
+                                    {{ sliders_per_point_harm }} sliders
+                                {% else %}
+                                    {{ Constants.SlidersPerPoint }} sliders
+                                {% endif %} </td>
+                </tr>
+            {% endif %}
+        </table>
+
+
+
+    {% endif %}
+
+
+    {% next_button %}
+
+{% endblock %}
+
+

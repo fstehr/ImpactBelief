@@ -1,0 +1,95 @@
+{% extends "global/Page.html" %}
+{% load otree  %}
+
+{% block title %}
+    Control Questions
+{% endblock %}
+
+{% block content %}
+
+    {% if player.sum_correct == 8 %}
+        <div class="alert alert-info">
+            Congratulations. You solved all control questions correctly. Please wait for the other participants
+            to finish the control questions.
+        </div>
+    {% else %}
+        <div class="alert alert-secondary">
+            Not all answers were correct. Please try to answer these questions again.
+        </div>
+    {% endif %}
+
+
+    {% if player.q1_correct == 0 %}
+        <br>
+        <div><span style="font-size: 1.5em">Question 1</span><br>
+            {{ q1_label }}
+            {% formfield player.q1_answer_2 %}
+            <p style="font-size:12px; color:grey">{{ q1_helptext }}</p>
+        </div>
+
+    {% endif %}
+
+
+    {% if player.q2_correct == 0 %}
+        <br>
+        <div><span style="font-size: 1.5em">Question 2</span><br>
+            {{ q2_label }}
+            {% formfield player.q2_answer_2 %}
+            <p style="font-size:12px; color:grey">{{ q2_helptext }}</p>
+        </div>
+    {% endif %}
+
+    <div>
+        {% if  player.q3_correct == 0 or player.q4_correct == 0 or player.q5_correct == 0 %}
+            <br><span style="font-size: 1.5em">Question 3</span><br>
+            {{ q3_scenario }}<br>
+        {% endif %}
+
+            {% if player.q3_correct == 0 %}
+                {{ q3_label }}
+                    {% formfield player.q3_answer_2 %}
+                    <p style="font-size:12px; color:grey">{{ q3_helptext }}</p>
+            {% endif  %}
+
+            {% if player.q4_correct == 0 %}
+                {{ q4_label }}
+                    {% formfield player.q4_answer_2 %}
+                <p style="font-size:12px; color:grey">{{ q4_helptext }}</p>
+
+            {% endif %}
+            {% if player.q5_correct == 0  %}
+                {{ q5_label }}
+                    {% formfield player.q5_answer_2 %}
+                <p style="font-size:12px; color:grey">{{ q5_helptext }}</p>
+            {% endif %}
+    </div>
+
+    <div>
+        {% if player.q6_correct == 0 or player.q7_correct == 0 or player.q8_correct == 0 %}
+        <br><span style="font-size: 1.5em">Question 4</span><br>
+            {{ q4_scenario }}<br>
+        {% endif %}
+
+            {% if player.q6_correct == 0 %}
+                {{ q6_label }}
+                    {% formfield player.q6_answer_2 %}
+                <p style="font-size:12px; color:grey">{{ q6_helptext }}</p>
+            {% endif %}
+
+            {% if player.q7_correct == 0 %}
+                {{ q7_label }}
+                    {% formfield player.q7_answer_2 %}
+                <p style="font-size:12px; color:grey">{{ q7_helptext }}</p>
+            {% endif %}
+
+            {% if player.q8_correct == 0 %}
+                {{ q8_label }}
+                    {% formfield player.q8_answer_2 %}
+                <p style="font-size:12px; color:grey">{{ q8_helptext }}</p>
+            {% endif %}
+    </div>
+
+     {% next_button %}
+
+
+{% endblock %}

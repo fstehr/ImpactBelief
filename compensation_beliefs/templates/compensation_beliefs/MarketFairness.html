@@ -1,0 +1,47 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+    Questionnaire
+{% endblock %}
+
+{% block content %}
+
+    <p>Please indicate to what extent you agree with each of the statements below. <br>
+        Use a scale from 0 to 10, where 0 means "completely disagree" and 10 means "Completely agree".</p>
+
+    <br>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>  </th>
+            <th style="width:50px; text-align: center">0</th>
+            <th style="width:50px; text-align: center">1</th>
+            <th style="width:50px; text-align: center">2</th>
+            <th style="width:50px; text-align: center">3</th>
+            <th style="width:50px; text-align: center">4</th>
+            <th style="width:50px; text-align: center">5</th>
+            <th style="width:50px; text-align: center">6</th>
+            <th style="width:50px; text-align: center">7</th>
+            <th style="width:50px; text-align: center">8</th>
+            <th style="width:50px; text-align: center">9</th>
+            <th style="width:50px; text-align: center">10</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for field in form %}
+            <tr>
+                <td>{{ field.label }}</td>
+                {% for choice in field %}
+                    <td style="text-align:right">{{ choice.tag }}</td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+    {% next_button %}
+
+{% endblock %}

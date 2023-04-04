@@ -1,0 +1,49 @@
+{% extends "global/Page.html" %}
+{% load otree  %}
+
+{% block title %}
+    Control Questions
+{% endblock %}
+
+{% block content %}
+
+
+    <div><span style="font-size: 1.5em">Question 1</span><br>
+        {{ q1_label }}
+            {% formfield player.q1_answer_1 %}
+    </div>
+
+    <br>
+
+    <div><span style="font-size: 1.5em">Question 2</span><br>
+        {{ q2_label }}
+        {% formfield player.q2_answer_1  %}
+    </div>
+
+    <br>
+
+    <div><span style="font-size: 1.5em">Question 3</span><br>
+        {{ q3_scenario }} <br>
+        {{ q3_label }}
+            {% formfield player.q3_answer_1 %}
+        {{ q4_label }}
+            {% formfield player.q4_answer_1 %}
+        {{ q5_label }}
+            {% formfield player.q5_answer_1 %}
+    </div>
+
+    <br>
+
+    <div><span style="font-size: 1.5em" >Question 4</span><br>
+        {{ q4_scenario }} <br>
+        {{ q6_label }}
+            {% formfield player.q6_answer_1 %}
+        {{ q7_label }}
+            {% formfield player.q7_answer_1 %}
+        {{ q8_label }}
+            {% formfield player.q8_answer_1 %}
+    </div>
+
+     {% next_button %}
+
+{% endblock %}

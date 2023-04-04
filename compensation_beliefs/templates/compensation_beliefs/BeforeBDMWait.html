@@ -1,0 +1,21 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+    Introduction - Part 1
+{% endblock %}
+
+{% block content %}
+
+
+    <p>
+        Once everyone has read the instructions for the decision task of Part 1, we will tell you a password which you need to continue to the next page.
+    </p>
+
+
+
+    {%  formfield player.password label='Please type in the password that we announce.' %}
+
+    {% next_button %}
+
+{% endblock %}
