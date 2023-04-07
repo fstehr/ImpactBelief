@@ -56,7 +56,6 @@ class IntroParts(Page):   # Introduction page that asks subjects to read the pap
 
 
 class SlidersTrial(SliderTaskPage):
-
     Constants = Constants
     Slider = Slider
 
@@ -870,8 +869,9 @@ class Results(Page):
 class Questionnaire(Page):
 
     form_model = 'player'
-    form_fields = ['gender', 'age', 'economics_student', 'risk_preference', 'altruism', 'responsible_consumption',
-                   'responsible_purchase', 'offsetting_behavior', 'donation_behavior', 'political_orientation']
+    form_fields = ['gender', 'age',  # 'economics_student',
+                   'risk_preference', 'altruism', 'responsible_consumption',
+                   'responsible_purchase', 'offsetting_behavior', 'donation_behavior']  # , 'political_orientation']
 
     def is_displayed(self):         # display this page only in the final round
         return self.round_number == Constants.num_rounds
@@ -975,8 +975,35 @@ class FinalScreen(Page):        # final screen in last round for all players whi
     """""
 
 
-page_sequence = [CalcPricesWaitPage, BeliefsBuyers]
-
+page_sequence = [Welcome,
+    IntroductionWaitForAll,
+    IntroParts,
+    SlidersTrial,
+    CalcPricesWaitPage,
+    IntroBDM,
+    BeforeBDMWait,
+    SlidersBDM,
+    ControlQuestions,
+    ControlQuestionsCorrected,
+    GameStartWaitForAll,
+    BeliefsBuyers,
+    BuyingDecision,
+    BuyingDecisionBuyer2,
+    BuyingBelief,
+    BuyingBeliefHarmed2,
+    CompensationDecision,
+    CompensationDecisionBuyer2,
+    CompensationBelief,
+    CompensationBeliefHarmed2,
+    ResultsWaitPage,
+    Results,
+    Questionnaire,
+    MarketFairness,
+    BeforePaymentWait,
+    PaymentInfo,
+    Sliders,
+    FinalScreen]
+# CalcPricesWaitPage,
 """"page_sequence = [
     Welcome,
     IntroductionWaitForAll,

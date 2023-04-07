@@ -9,13 +9,15 @@
 
     Please answer the questions below to proceed to the payments.
 
-    <br></br>
+    <br>
 
         {% formfield player.gender label='What is your gender?' %}
 
         {% formfield player.age label='How old are you?' %}
 
-        {% formfield player.economics_student label='What is your field of study?' %}
+        {% comment %}
+            {% formfield player.economics_student label='What is your field of study?' %}
+        {% endcomment %}
 
         <p>
             <td>{{ form.risk_preference.label }}</td>
@@ -44,14 +46,17 @@
 
         {% formfield player.donation_behavior label='Approximately, how much money do you donate per year to charitable causes (in EUR)?' %}
 
-        <p>
-            <td>{{ form.political_orientation.label }}</td>
-            <table>
-                {% for choice in form.political_orientation %}
-                    <td style="width:50px; text-align: center">{{ choice }}</td>
-                {% endfor %}
-            </table>
-        </p>
+        {% comment %}
+            <p>
+                <td>{{ form.political_orientation.label }}</td>
+                <table>
+                    {% for choice in form.political_orientation %}
+                        <td style="width:50px; text-align: center">{{ choice }}</td>
+                    {% endfor %}
+                </table>
+            </p>
+        {% endcomment %}
+
 
     {% next_button %}
 

@@ -51,13 +51,13 @@ class SliderTaskPage(Page):
 
         chunk_size = ceil(self.player.num_sliders / slider_columns)
 
-        task_number = self.player.part + 1
+        # task_number = self.player.part + 1
 
         return {
             'slider_formset': slider_formset,
             'slider_values_and_forms': list(_chunks(list(zip(offsets, min_values, max_values, starting_values, slider_formset.forms)), chunk_size)),
-            'slider_columns': slider_columns,
-            'task_number': task_number
+            'slider_columns': slider_columns
+            #'task_number': task_number
         }
 
     def before_next_page(self):
