@@ -647,11 +647,13 @@ class BeliefsBuyers(Page):
                 'max_compensation': max_compensation}
 
     def js_vars(self):
+        max_compensation = math.ceil(Constants.maxsliders / Constants.SlidersPerPoint)
         role = self.player.role()
         return dict(
             first_round_part3=(Constants.num_rounds_BDM + Constants.num_rounds_part1 + 1),
             round_number=self.round_number,
             role=role,
+            max_compensation = max_compensation,
         )
 
 
@@ -975,7 +977,8 @@ class FinalScreen(Page):        # final screen in last round for all players whi
     """""
 
 
-page_sequence = [Welcome,
+page_sequence = [
+    Welcome,
     IntroductionWaitForAll,
     IntroParts,
     SlidersTrial,
@@ -1002,8 +1005,9 @@ page_sequence = [Welcome,
     BeforePaymentWait,
     PaymentInfo,
     Sliders,
-    FinalScreen]
-# CalcPricesWaitPage,
+    FinalScreen,
+ ]
+
 """"page_sequence = [
     Welcome,
     IntroductionWaitForAll,
@@ -1016,6 +1020,7 @@ page_sequence = [Welcome,
     ControlQuestions,
     ControlQuestionsCorrected,
     GameStartWaitForAll,
+    BeliefsBuyers,
     BuyingDecision,
     BuyingDecisionBuyer2,
     BuyingBelief,

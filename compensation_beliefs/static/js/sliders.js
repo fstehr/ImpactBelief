@@ -2,6 +2,8 @@
 let first_round_part3 = js_vars.first_round_part3;
 let round_number = js_vars.round_number;
 let role = js_vars.role;
+let max_compensation = js_vars.max_compensation;
+
 
 
 
@@ -30,11 +32,11 @@ function checkTouched() {
     } else if (round_number >= first_round_part3) { // check also compensation belief but only in part 3
         if (role === "Person A" && (document.getElementById("compensation_belief").value === "" ||
             document.getElementById("compensation_belief").value <0 ||
-                document.getElementById("compensation_belief").value >30)) {
+                document.getElementById("compensation_belief").value > max_compensation)) {
             prevent_submission();
         } else if (role === "Person A2" && (document.getElementById("compensation_belief_buyer2").value === "" ||
             document.getElementById("compensation_belief_buyer2").value <0 ||
-                document.getElementById("compensation_belief_buyer2").value >30)) {
+                document.getElementById("compensation_belief_buyer2").value > max_compensation)) {
             prevent_submission();
         }
         else {
