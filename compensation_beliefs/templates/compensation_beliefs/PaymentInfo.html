@@ -128,7 +128,12 @@
 
 
     <div>
-        Before you click <i>Next</i>, please write down this Euro amount on the receipt that you find on your desk.
+        Before you click <i>Next</i>,
+            {% if mode != "follow-up" %}
+                please write down this Euro amount on the receipt that you find on your desk.
+            {% else %}
+                feel free to take a picture of your earnings with your mobile phone.
+            {% endif %}
     </div>
 
     <br />

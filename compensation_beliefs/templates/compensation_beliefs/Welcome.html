@@ -9,14 +9,21 @@
 
     {% if subsession.round_number == 1 %}
     <p>
-        Welcome to this experiment! Please stay seated and wait quietly while the other participants are taking their seats.
+        Welcome to this experiment!
+        {% if mode != "follow-up" %}
+            Please stay seated and wait quietly while the other participants are taking their seats.
+        {% endif %}
     </p>
     {% endif %}
 
     <p>
         {% if subsession.round_number == 1 %}
-            Once all participants have arrived, we will start with the experiment by distributing the instructions
-            for the first part of the experiment. Please read them carefully.
+            {% if mode != "follow-up" %}
+                Once all participants have arrived, we will start
+            {% else %}
+                We will now start
+            {% endif %}
+            with the experiment by distributing the instructions for the first part of the experiment. Please read them carefully.
         {% else %}
             We will now distribute the instructions for part {% if subsession.round_number == first_treatment_round  %}
             2{% else  %}3{% endif %} of the experiment. Please read them carefully.

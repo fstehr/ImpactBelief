@@ -30,9 +30,9 @@
             <td>
             {% for offset, min, max, start, form in chunk %}
                 <div class="slidecontainer" style="margin-left: {{ offset }}%;">
-                            <label for="{{ form.end_pos.id_for_label }}"></label>
+                            {{ min }}
                     <input type="range" min="{{ min }}" max="{{ max }}" value="{{ start }}" class="slider" id="{{ form.end_pos.id_for_label }}" name="{{ form.end_pos.html_name }}">
-                    		<label for="{{ form.end_pos.id_for_label }}"></label>
+                            {{ max }} <label style="color:red; font-weight:bold; margin-left:2em" for="{{ form.end_pos.id_for_label }}"></label>
                     <input type="hidden" id="{{ form.touched.id_for_label }}" name="{{ form.touched.html_name }}" value="False">
                     <input type="hidden" id="{{ form.id.id_for_label }}" name="{{ form.id.html_name }}" value="{{ form.id.value }}">
                 </div>

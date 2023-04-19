@@ -7,9 +7,20 @@
 
 {% block content %}
 
+    <p>
     Thank you for your participation in this experiment.
-    Please stay seated until we call your seat number to proceed with the payment.
-
+    </p>
+    <p>
+        {% if mode != "follow-up" %}
+            Please stay seated until we call your seat number to proceed with the payment.
+        {% else %}
+            You can now leave the laboratory. Please leave all the experiment instructions,
+            the seat card and the scrap paper at your seat and take all your personal belongings with you.
+            </p>
+            <p>
+                Please stay quiet while you leave the laboratory.
+        {% endif %}
+    </p>
 {% endblock %}
 
 

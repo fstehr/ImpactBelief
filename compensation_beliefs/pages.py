@@ -13,7 +13,8 @@ class Welcome(Page):    # Welcome page that is displayed to everybody at the beg
                    or self.round_number == (Constants.num_rounds_BDM + Constants.num_rounds_part1 + 1)
 
     def vars_for_template(self):
-        return {'first_treatment_round': (Constants.num_rounds_BDM + 1)}
+        return {'first_treatment_round': (Constants.num_rounds_BDM + 1),
+                'mode': self.session.config['mode']}
 
 
 class IntroductionWaitForAll(WaitPage):   # Wait for all players before a new part is started
@@ -944,7 +945,8 @@ class PaymentInfo(Page):            # Final payment info page which shows the se
                 'final_sliders': self.player.participant.vars['final_sliders'],
                 'final_payoff': self.player.participant.vars['final_payoff'],
                 'exchange_rate': self.session.config['real_world_currency_per_point'],
-                'rounded_euro_payoff': self.player.participant.vars['rounded_final_euro_payoff']
+                'rounded_euro_payoff': self.player.participant.vars['rounded_final_euro_payoff'],
+                'mode': self.session.config['mode']
                 }
 
     def before_next_page(self):     # prepare sliders in the last round for all players who have to solve any sliders
@@ -966,6 +968,9 @@ class FinalScreen(Page):        # final screen in last round for all players whi
 
     def is_displayed(self):
         return self.round_number == Constants.num_rounds
+
+    def vars_for_template(self):
+        return {'mode': self.session.config['mode']}
 
 
     """""
